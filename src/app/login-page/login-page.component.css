@@ -1,0 +1,28 @@
+#bg {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+      
+    /* Preserve aspet ratio */
+    max-width: 100%;
+    min-height: 100%;
+  }
+
+
+  .parent1 {
+    margin: 50% 50%;
+    /* width: 45%; */
+    display: flex;
+    justify-content: center;
+    /* align-items: center;
+    flex-direction: row; */
+    /* vertical-align: center; */
+  }
+
+  .parent {
+    margin: auto auto;
+  height:100vh;
+  display:flex;
+  align-items: center;
+  justify-content:center;
+  }

@@ -1,0 +1,132 @@
+<!-- <img class="fullBg" [src]="page.image"> -->
+<!-- <img [src]="page.image" id="bg" alt=""> -->
+<!-- <img class="img-fluid z-depth-1" src="https://mdbootstrap.com/img/screens/yt/screen-video-1.jpg" id="bg" alt=""> -->
+
+<!-- <mdb-carousel-item> -->
+  <!--Mask color-->
+  <div class="view">
+      <!--Video source-->
+      <video class="video-fluid" autoplay loop>
+          <source src="https://mdbootstrap.com/img/video/Tropical.mp4" type="video/mp4" />
+      </video>
+      <div class="mask rgba-black-strong waves-light" mdbWavesEffect></div>
+  </div>
+
+  <!--Caption-->
+  <div class="carousel-caption">
+    <div class="parent">
+      <form class="text-center border border-light p-5">
+      
+        <p class="h4 mb-4">Sign In</p>
+      
+        <!-- Email -->
+        <input type="email" id="email" class="form-control mb-4" placeholder="E-mail">
+      
+        <!-- Password -->
+        <input type="password" id="password" class="form-control mb-4" placeholder="Password">
+      
+        <div class="d-flex justify-content-around">
+          <div>
+            <!-- Remember me -->
+            <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
+          </div>
+          <div>
+            <!-- Forgot password -->
+            <a href=""> (Forgot password?)</a>
+          </div>
+        </div>
+      
+        <!-- Sign in button -->
+        <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="tryLogin()">Sign in</button>
+      
+        <!-- Register -->
+        <p>Not a member?
+          <a href="">Register</a>
+        </p>
+      
+        <!-- Social login -->
+        <p>or sign in with:</p>
+      
+        <a type="button" class="light-blue-text mx-2">
+          <mdb-icon fab icon="facebook"></mdb-icon>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+          <mdb-icon fab icon="google"></mdb-icon>
+        </a>
+        <a type="button" class="light-blue-text mx-2">
+          <mdb-icon fab icon="github"></mdb-icon>
+        </a>
+      
+      </form>
+
+      
+  </div>
+  <div class="animated fadeInDown">
+    <p>Power By TALMA</p>
+</div>
+  <!--Caption-->
+<!-- </mdb-carousel-item> -->
+
+
+
+</div>
+<!-- 
+<div class="parent">
+<mat-card >
+  <mat-card-content style="text-align:center;">
+    <p class="h4 mb-4">Sign in</p>
+    <p></p>
+    <form class="md-form">
+      <div class="md-form">
+        <mdb-icon fas icon="envelope" class="prefix"></mdb-icon>
+        <input mdbInput type="text" id="form2" class="form-control">
+        <label for="form2">Example label</label>
+      </div>
+      <table>
+        <tr>
+          <td><mat-form-field >
+          <input matInput placeholder="Email Address" [(ngModel)]="email" name="email" type="email">
+          </mat-form-field></td>
+        </tr>
+
+        <tr>
+          <td><mat-form-field >
+          <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+          </mat-form-field></td>
+        </tr>
+
+        <tr>
+          <td>
+          <mat-form-field >
+            <input mdbInput placeholder="Server Address" [(ngModel)]="address"  name="address" type="text" style="width: 100px;" required>
+            <label for="form1" class="">Example label</label> <input matInput placeholder="Server Port" [(ngModel)]="port"  name="port" style="width: 50px;" type="number" required>
+          </mat-form-field></td>
+        </tr>
+
+    </table>
+    </form>
+  </mat-card-content>
+  <mat-card-actions style="text-align:center;">
+    <button mat-raised-button (click)="tryLogin()" color="primary">Login</button>
+    <button mat-raised-button (click)="tryLogin()" color="primary">Register</button>
+    <button mat-raised-button (click)="tryLogin()" color="primary">Offline</button>
+  </mat-card-actions>
+</mat-card>
+</div> -->
+
+
+<!-- 
+<div class="card mt-5" style="margin:auto;width: 600px;">
+  <div class="card-body">
+    <h5 class="card-title">Login</h5>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="email" placeholder="Email Address" [(ngModel)]="email">
+    </div>
+    <div class="form-group">
+      <label for="email">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="password">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="tryLogin()">Login</button>
+  </div>
+</div> -->
