@@ -1,3 +1,10 @@
+/// <reference path="../../node_modules/bingmaps/types/MicrosoftMaps/Microsoft.Maps.All.d.ts" />
+import {MapModule, MapAPILoader, MarkerTypeId, IMapOptions, IBox, IMarkerIconInfo, WindowRef,   
+  DocumentRef, MapServiceFactory, 
+  BingMapAPILoaderConfig, BingMapAPILoader, 
+  GoogleMapAPILoader,  GoogleMapAPILoaderConfig
+} from 'angular-maps';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
@@ -24,9 +31,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import {LoginPageModule} from './login-page/login-page.module';
-import {DashboardPageModule} from './dashboard-page/dashboard-page.module';
+import {DashModule} from './dashboard-page/dashboard-page.module';
 import {LoginPageComponent} from './login-page/login-page.component';
-import {DashboardPageComponent} from './dashboard-page/dashboard-page.component';
+import {Dash} from './dashboard-page/dashboard-page.component';
 // import {RouterModule, Routes} from '@angular/router';
 
 
@@ -49,7 +56,7 @@ import {DashboardPageComponent} from './dashboard-page/dashboard-page.component'
     // RouterModule.forRoot(appRoutes),
     AppRoutingModule,
     LoginPageModule,
-    DashboardPageModule,
+    DashModule,
     HttpClientModule
   ],
   exports: [

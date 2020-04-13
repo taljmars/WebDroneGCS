@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import {LoginPageComponent} from './login-page/login-page.component';
-import {DashboardPageComponent} from './dashboard-page/dashboard-page.component';
+import {Dash} from './dashboard-page/dashboard-page.component';
 
 
 
 const appRoutes: Routes = [
   {
     path: 'dashboard',
-    component: DashboardPageComponent,
+    component: Dash,
     // canActivate: [NeedAuthGuard]
   },
   {

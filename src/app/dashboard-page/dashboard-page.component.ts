@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgModule, VERSION, OnInit} from '@angular/core'
+import {BrowserModule} from '@angular/platform-browser'
+import {MapModule, MapAPILoader, MarkerTypeId, IMapOptions, IBox, IMarkerIconInfo, WindowRef, DocumentRef, MapServiceFactory, 
+        BingMapAPILoaderConfig, BingMapAPILoader, 
+        GoogleMapAPILoader,  GoogleMapAPILoaderConfig
+} from 'angular-maps';
 
 @Component({
-  selector: 'app-dashboard-page',
+  selector: 'app-root',
   templateUrl: './dashboard-page.component.html',
   styleUrls: ['./dashboard-page.component.css']
 })
-export class DashboardPageComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class Dash {}
