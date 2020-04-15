@@ -36,10 +36,14 @@ import {LoginPageComponent} from './login-page/login-page.component';
 import {Dash} from './dashboard-page/dashboard-page.component';
 // import {RouterModule, Routes} from '@angular/router';
 
+import {CamViewModule} from './dashboard-page/cameraView/camview.module';
+import {MapViewModule} from './dashboard-page/mapView/mapview.module';
+import {SerialModule} from './dashboard-page/serial/serial.module';
+import { MapView } from './dashboard-page/mapView/mapview.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
 
@@ -57,7 +61,11 @@ import {Dash} from './dashboard-page/dashboard-page.component';
     AppRoutingModule,
     LoginPageModule,
     DashModule,
-    HttpClientModule
+    HttpClientModule,
+
+    CamViewModule,
+    MapViewModule,
+    SerialModule,
   ],
   exports: [
     BrowserAnimationsModule,
