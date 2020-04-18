@@ -1,4 +1,5 @@
 import {Component, ViewChild, ElementRef} from '@angular/core'
+import { DroneService, DroneEventListener } from '../serial/config/drone.service';
 
 /// https://x-team.com/blog/webcam-image-capture-angular/
 
@@ -8,10 +9,18 @@ import {Component, ViewChild, ElementRef} from '@angular/core'
   templateUrl: './camview.component.html',
   styleUrls: ['./camview.component.css']
 })
-export class CamView {
+export class CamView implements DroneEventListener {
 
   @ViewChild("video", {static: false})
   public video: ElementRef;
+
+  constructor(private droneService: DroneService) {
+    this.droneService.addEventListener(this)
+  }
+
+  call(event: any) {
+    throw new Error("Method not implemented.");
+  }
 
   public ngAfterViewInit() {
     console.log("After view init - talma")
