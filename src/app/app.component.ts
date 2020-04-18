@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
+import {MatDialog, MatDialogConfig} from "@angular/material";
+import {SerialDialogView} from "./dashboard-page/serial/serial.component"
 
 
 @Component({
@@ -10,11 +12,17 @@ import {Router} from '@angular/router';
 export class AppComponent {
   title = 'WebDroneGCS';
 
-  constructor (private router: Router) {
+  constructor (private router: Router, private dialog: MatDialog) {
 
   }
 
-  map() {
-    this.router.navigateByUrl('/map');
+  connect() {
+      const dialogConfig = new MatDialogConfig();
+
+      dialogConfig.disableClose = true;
+      dialogConfig.autoFocus = true;
+      // dialogConfig.
+
+      this.dialog.open(SerialDialogView, dialogConfig);
   }
 }

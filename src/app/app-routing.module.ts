@@ -7,7 +7,7 @@ import {Dash} from './dashboard-page/dashboard-page.component';
 
 import { MapView } from './dashboard-page/mapView/mapview.component';
 import { CamView } from './dashboard-page/cameraView/camview.component';
-import { SerialView } from './dashboard-page/serial/serial.component';
+import { LogView } from './dashboard-page/log/log.component'
 
 const appRoutes: Routes = [
   {
@@ -33,8 +33,8 @@ const appRoutes: Routes = [
     component: CamView,
 },
 {
-  path: 'serial',
-  component: SerialView,
+  path: 'logs',
+  component: LogView,
 },
 {
     path: 'map',

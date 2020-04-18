@@ -1,1 +1,26 @@
-Serial
+<h2 mat-dialog-title>Select Port</h2>
+
+<mat-dialog-content>
+  
+  <!-- <mat-form-field> -->
+    <select #portname id="portname" class="form-control">
+      <option *ngFor="let x of portslist">
+        {{x}}
+      </option>
+    </select>
+  <!-- </mat-form-field> -->
+
+    <!-- <mat-form-field> -->
+        <input matInput #portbaud
+                class="form-control mb-4"
+                placeholder="Baud Rate"
+                formControlName="description">
+    <!-- </mat-form-field> -->
+      ....
+ 
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button color="info" class="my-4" (click)="connect()">Connect</button>
+    <button color="info" class="my-4" (click)="close()">Close</button>
+</mat-dialog-actions>

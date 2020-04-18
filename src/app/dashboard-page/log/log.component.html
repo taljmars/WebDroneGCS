@@ -1,0 +1,14 @@
+<div id="main-content" class="container">
+  <div class="col-md-12" >
+    <table id="conversation" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Event Logs</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let event of events" >
+        <tr><td>{{event}}</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -25,20 +25,19 @@
           <!-- <a class="nav-link" (click)="cam()">Camera</a> -->
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="serial">Serial</a>
-          <!-- <a class="nav-link" (click)="cam()">Camera</a> -->
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="map()">Map</a>
+          <a class="nav-link" routerLink="map">Map</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Editor</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Logs</a>
+          <a class="nav-link" routerLink="logs">Logs</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item">
+          <a class="nav-link" (click)="connect()" >Connected</a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">

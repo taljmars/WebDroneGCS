@@ -40,6 +40,8 @@ import {CamViewModule} from './dashboard-page/cameraView/camview.module';
 import {MapViewModule} from './dashboard-page/mapView/mapview.module';
 import {SerialModule} from './dashboard-page/serial/serial.module';
 import { MapView } from './dashboard-page/mapView/mapview.component';
+import { MatDialogModule } from '@angular/material';
+import { LogsModule } from './dashboard-page/log/log.module';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,9 @@ import { MapView } from './dashboard-page/mapView/mapview.component';
     CamViewModule,
     MapViewModule,
     SerialModule,
+    LogsModule,
+
+    MatDialogModule,
   ],
   exports: [
     BrowserAnimationsModule,
