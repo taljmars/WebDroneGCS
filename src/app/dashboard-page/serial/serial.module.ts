@@ -12,12 +12,21 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatDialogRef, MatDialogActions} from "@angular/material";
 import {MatDialogModule} from '@angular/material/dialog';
 
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import {MatSelectModule} from '@angular/material/select';
+
+
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpClientModule,
     MatDialogModule,
+    MatButtonModule,
+    MatCardModule,
+    MDBBootstrapModule.forRoot(),
+    MatSelectModule,
+
   ],
   declarations: [ SerialDialogView ],
   providers: [],

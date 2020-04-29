@@ -9,11 +9,14 @@ import {MapModule, MapAPILoader, MarkerTypeId, IMapOptions, IBox, IMarkerIconInf
         GoogleMapAPILoader,  GoogleMapAPILoaderConfig
 } from 'angular-maps';
 import { Dash } from './dashboard-page.component';
+import { MatCardModule } from '@angular/material/card';
+
 
 @NgModule({
   imports: [
     BrowserModule,
-    MapModule.forRootBing()
+    MapModule.forRootBing(),
+    MatCardModule,
   ],
   declarations: [ Dash ],
   providers: [

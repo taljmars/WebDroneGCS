@@ -1,0 +1,100 @@
+<!-- Editable table -->
+<div class="card">
+    <div class="card-body">
+      <div class="row">
+
+        <div class="row-md-12 mx-auto">
+          <div class="md-form">
+            <mat-form-field>
+              <mat-label>Type</mat-label>
+              <mat-select #type [disabled]="false" [value]="">
+                <mat-option>None</mat-option>
+                <!-- <mat-option *ngFor="let x of proxyService.baudlist" [value]="x">{{x}}</mat-option> -->
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="row-md-12 mx-auto">
+          <div class="md-form">
+            <mat-form-field>
+              <mat-label>Topic</mat-label>
+              <mat-select (change)="onTopicSelect($event.target.value)">
+                <mat-option>All</mat-option>
+                <mat-option *ngFor="let x of groups" [value]="x">{{x}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div> 
+        
+        <div class="row-md-12 mx-auto">
+          <div class="md-form">
+            <mdb-checkbox [checked]="false" [default]="true" [rounded]="true">Hide Unknown</mdb-checkbox>
+          </div>
+        </div>
+
+        <div class="row-md-12 mx-auto">
+          <div class="md-form">
+            <input
+              type="text"
+              [(ngModel)]="searchText"
+              class="form-control"
+              id="search"
+              mdbInput
+              (keyup)="onInput($event)"
+            />
+            <label for="search">Search</label>
+          </div>
+        </div>
+
+        <div class="row-md-12 mx-auto">
+          <div class="md-form">
+            <button mdbBtn type="button" color="primary" mdbWavesEffect>Update</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <label>{{paramsList.length}}/{{originalParamsList.length}} Parameters</label>
+      </div>
+
+      <div id="table" class="table-editable">
+        <table mdbTable class="table table-hover table-small table-striped table-responsive-md text-center" stickyHeader="true" >
+          <tr>
+            <th class="text-center">#</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Title</th>
+            <th class="text-center">Value</th>
+            <th class="text-center">Default Value</th>
+            <th class="text-center">Unit</th>
+            <th class="text-center">Description</th>
+          </tr>
+          <tr *ngFor="let param of paramsList; let id = index">
+            <td>
+              <mdb-icon fas icon="edit" class="mr-2 grey-text" aria-hidden="true" *ngIf=isEdit(param.id)></mdb-icon>
+              <span>{{param.id}}</span>
+            </td>
+            <td>
+              <span>{{param.name}}</span>
+            </td>
+            <td>
+              <span>{{param.title}}</span>
+            </td>
+            <td>
+              <span (contenteditable)="isParametersOnDrone()" onkeypress="return event.keyCode != 13;" (keyup)="changeValue(id, 'value', $event)" (blur)="updateList(id, 'value', $event)" >{{param.value}}</span>
+            </td>
+            <td>
+              <span>{{param.defaultValue}}</span>
+            </td>
+            <td>
+              <span>{{param.unit}}</span>
+            </td>
+            <td>
+              <span>{{param.description}}</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- Editable table -->

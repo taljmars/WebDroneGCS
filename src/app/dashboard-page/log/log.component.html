@@ -1,6 +1,6 @@
-<div id="main-content" class="container">
-  <div class="col-md-12" >
-    <table id="conversation" class="table table-striped">
+
+  <!-- <div class="col-md-12" >
+    <table class="table table-striped">
       <thead>
         <tr>
           <th>Event Logs</th>
@@ -10,5 +10,44 @@
         <tr><td>{{event}}</td></tr>
       </tbody>
     </table>
-  </div>
-</div>
+  </div> -->
+
+
+<mat-drawer-container style="height: 100%; width: 100%; ">
+  <mat-drawer mode="side" >
+    
+  </mat-drawer>
+
+
+  <mat-drawer-content>
+    <div class="col-md-12" >
+      <table class="table table-striped">
+        <tr>
+          <th class="text-center">Date</th>
+          <th class="text-center">Level</th>
+          <th class="text-center">Type</th>
+          <th class="text-center">Message</th>
+          <!-- <th class="text-center">Source</th> -->
+        </tr>
+        <!-- <tbody *ngFor="let event of events" >
+          <tr><td>{{event}}</td></tr>
+        </tbody> -->
+        <tr *ngFor="let event of events">
+          <td>
+            <span>{{ event.date | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+          </td>
+          <td>
+            <mdb-icon fas icon="info" class="mr-2 grey-text" aria-hidden="true"></mdb-icon>
+          </td>
+          <td>
+            <span>{{event.type}}</span>
+          </td>
+          <td>
+            <span>{{event.message}}</span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </mat-drawer-content>
+  
+</mat-drawer-container>

@@ -1,0 +1,18 @@
+<mat-drawer-container style="height: 100%; width: 100%; ">
+  <mat-drawer mode="side" opened>
+
+      <mat-button-toggle-group style="border:none;" vertical>
+        <mat-button-toggle style="border:none;" (click)="setActive('DroneParams')">Drone Parameters</mat-button-toggle>
+        <mat-button-toggle style="border:none;" (click)="setActive('UserConfig')">Calibration</mat-button-toggle>
+        <mat-button-toggle style="border:none;" (click)="setActive('UserConfig')">User Configuration</mat-button-toggle>
+      </mat-button-toggle-group>
+    
+  </mat-drawer>
+
+
+  <mat-drawer-content>
+    <DroneParams *ngIf="isActive('DroneParams')"></DroneParams>
+    <UserConfig *ngIf="isActive('UserConfig')"></UserConfig>
+  </mat-drawer-content>
+  
+</mat-drawer-container>

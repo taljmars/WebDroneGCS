@@ -32,6 +32,7 @@ export class LoginPageComponent {
   }
 
   tryLogin() {
+    this.api.loggedIn = true;
     this.router.navigateByUrl('/dashboard');
     // this.api.login(
     //   this.email,

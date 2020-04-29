@@ -1,56 +1,51 @@
 <!--Navbar -->
-<nav class="mb-1 navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">WebGCS</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
-      aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" rrouterLink="dashboard">Home</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">Settings
-          </a>
-          <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" routerLink="cam">Camera</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="map">Map</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="map">Editor</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="logs">Logs</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav ml-auto nav-flex-icons">
-        <li class="nav-item">
-          <a class="nav-link" (click)="connect()" [ngStyle]="getConnectedStyles()">Connected</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right dropdown-default"
-            aria-labelledby="navbarDropdownMenuLink-333">
-            <a class="dropdown-item" href="#">Profile</a>
-            <a class="dropdown-item" href="#">Logout</a>
-            <a class="dropdown-item" href="#">Contact Us</a>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-dark fixed scrolling-navbar" [containerInside]="false" *ngIf="apiService.loggedIn">
+  <mdb-navbar-brand>
+      <a class="navbar-brand" href="/dashboard"><strong>WebGCS</strong></a>
+  </mdb-navbar-brand>
+  <links>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" rrouterLink="dashboard">Home</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" routerLink="cam">Camera</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="map">Map</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="editor">Editor</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="settings">Settings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="logs">Logs</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item" *ngIf="connected">
+        <a class="nav-link" (click)="sync()" >
+          <i class="fas fa-sync-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="connect()" [ngStyle]="getConnectedStyles()">Connected</a>
+      </li>
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle type="fas" class="nav-link dropdown-toggle">
+          <i class="fas fa-user"></i>
+        </a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect >Profile</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect >Contact Us</a>
+          <div class="divider dropdown-divider"></div>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="/">Logout</a>
+        </div>
+      </li>
+    </ul>
+  </links>
+</mdb-navbar>
 
 <router-outlet></router-outlet>

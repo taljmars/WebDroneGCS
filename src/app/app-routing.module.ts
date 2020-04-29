@@ -8,6 +8,8 @@ import {Dash} from './dashboard-page/dashboard-page.component';
 import { MapView } from './dashboard-page/mapView/mapview.component';
 import { CamView } from './dashboard-page/cameraView/camview.component';
 import { LogView } from './dashboard-page/log/log.component'
+import { Settings } from './dashboard-page/settings/settings.component'
+import { Editor } from './dashboard-page/editor/editor.component'
 
 const appRoutes: Routes = [
   {
@@ -35,6 +37,24 @@ const appRoutes: Routes = [
 {
   path: 'logs',
   component: LogView,
+},
+{
+  path: 'editor',
+  component: Editor,
+},
+{
+  path: 'settings',
+  component: Settings,
+  // children: [
+  //   {
+  //     path: 'userconfig',
+  //     component: Settings,
+  //   },
+  //   {
+  //     path: 'droneparams',
+  //     component: Settings,
+  //   },
+  // ]
 },
 {
     path: 'map',

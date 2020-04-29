@@ -8,18 +8,13 @@ import {MapModule, MapAPILoader, MarkerTypeId, IMapOptions, IBox, IMarkerIconInf
         BingMapAPILoaderConfig, BingMapAPILoader, 
         GoogleMapAPILoader,  GoogleMapAPILoaderConfig
 } from 'angular-maps';
-import { MapView } from './mapview.component';
+import { Editor } from './editor.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { NavbarModule, DropdownModule } from 'angular-bootstrap-md';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatGridListModule} from '@angular/material/grid-list';
-
-
 
 @NgModule({
   imports: [
@@ -27,22 +22,20 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MapModule.forRootBing(),
     DropdownModule.forRoot(),
     MatCardModule,
-    MatSidenavModule,
-    MatTabsModule,
-    MatGridListModule,
+
   ],
-  declarations: [ MapView ],
+  declarations: [ Editor ],
   providers: [
     { 
       provide: MapAPILoader, deps: [], useFactory: BingMapServiceProviderFactory
     }
   ],
-  exports: [MapView],
+  exports: [Editor],
   // bootstrap: [  ]
-  bootstrap: [ MapView ]
+  bootstrap: [ Editor ]
 })
-export class MapViewModule {
-  constructor() {console.log("In MapViewModule constructor");}
+export class EditorModule {
+  constructor() {console.log("In EditorModule constructor");}
 }
 
 export function BingMapServiceProviderFactory(){

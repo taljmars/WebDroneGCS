@@ -10,80 +10,128 @@ import { callbackify } from 'util';
 import { ConfigService } from './config.service';
 
 export interface ProxyListener {
-    call(event: any);
+    onProxyEvent(event: any);
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProxyService {
+    
+  private ws: any = {};
+  private portName: String = "";
+  private baudRate: Number = 0;
 
-    ws: any;
-    portName: String = "";
-    baudRate: Number = 0;
+  private listeners: Set<ProxyListener> = new Set<ProxyListener>();
+  private proxyUp: boolean = true
+  public baudlist: Array<Number> = new Array(57600,115200);
 
-    listeners: Set<ProxyListener> = new Set<ProxyListener>()
+  constructor(private configService: ConfigService) {}
 
-    constructor(private configService: ConfigService) {}
+  connect(portname: String, baudrate: Number, callback: Function = null) {
+    //connect to stomp where stomp endpoint is exposed
+    let socket = new SockJS("http://localhost:8080/greeting");
+    // let socket = new WebSocket("ws://localhost:8080/greeting");
+    this.ws = Stomp.over(socket);
+    this.ws.debug = null
+    let that = this;
+    this.ws.connect({}, function(frame) {
+      that.proxyUp = true;
+      for (let x of that.listeners)
+        x.onProxyEvent("Proxy is Up")
 
-    connect(callback: Function = null) {
-        //connect to stomp where stomp endpoint is exposed
-        let socket = new SockJS("http://localhost:8080/greeting");
-        // let socket = new WebSocket("ws://localhost:8080/greeting");
-        this.ws = Stomp.over(socket);
-        let that = this;
-        this.ws.connect({}, function(frame) {
-          that.ws.subscribe("/errors", function(message) {
-            alert("Error " + message.body);
-          });
-          that.ws.subscribe("/topic/events/drone", function(message) {
-            console.log(message)
-            for (let x of that.listeners)
-                x.call(message.body)
-          });
-          that.ws.subscribe("/topic/events/port", function(message) {
-            console.log(message)
-            // that.showEvents(message.body);
-          });
-          
-        }, function(error) {
-          alert("STOMP error " + error);
-        });
+        that.ws.subscribe("/errors", function(message) {
+        for (let x of that.listeners)
+            x.onProxyEvent("Proxy Error: " + message)
+      });      
+    }, function(error) {
+      that.portName = "";
+      that.baudRate = 0;
+      for (let x of that.listeners)
+            x.onProxyEvent("Proxy is Down")
+    });
 
-        let data = {
-            'name' : this.portName,
-          }
-          if (this.baudRate != 0)
-            data['baud'] = this.baudRate;
-      
-          console.log(data)
-          this.configService.post("connect", {}, data, callback)
-      }
+    let data = {
+        'name' : portname,
+    }
+    if (baudrate != 0)
+      data['baud'] = baudrate;
 
-      disconnect() {
-        if (this.ws != null) {
-          this.ws.ws.close();
-        }
-        console.log("Disconnected");
-      }
+    console.log(data)
+    this.configService.post("connect", {}, data, val => {
+      this.portName = val.connection.name;
+      this.baudRate = val.connection.baud;
+      for (let x of this.listeners)
+            x.onProxyEvent("Proxy Binded to Port")
+      if (callback) callback(val)
+    })
+  }
 
-      setPortName(value: String) {
-            this.portName = value;
-        }
+  disconnect(callback: Function = null) {
+    this.configService.post("disconnect", {}, {}, val => {
+      this.portName = "";
+      this.baudRate = 0;
+      for (let x of this.listeners)
+        x.onProxyEvent("Proxy Un-binded to Port")
+      if (callback) callback(val)
+    })
+    if (this.ws != null) {
+      this.ws.ws.close();
+    }
+    console.log("Disconnected");
+  }
 
-        setBaud(value: Number) {
-            this.baudRate = value;
-        }
+  getPortName() {
+      return this.portName;
+  }
 
-        getPostList(callback: Function) {
-            this.configService.get("listports", {}, {}, callback);
-        }
+  getBaudRate() {
+    return this.baudRate;
+  }
 
-        addEventListner(listner: ProxyListener) {
-            this.listeners.add(listner)
-        }
+  getPostList(callback: Function) {
+      this.configService.get("listports", {}, {}, callback);
+  }
 
-        removeEventListner(listener: ProxyListener) {
-            this.listeners.delete(listener);
-        }
+  addEventListner(listner: ProxyListener) {
+      this.listeners.add(listner)
+  }
+
+  removeEventListner(listener: ProxyListener) {
+      this.listeners.delete(listener);
+  }
+
+  subscribe(queue: string, notify: Function) {
+    if (this.ws == {}) {
+      console.error("WS wasn't initialized")
+      return
+    }
+
+    if (!this.ws.connected) {
+      console.error("WS isn't connected")
+      return
+    }
+    this.ws.subscribe(queue, notify);
+  }
+
+  unsubscribe(queue: string) {
+    if (this.ws == {}) {
+      console.error("WS wasn't initialized")
+      return
+    }
+
+    if (!this.ws.connected) {
+      console.error("WS isn't connected")
+      return
+    }
+    this.ws.unsubscribe(queue);      
+  }
+
+  isProxyUp() {
+    return this.proxyUp;
+  }
+
+  isConnected() {
+    return this.portName != "";
+  }
 }

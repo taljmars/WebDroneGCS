@@ -1,5 +1,5 @@
 import {Component, ViewChild, ElementRef} from '@angular/core'
-import { DroneService, DroneEventListener } from '../serial/config/drone.service';
+import { DroneService, DroneEventListener } from '../drone/drone.service';
 
 /// https://x-team.com/blog/webcam-image-capture-angular/
 
@@ -18,7 +18,7 @@ export class CamView implements DroneEventListener {
     this.droneService.addEventListener(this)
   }
 
-  call(event: any) {
+  onDroneEvent(event: any) {
     throw new Error("Method not implemented.");
   }
 

@@ -11,6 +11,7 @@ import { NavbarModule, DropdownModule } from 'angular-bootstrap-md';
 @NgModule({
   imports: [
     BrowserModule,
+    MatCardModule,
   ],
   declarations: [ CamView ],
   providers: [],

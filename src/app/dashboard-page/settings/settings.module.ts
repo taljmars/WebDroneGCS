@@ -1,6 +1,6 @@
 import {Component, NgModule, VERSION} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
-import { LogView } from './log.component';
+import { Settings } from './settings.component';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -8,23 +8,28 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { NavbarModule, DropdownModule } from 'angular-bootstrap-md';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import { CheckboxModule, TableModule, WavesModule, IconsModule, InputsModule, ButtonsModule } from 'angular-bootstrap-md';
+import {DroneParamsModule} from './droneParams/droneparams.module'
+import {UserConfigModule} from './userConfig/userconfig.module'
+
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 @NgModule({
   imports: [
     BrowserModule,
+    
     MatSidenavModule,
-    IconsModule,
-    TableModule,
-    InputsModule,
+    DroneParamsModule,
+    UserConfigModule,
+
+    MatButtonToggleModule,
   ],
-  declarations: [ LogView ],
+  declarations: [ Settings ],
   providers: [],
-  exports: [LogView],
+  exports: [Settings],
   // bootstrap: [ ]
-  bootstrap: [ LogView ]
+  bootstrap: [ Settings ]
 })
-export class LogsModule {
-  constructor() {console.log("In LogModule constructor");}
+export class SettingsModule {
+  constructor() {console.log("In SettingsModule constructor");}
 }

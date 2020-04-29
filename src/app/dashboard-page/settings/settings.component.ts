@@ -6,23 +6,26 @@ import { DroneService, DroneEventListener } from '../drone/drone.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './log.component.html',
-  styleUrls: ['./log.component.css']
+  templateUrl: './settings.component.html',
+  styleUrls: ['./settings.component.css']
 })
-export class LogView implements DroneEventListener{
+export class Settings implements DroneEventListener{
 
-  events: any[] = [];
+  private active: String = "DroneParams"
 
   constructor(private droneService: DroneService){
     this.droneService.addEventListener(this);
   }
 
   onDroneEvent(event: any) {
-    this.events.push({
-      date: new Date(),
-      type: event.name,
-      message: JSON.stringify(event.data)
-    })
+  }
+
+  setActive(view: String) {
+    this.active = view
+  }
+
+  isActive(view: String) {
+    return this.active == view
   }
 
 }

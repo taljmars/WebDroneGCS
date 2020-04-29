@@ -1,0 +1,29 @@
+<div class="infoleft">
+  <mat-card>
+    <mat-card-subtitle>Layers</mat-card-subtitle>
+    <mat-card-content style="font-size: 52px; font-weight: bold;">
+      <p>Mode</p>
+    </mat-card-content>
+  </mat-card>
+
+  <br/>
+
+  <mat-card>
+    <mat-card-subtitle>Flight Statistics</mat-card-subtitle>
+    <mat-card-content style="font-size: 52px; font-weight: bold;">
+      <p>F.Time</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+<div style="height: 100%; width: 100%; ">
+  <x-map> 
+    <!-- [Options]="_options">  -->
+    <x-map-marker 
+      [Latitude]="_lat" 
+      [Longitude]="_lon"
+      [IconInfo]="_iconInfo">
+    </x-map-marker>
+  </x-map>
+</div>  

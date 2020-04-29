@@ -8,6 +8,9 @@ import {LoginResponseModel} from './model/LoginResponseModel'
 })
 export class ApiService {
 
+  // loggedIn: boolean = false
+  loggedIn: boolean = true
+
   constructor(private http: HttpClient) {
 
   }
