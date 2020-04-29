@@ -46,11 +46,14 @@ import { MatDialogModule } from '@angular/material';
 import { LogsModule } from './dashboard-page/log/log.module';
 import { Editor } from './dashboard-page/editor/editor.component';
 
+// import { CanActivateRouteGuard } from './routeguard' 
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    // CanActivateRouteGuard,
   ],
   imports: [
 

@@ -31,24 +31,24 @@ export class SerialDialogView {
   @ViewChild("portbaud", {static: false})
   public portbaud: MatSelect;
 
-  private receivedBytes: Number = 0;
-  private transmittedBytes: Number = 0;
-  private receivedBytesPerSecond: Number = 0;
-  private transmittedBytesPerSecond: Number = 0;
-  private receivedPackets: Number = 0;
-  private receivedErrorPackets: Number = 0;
-  private receivedUncategorizedPackets: Number = 0;
-  private lostPackets: Number = 0;
-  private transmittedPackets: Number = 0;
-  private transmittedErrorPackets: Number = 0;
-  private receivedPacketsPerSecond: Number = 0;
-  private transmittedPacketsPerSecond: Number = 0;
-  private latency: Number = 0;
-  private mavlinkVersion: String = "";
+  receivedBytes: Number = 0;
+  transmittedBytes: Number = 0;
+  receivedBytesPerSecond: Number = 0;
+  transmittedBytesPerSecond: Number = 0;
+  receivedPackets: Number = 0;
+  receivedErrorPackets: Number = 0;
+  receivedUncategorizedPackets: Number = 0;
+  lostPackets: Number = 0;
+  transmittedPackets: Number = 0;
+  transmittedErrorPackets: Number = 0;
+  receivedPacketsPerSecond: Number = 0;
+  transmittedPacketsPerSecond: Number = 0;
+  latency: Number = 0;
+  mavlinkVersion: String = "";
 
-  constructor(private dialogRef: MatDialogRef<SerialDialogView>,
-              private proxyService: ProxyService,
-              private droneService: DroneService){
+  constructor(public dialogRef: MatDialogRef<SerialDialogView>,
+              public proxyService: ProxyService,
+              public droneService: DroneService){
     this.proxyService.getPostList(data => {
         console.log(data)
         console.log(data.ports)

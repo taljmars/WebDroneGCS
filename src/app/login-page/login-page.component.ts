@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ApiService} from '../api.service';
-import {CustomerService} from '../customer.service';
+import {UserService} from '../user.service';
 import {Router} from '@angular/router';
 
 import { MatButtonModule } from '@angular/material/button';
@@ -28,26 +28,27 @@ export class LoginPageComponent {
   address = "127.0.0.1"
   port = 8080
 
-  constructor(private api: ApiService, private customer: CustomerService, private router: Router) {
+  constructor(private api: ApiService, private user: UserService, private router: Router) {
   }
 
   tryLogin() {
-    this.api.loggedIn = true;
-    this.router.navigateByUrl('/dashboard');
-    // this.api.login(
-    //   this.email,
-    //   this.password
-    // )
-    //   .subscribe(
-    //     r => {
-    //       if (r.token) {
-    //         this.customer.setToken(r.token);
-    //         this.router.navigateByUrl('/dashboard');
-    //       }
-    //     },
-    //     r => {
-    //       alert(r.error.error);
-    //     });
+    this.api.login(
+      this.email,
+      this.password
+    )
+      .subscribe(
+        r => {
+          if (r.token) {
+            this.user.setToken(r.token);
+            // this.api.loggedIn = true;
+            this.router.navigateByUrl('/dashboard');
+          }
+        },
+        r => {
+          alert(r.error.error);
+          this.user.setToken("Dummy");
+          this.router.navigateByUrl('/dashboard');
+        });
   }
 
 }

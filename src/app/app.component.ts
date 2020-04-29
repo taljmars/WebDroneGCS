@@ -4,9 +4,9 @@ import {MatDialog, MatDialogConfig} from "@angular/material";
 import {SerialDialogView} from "./dashboard-page/serial/serial.component"
 import { DroneEventListener, DroneService } from './dashboard-page/drone/drone.service';
 import { ProxyListener, ProxyService } from './dashboard-page/serial/config/proxy.service';
-import { ApiService } from './api.service';
+import { UserService } from './user.service';
 import { DroneEvents } from './dashboard-page/drone/protocol/events.component';
-
+import { ApiService } from './api.service'
 
 
 @Component({
@@ -23,7 +23,8 @@ export class AppComponent implements ProxyListener, DroneEventListener {
                 private dialog: MatDialog, 
                 private droneService: DroneService,
                 private proxyService: ProxyService,
-                private apiService: ApiService,
+                public userService: UserService,
+                private api: ApiService,
               ) {
     proxyService.addEventListner(this)
     droneService.addEventListener(this)
@@ -74,5 +75,23 @@ export class AppComponent implements ProxyListener, DroneEventListener {
       'font-weight' : this.connected ? 'bold' : 'normal',
     };
     return styles;
+  }
+
+  logout() {
+    console.log("Logout")
+    this.api.logout(
+      this.userService.getToken()
+    )
+    .subscribe(
+      r => {
+          this.userService.removeToken();
+          this.router.navigateByUrl('/');
+      },
+      r => {
+        alert(r.error.error);
+        this.userService.removeToken();
+        this.router.navigateByUrl('/');
+      }
+    );
   }
 }

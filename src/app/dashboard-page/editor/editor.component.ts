@@ -30,7 +30,7 @@ export class Editor implements DroneEventListener {
   //   zoom: 6
   // };
 
-  private _iconInfo: IMarkerIconInfo = {
+  _iconInfo: IMarkerIconInfo = {
     markerType: MarkerTypeId.FontMarker,
     fontName: 'FontAwesome',
     fontSize: 48,

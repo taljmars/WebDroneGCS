@@ -10,10 +10,10 @@ import { MdbTableDirective } from 'angular-bootstrap-md';
 })
 export class DroneParams implements DroneEventListener{
 
-  private paramsList: Array<any> = []
-  private originalParamsList: Array<any> = []
+  public paramsList: Array<any> = []
+  public originalParamsList: Array<any> = []
   private modified: Set<Number> = new Set();
-  private groups: Set<String> = new Set();
+  public groups: Set<String> = new Set();
   private paramterOnDrone: Boolean = false;
 
   constructor(private droneService: DroneService) {

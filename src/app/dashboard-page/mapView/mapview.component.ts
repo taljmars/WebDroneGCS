@@ -22,22 +22,22 @@ export class MapView implements DroneEventListener {
   @ViewChild("video", {static: false})
   public video: ElementRef;
 
-  private mode: String = "Unknown"
-  private signal: Number = 0
-  private battery: Number = 0
-  private ftime: String = "00:00:00"
-  private height: Number = 0
-  private distance: Number = 0
-  private speed: Number = 0
-  private angle: any = 0
+  mode: String = "Unknown"
+  signal: Number = 0
+  battery: Number = 0
+  ftime: String = "00:00:00"
+  height: Number = 0
+  distance: Number = 0
+  speed: Number = 0
+  angle: any = 0
 
-  private markers: Set<any> = new Set()
+  markers: Set<any> = new Set()
 
   constructor(private droneService: DroneService) {
     droneService.addEventListener(this)
   }
 
-  private _options: IMapOptions = {
+  _options: IMapOptions = {
     disableBirdseye: true,
     disableStreetside: true,
     navigationBarMode: 2, 
@@ -55,7 +55,7 @@ export class MapView implements DroneEventListener {
   //   text: '+'    
   // };
 
-  private _iconInfo: IMarkerIconInfo = {
+  _iconInfo: IMarkerIconInfo = {
     markerType: MarkerTypeId.CanvasMarker,
     rotation: this.angle,
     drawingOffset: { x: 12, y: 0 },

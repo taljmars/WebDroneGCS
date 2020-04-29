@@ -11,55 +11,56 @@ import { LogView } from './dashboard-page/log/log.component'
 import { Settings } from './dashboard-page/settings/settings.component'
 import { Editor } from './dashboard-page/editor/editor.component'
 
+// import { CanActivateRouteGuard } from './routeguard' 
+
+import { Injectable } from "@angular/core";
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Observable } from "rxjs"
+import { UserService } from './user.service';
+
+@Injectable()
+export class CanActivateRouteGuard implements CanActivate {
+
+    constructor (private user: UserService) {}
+
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+        console.log("Can Activate ?")
+        return this.user.isLogged()
+    }
+}
+
+
 const appRoutes: Routes = [
   {
     path: 'dashboard',
     component: Dash,
-    // canActivate: [NeedAuthGuard]
-    // children: [
-    //   {
-    //     path: 'cam',
-    //     component: CamViewModule,
-    // },
-    // {
-    //     path: 'map',
-    //     component: MapViewModule,
-    // },
-    // {
-    //     path: '',
-    //     component: MapViewModule,
-    // } 
-    // ]
+    canActivate: [CanActivateRouteGuard]
   },{
     path: 'cam',
     component: CamView,
-},
-{
-  path: 'logs',
-  component: LogView,
-},
-{
-  path: 'editor',
-  component: Editor,
-},
-{
-  path: 'settings',
-  component: Settings,
-  // children: [
-  //   {
-  //     path: 'userconfig',
-  //     component: Settings,
-  //   },
-  //   {
-  //     path: 'droneparams',
-  //     component: Settings,
-  //   },
-  // ]
-},
-{
+    canActivate: [CanActivateRouteGuard]
+  },
+  {
+    path: 'logs',
+    component: LogView,
+    canActivate: [CanActivateRouteGuard]
+  },
+  {
+    path: 'editor',
+    component: Editor,
+    canActivate: [CanActivateRouteGuard]
+
+  },
+  {
+    path: 'settings',
+    component: Settings,
+    canActivate: [CanActivateRouteGuard]
+  },
+  {
     path: 'map',
     component: MapView,
-},
+    canActivate: [CanActivateRouteGuard]
+  },
   {
     path: '',
     component: LoginPageComponent
@@ -73,6 +74,7 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [CommonModule, RouterModule.forRoot(appRoutes, { enableTracing: true })],
+  providers: [CanActivateRouteGuard],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
