@@ -9,26 +9,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 
-@Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
-})
-export class LoginPageComponent {
-
-  page = {
-    title: 'Home',
-    subtitle: 'Welcome Home!',
-    content: 'Some home content.',
-    image: 'assets/bg.jpg'
-  };
+// @Component({
+//   selector: 'app-login-page',
+//   templateUrl: './login-page.component.html',
+//   styleUrls: ['./login-page.component.css']
+// })
+export abstract class LoginPageComponent {
 
   email = 'peter@klaven';
   password = 'cityslicka';
   address = "127.0.0.1"
   port = 8080
 
-  constructor(private api: ApiService, private user: UserService, private router: Router) {
+  constructor(protected api: ApiService, protected user: UserService, protected router: Router) {
   }
 
   tryLogin() {

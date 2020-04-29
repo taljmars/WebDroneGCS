@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Router, PreloadAllModules } from '@angular/router';
 
 import {LoginPageComponent} from './login-page/login-page.component';
 import {Dash} from './dashboard-page/dashboard-page.component';
@@ -17,6 +17,9 @@ import { Injectable } from "@angular/core";
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from "rxjs"
 import { UserService } from './user.service';
+import { ApplicationStateService } from './application-state.service';
+import { LoginPageComponentMobile } from './login-page/login-page.component.mobile';
+import { LoginPageComponentDesktop } from './login-page/login-page.component.desktop';
 
 @Injectable()
 export class CanActivateRouteGuard implements CanActivate {
@@ -30,7 +33,7 @@ export class CanActivateRouteGuard implements CanActivate {
 }
 
 
-const appRoutes: Routes = [
+const appDesktopRoutes: Routes = [
   {
     path: 'dashboard',
     component: Dash,
@@ -63,18 +66,63 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    component: LoginPageComponent
+    component: LoginPageComponentDesktop
   },
   {
     path: 'login',
-    component: LoginPageComponent
+    component: LoginPageComponentDesktop
+  },
+];
+
+const appMobileRoutes: Routes = [
+  {
+    path: 'dashboard',
+    component: Dash,
+    canActivate: [CanActivateRouteGuard]
+  },{
+    path: 'cam',
+    component: CamView,
+    canActivate: [CanActivateRouteGuard]
+  },
+  {
+    path: 'logs',
+    component: LogView,
+    canActivate: [CanActivateRouteGuard]
+  },
+  {
+    path: 'settings',
+    component: Settings,
+    canActivate: [CanActivateRouteGuard]
+  },
+  {
+    path: 'map',
+    component: MapView,
+    canActivate: [CanActivateRouteGuard]
+  },
+  {
+    path: '',
+    component: LoginPageComponentMobile
+  },
+  {
+    path: 'login',
+    component: LoginPageComponentMobile
   },
 ];
 
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forRoot(appRoutes, { enableTracing: true })],
+  imports: [CommonModule, RouterModule.forRoot(appDesktopRoutes, { enableTracing: true, preloadingStrategy: PreloadAllModules })],
   providers: [CanActivateRouteGuard],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+
+  public constructor(private router: Router,
+    private applicationStateService: ApplicationStateService) {
+
+    if (applicationStateService.getIsMobileResolution()) {
+      router.resetConfig(appMobileRoutes);
+    }
+  }
+  
+}

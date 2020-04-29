@@ -8,6 +8,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { InputsModule, IconsModule, MDBBootstrapModule } from 'angular-bootstrap-md';
+import { LoginPageComponentDesktop } from './login-page.component.desktop';
+import { LoginPageComponentMobile } from './login-page.component.mobile';
 
 
 @NgModule({
@@ -20,10 +22,13 @@ import { InputsModule, IconsModule, MDBBootstrapModule } from 'angular-bootstrap
     MDBBootstrapModule.forRoot(),
     IconsModule,
   ],
-  declarations: [LoginPageComponent],
+  declarations: [
+    LoginPageComponentDesktop, 
+    LoginPageComponentMobile
+  ],
   exports: [
-    
-    LoginPageComponent
+    LoginPageComponentDesktop, 
+    LoginPageComponentMobile
   ]
 })
 export class LoginPageModule { }
