@@ -7,6 +7,7 @@ import { ProxyListener, ProxyService } from './dashboard-page/serial/config/prox
 import { UserService } from './user.service';
 import { DroneEvents } from './dashboard-page/drone/protocol/events.component';
 import { ApiService } from './api.service'
+import { ApplicationStateService } from './application-state.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class AppComponent implements ProxyListener, DroneEventListener {
 
   constructor ( private router: Router, 
                 private dialog: MatDialog, 
+                public applicationStateService: ApplicationStateService,
                 private droneService: DroneService,
                 private proxyService: ProxyService,
                 public userService: UserService,
