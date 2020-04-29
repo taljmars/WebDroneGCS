@@ -112,6 +112,7 @@ const appMobileRoutes: Routes = [
 
 @NgModule({
   imports: [CommonModule, RouterModule.forRoot(appDesktopRoutes, { enableTracing: true, preloadingStrategy: PreloadAllModules })],
+  // imports: [CommonModule, RouterModule.forRoot(appMobileRoutes, { enableTracing: true, preloadingStrategy: PreloadAllModules })],
   providers: [CanActivateRouteGuard],
   exports: [RouterModule]
 })

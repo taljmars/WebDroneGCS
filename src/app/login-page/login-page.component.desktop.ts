@@ -2,12 +2,6 @@ import {Component} from '@angular/core';
 import {ApiService} from '../api.service';
 import {UserService} from '../user.service';
 import {Router} from '@angular/router';
-
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
 import { LoginPageComponent } from './login-page.component';
 
 @Component({
