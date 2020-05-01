@@ -45,6 +45,8 @@ import { MapView } from './dashboard-page/mapView/mapview.component';
 import { MatDialogModule } from '@angular/material';
 import { LogsModule } from './dashboard-page/log/log.module';
 import { Editor } from './dashboard-page/editor/editor.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 // import { CanActivateRouteGuard } from './routeguard' 
 
@@ -83,7 +85,7 @@ import { Editor } from './dashboard-page/editor/editor.component';
     MatDialogModule,
     // NavbarModule, WavesModule
 
-    ModalModule, TooltipModule, PopoverModule
+    ModalModule, TooltipModule, PopoverModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   exports: [
     BrowserAnimationsModule,
