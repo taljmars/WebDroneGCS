@@ -23,10 +23,13 @@ export class ProxyService {
   private baudRate: Number = 0;
 
   private listeners: Set<ProxyListener> = new Set<ProxyListener>();
-  private proxyUp: boolean = true
+  private proxyConnected: boolean = false
+  private proxyUp: boolean = false
   public baudlist: Array<Number> = new Array(57600,115200);
 
-  constructor(private configService: ConfigService) {}
+  constructor(private configService: ConfigService) {
+    this.pingProxyService();
+  }
 
   connect(portname: String, baudrate: Number, callback: Function = null) {
     //connect to stomp where stomp endpoint is exposed
@@ -36,7 +39,7 @@ export class ProxyService {
     this.ws.debug = null
     let that = this;
     this.ws.connect({}, function(frame) {
-      that.proxyUp = true;
+      that.proxyConnected = true;
       for (let x of that.listeners)
         x.onProxyEvent("Proxy is Up")
 
@@ -48,7 +51,8 @@ export class ProxyService {
       that.portName = "";
       that.baudRate = 0;
       for (let x of that.listeners)
-            x.onProxyEvent("Proxy is Down")
+            x.onProxyEvent("Proxy Disconnected")
+      that.pingProxyService();
     });
 
     let data = {
@@ -127,11 +131,24 @@ export class ProxyService {
     this.ws.unsubscribe(queue);      
   }
 
+  isProxyConnected() {
+    return this.proxyConnected;
+  }
+
   isProxyUp() {
     return this.proxyUp;
   }
 
-  isConnected() {
-    return this.portName != "";
+  pingProxyService() {
+    this.configService.get("ping", {}, {}, 
+    data => {
+      this.proxyUp = true
+      console.log("Proxy service successfully found")
+    }, 
+    data => {
+      this.proxyUp = false
+      console.error("Failed to find proxy service")
+    });
   }
+
 }

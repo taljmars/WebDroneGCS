@@ -11,12 +11,15 @@ import {MapModule, MapAPILoader, MarkerTypeId, IMapOptions, IBox, IMarkerIconInf
 import { Dash } from './dashboard-page.component';
 import { MatCardModule } from '@angular/material/card';
 
+import { MDBBootstrapModule, ModalModule, TooltipModule, PopoverModule, IconsModule } from 'angular-bootstrap-md';
 
 @NgModule({
   imports: [
     BrowserModule,
     MapModule.forRootBing(),
     MatCardModule,
+
+    ModalModule, TooltipModule, PopoverModule, IconsModule
   ],
   declarations: [ Dash ],
   providers: [

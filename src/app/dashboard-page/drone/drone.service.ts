@@ -38,7 +38,7 @@ export class DroneService implements ProxyListener {
         this.proxyService.subscribe("/topic/events/drone", val => this.notify(JSON.parse(val.body)))
         this.proxyService.subscribe("/topic/events/port", val => this.notify(JSON.parse(val.body)))
       }
-      else if (event == "Proxy is Down") {
+      else if (event == "Proxy Disconnected") {
         this.proxyService.unsubscribe("/topic/events/drone")
         this.proxyService.unsubscribe("/topic/events/port")
       }

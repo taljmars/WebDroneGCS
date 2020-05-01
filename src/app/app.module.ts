@@ -15,7 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 import {FormsModule} from '@angular/forms';
 
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MDBBootstrapModule, ModalModule, TooltipModule, PopoverModule } from 'angular-bootstrap-md';
 
 // import { HttpModule } from '@angular/http';
 
@@ -82,6 +82,8 @@ import { Editor } from './dashboard-page/editor/editor.component';
 
     MatDialogModule,
     // NavbarModule, WavesModule
+
+    ModalModule, TooltipModule, PopoverModule
   ],
   exports: [
     BrowserAnimationsModule,

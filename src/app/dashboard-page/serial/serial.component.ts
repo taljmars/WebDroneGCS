@@ -55,7 +55,7 @@ export class SerialDialogView {
         this.portslist = data.ports;
     })
 
-    if (this.proxyService.isConnected()) {
+    if (this.proxyService.isProxyConnected()) {
       setInterval(() => {
         this.droneService.getStatistics(data => this.printer(data));
         this.droneService.getMavlinkVersion(data => this.mavlinkVersion = data.message)

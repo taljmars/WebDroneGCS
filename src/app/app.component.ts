@@ -47,7 +47,7 @@ export class AppComponent implements ProxyListener, DroneEventListener {
   }
 
   onProxyEvent(event: any) {
-    if (event == "Proxy is Down" || event == "Proxy Un-binded to Port")
+    if (event == "Proxy Disconnected" || event == "Proxy Un-binded to Port")
       this.connected = false
     else
       this.connected = true

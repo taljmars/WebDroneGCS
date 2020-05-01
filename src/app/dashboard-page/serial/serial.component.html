@@ -6,7 +6,7 @@
 
       <mat-form-field>
         <mat-label>Port Name/Path</mat-label>
-        <mat-select #portname required [disabled]="proxyService.isConnected()" [value]="proxyService.getPortName()">
+        <mat-select #portname required [disabled]="proxyService.isProxyConnected()" [value]="proxyService.getPortName()">
           <mat-option>None</mat-option>
           <mat-option *ngFor="let x of portslist" [value]="x">{{x}}</mat-option>
         </mat-select>
@@ -14,7 +14,7 @@
 
       <mat-form-field>
         <mat-label>Baud Rate</mat-label>
-        <mat-select #portbaud [disabled]="proxyService.isConnected()" [value]="proxyService.getBaudRate()">
+        <mat-select #portbaud [disabled]="proxyService.isProxyConnected()" [value]="proxyService.getBaudRate()">
           <mat-option>None</mat-option>
           <mat-option *ngFor="let x of proxyService.baudlist" [value]="x">{{x}}</mat-option>
         </mat-select>
@@ -23,8 +23,8 @@
     </mat-card-content>
   </mat-card>
 
-  <br *ngIf="proxyService.isConnected()"/>
-  <mat-card *ngIf="proxyService.isConnected()">
+  <br *ngIf="proxyService.isProxyConnected()"/>
+  <mat-card *ngIf="proxyService.isProxyConnected()">
     <!-- <mat-card-title>Statistics</mat-card-title> -->
     <mat-card-subtitle>Statistics</mat-card-subtitle>
     <mat-card-content>
@@ -92,7 +92,7 @@
 
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mdbBtn color="info" class="my-4" (click)="connect()" [disabled]="proxyService.isConnected()">Connect</button>
-  <button mdbBtn color="info" class="my-4" (click)="disconnect()" [disabled]="!proxyService.isConnected()">Disconnect</button>
+  <button mdbBtn color="info" class="my-4" (click)="connect()" [disabled]="proxyService.isProxyConnected()">Connect</button>
+  <button mdbBtn color="info" class="my-4" (click)="disconnect()" [disabled]="!proxyService.isProxyConnected()">Disconnect</button>
   <button mdbBtn color="info" class="my-4" (click)="close()">Cancel</button>
 </mat-dialog-actions>
