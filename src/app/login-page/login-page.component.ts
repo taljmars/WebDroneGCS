@@ -1,13 +1,19 @@
 import {ApiService} from '../api.service';
 import {UserService} from '../user.service';
 import {Router} from '@angular/router';
+import {AlertsService} from '../alerts.service'
 
 export abstract class LoginPageComponent {
 
   email = 'peter@klaven';
   password = 'cityslicka';
 
-  constructor(protected api: ApiService, protected user: UserService, protected router: Router) {
+  constructor(
+    protected api: ApiService, 
+    protected user: UserService, 
+    protected router: Router,
+    protected alertsService: AlertsService,
+  ) {
   }
 
   tryLogin() {
@@ -23,7 +29,8 @@ export abstract class LoginPageComponent {
           }
         },
         r => {
-          alert(r.error.error);
+          // alert(r.error.error);
+          this.alertsService.openSnackBar(r.error.error)
           this.user.setToken("Dummy");
           this.router.navigateByUrl('/dashboard');
         });

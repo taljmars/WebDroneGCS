@@ -52,6 +52,7 @@ export class ProxyService {
       that.baudRate = 0;
       for (let x of that.listeners)
             x.onProxyEvent("Proxy Disconnected")
+      this.alertsService.openSnackBar(error)
       that.pingProxyService();
     });
 

@@ -3,6 +3,7 @@ import {ApiService} from '../api.service';
 import {UserService} from '../user.service';
 import {Router} from '@angular/router';
 import { LoginPageComponent } from './login-page.component';
+import { AlertsService } from '../alerts.service';
 
 @Component({
   selector: 'app-login-page',
@@ -11,8 +12,8 @@ import { LoginPageComponent } from './login-page.component';
 })
 export class LoginPageComponentMobile extends LoginPageComponent  {
 
-  constructor(protected api: ApiService, protected user: UserService, protected router: Router) {
-    super(api,user, router)
+  constructor(protected api: ApiService, protected user: UserService, protected router: Router, protected alertsService: AlertsService ) {
+    super(api,user, router, alertsService)
   }
 
 }

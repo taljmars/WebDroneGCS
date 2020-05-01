@@ -11,6 +11,7 @@ import { InputsModule, IconsModule, MDBBootstrapModule } from 'angular-bootstrap
 import { LoginPageComponentDesktop } from './login-page.component.desktop';
 import { LoginPageComponentMobile } from './login-page.component.mobile';
 
+import { AlertsModule } from '../alerts/alerts.module'
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { LoginPageComponentMobile } from './login-page.component.mobile';
     MatFormFieldModule,
     MDBBootstrapModule.forRoot(),
     IconsModule,
+    AlertsModule,
   ],
   declarations: [
     LoginPageComponentDesktop, 
