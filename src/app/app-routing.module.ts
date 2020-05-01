@@ -111,8 +111,13 @@ const appMobileRoutes: Routes = [
 
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forRoot(appDesktopRoutes, { enableTracing: true, preloadingStrategy: PreloadAllModules })],
+  imports: [
+    CommonModule, 
+    RouterModule.forRoot(appDesktopRoutes, { enableTracing: true, preloadingStrategy: PreloadAllModules }),
+    RouterModule.forRoot(appMobileRoutes, { enableTracing: true, preloadingStrategy: PreloadAllModules })
+  ],
   // imports: [CommonModule, RouterModule.forRoot(appMobileRoutes, { enableTracing: true, preloadingStrategy: PreloadAllModules })],
+  // imports: [CommonModule],
   providers: [CanActivateRouteGuard],
   exports: [RouterModule]
 })
@@ -121,8 +126,13 @@ export class AppRoutingModule {
   public constructor(private router: Router,
     private applicationStateService: ApplicationStateService) {
 
+    console.log("Modify App routing")
     if (applicationStateService.getIsMobileResolution()) {
       router.resetConfig(appMobileRoutes);
+    }
+    else {
+      router.resetConfig(appDesktopRoutes);
+
     }
   }
   

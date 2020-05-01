@@ -14,4 +14,5 @@ export class LoginPageComponentDesktop extends LoginPageComponent {
   constructor(protected api: ApiService, protected user: UserService, protected router: Router) {
     super(api,user, router)
   }
+  
 }

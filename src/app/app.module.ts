@@ -32,8 +32,8 @@ import { AppComponent } from './app.component';
 
 import {LoginPageModule} from './login-page/login-page.module';
 import {DashModule} from './dashboard-page/dashboard-page.module';
-import {LoginPageComponent} from './login-page/login-page.component';
-import {Dash} from './dashboard-page/dashboard-page.component';
+// import {LoginPageComponent} from './login-page/login-page.component';
+// import {Dash} from './dashboard-page/dashboard-page.component';
 // import {RouterModule, Routes} from '@angular/router';
 
 import {CamViewModule} from './dashboard-page/cameraView/camview.module';
