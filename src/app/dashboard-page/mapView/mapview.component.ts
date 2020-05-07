@@ -38,12 +38,12 @@ export class MapView implements DroneEventListener {
   }
 
   _options: IMapOptions = {
-    disableBirdseye: true,
-    disableStreetside: true,
-    navigationBarMode: 2, 
+    // disableBirdseye: true,
+    // disableStreetside: true,
+    // navigationBarMode: 2, 
     // showBreadcrumb: true,
-    showCopyright: true,
-    showScalebar: true,
+    // showCopyright: true,
+    // showScalebar: true,
     zoom: 15
   };
 

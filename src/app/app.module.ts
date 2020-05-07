@@ -28,7 +28,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Button } from 'protractor';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 
 import {LoginPageModule} from './login-page/login-page.module';
 import {DashModule} from './dashboard-page/dashboard-page.module';
@@ -47,9 +46,15 @@ import { LogsModule } from './dashboard-page/log/log.module';
 import { Editor } from './dashboard-page/editor/editor.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { AppToolbarDesktop } from './toolbar/app.toolbar.desktop';
+import { AppToolbarMobile } from './toolbar/app.toolbar.mobile';
+import { AppToolbarModule } from './toolbar/app.toolbar.module'
+import { AppComponent } from './app.component';
 
+
+import {MatToolbarModule} from '@angular/material/toolbar';
 // import { CanActivateRouteGuard } from './routeguard' 
-
+import {MatDividerModule} from '@angular/material/divider';
 
 
 @NgModule({
@@ -58,6 +63,8 @@ import { environment } from '../environments/environment';
     // CanActivateRouteGuard,
   ],
   imports: [
+    MatDividerModule,
+    AppToolbarModule,
 
     BrowserAnimationsModule,
     MatButtonModule,
@@ -83,8 +90,8 @@ import { environment } from '../environments/environment';
     LogsModule,
 
     MatDialogModule,
-    // NavbarModule, WavesModule
-
+    MatToolbarModule,
+    
     ModalModule, TooltipModule, PopoverModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   exports: [

@@ -1,9 +1,9 @@
 import {Component, NgModule, VERSION, OnInit, ViewChild} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
-import {MapModule, MapAPILoader, MarkerTypeId, IMapOptions, IBox, IMarkerIconInfo, WindowRef, DocumentRef, MapServiceFactory, 
-        BingMapAPILoaderConfig, BingMapAPILoader, 
-        GoogleMapAPILoader,  GoogleMapAPILoaderConfig
-} from 'angular-maps';
+// import {MapModule, MapAPILoader, MarkerTypeId, IMapOptions, IBox, IMarkerIconInfo, WindowRef, DocumentRef, MapServiceFactory, 
+//         BingMapAPILoaderConfig, BingMapAPILoader, 
+//         GoogleMapAPILoader,  GoogleMapAPILoaderConfig
+// } from 'angular-maps';
 import { ProxyService } from './serial/config/proxy.service';
 
 @Component({

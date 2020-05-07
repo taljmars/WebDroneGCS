@@ -8,92 +8,97 @@ import { UserService } from './user.service';
 import { DroneEvents } from './dashboard-page/drone/protocol/events.component';
 import { ApiService } from './api.service'
 import { ApplicationStateService } from './application-state.service';
-
+import { AlertsService } from './alerts.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements ProxyListener, DroneEventListener {
+// export class AppComponent implements ProxyListener, DroneEventListener {
+export class AppComponent {
   
-  title = 'WebDroneGCS';
-  connected: boolean = false;
+  // title = 'WebDroneGCS';
+  // connected: boolean = false;
+  // manu: boolean = false;
 
-  constructor ( private router: Router, 
-                private dialog: MatDialog, 
+  constructor ( protected router: Router, 
+                protected dialog: MatDialog, 
                 public applicationStateService: ApplicationStateService,
-                private droneService: DroneService,
-                private proxyService: ProxyService,
+                protected droneService: DroneService,
+                protected proxyService: ProxyService,
                 public userService: UserService,
-                private api: ApiService,
+                protected api: ApiService,
+                protected alertsService: AlertsService,
               ) {
-    proxyService.addEventListner(this)
-    droneService.addEventListener(this)
+    // proxyService.addEventListner(this)
+    // droneService.addEventListener(this)
   }
 
-  connect() {
-      const dialogConfig = new MatDialogConfig();
+  // connect() {
+  //     const dialogConfig = new MatDialogConfig();
 
-      dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-      // dialogConfig.
+  //     dialogConfig.disableClose = true;
+  //     dialogConfig.autoFocus = true;
+  //     // dialogConfig.
 
-      this.dialog.open(SerialDialogView, dialogConfig);
-  }
+  //     this.dialog.open(SerialDialogView, dialogConfig);
+  // }
 
-  sync() {
-    this.droneService.refreshParameters(a => null)
-  }
+  // sync() {
+  //   this.droneService.refreshParameters(a => null)
+  // }
 
-  onProxyEvent(event: any) {
-    if (event == "Proxy Disconnected" || event == "Proxy Un-binded to Port")
-      this.connected = false
-    else
-      this.connected = true
-  }
+  // onProxyEvent(event: any) {
+  //   if (event == "Proxy Disconnected" || event == "Proxy Un-binded to Port")
+  //     this.connected = false
+  //   else
+  //     this.connected = true
+  // }
 
-  onDroneEvent(event: any) {
-    if (!Object.values(DroneEvents).includes(event.id)) {
-      console.log("Unknown " + event)
-      return
-    }
+  // onDroneEvent(event: any) {
+  //   if (!Object.values(DroneEvents).includes(event.id)) {
+  //     console.log("Unknown " + event)
+  //     return
+    // }
     
-    switch (event.id) {
-      case DroneEvents.HEARTBEAT_TIMEOUT:
-        console.log("HEARTBEAT_TIMEOUT " + event.data)
-        this.connected = false;
-        break;
-      case DroneEvents.HEARTBEAT_RESTORED:
-        console.log("HEARTBEAT_RESTORED " + event.data)
-        this.connected = true;
-        break;
-    }
-  }
+  //   switch (event.id) {
+  //     case DroneEvents.HEARTBEAT_TIMEOUT:
+  //       console.log("HEARTBEAT_TIMEOUT " + event.data)
+  //       this.connected = false;
+  //       break;
+  //     case DroneEvents.HEARTBEAT_RESTORED:
+  //       console.log("HEARTBEAT_RESTORED " + event.data)
+  //       this.connected = true;
+  //       break;
+  //   }
+  // }
 
-  getConnectedStyles() {
-    let styles = {
-      'color': this.connected ? 'lime' : 'grey',
-      'font-weight' : this.connected ? 'bold' : 'normal',
-    };
-    return styles;
-  }
+  // getConnectedStyles() {
+  //   let styles = {
+  //     'color': this.connected ? 'lime' : 'grey',
+  //     'font-weight' : this.connected ? 'bold' : 'normal',
+  //   };
+  //   return styles;
+  // }
 
-  logout() {
-    console.log("Logout")
-    this.api.logout(
-      this.userService.getToken()
-    )
-    .subscribe(
-      r => {
-          this.userService.removeToken();
-          this.router.navigateByUrl('/');
-      },
-      r => {
-        alert(r.error.error);
-        this.userService.removeToken();
-        this.router.navigateByUrl('/');
-      }
-    );
-  }
+  // logout() {
+  //   console.log("Logout")
+  //   this.api.logout(
+  //     this.userService.getToken()
+  //   )
+  //   .subscribe(
+  //     r => {
+  //         this.userService.removeToken();
+  //         this.router.navigateByUrl('/');
+  //     },
+  //     r => {
+  //       // alert(r.error.error);
+  //       this.alertsService.openSnackBar("Failed to logout")
+  //       this.userService.removeToken();
+  //       this.router.navigateByUrl('/');
+  //     }
+  //   );
+  // }
+
 }

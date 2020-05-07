@@ -1,0 +1,59 @@
+
+<div class="overlay" *ngIf="menuOpen">
+  <a (click)="hideMenu()" class="closebtn" id="closeNav">&times;</a>
+  <div class="overlay-content">
+  <links>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" (click)="hideMenu()" routerLink="dashboard">Home</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" (click)="hideMenu()" routerLink="cam">Camera</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="hideMenu()" routerLink="map">Map</a>
+      </li>
+      <li class="nav-item" *ngIf="!applicationStateService.getIsMobileResolution()">
+        <a class="nav-link" routerLink="editor">Editor</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="hideMenu()" routerLink="settings">Settings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="hideMenu()" routerLink="logs">Logs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="hideMenu()" routerLink="profile">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="hideMenu()" routerLink="about">About</a>
+      </li>
+      <mat-divider></mat-divider>
+      <li class="nav-item">
+        <a class="nav-link" (click)=logout() routerLink="/">Logout</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+      <li class="nav-item" *ngIf="connected">
+        <a class="nav-link" (click)="sync()" >
+          <i class="fas fa-sync-alt"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="connect()" [ngStyle]="getConnectedStyles()">Connected</a>
+      </li>
+    </ul>
+  </links>
+  </div>
+</div>
+
+<!-- <mat-toolbar style="position: absolute; z-index: 1;"> -->
+<mat-toolbar style="background-color: transparent; position: absolute; z-index: 5; "
+  *ngIf="userService.isLogged()">
+  <div class="fixed-action-btn" style="top: 25px; right: 25px;">
+    <a class="btn-floating btn-lg turquoise" (click)="openMenu()">
+      <i class="fas fa-bars"></i>
+    </a>
+  </div>
+  
+</mat-toolbar>

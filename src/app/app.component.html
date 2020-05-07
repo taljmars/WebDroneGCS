@@ -1,53 +1,5 @@
-<!--Navbar -->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-dark fixed scrolling-navbar" [containerInside]="false" *ngIf="userService.isLogged()">
-  <mdb-navbar-brand>
-      <a class="navbar-brand" href="/dashboard"><strong>WebGCS</strong></a>
-      <!-- <a class="navbar-brand" (click)="frame.show()" ><strong>WebGCS</strong></a> -->
-      <!-- <a class="navbar-brand" (click)="frame.show()" href="https://raw.githubusercontent.com/taljmars/WebDroneGCS/master/proxy/Desktop/DroneConnector/ClientInstallation/Linux/DroneProxy-linux.tar"><strong>WebGCS</strong></a> -->
-  </mdb-navbar-brand>
-  <links>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" routerLink="dashboard">Home</a>
-      </li>
-      <li class="nav-item">
-          <a class="nav-link" routerLink="cam">Camera</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="map">Map</a>
-      </li>
-      <li class="nav-item" *ngIf="!applicationStateService.getIsMobileResolution()">
-        <a class="nav-link" routerLink="editor">Editor</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="settings">Settings</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="logs">Logs</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto nav-flex-icons">
-      <li class="nav-item" *ngIf="connected">
-        <a class="nav-link" (click)="sync()" >
-          <i class="fas fa-sync-alt"></i>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" (click)="connect()" [ngStyle]="getConnectedStyles()">Connected</a>
-      </li>
-      <li class="nav-item dropdown" dropdown>
-        <a dropdownToggle type="fas" class="nav-link dropdown-toggle">
-          <i class="fas fa-user"></i>
-        </a>
-        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary dropdown-menu-right" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect >Profile</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect >Contact Us</a>
-          <div class="divider dropdown-divider"></div>
-          <a class="dropdown-item waves-light" mdbWavesEffect (click)=logout()>Logout</a>
-        </div>
-      </li>
-    </ul>
-  </links>
-</mdb-navbar>
 
-<router-outlet></router-outlet>
+<my-toolbar-mobile *ngIf="applicationStateService.getIsMobileResolution()"></my-toolbar-mobile>
+<my-toolbar-desktop *ngIf="!applicationStateService.getIsMobileResolution()"></my-toolbar-desktop>
+
+<router-outlet style="z-index: 1;"></router-outlet>
