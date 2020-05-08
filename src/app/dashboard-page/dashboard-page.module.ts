@@ -8,7 +8,8 @@ import {BrowserModule} from '@angular/platform-browser'
         // BingMapAPILoaderConfig, BingMapAPILoader, 
         // GoogleMapAPILoader,  GoogleMapAPILoaderConfig
 // } from 'angular-maps';
-import { Dash } from './dashboard-page.component';
+import { DashMobile } from './dashboard-page.mobile';
+import { DashDesktop } from './dashboard-page.desktop';
 import { MatCardModule } from '@angular/material/card';
 import { SerialModule } from './serial/serial.module';
 
@@ -17,7 +18,7 @@ import { MDBBootstrapModule, ModalModule, TooltipModule, PopoverModule, IconsMod
 @NgModule({
   imports: [
     SerialModule,
-    
+
     BrowserModule,
     // MapModule.forRootBing(),
     MatCardModule,
@@ -27,15 +28,15 @@ import { MDBBootstrapModule, ModalModule, TooltipModule, PopoverModule, IconsMod
     CardsModule, WavesModule, ButtonsModule
 
   ],
-  declarations: [ Dash ],
+  declarations: [ DashDesktop, DashMobile ],
   providers: [
     // { 
       // provide: MapAPILoader, deps: [], useFactory: BingMapServiceProviderFactory
     // }
   ],
   // exports: [Dash],
-  // bootstrap: [  ]
-  bootstrap: [ Dash ]
+  bootstrap: [  ]
+  // bootstrap: [ Dash ]
 })
 export class DashModule {
   constructor() {console.log("In DashModule constructor");}

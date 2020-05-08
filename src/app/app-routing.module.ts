@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule, Router, PreloadAllModules } from '@angular/router';
 
-import {LoginPageComponent} from './login-page/login-page.component';
-import {Dash} from './dashboard-page/dashboard-page.component';
 
 import { MapView } from './dashboard-page/mapView/mapview.component';
 import { CamView } from './dashboard-page/cameraView/camview.component';
@@ -20,6 +18,8 @@ import { UserService } from './user.service';
 import { ApplicationStateService } from './application-state.service';
 import { LoginPageComponentMobile } from './login-page/login-page.component.mobile';
 import { LoginPageComponentDesktop } from './login-page/login-page.component.desktop';
+import { DashDesktop } from './dashboard-page/dashboard-page.desktop';
+import { DashMobile } from './dashboard-page/dashboard-page.mobile';
 
 @Injectable()
 export class CanActivateRouteGuard implements CanActivate {
@@ -36,7 +36,7 @@ export class CanActivateRouteGuard implements CanActivate {
 const appDesktopRoutes: Routes = [
   {
     path: 'dashboard',
-    component: Dash,
+    component: DashDesktop,
     canActivate: [CanActivateRouteGuard]
   },{
     path: 'cam',
@@ -77,7 +77,7 @@ const appDesktopRoutes: Routes = [
 const appMobileRoutes: Routes = [
   {
     path: 'dashboard',
-    component: Dash,
+    component: DashMobile,
     canActivate: [CanActivateRouteGuard]
   },{
     path: 'cam',

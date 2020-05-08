@@ -155,7 +155,10 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
     @GetMapping("/ping")
     public Map ping() {
       System.out.println("Ping");
-      return getResponseTemplate().toMap();
+      JSONObject object = getResponseTemplate();
+      object.put("version", "v1.0");
+      object.put("uptime", "0 min");
+      return object.toMap();
     }
 
 }
