@@ -26,6 +26,8 @@ export class ProxyService {
   private proxyConnected: boolean = false
   private proxyUp: boolean = false
   public baudlist: Array<Number> = new Array(57600,115200);
+  public proxyUpTime: String = "00:00:00";
+  public proxyVersion: String = "Unknown";
 
   constructor(private configService: ConfigService) {
     this.pingProxyService();
@@ -144,6 +146,8 @@ export class ProxyService {
     this.configService.get("ping", {}, {}, 
     data => {
       this.proxyUp = true
+      this.proxyVersion = data["version"];
+      this.proxyUpTime = data["uptime"];
       console.log("Proxy service successfully found")
     }, 
     data => {
