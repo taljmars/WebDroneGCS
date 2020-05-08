@@ -10,7 +10,7 @@ import { ApiService } from '../api.service'
 import { ApplicationStateService } from '../application-state.service';
 import { AlertsService } from '../alerts.service';
 
-export abstract class AppToolbar implements ProxyListener, DroneEventListener {
+export abstract class AppToolbar {
   
   title = 'WebDroneGCS';
   connected: boolean = false;
@@ -24,56 +24,9 @@ export abstract class AppToolbar implements ProxyListener, DroneEventListener {
                 protected api: ApiService,
                 protected alertsService: AlertsService,
               ) {
-    proxyService.addEventListner(this)
-    droneService.addEventListener(this)
   }
 
-  connect() {
-      const dialogConfig = new MatDialogConfig();
-
-      dialogConfig.disableClose = true;
-      dialogConfig.autoFocus = true;
-      // dialogConfig.
-
-      this.dialog.open(SerialDialogView, dialogConfig);
-  }
-
-  sync() {
-    this.droneService.refreshParameters(a => null)
-  }
-
-  onProxyEvent(event: any) {
-    if (event == "Proxy Disconnected" || event == "Proxy Un-binded to Port")
-      this.connected = false
-    else
-      this.connected = true
-  }
-
-  onDroneEvent(event: any) {
-    // if (!Object.values(DroneEvents).includes(event.id)) {
-      // console.log("Unknown " + event)
-      // return
-    // }
-    
-    switch (event.id) {
-      case DroneEvents.HEARTBEAT_TIMEOUT:
-        console.log("HEARTBEAT_TIMEOUT " + event.data)
-        this.connected = false;
-        break;
-      case DroneEvents.HEARTBEAT_RESTORED:
-        console.log("HEARTBEAT_RESTORED " + event.data)
-        this.connected = true;
-        break;
-    }
-  }
-
-  getConnectedStyles() {
-    let styles = {
-      'color': this.connected ? 'lime' : 'grey',
-      'font-weight' : this.connected ? 'bold' : 'normal',
-    };
-    return styles;
-  }
+  
 
   logout() {
     console.log("Logout")

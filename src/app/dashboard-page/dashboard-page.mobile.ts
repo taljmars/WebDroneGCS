@@ -2,6 +2,7 @@ import {Component} from '@angular/core'
 
 import { ProxyService } from './serial/config/proxy.service';
 import { Dash } from './dashboard-page.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,9 @@ import { Dash } from './dashboard-page.component';
 })
 export class DashMobile extends Dash {
 
-  constructor(public proxyService: ProxyService) {
-    super(proxyService)
+  constructor(public proxyService: ProxyService,
+    protected dialog: MatDialog) {
+    super(proxyService, dialog)
   }
 
 }

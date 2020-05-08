@@ -29,7 +29,7 @@
             </mdb-card-title>
             <mdb-card-text>
               <div class="flex-row">
-                <a class="card-link">Unknown Port</a>, <a class="card-link">Unknown Baud</a>
+                <a class="card-link" (click)="openSerialDialog()">Unknown Port</a>, <a class="card-link">Unknown Baud</a>
               </div>
             </mdb-card-text>
             <mdb-card-text>
@@ -67,8 +67,8 @@
             <mdb-card-title>
               <h4>Proxy</h4>
             </mdb-card-title>
-            <mdb-card-text>Version</mdb-card-text>
-            <mdb-card-text>Uptime</mdb-card-text>
+            <mdb-card-text>Version: {{proxyService.proxyVersion}}</mdb-card-text>
+            <mdb-card-text>Uptime: {{proxyService.proxyUpTime}}</mdb-card-text>
             <mdb-card-text>
               Some quick example text to build on the card title and make up the bulk of the card's
               content.
