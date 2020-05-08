@@ -24,7 +24,13 @@
   </mat-card>
 
   <br *ngIf="proxyService.isProxyConnected()"/>
-  <serial-stat *ngIf="proxyService.isProxyConnected()"></serial-stat>
+  <mat-card *ngIf="proxyService.isProxyConnected()">
+    <!-- <mat-card-title>Statistics</mat-card-title> -->
+    <mat-card-subtitle>Statistics</mat-card-subtitle>
+    <mat-card-content>
+      <serial-stat></serial-stat>
+    </mat-card-content>
+  </mat-card>
 
   <br/>
   <div>

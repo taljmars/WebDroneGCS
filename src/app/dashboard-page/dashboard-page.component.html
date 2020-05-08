@@ -2,15 +2,11 @@
   <div class="container">
     <div class="row" style="padding: 20px">
 
-      <div class="col-12 col-lg-8">
-        <serial-stat></serial-stat>
-      </div>
-
       <div class="col-6 col-lg-4">
         <mdb-card>
           <mdb-card-body>
             <mdb-card-title>
-              <h4>Panel title 2</h4>
+              <h4>Drone Info</h4>
             </mdb-card-title>
             <mdb-card-text>Some quick example text 
               content.</mdb-card-text>
@@ -22,6 +18,24 @@
         </mdb-card>
       </div>
 
+      <div class="col-12 col-lg-8">
+        <mdb-card>
+          <mdb-card-body>
+            <mdb-card-title>
+              <h4>Connection Statistics</h4>
+            </mdb-card-title>
+            <mdb-card-text>
+              <div class="flex-row">
+                <a class="card-link">Unknown Port</a>, <a class="card-link">Unknown Baud</a>
+              </div>
+            </mdb-card-text>
+            <mdb-card-text>
+              <serial-stat></serial-stat>
+            </mdb-card-text>
+          </mdb-card-body>        
+        </mdb-card>
+      </div>
+
     </div>
 
     <div class="row" style="padding: 20px">
@@ -30,14 +44,16 @@
         <mdb-card>
           <mdb-card-body>
             <mdb-card-title>
-              <h4>Panel title 3</h4>
+              <h4>Flights Summary</h4>
             </mdb-card-title>
-            <mdb-card-text>Some quick example text to build on the card title and make up the bulk of the card's
-              content.</mdb-card-text>
-            <div class="flex-row">
-              <a class="card-link">Card link</a>
-              <a class="card-link">Another link</a>
-            </div>
+            <mdb-card-text>Last Flight: 0</mdb-card-text>
+            <mdb-card-text>Flight Amount: 0</mdb-card-text>
+            <mdb-card-text>Total Distance: 0</mdb-card-text>
+            <mdb-card-text>Total Flight Time: 0</mdb-card-text>
+            <mdb-card-text>Speed Record: 0</mdb-card-text>
+            <mdb-card-text>Height Record: 0</mdb-card-text>
+            <mdb-card-text>Distance Record: 0</mdb-card-text>
+            <mdb-card-text>Flight Duration Record: 0</mdb-card-text>
           </mdb-card-body>
         </mdb-card>
       </div>
@@ -46,13 +62,16 @@
         <mdb-card>
           <mdb-card-body>
             <mdb-card-title>
-              <h4>Panel title 4</h4>
+              <h4>Proxy</h4>
             </mdb-card-title>
-            <mdb-card-text>Some quick example text to build on the card title and make up the bulk of the card's
-              content.</mdb-card-text>
+            <mdb-card-text>Version</mdb-card-text>
+            <mdb-card-text>Uptime</mdb-card-text>
+            <mdb-card-text>
+              Some quick example text to build on the card title and make up the bulk of the card's
+              content.
+            </mdb-card-text>
             <div class="flex-row">
-              <a class="card-link">Card link</a>
-              <a class="card-link">Another link</a>
+              <a class="card-link">Get Latest Agent</a>
             </div>
           </mdb-card-body>
         </mdb-card>
@@ -61,7 +80,7 @@
       <div class="col-6 col-sm-4"><mdb-card>
         <mdb-card-body>
           <mdb-card-title>
-            <h4>Panel title 5</h4>
+            <h4>User Info</h4>
           </mdb-card-title>
           <mdb-card-text>Some quick example text to build on the card title and make up the bulk of the card's
             content.</mdb-card-text>
