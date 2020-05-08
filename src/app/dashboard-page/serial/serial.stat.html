@@ -1,0 +1,58 @@
+<mat-card>
+  <!-- <mat-card-title>Statistics</mat-card-title> -->
+  <!-- <mat-card-subtitle>Statistics</mat-card-subtitle> -->
+  <mat-card-content>
+    <div class="container">
+      <div class="row">
+        <div class="col-4">Received Bytes</div>
+        <label class="col-2">{{receivedBytes}}</label>
+        <div class="col-4">Transmitted Bytes</div>
+        <label class="col-2">{{transmittedBytes}}</label>
+      </div>
+
+      <div class="row">
+        <div class="col-4">Received BPS</div>
+        <label class="col-2">{{receivedBytesPerSecond}}</label>
+        <div class="col-4">Transmitted BPS</div>
+        <label class="col-2">{{transmittedBytesPerSecond}}</label>
+      </div>
+
+      <div class="row">
+        <div class="col-4">Received Packets</div>
+        <label class="col-2">{{receivedPackets}}</label>
+        <div class="col-4">Transmitted Packets</div>
+        <label class="col-2">{{transmittedPackets}}</label>
+      </div>
+
+
+      <div class="row">
+        <div class="col-4">Received Error Packets</div>
+        <label class="col-2">{{receivedErrorPackets}}</label>
+        <div class="col-4">Transmitted Error Packets</div>
+        <label class="col-2">{{transmittedErrorPackets}}</label>
+      </div>
+
+      <div class="row">
+        <div class="col-4">Received PPS</div>
+        <label class="col-2">{{receivedPacketsPerSecond}}</label>
+        <div class="col-4">Transmitted PPS</div>
+        <label class="col-2">{{transmittedPacketsPerSecond}}</label>
+      </div>
+
+      <div class="row">
+        <div class="col-4">Received Unknown Packets</div>
+        <label class="col-2">{{receivedUncategorizedPackets}}</label>
+        <div class="col-4">Lost Packets</div>
+        <label class="col-2">{{lostPackets}}</label>
+      </div>
+
+      <div class="row">
+        <div class="col-4">Latency</div>
+        <label class="col-2">{{latency}}</label>
+        <div class="col-4">Protocol</div>
+        <label class="col-2">{{mavlinkVersion}}</label>
+      </div>
+    </div>
+
+  </mat-card-content>
+</mat-card>

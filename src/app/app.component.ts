@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
 import {MatDialog, MatDialogConfig} from "@angular/material";
-import {SerialDialogView} from "./dashboard-page/serial/serial.component"
+// import { SerialDialogView } from "./dashboard-page/serial/serial.dialog"
 import { DroneEventListener, DroneService } from './dashboard-page/drone/drone.service';
 import { ProxyListener, ProxyService } from './dashboard-page/serial/config/proxy.service';
 import { UserService } from './user.service';

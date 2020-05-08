@@ -1,35 +1,15 @@
-import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
-// import { WebSocketAPI} from './webSocketAPI'
-// import { from } from 'rxjs';
-import * as Stomp from 'stompjs';
-import * as SockJS from 'sockjs-client';
+import { Component} from '@angular/core';
 
-import {ConfigService} from './config/config.service'
 import { ProxyService } from './config/proxy.service';
-import { DroneService, DroneEventListener } from '../drone/drone.service';
-
-import {MatDialogRef, MatDialogActions} from "@angular/material";
-import {MatSelect} from '@angular/material/select';
-
-
+import { DroneService } from '../drone/drone.service';
 
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './serial.component.html',
+  selector: 'serial-stat',
+  templateUrl: './serial.stat.html',
   styleUrls: ['./serial.component.css']
 })
-export class SerialDialogView {
-
-  title = 'app';
-
-  portslist: string[] = [];
-
-  @ViewChild("portname", {static: false})
-  public portname: MatSelect;
-
-  @ViewChild("portbaud", {static: false})
-  public portbaud: MatSelect;
+export class SerialStatView {
 
   receivedBytes: Number = 0;
   transmittedBytes: Number = 0;
@@ -46,15 +26,9 @@ export class SerialDialogView {
   latency: Number = 0;
   mavlinkVersion: String = "";
 
-  constructor(public dialogRef: MatDialogRef<SerialDialogView>,
-              public proxyService: ProxyService,
+  constructor(public proxyService: ProxyService,
               public droneService: DroneService){
-    this.proxyService.getPostList(data => {
-        console.log(data)
-        console.log(data.ports)
-        this.portslist = data.ports;
-    })
-
+    
     if (this.proxyService.isProxyConnected()) {
       setInterval(() => {
         this.droneService.getStatistics(data => this.printer(data));
@@ -77,23 +51,6 @@ export class SerialDialogView {
     this.receivedPacketsPerSecond = data['connection']['receivedPacketsPerSecond']
     this.transmittedPacketsPerSecond = data['connection']['transmittedPacketsPerSecond']
     this.latency = data['connection']['latency']
-  }
-
-  disconnect() {
-    this.proxyService.disconnect()
-    this.dialogRef.close()
-  }
-
-  connect() { 
-    let portname = this.portname.value;
-    let baud = this.portbaud.value;
-    this.proxyService.connect(portname, baud)
-    
-    this.dialogRef.close()
-  }
-
-  close() {
-    this.dialogRef.close()
   }
 
 }

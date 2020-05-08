@@ -10,11 +10,14 @@ import {BrowserModule} from '@angular/platform-browser'
 // } from 'angular-maps';
 import { Dash } from './dashboard-page.component';
 import { MatCardModule } from '@angular/material/card';
+import { SerialModule } from './serial/serial.module';
 
 import { MDBBootstrapModule, ModalModule, TooltipModule, PopoverModule, IconsModule } from 'angular-bootstrap-md';
 
 @NgModule({
   imports: [
+    SerialModule,
+    
     BrowserModule,
     // MapModule.forRootBing(),
     MatCardModule,

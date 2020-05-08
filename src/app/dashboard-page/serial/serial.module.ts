@@ -1,6 +1,7 @@
 import {Component, NgModule, VERSION} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
-import { SerialDialogView } from './serial.component';
+import { SerialDialogView } from './serial.dialog';
+import { SerialStatView } from './serial.stat';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -28,9 +29,9 @@ import {MatSelectModule} from '@angular/material/select';
     MatSelectModule,
 
   ],
-  declarations: [ SerialDialogView ],
+  declarations: [ SerialDialogView, SerialStatView ],
   providers: [],
-  exports: [SerialDialogView],
+  exports: [SerialDialogView, SerialStatView],
   // bootstrap: [ ]
   bootstrap: [ SerialDialogView ]
 })

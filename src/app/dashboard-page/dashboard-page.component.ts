@@ -6,6 +6,8 @@ import {BrowserModule} from '@angular/platform-browser'
 // } from 'angular-maps';
 import { ProxyService } from './serial/config/proxy.service';
 
+// import { SerialStatView } from './serial/serial.stat';
+
 @Component({
   selector: 'app-root',
   templateUrl: './dashboard-page.component.html',

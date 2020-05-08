@@ -1,0 +1,41 @@
+<h2>Port Information</h2>
+<mat-dialog-content>
+  <mat-card>
+    <mat-card-subtitle>Connection</mat-card-subtitle>
+    <mat-card-content>
+
+      <mat-form-field>
+        <mat-label>Port Name/Path</mat-label>
+        <mat-select #portname required [disabled]="proxyService.isProxyConnected()" [value]="proxyService.getPortName()">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let x of portslist" [value]="x">{{x}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Baud Rate</mat-label>
+        <mat-select #portbaud [disabled]="proxyService.isProxyConnected()" [value]="proxyService.getBaudRate()">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor="let x of proxyService.baudlist" [value]="x">{{x}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </mat-card-content>
+  </mat-card>
+
+  <br *ngIf="proxyService.isProxyConnected()"/>
+  <serial-stat *ngIf="proxyService.isProxyConnected()"></serial-stat>
+
+  <br/>
+  <div>
+    <div class="alert alert-danger" role="alert" *ngIf="!proxyService.isProxyUp()">
+      Error: Failed to find proxy engine
+    </div>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mdbBtn color="info" class="my-4" (click)="connect()" [disabled]="proxyService.isProxyConnected()">Connect</button>
+  <button mdbBtn color="info" class="my-4" (click)="disconnect()" [disabled]="!proxyService.isProxyConnected()">Disconnect</button>
+  <button mdbBtn color="info" class="my-4" (click)="close()">Cancel</button>
+</mat-dialog-actions>
