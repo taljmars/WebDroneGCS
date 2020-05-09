@@ -68,8 +68,8 @@ export class DroneService implements ProxyListener {
       this.configService.get("getMavlinkVersion", {}, {}, callback);
     }
 
-    getParameters(callback: Function) {
-      this.configService.get("getParameters", {}, {}, callback);
+    getParametersList(callback: Function) {
+      this.configService.get("getParametersList", {}, {}, callback);
     }
 
 }

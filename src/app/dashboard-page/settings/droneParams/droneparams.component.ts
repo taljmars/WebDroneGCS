@@ -18,7 +18,7 @@ export class DroneParams implements DroneEventListener{
 
   constructor(private droneService: DroneService) {
     this.droneService.addEventListener(this);
-    droneService.getParameters(data => {
+    droneService.getParametersList(data => {
       console.log("Params " + data)
       this.paramterOnDrone = data["online"];
       var idx = 0

@@ -137,7 +137,7 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
     return getResponseTemplate().toMap();
   }
 
-  @GetMapping("/getParameters")
+  @GetMapping("/getParametersList")
   public Map getOfflineParameters() {
     System.out.println("Get Offline Parameters");
     JSONObject object = getResponseTemplate();

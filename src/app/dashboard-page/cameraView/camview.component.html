@@ -1,8 +1,8 @@
 <div class="infotopleft">
     <!-- <mat-card style="background:transparent;"> -->
       <mat-card-content style="font-size: 30px; color: limegreen; font-weight: bold; background:transparent;">
-        <p>Signal</p>
-        <p>Battery</p>
+        <p>Signal {{signal}}%</p>
+        <p>Battery {{battery}}%</p>
       </mat-card-content>
     <!-- </mat-card> -->
   
@@ -11,7 +11,7 @@
 <div class="infoleft">
   <!-- <mat-card style="background:transparent;"> -->
     <mat-card-content style="font-size: 52px; color: limegreen; font-weight: bold; background:transparent;">
-      <p>Mode</p>
+      <p>{{mode}}</p>
     </mat-card-content>
   <!-- </mat-card> -->
 
@@ -30,9 +30,9 @@
 
   <!-- <mat-card style="background:transparent;"> -->
     <mat-card-content style="font-size: 52px; color: limegreen; font-weight: bold; background:transparent;">
-      <p>Height</p>
+      <p>Height {{height}} m</p>
       <p>Distance</p>
-      <p>Speed</p>
+      <p>Speed {{speed}} km/h</p>
     </mat-card-content>
   <!-- </mat-card> -->
 </div>

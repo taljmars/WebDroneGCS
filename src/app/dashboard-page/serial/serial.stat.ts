@@ -29,15 +29,18 @@ export class SerialStatView {
   constructor(public proxyService: ProxyService,
               public droneService: DroneService){
     
-    if (this.proxyService.isProxyConnected()) {
-      setInterval(() => {
-        this.droneService.getStatistics(data => this.printer(data));
-        this.droneService.getMavlinkVersion(data => this.mavlinkVersion = data.message)
-      }, 1000)
-    }
+      setInterval(() => 
+        {
+          if (this.proxyService.isProxyConnected()) {
+            this.droneService.getStatistics(data => this.updateStats(data));
+            this.droneService.getMavlinkVersion(data => this.mavlinkVersion = data.message)
+          }
+        }, 
+        1000
+      )
   }
 
-  printer(data) {
+  updateStats(data) {
     this.receivedBytes = data['connection']['receivedBytes']
     this.transmittedBytes = data['connection']['transmittedBytes']
     this.receivedBytesPerSecond = data['connection']['receivedBytesPerSecond']

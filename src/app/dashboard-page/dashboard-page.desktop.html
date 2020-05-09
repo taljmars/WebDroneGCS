@@ -14,8 +14,7 @@
             <mdb-card-text>Some quick example text 
               content.</mdb-card-text>
             <div class="flex-row">
-              <a class="card-link">Card link</a>
-              <a class="card-link">Another link</a>
+              <a class="card-link" href="javascript:void(0)" (click)="refreshParams()" >Refresh</a>
             </div>
           </mdb-card-body>
         </mdb-card>
@@ -29,7 +28,8 @@
             </mdb-card-title>
             <mdb-card-text>
               <div class="flex-row">
-                <a class="card-link" (click)="openSerialDialog()">Unknown Port</a>, <a class="card-link">Unknown Baud</a>
+                Port Name: <a class="card-link" href="javascript:void(0)" (click)="openSerialDialog()">{{getPortName()}}</a>, 
+                <a class="card-link">Baud Rate: {{getBaudRate()}}</a>
               </div>
             </mdb-card-text>
             <mdb-card-text>
@@ -69,12 +69,8 @@
             </mdb-card-title>
             <mdb-card-text>Version: {{proxyService.proxyVersion}}</mdb-card-text>
             <mdb-card-text>Uptime: {{proxyService.proxyUpTime}}</mdb-card-text>
-            <mdb-card-text>
-              Some quick example text to build on the card title and make up the bulk of the card's
-              content.
-            </mdb-card-text>
             <div class="flex-row">
-              <a class="card-link">Get Latest Agent</a>
+              <a class="card-link" href="https://raw.githubusercontent.com/taljmars/WebDroneGCS/master/proxy/Desktop/DroneConnector/ClientInstallation/Linux/DroneProxy-linux.tar">Get Latest Agent</a>
             </div>
           </mdb-card-body>
         </mdb-card>
@@ -100,7 +96,7 @@
 </div>  
 
 
-<!-- <div mdbModal #frame="mdbModal" class="modal fade bottom modal-scrolling" id="frameModalTop" tabindex="-1" role="dialog"
+<div mdbModal #frame="mdbModal" class="modal fade bottom modal-scrolling" id="frameModalTop" tabindex="-1" role="dialog"
   aria-labelledby="myModalLabel" aria-hidden="false" [config]="{backdrop: false, ignoreBackdropClick: true, show: !proxyService.isProxyUp()}"
   >
   <div class="modal-dialog modal-frame modal-bottom modal-notify modal-info" role="document">
@@ -122,4 +118,4 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
