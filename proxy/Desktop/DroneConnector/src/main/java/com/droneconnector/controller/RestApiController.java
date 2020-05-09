@@ -71,6 +71,17 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
     return obj.toMap();
   }
 
+  @GetMapping("/info")
+  public Map info() {
+    JSONObject obj = getResponseTemplate();
+    obj.put("type", drone.getType().getDroneType().name());
+    JSONObject fw = new JSONObject();
+    fw.put("type", drone.getFirmwareType().toString());
+    fw.put("version", drone.getFirmwareVersion() == null ? drone.getFirmwareVersion() : "Unknown");
+    obj.put("firmware", fw);
+    return obj.toMap();
+  }
+
   @PostMapping("/connect")
   public Map connect(@RequestBody PortConfig portConfig) {
     JSONObject obj = getResponseTemplate();

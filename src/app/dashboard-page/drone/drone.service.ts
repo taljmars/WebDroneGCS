@@ -7,6 +7,7 @@ import { callbackify } from 'util';
 import { ProxyListener, ProxyService } from '../serial/config/proxy.service';
 import { DroneEvents } from './protocol/events.component';
 import { ConfigService } from '../serial/config/config.service';
+import { ProxyEvent, ProxyEvents } from '../serial/config/proxy-events/events.component';
 
 export interface DroneEventListener {
     onDroneEvent(event: any);
@@ -18,13 +19,17 @@ export interface DroneEventListener {
 export class DroneService implements ProxyListener {
 
   listeners: Map<String, DroneEventListener> = new Map();
+  
+  public firmwareType: String = "Unknown";
+  public firmwareVersion: String = "Unknown";
+  public droneType: String = "Unknown";
 
     constructor(private proxyService: ProxyService,
                 private configService: ConfigService) { 
       this.proxyService.addEventListner(this);
     }
   
-    notify(event: any) {
+    private notify(event: any) {
       if (event.id == DroneEvents.DISCONNECTED)
         this.proxyService.disconnect()
 
@@ -32,15 +37,18 @@ export class DroneService implements ProxyListener {
         listener.onDroneEvent(event)     
     }
 
-    onProxyEvent(event: any) {
-      // this.notify(event)
-      if (event == "Proxy is Up") {
-        this.proxyService.subscribe("/topic/events/drone", val => this.notify(JSON.parse(val.body)))
-        this.proxyService.subscribe("/topic/events/port", val => this.notify(JSON.parse(val.body)))
-      }
-      else if (event == "Proxy Disconnected") {
-        this.proxyService.unsubscribe("/topic/events/drone")
-        this.proxyService.unsubscribe("/topic/events/port")
+    onProxyEvent(event: ProxyEvent) {
+      switch (event.id) {
+        case ProxyEvents.PROXY_CONNECTED:
+          this.proxyService.subscribe("/topic/events/drone", val => this.notify(JSON.parse(val.body)))
+          this.proxyService.subscribe("/topic/events/port", val => this.notify(JSON.parse(val.body)))
+          this.getInfo()
+          break
+        case ProxyEvents.PROXY_DISCONNECTED:
+        case ProxyEvents.PROXY_DOWN:
+          this.proxyService.unsubscribe("/topic/events/drone")
+          this.proxyService.unsubscribe("/topic/events/port")
+          break
       }
   }
 
@@ -56,8 +64,9 @@ export class DroneService implements ProxyListener {
       this.configService.get("stat", {}, {}, callback);
     }
 
-    refreshParameters(callback: Function) {
-      this.configService.get("refreshParameters", {}, {}, callback);
+    refreshParameters() {
+      console.log("Refresh Parameters")
+      this.configService.get("refreshParameters", {}, {}, a => null);
     }
 
     fetchWaypoints(callback: Function) {
@@ -70,6 +79,14 @@ export class DroneService implements ProxyListener {
 
     getParametersList(callback: Function) {
       this.configService.get("getParametersList", {}, {}, callback);
+    }
+
+    private getInfo() {
+      this.configService.get("info", {}, {}, data => {
+        this.droneType = data.type;
+        this.firmwareVersion = data.firmware.version;
+        this.firmwareType = data.firmware.type;
+      });
     }
 
 }

@@ -14,7 +14,8 @@ export class DashMobile extends Dash {
 
   constructor(public proxyService: ProxyService,
     protected dialog: MatDialog,
-    protected droneService: DroneService) {
+    public droneService: DroneService)
+  {
     super(proxyService, dialog, droneService)
   }
 

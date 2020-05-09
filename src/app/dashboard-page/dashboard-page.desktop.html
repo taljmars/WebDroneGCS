@@ -11,8 +11,9 @@
             <mdb-card-title>
               <h4>Drone Info</h4>
             </mdb-card-title>
-            <mdb-card-text>Some quick example text 
-              content.</mdb-card-text>
+            <mdb-card-text>Drone Type: {{droneService.droneType}}</mdb-card-text>
+            <mdb-card-text>Firmware Type: {{droneService.firmwareType}}</mdb-card-text>
+            <mdb-card-text>Firmware Version: {{droneService.firmwareVersion}}</mdb-card-text>
             <div class="flex-row">
               <a class="card-link" href="javascript:void(0)" (click)="refreshParams()" >Refresh</a>
             </div>

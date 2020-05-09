@@ -8,7 +8,7 @@ export abstract class Dash {
   constructor(
     public proxyService: ProxyService,
     protected dialog: MatDialog,
-    protected droneService: DroneService
+    public droneService: DroneService
     ) {
   }
 
@@ -37,7 +37,7 @@ export abstract class Dash {
   }
 
   refreshParams() {
-    this.droneService.refreshParameters(null)
+    this.droneService.refreshParameters()
   }
 
 }

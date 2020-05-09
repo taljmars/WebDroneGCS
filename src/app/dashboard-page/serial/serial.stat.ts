@@ -35,9 +35,29 @@ export class SerialStatView {
             this.droneService.getStatistics(data => this.updateStats(data));
             this.droneService.getMavlinkVersion(data => this.mavlinkVersion = data.message)
           }
+          else {
+            this.resetStats();
+          }
         }, 
         1000
       )
+  }
+
+  resetStats() {
+    this.receivedBytes = 0;
+    this.transmittedBytes = 0;
+    this.receivedBytesPerSecond = 0;
+    this.transmittedBytesPerSecond = 0;
+    this.receivedPackets = 0;
+    this.receivedErrorPackets = 0;
+    this.receivedUncategorizedPackets = 0;
+    this.lostPackets = 0;
+    this.transmittedPackets = 0;
+    this.transmittedErrorPackets = 0;
+    this.receivedPacketsPerSecond = 0;
+    this.transmittedPacketsPerSecond = 0;
+    this.latency = 0;
+    this.mavlinkVersion = "";
   }
 
   updateStats(data) {

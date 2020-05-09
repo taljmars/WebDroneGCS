@@ -10,6 +10,7 @@ import { DroneEventListener, DroneService } from '../dashboard-page/drone/drone.
 import { ProxyListener, ProxyService } from '../dashboard-page/serial/config/proxy.service';
 import { MatDialog, MatDialogConfig} from "@angular/material";
 import { DroneEvents } from '../dashboard-page/drone/protocol/events.component';
+import { ProxyEvent, ProxyEvents } from '../dashboard-page/serial/config/proxy-events/events.component';
 
 @Component({
   selector: 'my-toolbar-desktop',
@@ -43,14 +44,19 @@ export class AppToolbarDesktop extends AppToolbar implements DroneEventListener,
   }
 
   sync() {
-    this.droneService.refreshParameters(a => null)
+    this.droneService.refreshParameters()
   }
 
-  onProxyEvent(event: any) {
-    if (event == "Proxy Disconnected" || event == "Proxy Un-binded to Port")
-      this.connected = false
-    else
-      this.connected = true
+  onProxyEvent(event: ProxyEvent) {
+    switch (event.id) {
+      case ProxyEvents.PROXY_DISCONNECTED:
+      case ProxyEvents.PROXY_DOWN:
+        this.connected = false
+        break;
+      case ProxyEvents.PROXY_CONNECTED:
+        this.connected = true
+        break;
+    }
   }
 
   onDroneEvent(event: any) {

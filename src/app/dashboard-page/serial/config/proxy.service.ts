@@ -4,13 +4,16 @@ import { HttpClient } from '@angular/common/http';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, from } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { callbackify } from 'util';
 import { ConfigService } from './config.service';
 
+import { ProxyEvent, ProxyEvents } from './proxy-events/events.component'
+import { AlertsService } from 'src/app/alerts.service';
+
 export interface ProxyListener {
-    onProxyEvent(event: any);
+    onProxyEvent(event: ProxyEvent);
 }
 
 @Injectable({
@@ -29,7 +32,8 @@ export class ProxyService {
   public proxyUpTime: String = "00:00:00";
   public proxyVersion: String = "Unknown";
 
-  constructor(private configService: ConfigService) {
+  constructor(private configService: ConfigService,
+    private alertsService: AlertsService) {
     this.pingProxyService();
   }
 
@@ -43,49 +47,59 @@ export class ProxyService {
     this.ws.connect({}, function(frame) {
       that.proxyConnected = true;
       for (let x of that.listeners)
-        x.onProxyEvent("Proxy is Up")
+        x.onProxyEvent(new ProxyEvent(ProxyEvents.PROXY_UP, "Proxy is Up"))
 
-        that.ws.subscribe("/errors", function(message) {
+      that.ws.subscribe("/errors", function(message) {
+      for (let x of that.listeners)
+        x.onProxyEvent(new ProxyEvent(ProxyEvents.PROXY_ERROR, "Proxy Error: " + message))
+      });
+
+      console.log("Socket Binded")
+      let data = {
+        'name' : portname,
+      }
+      if (baudrate != 0)
+        data['baud'] = baudrate;
+
+      console.log(data)
+      that.configService.post("connect", {}, data, val => {
+        that.portName = val.connection.name;
+        that.baudRate = val.connection.baud;
         for (let x of that.listeners)
-            x.onProxyEvent("Proxy Error: " + message)
-      });      
+              x.onProxyEvent(new ProxyEvent(ProxyEvents.PROXY_CONNECTED, "Proxy Binded to Port"))
+
+        console.log("Connected")
+        if (callback) callback(val)
+      })
+
     }, function(error) {
+      if (!that.proxyConnected)
+        return
       that.portName = "";
       that.baudRate = 0;
       for (let x of that.listeners)
-            x.onProxyEvent("Proxy Disconnected")
-      this.alertsService.openSnackBar(error)
+            x.onProxyEvent(new ProxyEvent(ProxyEvents.PROXY_DOWN, "Proxy Disconnected"))
+      that.alertsService.openSnackBar(error)
       that.pingProxyService();
     });
-
-    let data = {
-        'name' : portname,
-    }
-    if (baudrate != 0)
-      data['baud'] = baudrate;
-
-    console.log(data)
-    this.configService.post("connect", {}, data, val => {
-      this.portName = val.connection.name;
-      this.baudRate = val.connection.baud;
-      for (let x of this.listeners)
-            x.onProxyEvent("Proxy Binded to Port")
-      if (callback) callback(val)
-    })
   }
 
   disconnect(callback: Function = null) {
     this.configService.post("disconnect", {}, {}, val => {
       this.portName = "";
       this.baudRate = 0;
+      this.proxyConnected = false;
       for (let x of this.listeners)
-        x.onProxyEvent("Proxy Un-binded to Port")
+        x.onProxyEvent(new ProxyEvent(ProxyEvents.PROXY_DISCONNECTED, "Proxy Un-binded to Port"))
+
+      if (this.ws != null) {
+        this.ws.ws.close();
+        // this.ws = null;
+      }
+      console.log("Disconnected");
       if (callback) callback(val)
     })
-    if (this.ws != null) {
-      this.ws.ws.close();
-    }
-    console.log("Disconnected");
+    
   }
 
   getPortName() {
