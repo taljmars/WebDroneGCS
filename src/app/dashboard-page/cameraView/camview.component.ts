@@ -1,6 +1,6 @@
 import {Component, ViewChild, ElementRef} from '@angular/core'
-import { DroneService, DroneEventListener } from '../drone/drone.service';
-import { DroneEvents } from '../drone/protocol/events.component';
+import { DroneService, DroneEventListener } from '../../services/drone/drone.service';
+import { DroneEvents } from '../../services/drone/protocol/events.component';
 
 /// https://x-team.com/blog/webcam-image-capture-angular/
 

@@ -1,9 +1,9 @@
 import {Component} from '@angular/core'
 
-import { ProxyService } from './serial/config/proxy.service';
+import { ProxyService } from '../services/config/proxy.service';
 import { Dash } from './dashboard-page.component';
 import { MatDialog } from '@angular/material';
-import { DroneService } from './drone/drone.service';
+import { DroneService } from '../services/drone/drone.service';
 import { Element } from '@angular/compiler';
 
 @Component({

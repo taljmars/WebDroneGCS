@@ -14,7 +14,7 @@ import { Editor } from './dashboard-page/editor/editor.component'
 import { Injectable } from "@angular/core";
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from "rxjs"
-import { UserService } from './user.service';
+import { UserService } from './services/user.service';
 import { ApplicationStateService } from './application-state.service';
 import { LoginPageComponentMobile } from './login-page/login-page.component.mobile';
 import { LoginPageComponentDesktop } from './login-page/login-page.component.desktop';

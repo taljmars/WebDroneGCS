@@ -4,10 +4,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { callbackify } from 'util';
-import { ProxyListener, ProxyService } from '../serial/config/proxy.service';
+import { ProxyListener, ProxyService } from '../config/proxy.service';
 import { DroneEvents, DroneEvent } from './protocol/events.component';
-import { ConfigService } from '../serial/config/config.service';
-import { ProxyEvent, ProxyEvents } from '../serial/config/proxy-events/events.component';
+import { ConfigService } from '../config/config.service';
+import { ProxyEvent, ProxyEvents } from '../config/proxy-events/events.component';
 
 export interface DroneEventListener {
     onDroneEvent(event: DroneEvent);

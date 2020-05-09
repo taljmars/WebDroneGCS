@@ -10,7 +10,7 @@ import { callbackify } from 'util';
 import { ConfigService } from './config.service';
 
 import { ProxyEvent, ProxyEvents } from './proxy-events/events.component'
-import { AlertsService } from 'src/app/alerts.service';
+import { AlertsService } from 'src/app/services/alerts.service';
 
 export interface ProxyListener {
     onProxyEvent(event: ProxyEvent);
@@ -165,11 +165,11 @@ export class ProxyService {
       this.proxyUp = true
       this.proxyVersion = data["version"];
       this.proxyUpTime = data["uptime"];
-      console.log("Proxy service successfully found")
+      // console.log("Proxy service successfully found")
     }, 
     data => {
       this.proxyUp = false
-      console.error("Failed to find proxy service")
+      // console.error("Failed to find proxy service")
     });
   }
 

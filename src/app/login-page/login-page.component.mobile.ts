@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {ApiService} from '../api.service';
-import {UserService} from '../user.service';
+import {ApiService} from '../services/api.service';
+import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
 import { LoginPageComponent } from './login-page.component';
-import { AlertsService } from '../alerts.service';
+import { AlertsService } from '../services/alerts.service';
 
 @Component({
   selector: 'app-login-page',

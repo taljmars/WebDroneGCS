@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
 
-import { ProxyService } from './config/proxy.service';
-import { DroneService } from '../drone/drone.service';
+import { ProxyService } from '../../services/config/proxy.service';
+import { DroneService } from '../../services/drone/drone.service';
 
 
 @Component({

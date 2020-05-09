@@ -1,7 +1,7 @@
 import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
 
-import { DroneService, DroneEventListener } from '../drone/drone.service';
-import { DroneEvent, DroneEvents } from '../drone/protocol/events.component';
+import { DroneService, DroneEventListener } from '../../services/drone/drone.service';
+import { DroneEvent, DroneEvents } from '../../services/drone/protocol/events.component';
 
 
 

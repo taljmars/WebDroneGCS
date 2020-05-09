@@ -4,9 +4,9 @@ import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 
-import {ConfigService} from './config/config.service'
-import { ProxyService } from './config/proxy.service';
-import { DroneService, DroneEventListener } from '../drone/drone.service';
+import {ConfigService} from '../../services/config/config.service'
+import { ProxyService } from '../../services/config/proxy.service';
+import { DroneService, DroneEventListener } from '../../services/drone/drone.service';
 
 import {MatDialogRef, MatDialogActions} from "@angular/material";
 import {MatSelect} from '@angular/material/select';

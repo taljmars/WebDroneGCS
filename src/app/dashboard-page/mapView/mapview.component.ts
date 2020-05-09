@@ -4,8 +4,8 @@ import {MapModule, MapAPILoader, MarkerTypeId, IMapOptions, IBox, IMarkerIconInf
         BingMapAPILoaderConfig, BingMapAPILoader, 
         GoogleMapAPILoader,  GoogleMapAPILoaderConfig
 } from 'angular-maps';
-import { DroneService, DroneEventListener } from '../drone/drone.service';
-import { DroneEvents, DroneEvent } from '../drone/protocol/events.component';
+import { DroneService, DroneEventListener } from '../../services/drone/drone.service';
+import { DroneEvents, DroneEvent } from '../../services/drone/protocol/events.component';
 
 @Component({
   // selector: 'dash-frame',
@@ -126,7 +126,7 @@ export class MapView implements DroneEventListener {
         break;
 
       case DroneEvents.NAVIGATION:
-        console.log("braing " + event.data["bearing"])
+        // console.log("braing " + event.data["bearing"])
         this.angle = event.data["bearing"]
         this.markers.clear()
         this._iconInfo.rotation = this.angle;

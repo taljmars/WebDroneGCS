@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../user.service';
-import { ApiService } from '../api.service'
+import { UserService } from '../services/user.service';
+import { ApiService } from '../services/api.service'
 import { ApplicationStateService } from '../application-state.service';
-import { AlertsService } from '../alerts.service';
+import { AlertsService } from '../services/alerts.service';
 import { AppToolbar } from './app.toolbar'
 import { SerialDialogView } from "../dashboard-page/serial/serial.dialog"
-import { DroneEventListener, DroneService } from '../dashboard-page/drone/drone.service';
-import { ProxyListener, ProxyService } from '../dashboard-page/serial/config/proxy.service';
+import { DroneEventListener, DroneService } from '../services/drone/drone.service';
+import { ProxyListener, ProxyService } from '../services/config/proxy.service';
 import { MatDialog, MatDialogConfig} from "@angular/material";
-import { DroneEvents, DroneEvent } from '../dashboard-page/drone/protocol/events.component';
-import { ProxyEvent, ProxyEvents } from '../dashboard-page/serial/config/proxy-events/events.component';
+import { DroneEvents, DroneEvent } from '../services/drone/protocol/events.component';
+import { ProxyEvent, ProxyEvents } from '../services/config/proxy-events/events.component';
 
 @Component({
   selector: 'my-toolbar-desktop',

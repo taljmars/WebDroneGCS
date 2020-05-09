@@ -4,8 +4,8 @@ import {MapModule, MapAPILoader, MarkerTypeId, IMapOptions, IBox, IMarkerIconInf
         BingMapAPILoaderConfig, BingMapAPILoader, 
         GoogleMapAPILoader,  GoogleMapAPILoaderConfig
 } from 'angular-maps';
-import { DroneService, DroneEventListener } from '../drone/drone.service';
-import { DroneEvents, DroneEvent } from '../drone/protocol/events.component';
+import { DroneService, DroneEventListener } from '../../services/drone/drone.service';
+import { DroneEvents, DroneEvent } from '../../services/drone/protocol/events.component';
 
 @Component({
   // selector: 'dash-frame',

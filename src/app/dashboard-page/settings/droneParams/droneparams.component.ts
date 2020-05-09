@@ -1,7 +1,7 @@
 import { Component, OnInit , ViewChild, HostListener, ElementRef} from '@angular/core';
-import { DroneService, DroneEventListener } from '../../drone/drone.service';
+import { DroneService, DroneEventListener } from '../../../services/drone/drone.service';
 import { MdbTableDirective } from 'angular-bootstrap-md';
-import { DroneEvent } from '../../drone/protocol/events.component';
+import { DroneEvent } from '../../../services/drone/protocol/events.component';
 
 
 @Component({

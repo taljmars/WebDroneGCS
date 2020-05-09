@@ -1,7 +1,7 @@
-import {ApiService} from '../api.service';
-import {UserService} from '../user.service';
+import {ApiService} from '../services/api.service';
+import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
-import {AlertsService} from '../alerts.service'
+import {AlertsService} from '../services/alerts.service'
 
 export abstract class LoginPageComponent {
 
