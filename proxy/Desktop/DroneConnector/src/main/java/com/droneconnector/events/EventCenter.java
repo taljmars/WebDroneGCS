@@ -212,17 +212,39 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
 
     @Override
     public void onBeginReceivingParameters() {
-
+      JSONObject object = new JSONObject();
+      JSONObject payload = new JSONObject();
+      object.put("id", 1000);
+      object.put("name", "PARAMS_START");
+      object.put("data", payload);
+      webSocketController.broadcast(WebSocketController.Q_DRONE, object);
     }
 
     @Override
     public void onParameterReceived(Parameter parameter, int i, int i1) {
-
+      JSONObject object = new JSONObject();
+      JSONObject payload = new JSONObject();
+      JSONObject param = new JSONObject();
+      param.put("name", parameter.getName());
+      param.put("value", parameter.getValue());
+      payload.put("index", i);
+      payload.put("amount", i1);
+      payload.put("param", param);
+      object.put("id", 1001);
+      object.put("name", "PARAM_RECEIVE");
+      object.put("data", payload);
+      webSocketController.broadcast(WebSocketController.Q_DRONE, object);
     }
 
     @Override
     public void onEndReceivingParameters(List<Parameter> list) {
-
+      JSONObject object = new JSONObject();
+      JSONObject payload = new JSONObject();
+      payload.put("list", list);
+      object.put("id", 1002);
+      object.put("name", "PARAMS_END");
+      object.put("data", payload);
+      webSocketController.broadcast(WebSocketController.Q_DRONE, object);
     }
 
 }

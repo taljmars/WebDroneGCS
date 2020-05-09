@@ -1,15 +1,21 @@
 import { ProxyService } from './serial/config/proxy.service';
 import { SerialDialogView } from './serial/serial.dialog';
 import { MatDialogConfig, MatDialog } from '@angular/material';
-import { DroneService } from './drone/drone.service';
+import { DroneService, DroneEventListener } from './drone/drone.service';
+import { DroneEvent, DroneEvents } from './drone/protocol/events.component';
 
-export abstract class Dash {
+export abstract class Dash implements DroneEventListener {
 
   constructor(
     public proxyService: ProxyService,
     protected dialog: MatDialog,
     public droneService: DroneService
-    ) {
+    ) 
+  {
+    droneService.addEventListener(this)
+  }
+
+  onDroneEvent(event: DroneEvent) {
   }
 
   openSerialDialog() {

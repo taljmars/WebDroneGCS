@@ -34,7 +34,10 @@ export class ProxyService {
 
   constructor(private configService: ConfigService,
     private alertsService: AlertsService) {
-    this.pingProxyService();
+    setInterval(() => {
+      this.pingProxyService()
+    },
+    2 * 1000);
   }
 
   connect(portname: String, baudrate: Number, callback: Function = null) {

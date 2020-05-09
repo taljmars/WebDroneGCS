@@ -1,6 +1,7 @@
 import { Component, OnInit , ViewChild, HostListener, ElementRef} from '@angular/core';
 import { DroneService, DroneEventListener } from '../../drone/drone.service';
 import { MdbTableDirective } from 'angular-bootstrap-md';
+import { DroneEvent } from '../../drone/protocol/events.component';
 
 
 @Component({
@@ -53,7 +54,7 @@ export class DroneParams implements DroneEventListener{
     })
   }
 
-  onDroneEvent(event: any) {
+  onDroneEvent(event: DroneEvent) {
   }
 
   editField: string;

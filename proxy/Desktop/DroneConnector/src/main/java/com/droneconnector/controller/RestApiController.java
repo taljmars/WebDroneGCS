@@ -77,7 +77,7 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
     obj.put("type", drone.getType().getDroneType().name());
     JSONObject fw = new JSONObject();
     fw.put("type", drone.getFirmwareType().toString());
-    fw.put("version", drone.getFirmwareVersion() == null ? drone.getFirmwareVersion() : "Unknown");
+    fw.put("version", drone.getFirmwareVersion() != null ? drone.getFirmwareVersion() : "Unknown");
     obj.put("firmware", fw);
     return obj.toMap();
   }

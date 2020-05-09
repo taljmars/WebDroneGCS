@@ -7,8 +7,8 @@ import { DroneService } from './drone/drone.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './dashboard-page.mobile.html',
-  styleUrls: ['./dashboard-page.component.css']
+  templateUrl: './dashboard-page.html',
+  styleUrls: ['./dashboard-page.mobile.css']
 })
 export class DashMobile extends Dash {
 
@@ -17,6 +17,29 @@ export class DashMobile extends Dash {
     public droneService: DroneService)
   {
     super(proxyService, dialog, droneService)
+  }
+
+  ngAfterViewInit() {
+    var elements, name, arr;
+    elements = document.getElementsByClassName("panel-sm");
+    console.log(elements)
+    name = "col";
+    for (let element of elements) {
+      arr = element.className.split(" ");
+      if (arr.indexOf(name) == -1) {
+        element.className += " " + name;
+      }
+    }
+
+    elements = document.getElementsByClassName("panel-md");
+    console.log(elements)
+    name = "col";
+    for (let element of elements) {
+      arr = element.className.split(" ");
+      if (arr.indexOf(name) == -1) {
+        element.className += " " + name;
+      }
+    }
   }
 
 }

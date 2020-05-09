@@ -1,6 +1,7 @@
 import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
 
 import { DroneService, DroneEventListener } from '../drone/drone.service';
+import { DroneEvent, DroneEvents } from '../drone/protocol/events.component';
 
 
 
@@ -17,10 +18,10 @@ export class LogView implements DroneEventListener{
     this.droneService.addEventListener(this);
   }
 
-  onDroneEvent(event: any) {
+  onDroneEvent(event: DroneEvent) {
     this.events.push({
       date: new Date(),
-      type: event.name,
+      type: DroneEvents[event.id],
       message: JSON.stringify(event.data)
     })
   }

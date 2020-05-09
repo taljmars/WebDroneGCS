@@ -5,12 +5,12 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { callbackify } from 'util';
 import { ProxyListener, ProxyService } from '../serial/config/proxy.service';
-import { DroneEvents } from './protocol/events.component';
+import { DroneEvents, DroneEvent } from './protocol/events.component';
 import { ConfigService } from '../serial/config/config.service';
 import { ProxyEvent, ProxyEvents } from '../serial/config/proxy-events/events.component';
 
 export interface DroneEventListener {
-    onDroneEvent(event: any);
+    onDroneEvent(event: DroneEvent);
 }
 
 @Injectable({
@@ -30,11 +30,28 @@ export class DroneService implements ProxyListener {
     }
   
     private notify(event: any) {
-      if (event.id == DroneEvents.DISCONNECTED)
-        this.proxyService.disconnect()
+      if (!Object.values(DroneEvents).includes(event.id)) {
+        console.error("Unknown " + event)
+        return
+      }
 
+      let droneEvent = new DroneEvent(event.id, event.data)
+
+      switch (droneEvent.id) {
+        case DroneEvents.PARAMS_START:
+          console.log("Start receiving parameters")
+          break;
+        case DroneEvents.PARAMS_END:
+          console.log("Finish receiving parameters")
+          this.getInfo()
+          break;
+        case DroneEvents.DISCONNECTED:
+          this.proxyService.disconnect()
+          break;
+      }
+      
       for (let listener of this.listeners.values())
-        listener.onDroneEvent(event)     
+        listener.onDroneEvent(droneEvent)     
     }
 
     onProxyEvent(event: ProxyEvent) {

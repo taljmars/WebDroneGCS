@@ -1,6 +1,7 @@
 import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
 
 import { DroneService, DroneEventListener } from '../drone/drone.service';
+import { DroneEvent } from '../drone/protocol/events.component';
 
 
 
@@ -17,7 +18,7 @@ export class Settings implements DroneEventListener{
     this.droneService.addEventListener(this);
   }
 
-  onDroneEvent(event: any) {
+  onDroneEvent(event: DroneEvent) {
   }
 
   setActive(view: String) {

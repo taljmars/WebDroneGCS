@@ -9,7 +9,7 @@ import { SerialDialogView } from "../dashboard-page/serial/serial.dialog"
 import { DroneEventListener, DroneService } from '../dashboard-page/drone/drone.service';
 import { ProxyListener, ProxyService } from '../dashboard-page/serial/config/proxy.service';
 import { MatDialog, MatDialogConfig} from "@angular/material";
-import { DroneEvents } from '../dashboard-page/drone/protocol/events.component';
+import { DroneEvents, DroneEvent } from '../dashboard-page/drone/protocol/events.component';
 import { ProxyEvent, ProxyEvents } from '../dashboard-page/serial/config/proxy-events/events.component';
 
 @Component({
@@ -59,12 +59,7 @@ export class AppToolbarDesktop extends AppToolbar implements DroneEventListener,
     }
   }
 
-  onDroneEvent(event: any) {
-    // if (!Object.values(DroneEvents).includes(event.id)) {
-      // console.log("Unknown " + event)
-      // return
-    // }
-    
+  onDroneEvent(event: DroneEvent) {    
     switch (event.id) {
       case DroneEvents.HEARTBEAT_TIMEOUT:
         console.log("HEARTBEAT_TIMEOUT " + event.data)

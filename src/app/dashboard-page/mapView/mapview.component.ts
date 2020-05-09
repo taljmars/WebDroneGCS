@@ -5,7 +5,7 @@ import {MapModule, MapAPILoader, MarkerTypeId, IMapOptions, IBox, IMarkerIconInf
         GoogleMapAPILoader,  GoogleMapAPILoaderConfig
 } from 'angular-maps';
 import { DroneService, DroneEventListener } from '../drone/drone.service';
-import { DroneEvents } from '../drone/protocol/events.component';
+import { DroneEvents, DroneEvent } from '../drone/protocol/events.component';
 
 @Component({
   // selector: 'dash-frame',
@@ -80,12 +80,7 @@ export class MapView implements DroneEventListener {
       }
   }
   
-  onDroneEvent(event: any) {
-    if (!Object.values(DroneEvents).includes(event.id)) {
-      console.log("Unknown " + event)
-      return
-    }
-    
+  onDroneEvent(event: DroneEvent) {
     switch (event.id) {
       case DroneEvents.GPS:
         // console.log("GPS " + event.data)

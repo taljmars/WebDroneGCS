@@ -54,4 +54,15 @@ export enum DroneEvents {
     PROTOCOL_LEARNING,
     PROTOCOL_IDENTIFIED,
 
+
+    PARAMS_START=1000,
+    PARAM_RECEIVE=1001,
+    PARAMS_END=1002,
+}
+
+export class DroneEvent {
+
+    constructor(public id: DroneEvents, public data: any) {
+
+    }
 }
