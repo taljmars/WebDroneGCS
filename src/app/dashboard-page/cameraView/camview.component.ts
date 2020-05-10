@@ -94,12 +94,25 @@ export class CamView implements DroneEventListener {
 
   public ngAfterViewInit() {
     console.log("After view init - talma")
+
       if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-          navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-              // this.video.nativeElement.src = window.URL.createObjectURL(stream);
-              this.video.nativeElement.srcObject = stream
-              this.video.nativeElement.play();
+        
+        navigator.mediaDevices.enumerateDevices()
+        .then(function(devices) {
+          devices.forEach(function(device) {
+            console.log(device.kind + ": " + device.label +
+                        " id = " + device.deviceId);
           });
+        })
+        .catch(function(err) {
+          console.log(err.name + ": " + err.message);
+        });
+        
+        navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+            // this.video.nativeElement.src = window.URL.createObjectURL(stream);
+            this.video.nativeElement.srcObject = stream
+            this.video.nativeElement.play();
+        });
       }
   }
 }
