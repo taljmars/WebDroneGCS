@@ -13,7 +13,9 @@ import { DashDesktop } from './dashboard-page.desktop';
 import { MatCardModule } from '@angular/material/card';
 import { SerialModule } from './serial/serial.module';
 
-import { MDBBootstrapModule, ModalModule, TooltipModule, PopoverModule, IconsModule } from 'angular-bootstrap-md';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
+import { MDBBootstrapModule, ModalModule, TooltipModule, PopoverModule, IconsModule, ChartsModule } from 'angular-bootstrap-md';
 
 @NgModule({
   imports: [
@@ -25,7 +27,9 @@ import { MDBBootstrapModule, ModalModule, TooltipModule, PopoverModule, IconsMod
 
     ModalModule, TooltipModule, PopoverModule, IconsModule,
 
-    CardsModule, WavesModule, ButtonsModule
+    CardsModule, WavesModule, ButtonsModule, ChartsModule,
+
+    MatProgressBarModule,
 
   ],
   declarations: [ DashDesktop, DashMobile ],

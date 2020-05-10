@@ -6,6 +6,8 @@ import { DroneEvent, DroneEvents } from '../services/drone/protocol/events.compo
 
 export abstract class Dash implements DroneEventListener {
 
+  public paramReceived: Number = 100;
+
   constructor(
     public proxyService: ProxyService,
     protected dialog: MatDialog,
@@ -15,7 +17,21 @@ export abstract class Dash implements DroneEventListener {
     droneService.addEventListener(this)
   }
 
+  public counter: number = 0;
   onDroneEvent(event: DroneEvent) {
+    switch (event.id) {
+      case DroneEvents.PARAMS_START:
+        this.paramReceived = 0;
+        this.counter = 0
+        break;
+      case DroneEvents.PARAM_RECEIVE:
+        this.counter++
+        this.paramReceived = this.counter / event.data.amount * 100
+        break;
+      case DroneEvents.PARAMS_END:
+        this.paramReceived = 100;
+        break;
+    }
   }
 
   openSerialDialog() {

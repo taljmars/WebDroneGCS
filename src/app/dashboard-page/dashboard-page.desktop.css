@@ -20,3 +20,7 @@ body {
 .dashcard {
     height: 100%
 }
+
+.dash-row {
+    padding-bottom: 200px;
+}

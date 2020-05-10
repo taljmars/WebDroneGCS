@@ -16,6 +16,7 @@
             <mdb-card-text>Firmware Version: {{droneService.firmwareVersion}}</mdb-card-text>
             <div class="flex-row">
               <a class="card-link" href="javascript:void(0)" (click)="refreshParams()" >Refresh</a>
+              <mat-progress-bar *ngIf="paramReceived != 100" value={{paramReceived}}></mat-progress-bar>
             </div>
           </mdb-card-body>
         </mdb-card>
@@ -40,10 +41,18 @@
         </mdb-card>
       </div>
 
-    </div>
+    <!-- </div> -->
 
-    <div class="dash-row">
+    <!-- <div class="dash-row"> -->
     
+      <div class="panel-md">
+        <mdb-card class="dashcard">
+          <mdb-card-body>
+            <serial-chart></serial-chart>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+
       <div class="panel-sm">
         <mdb-card class="dashcard">
           <mdb-card-body>
@@ -92,6 +101,7 @@
           </mdb-card-body>
         </mdb-card>
       </div>
+
     </div>
 
 </div>  

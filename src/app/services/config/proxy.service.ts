@@ -169,6 +169,8 @@ export class ProxyService {
     }, 
     data => {
       this.proxyUp = false
+      this.proxyVersion = "Unknown"
+      this.proxyUpTime = "00:00:00"
       // console.error("Failed to find proxy service")
     });
   }
