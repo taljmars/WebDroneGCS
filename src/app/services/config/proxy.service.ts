@@ -165,6 +165,13 @@ export class ProxyService {
       this.proxyUp = true
       this.proxyVersion = data["version"];
       this.proxyUpTime = data["uptime"];
+      let connection = data["connection"];
+      if (!this.isProxyConnected() && connection["drone"] == true) {
+        console.log("Proxy already binded to port and drone")
+        this.portName = connection["port"]
+        this.baudRate = connection["baud-rate"]
+        this.connect(this.portName, this.baudRate);
+      }
       // console.log("Proxy service successfully found")
     }, 
     data => {

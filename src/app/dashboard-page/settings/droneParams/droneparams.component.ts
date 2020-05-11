@@ -5,7 +5,7 @@ import { DroneEvent } from '../../../services/drone/protocol/events.component';
 
 
 @Component({
-  selector: 'DroneParams',
+  selector: 'drone-params',
   templateUrl: './droneparams.component.html',
   styleUrls: ['./droneparams.component.css']
 })

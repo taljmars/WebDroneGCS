@@ -9,9 +9,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { NavbarModule, DropdownModule } from 'angular-bootstrap-md';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {DroneParamsModule} from './droneParams/droneparams.module'
-import {UserConfigModule} from './userConfig/userconfig.module'
+import {UserConfigModule} from './userConfig/user.config.module'
 
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { GcsConfigModule } from './gcsConfig/gcs.config.module';
+import { CalibrationModule } from './calibration/calibration.module';
 
 
 @NgModule({
@@ -21,6 +23,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatSidenavModule,
     DroneParamsModule,
     UserConfigModule,
+    GcsConfigModule,
+    CalibrationModule,
 
     MatButtonToggleModule,
   ],

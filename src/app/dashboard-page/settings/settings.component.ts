@@ -10,7 +10,7 @@ import { DroneEvent } from '../../services/drone/protocol/events.component';
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
 })
-export class Settings implements DroneEventListener{
+export class Settings implements DroneEventListener {
 
   private active: String = "DroneParams"
 

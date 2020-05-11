@@ -3,7 +3,8 @@
 
       <mat-button-toggle-group style="border:none;" vertical>
         <mat-button-toggle style="border:none;" (click)="setActive('DroneParams')">Drone Parameters</mat-button-toggle>
-        <mat-button-toggle style="border:none;" (click)="setActive('UserConfig')">Calibration</mat-button-toggle>
+        <mat-button-toggle style="border:none;" (click)="setActive('Calibration')">Calibration</mat-button-toggle>
+        <mat-button-toggle style="border:none;" (click)="setActive('GCSConfig')">GCS Configuration</mat-button-toggle>
         <mat-button-toggle style="border:none;" (click)="setActive('UserConfig')">User Configuration</mat-button-toggle>
       </mat-button-toggle-group>
     
@@ -11,8 +12,10 @@
 
 
   <mat-drawer-content>
-    <DroneParams *ngIf="isActive('DroneParams')"></DroneParams>
-    <UserConfig *ngIf="isActive('UserConfig')"></UserConfig>
+    <drone-params *ngIf="isActive('DroneParams')"></drone-params>
+    <user-config *ngIf="isActive('UserConfig')"></user-config>
+    <gcs-config *ngIf="isActive('GCSConfig')"></gcs-config>
+    <calibration *ngIf="isActive('Calibration')"></calibration>
   </mat-drawer-content>
   
 </mat-drawer-container>

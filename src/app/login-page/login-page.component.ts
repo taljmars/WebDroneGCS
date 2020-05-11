@@ -2,11 +2,15 @@ import {ApiService} from '../services/api.service';
 import {UserService} from '../services/user.service';
 import {Router} from '@angular/router';
 import {AlertsService} from '../services/alerts.service'
+import { ViewChild } from '@angular/core';
 
 export abstract class LoginPageComponent {
 
-  email = 'peter@klaven';
-  password = 'cityslicka';
+  @ViewChild("email", {static: false})
+  public email: any = '';
+
+  @ViewChild("password", {static: false})
+  public password: any = '';
 
   constructor(
     protected api: ApiService, 
@@ -18,8 +22,8 @@ export abstract class LoginPageComponent {
 
   tryLogin() {
     this.api.login(
-      this.email,
-      this.password
+      this.getEmail(),
+      this.getPassword()
     )
       .subscribe(
         r => {
@@ -36,4 +40,10 @@ export abstract class LoginPageComponent {
         });
   }
 
+  getPassword(): string {
+    return this.password.nativeElement.value;
+  }
+  getEmail(): string {
+    return this.email.nativeElement.value;
+  }
 }

@@ -16,14 +16,20 @@ export class ApiService {
 
   }
 
+  addr = "http://localhost:8080/"
+
   login(email: string, password: string): Observable<LoginResponseModel>{
-    return this.http.post<LoginResponseModel>('https://reqres.in1/api/login', {
+    // return this.http.post<LoginResponseModel>('https://reqres.in1/api/login', {
+    return this.http.post<LoginResponseModel>(this.addr + 'login', {
       email: email,
       password: password
     });
   }
 
   logout(token: any): Observable<LogoutResponseModel>{
-    return this.http.post<LogoutResponseModel>('https://reqres.in1/api/logout', {});
+    // return this.http.post<LogoutResponseModel>('https://reqres.in1/api/logout', {});
+    return this.http.post<LogoutResponseModel>(this.addr + 'logout', {
+      token: token
+    });
   }
 }

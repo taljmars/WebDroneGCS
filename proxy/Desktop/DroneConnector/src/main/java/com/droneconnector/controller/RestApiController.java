@@ -86,19 +86,26 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
   public Map connect(@RequestBody PortConfig portConfig) {
     JSONObject obj = getResponseTemplate();
     try {
-      serialConnection.setBaud(portConfig.getBaud());
-      serialConnection.setPortName(portConfig.getName());
-//            boolean res = serialConnection.connect();
-//            if (res)
-//                webSocketController.broadcast(WebSocketController.Q_PORT, "Port " + portConfig.getName() + " Connected");
+      if (portConfig.getBaud() != serialConnection.getBaud() || portConfig.getName() != serialConnection.getPortName()) {
+        if (serialConnection.isConnect()) {
+          if (drone.isConnectionAlive()) {
+            System.out.println("Mavlink Drone is connected and binded, disconnecting it");
+            gcsHeartbeat.setActive(false);
+            drone.getMavClient().disconnect();
+          }
+          System.out.println("Port Already connected, but request arrived to change connection properties");
+          serialConnection.disconnect();
+        }
 
-//            JSONObject obj = new JSONObject();
-//            obj.put("result", true);
-//            webSocketController.broadcast(WebSocketController.Q_DRONE, "Connecting to drone");
-
-      drone.getMavClient().connect();
-      System.out.println("Start HB");
-      gcsHeartbeat.setActive(true);
+        serialConnection.setBaud(portConfig.getBaud());
+        serialConnection.setPortName(portConfig.getName());
+        drone.getMavClient().connect();
+        System.out.println("Start HB");
+        gcsHeartbeat.setActive(true);
+      }
+      else {
+        System.out.println("Port Already connected");
+      }
       JSONObject info = new JSONObject();
       info.put("name", serialConnection.getPortName());
       info.put("baud", serialConnection.getBaud());
@@ -178,6 +185,11 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
     Duration duration = Duration.between(startTime, Instant.now());
     String val = String.format("%d:%02d:%02d", duration.toHours(), duration.toMinutes() % 60 , duration.getSeconds() % 60);
     object.put("uptime", val);
+    JSONObject conn = new JSONObject();
+    conn.put("drone", drone.getMavClient().isConnected());
+    conn.put("port", serialConnection.getPortName());
+    conn.put("baud-rate", serialConnection.getBaud());
+    object.put("connection",conn);
     return object.toMap();
   }
 

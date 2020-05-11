@@ -58,7 +58,7 @@ export class SerialChartsView {
 
         console.log("Start Monitor")
         setInterval(() => {
-            console.log("Go")
+            // console.log("Go")
             if (this.proxyService.isProxyConnected()) {
                 this.droneService.getStatistics(data => {
                     var r = data['connection']['receivedPacketsPerSecond']

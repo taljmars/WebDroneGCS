@@ -3,6 +3,7 @@ import {BrowserModule} from '@angular/platform-browser'
 import { SerialDialogView } from './serial.dialog';
 import { SerialStatView } from './serial.stat';
 import { SerialChartsView } from './serial.charts';
+import { SerialPacketsPieView } from './serial.packets.pie';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -31,9 +32,9 @@ import { ChartsModule, WavesModule } from 'angular-bootstrap-md'
     MatSelectModule,
     ChartsModule, WavesModule,
   ],
-  declarations: [ SerialDialogView, SerialStatView, SerialChartsView],
+  declarations: [ SerialDialogView, SerialStatView, SerialChartsView, SerialPacketsPieView],
   providers: [],
-  exports: [SerialDialogView, SerialStatView, SerialChartsView],
+  exports: [SerialDialogView, SerialStatView, SerialChartsView, SerialPacketsPieView],
   // bootstrap: [ ]
   bootstrap: [ SerialDialogView ]
 })
