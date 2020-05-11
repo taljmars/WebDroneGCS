@@ -1,0 +1,5 @@
+<resources>
+  <string name="app_name">DroneProxy</string>
+  <string name="tab_text_1">Summery</string>
+  <string name="tab_text_2">Settings</string>
+</resources>
