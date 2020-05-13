@@ -42,11 +42,17 @@ export class ConfigService {
     return "http://" + this.address + ":" + this.port + "/"
   }
 
-  get(url : string, options: any, data: any, okCallback: Function, errCallback?: Function) {
+  op :any = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization, Content-Length, X-Requested-With',
+  }
+
+  get(url : string, options: any, data: any, okCallback: Function, errCallback?: Function) {  
     if (errCallback)
-      this.http.get(this.getUrl() + url, options).subscribe(data=>okCallback(data), err=>errCallback(err));
+      this.http.get(this.getUrl() + url, this.op).subscribe(data=>okCallback(data), err=>errCallback(err));
     else
-      this.http.get(this.getUrl() + url, options).subscribe(data=>okCallback(data));
+      this.http.get(this.getUrl() + url, this.op).subscribe(data=>okCallback(data));
   }
 
   post(url : string, options: any, data: any, okCallback: Function, errCallback?: Function) {
