@@ -16,10 +16,13 @@ import { SerialModule } from './serial/serial.module';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { MDBBootstrapModule, ModalModule, TooltipModule, PopoverModule, IconsModule, ChartsModule } from 'angular-bootstrap-md';
+import { AlertsService } from '../services/alerts.service';
+import { AlertsModule } from '../alerts/alerts.module';
 
 @NgModule({
   imports: [
     SerialModule,
+    AlertsModule,
 
     BrowserModule,
     // MapModule.forRootBing(),

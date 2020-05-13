@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../services/user.service';
+import { UserService } from '../services/users/user.service';
 import { ApiService } from '../services/api.service'
 import { ApplicationStateService } from '../application-state.service';
 import { AlertsService } from '../services/alerts.service';

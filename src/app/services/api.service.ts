@@ -19,17 +19,50 @@ export class ApiService {
   addr = "http://localhost:8080/"
 
   login(email: string, password: string): Observable<LoginResponseModel>{
-    // return this.http.post<LoginResponseModel>('https://reqres.in1/api/login', {
-    return this.http.post<LoginResponseModel>(this.addr + 'login', {
-      email: email,
-      password: password
-    });
+    if (email == "") {
+      console.error("Missing email")
+      return
+    }
+
+    // if (password == "") {
+    //   console.error("Missing password")
+    //   return
+    // }
+
+    // create observable
+    const simpleObservable = new Observable<LoginResponseModel>((observer) => {
+        
+      // observable execution
+      observer.next({
+        token: "aaa",
+        error: "",
+      })
+      observer.error()
+      observer.complete()
+    })
+
+    return simpleObservable;
+    // return this.http.post<LoginResponseModel>(this.addr + 'login', {
+    //   email: email,
+    //   password: password
+    // });
   }
 
   logout(token: any): Observable<LogoutResponseModel>{
-    // return this.http.post<LogoutResponseModel>('https://reqres.in1/api/logout', {});
-    return this.http.post<LogoutResponseModel>(this.addr + 'logout', {
-      token: token
-    });
+    // create observable
+    const simpleObservable = new Observable<LogoutResponseModel>((observer) => {
+        
+      // observable execution
+      observer.next({
+        error: "",
+      })
+      observer.error()
+      observer.complete()
+    })
+
+    return simpleObservable;
+    // return this.http.post<LogoutResponseModel>(this.addr + 'logout', {
+    //   token: token
+    // });
   }
 }

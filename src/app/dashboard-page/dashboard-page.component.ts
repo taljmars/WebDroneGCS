@@ -3,6 +3,8 @@ import { SerialDialogView } from './serial/serial.dialog';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { DroneService, DroneEventListener } from '../services/drone/drone.service';
 import { DroneEvent, DroneEvents } from '../services/drone/protocol/events.component';
+import { AlertsService } from '../services/alerts.service';
+import { UserService } from '../services/users/user.service';
 
 export abstract class Dash implements DroneEventListener {
 
@@ -11,10 +13,13 @@ export abstract class Dash implements DroneEventListener {
   constructor(
     public proxyService: ProxyService,
     protected dialog: MatDialog,
-    public droneService: DroneService
+    public droneService: DroneService,
+    public alertsService: AlertsService,
+    public userService: UserService,
     ) 
   {
     droneService.addEventListener(this)
+    this.alertsService.openSnackBar("Welcome " + userService.getUserName())
   }
 
   public counter: number = 0;

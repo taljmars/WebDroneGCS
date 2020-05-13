@@ -9,16 +9,16 @@
       <input #email type="email" id="email" class="form-control mb-4" placeholder="E-mail">
     
       <!-- Password -->
-      <input #password type="password" id="password" class="form-control mb-4" placeholder="Password">
+      <!-- <input #password type="password" id="password" class="form-control mb-4" placeholder="Password"> -->
     
       <div class="d-flex justify-content-around">
         <div>
           <!-- Remember me -->
-          <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
+          <mdb-checkbox [(ngModel)]="rememberMe"  [ngModelOptions]="{standalone: true}">Remember Me</mdb-checkbox>
         </div>
         <div>
           <!-- Forgot password -->
-          <a href=""> (Forgot password?)</a>
+          <!-- <a href=""> (Forgot password?)</a> -->
         </div>
       </div>
     
@@ -26,12 +26,12 @@
       <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="tryLogin()">Sign in</button>
     
       <!-- Register -->
-      <p>Not a member?
+      <!-- <p>Not a member?
         <a href="">Register</a>
-      </p>
+      </p> -->
     
       <!-- Social login -->
-      <p>or sign in with:</p>
+      <!-- <p>or sign in with:</p>
     
       <a type="button" class="light-blue-text mx-2">
         <mdb-icon fab icon="facebook"></mdb-icon>
@@ -41,7 +41,7 @@
       </a>
       <a type="button" class="light-blue-text mx-2">
         <mdb-icon fab icon="github"></mdb-icon>
-      </a>
+      </a> -->
     
     </form>
 

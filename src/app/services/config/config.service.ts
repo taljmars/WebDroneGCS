@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { callbackify } from 'util';
+import { UserService } from '../users/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,15 @@ export class ConfigService {
   private port: Number = 8443;
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public userService: UserService) {
+    let cache = userService.getProxyAddress();
+    if (cache != null && cache != "")
+      this.address = cache;
+
+    cache = userService.getProxyPort();
+    if (cache != null && cache != "")
+      this.port = Number.parseInt(cache);
+  }
   
   // addr = "http://localhost:8080/"
 

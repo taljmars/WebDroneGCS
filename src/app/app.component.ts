@@ -4,7 +4,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material";
 // import { SerialDialogView } from "./dashboard-page/serial/serial.dialog"
 import { DroneEventListener, DroneService } from './services/drone/drone.service';
 import { ProxyListener, ProxyService } from './services/config/proxy.service';
-import { UserService } from './services/user.service';
+import { UserService } from './services/users/user.service';
 import { DroneEvents } from './services/drone/protocol/events.component';
 import { ApiService } from './services/api.service'
 import { ApplicationStateService } from './application-state.service';

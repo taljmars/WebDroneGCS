@@ -2,6 +2,7 @@ import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
 import { ProxyService } from 'src/app/services/config/proxy.service';
 import { ConfigService } from 'src/app/services/config/config.service';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { UserService } from 'src/app/services/users/user.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class GcsConfig {
 
   events: string[] = [];
 
-  constructor(public proxyService: ProxyService, public configService: ConfigService, public alertService: AlertsService){
+  constructor(public proxyService: ProxyService, public configService: ConfigService, public alertService: AlertsService, public userService: UserService){
     this.proxyAddress = configService.getAddress()
     this.proxyPort = configService.getPort()
   }
@@ -31,5 +32,8 @@ export class GcsConfig {
     }
     this.configService.setAddress(this.proxyAddress.nativeElement.value)
     this.configService.setPort(this.proxyPort.nativeElement.value)
+    
+    this.userService.setProxyAddress(this.proxyAddress.nativeElement.value)
+    this.userService.setProxyPort(this.proxyPort.nativeElement.value)
   }
 }

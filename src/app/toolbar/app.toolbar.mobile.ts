@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from "@angular/material";
 import { DroneService } from '../services/drone/drone.service';
 import { ProxyService } from '../services/config/proxy.service';
-import { UserService } from '../services/user.service';
+import { UserService } from '../services/users/user.service';
 import { ApiService } from '../services/api.service'
 import { ApplicationStateService } from '../application-state.service';
 import { AlertsService } from '../services/alerts.service';
