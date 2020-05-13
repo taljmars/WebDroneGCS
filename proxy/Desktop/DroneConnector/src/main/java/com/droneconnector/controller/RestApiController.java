@@ -82,6 +82,13 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
     return obj.toMap();
   }
 
+  @GetMapping("/")
+  public Map index() {
+    JSONObject obj = getResponseTemplate();
+    obj.put("message", "welcome");
+    return obj.toMap();
+  }
+
   @PostMapping("/connect")
   public Map connect(@RequestBody PortConfig portConfig) {
     JSONObject obj = getResponseTemplate();
