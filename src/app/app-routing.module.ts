@@ -8,6 +8,7 @@ import { CamView } from './dashboard-page/cameraView/camview.component';
 import { LogView } from './dashboard-page/log/log.component'
 import { Settings } from './dashboard-page/settings/settings.component'
 import { Editor } from './dashboard-page/editor/editor.component'
+import { About } from './dashboard-page/about/about.component'
 
 // import { CanActivateRouteGuard } from './routeguard' 
 
@@ -20,6 +21,7 @@ import { LoginPageComponentMobile } from './login-page/login-page.component.mobi
 import { LoginPageComponentDesktop } from './login-page/login-page.component.desktop';
 import { DashDesktop } from './dashboard-page/dashboard-page.desktop';
 import { DashMobile } from './dashboard-page/dashboard-page.mobile';
+import { Help } from './dashboard-page/help/help.component';
 
 @Injectable()
 export class CanActivateRouteGuard implements CanActivate {
@@ -72,6 +74,18 @@ const appDesktopRoutes: Routes = [
     path: 'login',
     component: LoginPageComponentDesktop
   },
+  {
+    path: 'about',
+    component: About
+  },
+  {
+    path: 'help',
+    component: Help
+  },
+  {
+    path: '**', 
+    redirectTo: '/'
+  }
 ];
 
 const appMobileRoutes: Routes = [
@@ -107,6 +121,18 @@ const appMobileRoutes: Routes = [
     path: 'login',
     component: LoginPageComponentMobile
   },
+  {
+    path: 'about',
+    component: About
+  },
+  {
+    path: 'help',
+    component: Help
+  },
+  {
+    path: '**', 
+    redirectTo: '/'
+  }
 ];
 
 

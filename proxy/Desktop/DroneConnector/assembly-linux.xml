@@ -67,6 +67,13 @@
             <lineEnding>unix</lineEnding>
             <fileMode>777</fileMode>
         </file>
+        <file>
+            <source>./keystore.p12</source>
+            <outputDirectory>.</outputDirectory>
+<!--            <destName>keystore.p12</destName>-->
+<!--            <lineEnding>unix</lineEnding>-->
+<!--            <fileMode>777</fileMode>-->
+        </file>
 <!--        <file>-->
 <!--            <source>../ExtLib/OpenCV-3.1.0/Linux32/opencv-310.jar</source>-->
 <!--            <outputDirectory>lib</outputDirectory>-->

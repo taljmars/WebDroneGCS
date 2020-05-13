@@ -40,6 +40,10 @@ import {MapViewModule} from './dashboard-page/mapView/mapview.module';
 import {SettingsModule} from './dashboard-page/settings/settings.module';
 import {EditorModule} from './dashboard-page/editor/editor.module';
 import {SerialModule} from './dashboard-page/serial/serial.module';
+import {AboutModule} from './dashboard-page/about/about.module';
+import {HelpModule} from './dashboard-page/help/help.module';
+
+
 import { MapView } from './dashboard-page/mapView/mapview.component';
 import { MatDialogModule } from '@angular/material';
 import { LogsModule } from './dashboard-page/log/log.module';
@@ -88,6 +92,8 @@ import {MatDividerModule} from '@angular/material/divider';
     SettingsModule,
     EditorModule, 
     LogsModule,
+    AboutModule,
+    HelpModule,
 
     MatDialogModule,
     MatToolbarModule,
