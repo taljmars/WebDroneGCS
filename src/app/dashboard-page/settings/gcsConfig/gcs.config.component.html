@@ -12,6 +12,7 @@
                     <input #proxyPort mdbInput type="number" id="droneProxyPort" class="form-control" [value]="configService.getPort()">
                     <label for="droneProxyPort" class="">Port</label>
                 </div>
+                Proxy URL: <a class="card-link" [href]="configService.getUrl()">{{configService.getUrl()}}</a>
             </div>
         </div>
     </div>

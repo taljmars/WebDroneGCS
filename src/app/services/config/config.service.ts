@@ -9,8 +9,10 @@ import { callbackify } from 'util';
   providedIn: 'root'
 })
 export class ConfigService {
+  
+  // private address: String = "localhost"
+  private address: String = "192.168.43.15"
 
-  private address: String = "localhost"
   // private port: Number = 8080;
   private port: Number = 8443;
 
@@ -37,7 +39,7 @@ export class ConfigService {
 
 
   getUrl() {
-    return "https://" + this.address + ":" + this.port + "/"
+    return "http://" + this.address + ":" + this.port + "/"
   }
 
   get(url : string, options: any, data: any, okCallback: Function, errCallback?: Function) {
