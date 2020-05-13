@@ -12,7 +12,9 @@ import { DroneEvent } from '../../services/drone/protocol/events.component';
 })
 export class Settings implements DroneEventListener {
 
-  private active: String = "DroneParams"
+  // private active: String = "DroneParams"
+  private active: String = "GCSConfig"
+
 
   constructor(private droneService: DroneService){
     this.droneService.addEventListener(this);

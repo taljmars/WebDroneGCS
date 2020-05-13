@@ -1,2 +1,18 @@
-gcs setup
-
+<div class="card">
+    <div class="card-body">
+        <button mdbBtn type="button" color="primary" (click)="onUpdate()" mdbWavesEffect>Update</button>
+        <div class="row">
+            <div class="row-md-12 mx-auto">
+                <h4>Proxy Settings</h4>
+                <div class="md-form">
+                    <input #proxyAddress mdbInput type="text" id="droneProxyAddress" class="form-control" [value]="configService.getAddress()">
+                    <label for="droneProxyAddress" class="">IP Address</label>
+                </div>
+                <div class="md-form">
+                    <input #proxyPort mdbInput type="number" id="droneProxyPort" class="form-control" [value]="configService.getPort()">
+                    <label for="droneProxyPort" class="">Port</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

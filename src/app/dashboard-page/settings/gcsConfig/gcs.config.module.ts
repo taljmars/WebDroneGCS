@@ -5,11 +5,15 @@ import { GcsConfig } from './gcs.config.component';
 import { MatButtonModule } from '@angular/material/button';
 
 import { NavbarModule, DropdownModule } from 'angular-bootstrap-md';
+import { InputsModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md'
 
 
 @NgModule({
   imports: [
     BrowserModule,
+    InputsModule,
+    WavesModule,
+    ButtonsModule,
   ],
   declarations: [ GcsConfig ],
   providers: [],

@@ -20,7 +20,7 @@ export interface ProxyListener {
   providedIn: 'root'
 })
 export class ProxyService {
-    
+
   private ws: any = {};
   private portName: String = "";
   private baudRate: Number = 0;
@@ -42,7 +42,7 @@ export class ProxyService {
 
   connect(portname: String, baudrate: Number, callback: Function = null) {
     //connect to stomp where stomp endpoint is exposed
-    let socket = new SockJS("http://localhost:8080/greeting");
+    let socket = new SockJS(this.configService.getUrl() + "greeting");
     // let socket = new WebSocket("ws://localhost:8080/greeting");
     this.ws = Stomp.over(socket);
     this.ws.debug = null
