@@ -11,7 +11,10 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+      multiDexEnabled true
+
+
+      testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -21,6 +24,36 @@ android {
         }
     }
 
+    packagingOptions {
+      exclude 'META-INF/spring.tooling'
+      exclude 'META-INF/spring.handlers'
+      exclude 'META-INF/spring-configuration-metadata.json'
+      exclude 'META-INF/spring.factories'
+      exclude 'META-INF/license.txt'
+      exclude 'META-INF/notice.txt'
+      exclude 'META-INF/spring.provides'
+      exclude 'META-INF/web-fragment.xml'
+      exclude 'META-INF/additional-spring-configuration-metadata.json'
+      exclude 'META-INF/spring.schemas'
+    }
+
+    compileOptions {
+      sourceCompatibility JavaVersion.VERSION_1_8
+      targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+buildscript {
+
+  repositories {
+    google()
+    jcenter()
+    mavenCentral()
+    maven {
+      url 'https://raw.github.com/taljmars/mvn-repo/master/';
+    }
+  }
 }
 
 dependencies {
@@ -33,4 +66,31 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation ('com.dronegcs:MavlinkProtocol:1.0') {
+      exclude group: 'com.generic_tools'
+    }
+
+//    implementation 'org.springframework.boot:spring-boot-starter-web:1.5.2.RELEASE'
+    implementation ('org.springframework.boot:spring-boot-starter-websocket:1.5.2.RELEASE') {
+      exclude group: 'org.apache.commons.logging'
+      exclude group: "org.slf4j"
+    }
+
+//    implementation 'org.json:json:20180130'
+    implementation ('com.generic_tools:Devices:1.0') {
+      exclude group: 'com.generic_tools'
+      exclude group: 'org.apache.commons.logging'
+    }
+//    implementation 'com.generic_tools:Logger:1.0'
+//    implementation 'com.generic_tools:Validations:1.0'
+//    implementation 'com.generic_tools:Environment:1.0'
+//    implementation 'org.hibernate:hibernate-validator:5.4.0.Final'
+//    implementation 'org.springframework:spring-context:4.3.3.RELEASE'
+    implementation 'org.scream3r:jssc:2.8.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+  implementation 'com.android.support:multidex:1.0.3'
+
+
 }

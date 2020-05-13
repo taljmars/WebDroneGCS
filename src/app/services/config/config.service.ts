@@ -35,7 +35,7 @@ export class ConfigService {
 
 
   getUrl() {
-    return "http://" + this.address + ":" + this.port + "/"
+    return "https://" + this.address + ":" + this.port + "/"
   }
 
   get(url : string, options: any, data: any, okCallback: Function, errCallback?: Function) {

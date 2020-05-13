@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,6 +36,7 @@ public class ProxyDeamonService extends Service {
   @Override
   public int onStartCommand(Intent intent, int flags, int startId) {
     addResultValues("start");
+    Log.e("talma " + ProxyDeamonService.class.getName(), "onStartCommand");
     return Service.START_NOT_STICKY;
   }
 
