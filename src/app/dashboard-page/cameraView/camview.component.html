@@ -1,41 +1,44 @@
-<div class="infotopleft">
+<div class="infotopright">
     <!-- <mat-card style="background:transparent;"> -->
       <mat-card-content style="font-size: 30px; color: limegreen; font-weight: bold; background:transparent;">
-        <p>Signal {{signal}}%</p>
-        <p>Battery {{battery}}%</p>
+          <label style="font-size: 52px; margin-right: 40px;">{{mode}}</label>
+          <i class="fas fa-signal" style="margin-right: 5px;"></i><label style="margin-right: 40px;">{{signal}}%</label>
+          <i class="fas fa-car-battery" style="margin-right: 5px;"></i><label style="margin-right: 40px;"> {{battery}}%</label>
+          <i class="far fa-clock" style="margin-right: 5px;"></i><label> time</label>
       </mat-card-content>
     <!-- </mat-card> -->
   
 </div>
 
-<div class="infoleft">
-  <!-- <mat-card style="background:transparent;"> -->
-    <mat-card-content style="font-size: 52px; color: limegreen; font-weight: bold; background:transparent;">
-      <p>{{mode}}</p>
-    </mat-card-content>
-  <!-- </mat-card> -->
+<div class="infobuttom">
 
   <br/>
 
   <!-- <mat-card style="background:transparent;"> -->
-    <mat-card-content style="font-size: 52px; color: limegreen; font-weight: bold; background:transparent;">
-      <p>F.Time</p>
+    <mat-card-content style="color: limegreen; font-weight: bold; background:transparent;">
+      <label style="font-size: 25px;">H.</label><label style="font-size: 52px; font-weight: bold;">{{height}}</label><label style="font-size: 25px; margin-right: 40px;">m       </label>
+      <label style="font-size: 25px;">D.</label><label style="font-size: 52px; font-weight: bold;">{{height}}</label><label style="font-size: 25px; margin-right: 40px;">m       </label>
+      <label style="font-size: 25px;">S.</label><label style="font-size: 52px; font-weight: bold;">{{speed}}</label><label style="font-size: 25px;">km/h</label>
     </mat-card-content>
   <!-- </mat-card> -->
 </div>
 
-<div class="inforight">
 
-  <br/>
-
-  <!-- <mat-card style="background:transparent;"> -->
-    <mat-card-content style="font-size: 52px; color: limegreen; font-weight: bold; background:transparent;">
-      <p>Height {{height}} m</p>
-      <p>Distance</p>
-      <p>Speed {{speed}} km/h</p>
-    </mat-card-content>
-  <!-- </mat-card> -->
-</div>
+<div style="height: 30%; width: 20%; " class="minimap">
+  <!-- <x-map> -->
+  <x-map [Options]="_options" [Latitude]="_lat" [Longitude]="_lon"> 
+    <x-map-marker *ngFor="let m of markers;"
+      [Latitude]="m.lat" 
+      [Longitude]="m.lon"
+      [IconInfo]="m.iconInfo">
+    </x-map-marker>
+    <!-- <x-map-marker
+      [Latitude]="_lat" 
+      [Longitude]="_lon"
+      [IconInfo]="_iconInfo">
+    </x-map-marker> -->
+  </x-map>
+</div>  
 
 <div class="app">
   <div><video #video class="video" autoplay></video></div>

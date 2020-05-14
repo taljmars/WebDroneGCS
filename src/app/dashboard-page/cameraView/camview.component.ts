@@ -1,6 +1,10 @@
 import {Component, ViewChild, ElementRef} from '@angular/core'
 import { DroneService, DroneEventListener } from '../../services/drone/drone.service';
 import { DroneEvents } from '../../services/drone/protocol/events.component';
+import {MapModule, MapAPILoader, MarkerTypeId, IMapOptions, IBox, IMarkerIconInfo, WindowRef, DocumentRef, MapServiceFactory, 
+  BingMapAPILoaderConfig, BingMapAPILoader, 
+  GoogleMapAPILoader,  GoogleMapAPILoaderConfig
+} from 'angular-maps';
 
 /// https://x-team.com/blog/webcam-image-capture-angular/
 
@@ -14,6 +18,8 @@ export class CamView implements DroneEventListener {
 
   @ViewChild("video", {static: false})
   public video: ElementRef;
+  _lat: Number = 32.0920566;
+  _lon: Number = 34.8181581;
 
   public mode: String = "Unknown Mode";
   public battery: String = "0";
@@ -24,6 +30,35 @@ export class CamView implements DroneEventListener {
   constructor(private droneService: DroneService) {
     this.droneService.addEventListener(this)
   }
+
+  angle: any = 0
+
+  markers: Set<any> = new Set()
+
+  _options: IMapOptions = {
+    // disableBirdseye: true,
+    // disableStreetside: true,
+    // navigationBarMode: 2, 
+    // showBreadcrumb: true,
+    // showCopyright: true,
+    // showScalebar: true,
+    showDashboard: false,
+    zoom: 15
+  };
+
+  _iconInfo: IMarkerIconInfo = {
+    markerType: MarkerTypeId.CanvasMarker,
+    rotation: this.angle,
+    drawingOffset: { x: 12, y: 0 },
+    points: [
+      { x: 5, y: 20 },
+      { x: 12, y: 15 },
+      { x: 19, y: 20 },
+      { x: 12, y: 0 }
+    ],
+    color: '#f00',
+    size: { width: 24, height: 24 }
+  };
 
   onDroneEvent(event: any) {
     if (!Object.values(DroneEvents).includes(event.id)) {
