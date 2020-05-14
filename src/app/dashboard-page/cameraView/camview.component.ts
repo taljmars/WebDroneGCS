@@ -21,7 +21,7 @@ export class CamView implements DroneEventListener {
   _lat: Number = 32.0920566;
   _lon: Number = 34.8181581;
 
-  public mode: String = "Unknown Mode";
+  public mode: String = "Unknown";
   public battery: String = "0";
   public signal: String = "0";
   public speed: Number = 0;

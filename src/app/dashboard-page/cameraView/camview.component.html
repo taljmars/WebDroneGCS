@@ -2,8 +2,8 @@
 
   <div class="infotopright">
       <!-- <mat-card style="background:transparent;"> -->
-        <mat-card-content style="font-size: 30px; color: limegreen; font-weight: bold; background:transparent;">
-            <label style="font-size: 52px; margin-right: 40px;">{{mode}}</label>
+        <mat-card-content style="font-size: 20px; color: limegreen; font-weight: bold; background:transparent;">
+            <label style="font-size: 45px; margin-right: 40px;">{{mode}}</label>
             <i class="fas fa-satellite-dish" style="margin-right: 5px;"></i><label style="margin-right: 40px;">{{signal}}%SAT</label>
             <i class="fas fa-signal" style="margin-right: 5px;"></i><label style="margin-right: 40px;">{{signal}}%</label>
             <i class="fas fa-car-battery" style="margin-right: 5px;"></i><label style="margin-right: 40px;"> {{battery}}%</label>
@@ -19,15 +19,15 @@
 
     <!-- <mat-card style="background:transparent;"> -->
       <mat-card-content style="color: limegreen; font-weight: bold; background:transparent;">
-        <label style="font-size: 25px;">H.</label><label style="font-size: 52px; font-weight: bold;">{{height}}</label><label style="font-size: 25px; margin-right: 40px;">m       </label>
-        <label style="font-size: 25px;">D.</label><label style="font-size: 52px; font-weight: bold;">{{height}}</label><label style="font-size: 25px; margin-right: 40px;">m       </label>
-        <label style="font-size: 25px;">S.</label><label style="font-size: 52px; font-weight: bold;">{{speed}}</label><label style="font-size: 25px;">km/h</label>
+        <label style="font-size: 20px;">H.</label><label style="font-size: 45px; font-weight: bold;">{{height}}</label><label style="font-size: 20px; margin-right: 40px;">m       </label>
+        <label style="font-size: 20px;">D.</label><label style="font-size: 45px; font-weight: bold;">{{height}}</label><label style="font-size: 20px; margin-right: 40px;">m       </label>
+        <label style="font-size: 20px;">S.</label><label style="font-size: 45px; font-weight: bold;">{{speed}}</label><label style="font-size: 20px;">km/h</label>
       </mat-card-content>
     <!-- </mat-card> -->
   </div>
 
 
-  <div style="height: 30%; width: 20%; " class="minimap">
+  <div style="height: 30%; width: 25%; " class="minimap">
     <!-- <x-map> -->
     <x-map [Options]="_options" [Latitude]="_lat" [Longitude]="_lon"> 
       <x-map-marker *ngFor="let m of markers;"

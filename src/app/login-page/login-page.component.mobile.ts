@@ -14,6 +14,7 @@ export class LoginPageComponentMobile extends LoginPageComponent  {
 
   constructor(protected api: ApiService, protected user: UserService, protected router: Router, protected alertsService: AlertsService ) {
     super(api,user, router, alertsService)
+    document.documentElement.requestFullscreen();
   }
 
 }
