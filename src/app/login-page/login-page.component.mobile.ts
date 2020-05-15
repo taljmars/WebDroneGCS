@@ -17,7 +17,8 @@ export class LoginPageComponentMobile extends LoginPageComponent  {
     window.addEventListener("orientationchange", function() {
       // Announce the new orientation number
       alert(window.orientation);
-      if (this.window.orientation != 0) {
+      alert(window.orientation);
+      if (window.orientation != 0) {
         document.documentElement.requestFullscreen();
       }
     }, false);
