@@ -44,4 +44,9 @@ export class AppToolbarMobile extends AppToolbar {
     }
     return false
   }
+
+  isLandscape() {
+    return window.orientation != 0
+    // return window.orientation == 0
+  }
 }

@@ -166,11 +166,11 @@ export class CamView implements DroneEventListener {
   }
 
   isLandscape() {
-    if (window.orientation == 0) {
-      if (this.isFullScreen()) {
-        document.exitFullscreen();
-      }
-    }
+    // if (window.orientation == 0) {
+    //   if (this.isFullScreen()) {
+    //     document.exitFullscreen();
+    //   }
+    // }
     return window.orientation != 0
     // return window.orientation == 0
   }
