@@ -5,6 +5,7 @@ import {MapModule, MapAPILoader, MarkerTypeId, IMapOptions, IBox, IMarkerIconInf
   BingMapAPILoaderConfig, BingMapAPILoader, 
   GoogleMapAPILoader,  GoogleMapAPILoaderConfig
 } from 'angular-maps';
+import { AlertsService } from 'src/app/services/alerts.service';
 
 /// https://x-team.com/blog/webcam-image-capture-angular/
 
@@ -26,8 +27,10 @@ export class CamView implements DroneEventListener {
   public signal: String = "0";
   public speed: Number = 0;
   public height: String = "0";
+  public fixType: String = "0";
+  public dist: String = "0";
 
-  constructor(private droneService: DroneService) {
+  constructor(private droneService: DroneService, private alertsService: AlertsService) {
     this.droneService.addEventListener(this)
   }
 
@@ -68,15 +71,13 @@ export class CamView implements DroneEventListener {
     
     switch (event.id) {
       case DroneEvents.GPS:
-        // console.log("GPS " + event.data)
-        // this._lat = event.data['lat'];
-        // this._lon = event.data['lon'];
         this.height = event.data['alt'];
+        this.fixType = event.data['fixtype'] + " (" + event.data['sat'] + ")"
         break;
 
-      // case DroneEvents.CONNECTED:
-      //   console.log("Connected " + event.data)
-      //   break;
+      case DroneEvents.CONNECTED:
+        this.alertsService.promptSuccess("Drone Connected")
+        break;
 
       case DroneEvents.STATE:
         this.mode = event.data["mode"]
@@ -84,42 +85,37 @@ export class CamView implements DroneEventListener {
 
       case DroneEvents.MODE:
         this.mode = event.data["name"]
-        // console.log("mode " + event.data)
         break;
 
       case DroneEvents.BATTERY:
         this.battery = event.data["remain"]
-        // console.log("battery " + event.data)
         break;
 
       case DroneEvents.RADIO:
         this.signal = event.data["signal"]
-        // console.log("radio " + event.data)
         break;
 
       case DroneEvents.DISCONNECTED:
-        // console.log("Disconnect " + event.data)
+        this.alertsService.promptError("Drone Disconnected")
         break;
 
       case DroneEvents.TEXT_MESSEGE:
-        // console.log("Text-Message " + event.data)
+        this.alertsService.promptInfo(event.data["text"])
         break;
 
       case DroneEvents.SPEED:
-        // console.log("Speed " + event.data)
         this.speed = Math.round(event.data["airspeed"] * 3.6 * 10) / 10
         break;
 
       case DroneEvents.NAVIGATION:
-        // console.log("braing " + event.data["bearing"])
-        // this.angle = event.data["bearing"]
-        // this.markers.clear()
-        // this._iconInfo.rotation = this.angle;
-        // this.markers.add({
-        //   lat: this._lat,
-        //   lon: this._lon,
-        //   iconInfo: this._iconInfo,
-        // })
+        this.angle = event.data["bearing"]
+        this.markers.clear()
+        this._iconInfo.rotation = this.angle;
+        this.markers.add({
+          lat: this._lat,
+          lon: this._lon,
+          iconInfo: this._iconInfo,
+        })
         break;
 
       // default:

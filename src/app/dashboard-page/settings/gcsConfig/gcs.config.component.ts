@@ -27,7 +27,7 @@ export class GcsConfig {
 
   onUpdate() {
     if (this.proxyService.isProxyConnected()) {
-      this.alertService.openSnackBar("Proxy Connected, Please disconnect first")
+      this.alertService.promptError("Proxy Connected, Please disconnect first")
       return
     }
     this.configService.setAddress(this.proxyAddress.nativeElement.value)

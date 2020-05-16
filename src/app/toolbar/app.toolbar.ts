@@ -43,7 +43,7 @@ export abstract class AppToolbar {
       },
       e => {
         // alert(r.error.error);
-        this.alertsService.openSnackBar("Failed to logout")
+        this.alertsService.promptError("Failed to logout")
         this.userService.removeToken();
         AppConstants.MyStorage.remove(AppConstants.General.REMEMBER_USER)
         console.log("Complete Logout")

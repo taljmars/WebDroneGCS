@@ -13,13 +13,25 @@ export class AlertsService {
 
     }
 
-    openSnackBar(msg: string) {
-        // this._snackBar.openFromComponent(AlertsComponentView, {
+    private openSnackBar(msg: string) {
+        // this._snackBar.openFromComponent(new AlertsComponentView(),{
         //   duration: this.durationInSeconds * 1000,
         // });
         this._snackBar.open(msg, "Hide", {
             duration: this.durationInSeconds * 1000,
           });
+    }
+
+    promptError(msg: string) {
+        this.openSnackBar(msg)
+    }
+
+    promptSuccess(msg: string) {
+        this.openSnackBar(msg)
+    }
+
+    promptInfo(msg: string) {
+        this.openSnackBar(msg)
     }
 
 }

@@ -102,9 +102,9 @@
     text-align: center;
     /* min-height: 100vh; */
 
-    bottom: 0%;
+    bottom: 2%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
     /* right: 15px; */
 }
 /* 
@@ -125,6 +125,6 @@
 
     bottom: 2%;
     left: 2%;
-    /* transform: translate(-50%, -50%); */
+    transform: translate(0%, 0%);
     /* right: 15px; */
 }

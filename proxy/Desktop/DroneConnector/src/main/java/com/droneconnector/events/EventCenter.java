@@ -110,6 +110,8 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
                 payload.put("y", drone.getGps().getPosition().getY());
                 payload.put("lat", drone.getGps().getPosition().getLat());
                 payload.put("lon", drone.getGps().getPosition().getLon());
+                payload.put("fixtype", drone.getGps().getFixType());
+                payload.put("sat", drone.getGps().getSatCount());
                 break;
             case GPS_FIX:
                 payload.put("fix", drone.getGps().getFixType());

@@ -51,7 +51,7 @@ export abstract class LoginPageComponent {
         },
         e => {
           // alert(r.error.error);
-          this.alertsService.openSnackBar("Failed to login")
+          this.alertsService.promptError("Failed to login")
           // this.user.setToken("Dummy");
           // this.router.navigateByUrl('/dashboard');
         },

@@ -14,7 +14,6 @@ export class LoginPageComponentDesktop extends LoginPageComponent {
 
   constructor(protected api: ApiService, protected user: UserService, protected router: Router, protected alertsService: AlertsService ) {
     super(api,user, router, alertsService)
-    alert(window.orientation);
   }
 
 }

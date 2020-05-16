@@ -19,7 +19,7 @@ export abstract class Dash implements DroneEventListener {
     ) 
   {
     droneService.addEventListener(this)
-    this.alertsService.openSnackBar("Welcome " + userService.getUserName())
+    this.alertsService.promptSuccess("Welcome " + userService.getUserName())
   }
 
   public counter: number = 0;

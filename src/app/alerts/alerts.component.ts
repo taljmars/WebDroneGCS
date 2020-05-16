@@ -7,4 +7,9 @@ import {MatSnackBar} from '@angular/material/snack-bar';
     templateUrl: 'alerts.component.html',
     styles: ['alerts.component.css'],
 })
-export class AlertsComponentView {}
+export class AlertsComponentView {
+
+    constructor() {
+        
+    }
+}

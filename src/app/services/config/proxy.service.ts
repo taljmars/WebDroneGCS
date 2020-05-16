@@ -82,7 +82,7 @@ export class ProxyService {
       that.baudRate = 0;
       for (let x of that.listeners)
             x.onProxyEvent(new ProxyEvent(ProxyEvents.PROXY_DOWN, "Proxy Disconnected"))
-      that.alertsService.openSnackBar(error)
+      that.alertsService.promptError(error)
       that.pingProxyService();
     });
   }
