@@ -49,7 +49,7 @@
 
 <!-- <mat-toolbar style="position: absolute; z-index: 1;"> -->
 <mat-toolbar style="background-color: transparent; position: absolute; z-index: 5; "
-  *ngIf="userService.isLogged()">
+  *ngIf="userService.isLogged()  && !isFullScreen()">
   <div class="fixed-action-btn" style="top: 25px; right: 25px;">
     <a class="btn-floating btn-lg turquoise" (click)="openMenu()">
       <i class="fas fa-bars"></i>
