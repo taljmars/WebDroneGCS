@@ -150,4 +150,27 @@ export class CamView implements DroneEventListener {
         });
       }
   }
+
+  toggleFullScreen() {
+    var elem = document.documentElement;
+
+    if (this.isFullScreen()) {
+      document.exitFullscreen();
+    }
+    else {
+      elem.requestFullscreen();
+    }
+  }
+
+  isFullScreen() {
+    if((document.fullscreen) || (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
+      return true;
+    }
+    return false
+  }
+
+  isLandscape() {
+    return window.orientation != 0
+    // return window.orientation == 0
+  }
 }

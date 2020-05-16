@@ -48,3 +48,37 @@
 .quickinfo_data {
     font-size: 36px;
 }
+
+.rotate-screen {
+    position: absolute;
+    z-index: 1;
+
+    display: table-footer-group;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    /* min-height: 100vh; */
+
+    bottom: 50%;
+    transform: translate(50%, 50%);
+    right: 50%;
+
+}
+
+.infobuttomright {
+    position: absolute;
+    z-index: 1;
+
+    display: table-footer-group;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: center;
+    /* min-height: 100vh; */
+
+    bottom: 2%;
+    transform: translate(-50%, -50%);
+    right: 2%;
+
+}

@@ -14,14 +14,6 @@ export class LoginPageComponentMobile extends LoginPageComponent  {
 
   constructor(protected api: ApiService, protected user: UserService, protected router: Router, protected alertsService: AlertsService ) {
     super(api,user, router, alertsService)
-    window.addEventListener("orientationchange", function() {
-      // Announce the new orientation number
-      alert(window.orientation);
-      alert(window.orientation);
-      if (window.orientation != 0) {
-        document.documentElement.requestFullscreen();
-      }
-    }, false);
   }
 
 }
