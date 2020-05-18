@@ -107,6 +107,10 @@ export class CamView implements DroneEventListener {
         this.speed = Math.round(event.data["airspeed"] * 3.6 * 10) / 10
         break;
 
+      case DroneEvents.HOME:
+        this.dist = event.data["dist"]
+        break;
+
       case DroneEvents.NAVIGATION:
         this.angle = event.data["bearing"]
         this.markers.clear()
@@ -166,11 +170,6 @@ export class CamView implements DroneEventListener {
   }
 
   isLandscape() {
-    // if (window.orientation == 0) {
-    //   if (this.isFullScreen()) {
-    //     document.exitFullscreen();
-    //   }
-    // }
     return window.orientation != 0
     // return window.orientation == 0
   }

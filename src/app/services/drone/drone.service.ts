@@ -23,6 +23,9 @@ export class DroneService implements ProxyListener {
   public firmwareType: String = "Unknown";
   public firmwareVersion: String = "Unknown";
   public droneType: String = "Unknown";
+  public refreshparam: Boolean;
+  public gcsid: Number = 0;
+  public heartbeatinterval: Number = 1;
 
     constructor(private proxyService: ProxyService,
                 private configService: ConfigService) { 
@@ -103,6 +106,9 @@ export class DroneService implements ProxyListener {
         this.droneType = data.type;
         this.firmwareVersion = data.firmware.version;
         this.firmwareType = data.firmware.type;
+        this.gcsid = data.protocol.gcsid;
+        this.heartbeatinterval = data.protocol.heartbeatinterval
+        this.refreshparam = data.protocol.refreshparam
       });
     }
 

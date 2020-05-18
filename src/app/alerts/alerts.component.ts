@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {Component, Inject} from '@angular/core';
+import {MatSnackBar, MAT_SNACK_BAR_DATA} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -9,7 +9,12 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class AlertsComponentView {
 
-    constructor() {
-        
+    msg: String = ""
+    type: any;
+
+    constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any) {
+        console.log("print " + data)
+        this.msg = data.message
+        this.type = data.type
     }
 }

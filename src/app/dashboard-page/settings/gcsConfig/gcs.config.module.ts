@@ -5,7 +5,7 @@ import { GcsConfig } from './gcs.config.component';
 import { MatButtonModule } from '@angular/material/button';
 
 import { NavbarModule, DropdownModule } from 'angular-bootstrap-md';
-import { InputsModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md'
+import { InputsModule, WavesModule, ButtonsModule, CheckboxModule, MDBBootstrapModule } from 'angular-bootstrap-md'
 
 
 @NgModule({
@@ -14,6 +14,9 @@ import { InputsModule, WavesModule, ButtonsModule } from 'angular-bootstrap-md'
     InputsModule,
     WavesModule,
     ButtonsModule,
+    CheckboxModule,
+    MDBBootstrapModule.forRoot(),
+
   ],
   declarations: [ GcsConfig ],
   providers: [],

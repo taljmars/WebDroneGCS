@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {LoginResponseModel} from '../model/LoginResponseModel'
 import {LogoutResponseModel} from '../model/LogoutResponseModel'
+import { AlertsService } from './alerts.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ApiService {
   // loggedIn: boolean = false
   // loggedIn: boolean = true
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private alertsService: AlertsService) {
 
   }
 
@@ -21,6 +22,7 @@ export class ApiService {
   login(email: string, password: string): Observable<LoginResponseModel>{
     if (email == "") {
       console.error("Missing email")
+      this.alertsService.promptError("Missing Username")
       return
     }
 

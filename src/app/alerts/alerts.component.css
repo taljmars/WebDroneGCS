@@ -1,3 +1,14 @@
-.mat-form-field {
-    margin-right: 8px;
-  }
+.mat-snack-bar-container.error-toast {
+  background: lightcoral;
+  background-color: lightcoral;
+}
+
+.success-toast {
+  background: lightgreen;
+  background-color: lightgreen;
+}
+
+.info-toast {
+  background: paleturquoise;
+  background-color: paleturquoise;
+}

@@ -17,3 +17,45 @@
         </div>
     </div>
 </div>
+
+<div class="card">
+    <div class="card-body">
+        <button mdbBtn type="button" color="primary" (click)="updateStreamRates()" mdbWavesEffect>Update</button>
+        <div class="row">
+            <div class="row-md-12 mx-auto">
+                <h4>General</h4>
+                <div class="md-form">
+                    <mdb-checkbox [value]="droneService.refreshparam" >Fetch Parameter On Connect</mdb-checkbox>
+                </div>
+                <div class="md-form">
+                    <input #gcsid mdbInput type="number" id="gcsid" class="form-control" [value]="droneService.gcsid">
+                    <label for="gcsid" class="">GCS ID</label>
+                </div>
+                <div class="md-form">
+                    <input #heartbeatInterval mdbInput type="number" id="heartbeatInterval" class="form-control" [value]="droneService.heartbeatinterval">
+                    <label for="heartbeatInterval" class="">Heart Beat Interval (Seconds)</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="card">
+    <div class="card-body">
+        <button mdbBtn type="button" color="primary" (click)="updateStreamRates()" mdbWavesEffect>Update</button>
+        <div class="row">
+            <div class="row-md-12 mx-auto">
+                <h4>Stream Rates</h4>
+                <div class="md-form">
+                    <input #proxyAddress mdbInput type="text" id="droneProxyAddress" class="form-control" [value]="configService.getAddress()">
+                    <label for="droneProxyAddress" class="">IP Address</label>
+                </div>
+                <div class="md-form">
+                    <input #proxyPort mdbInput type="number" id="droneProxyPort" class="form-control" [value]="configService.getPort()">
+                    <label for="droneProxyPort" class="">Port</label>
+                </div>
+                Proxy URL: <a class="card-link" [href]="configService.getUrl()">{{configService.getUrl()}}</a>
+            </div>
+        </div>
+    </div>
+</div> -->

@@ -3,6 +3,7 @@ package com.droneconnector.controller;
 import com.droneconnector.model.PortConfig;
 import com.dronegcs.mavlink.core.gcs.GCSHeartbeat;
 import com.dronegcs.mavlink.is.connection.ConnectionStatistics;
+import com.dronegcs.mavlink.is.connection.MavLinkConnection;
 import com.dronegcs.mavlink.is.connection.MavLinkConnectionStatisticsListener;
 import com.dronegcs.mavlink.is.drone.Drone;
 import com.generic_tools.devices.SerialConnection;
@@ -79,6 +80,18 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
     fw.put("type", drone.getFirmwareType().toString());
     fw.put("version", drone.getFirmwareVersion() != null ? drone.getFirmwareVersion() : "Unknown");
     obj.put("firmware", fw);
+
+    JSONObject protocol = new JSONObject();
+    protocol.put("gcsid", drone.getGCS().getId());
+    protocol.put("type",
+      drone.getMavClient().getProtocolState().equals(MavLinkConnection.ProtocolExamine.LEARNING)
+      ? MavLinkConnection.ProtocolExamine.LEARNING
+      : drone.getMavClient().getMavlinkVersion());
+    protocol.put("heartbeatinterval", gcsHeartbeat.getFrequency());
+    protocol.put("gcsid", drone.getMavClient().getMavlinkVersion());
+    protocol.put("refreshparam", drone.getParameters().isFetchOnConnect());
+    obj.put("protocol", protocol);
+
     return obj.toMap();
   }
 

@@ -10,28 +10,32 @@ export class AlertsService {
     durationInSeconds = 5;
 
     constructor (private _snackBar: MatSnackBar) {
-
     }
 
-    private openSnackBar(msg: string) {
-        // this._snackBar.openFromComponent(new AlertsComponentView(),{
-        //   duration: this.durationInSeconds * 1000,
-        // });
-        this._snackBar.open(msg, "Hide", {
+    private openSnackBar(msg: string, style: string) {
+        this._snackBar.openFromComponent(AlertsComponentView,{
+            data: {
+                message: msg,
+                type: style,
+            },
             duration: this.durationInSeconds * 1000,
-          });
+            panelClass: [style]
+        });
+        // this._snackBar.open(msg, "Hide", {
+        //     duration: this.durationInSeconds * 1000,
+        //   });
     }
 
     promptError(msg: string) {
-        this.openSnackBar(msg)
+        this.openSnackBar(msg, "error-toast")
     }
 
     promptSuccess(msg: string) {
-        this.openSnackBar(msg)
+        this.openSnackBar(msg, "success-toast")
     }
 
     promptInfo(msg: string) {
-        this.openSnackBar(msg)
+        this.openSnackBar(msg, "info-toast")
     }
 
 }

@@ -1,3 +1,8 @@
-<span >
-  Pizza party!!! 
+
+<mdb-icon style="color: lightcoral; right: 0%;" fas icon="times" *ngIf="type == 'error-toast'"></mdb-icon>
+<mdb-icon style="color: lemonchiffon;" fas icon="exclamation-triangle" *ngIf="type == 'warn-toast'"></mdb-icon>
+<mdb-icon style="color: limegreen;" fas icon="check" *ngIf="type == 'success-toast'"></mdb-icon>
+<mdb-icon style="color: lightskyblue;" fas icon="info" *ngIf="type == 'info-toast'"></mdb-icon>
+<span>
+    {{msg}}
 </span>
