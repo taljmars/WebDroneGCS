@@ -1,0 +1,22 @@
+body {
+    background-color: #222222;
+    overflow: auto;
+    color: #ffffff;
+    overflow-y: auto;
+}
+
+.panel-sm {
+    padding: 20px
+}
+
+.panel-md {
+    padding: 20px
+}
+
+.dashcard {
+    height: 100%
+}
+/* 
+.dash-row {
+    padding-bottom: 200px;
+} */

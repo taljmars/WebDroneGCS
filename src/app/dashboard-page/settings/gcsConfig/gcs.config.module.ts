@@ -4,8 +4,12 @@ import { GcsConfig } from './gcs.config.component';
 
 import { MatButtonModule } from '@angular/material/button';
 
-import { NavbarModule, DropdownModule } from 'angular-bootstrap-md';
+import { NavbarModule, DropdownModule, ModalModule, IconsModule, CardsModule } from 'angular-bootstrap-md';
 import { InputsModule, WavesModule, ButtonsModule, CheckboxModule, MDBBootstrapModule } from 'angular-bootstrap-md'
+import { FormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
 
 
 @NgModule({
@@ -16,6 +20,11 @@ import { InputsModule, WavesModule, ButtonsModule, CheckboxModule, MDBBootstrapM
     ButtonsModule,
     CheckboxModule,
     MDBBootstrapModule.forRoot(),
+    FormsModule,MatCardModule,
+
+    ModalModule, IconsModule, MatCheckboxModule,
+
+    CardsModule, WavesModule, ButtonsModule,
 
   ],
   declarations: [ GcsConfig ],

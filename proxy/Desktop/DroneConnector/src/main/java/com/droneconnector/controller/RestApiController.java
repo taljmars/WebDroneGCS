@@ -1,11 +1,13 @@
 package com.droneconnector.controller;
 
 import com.droneconnector.model.PortConfig;
+import com.droneconnector.model.StreamRates;
 import com.dronegcs.mavlink.core.gcs.GCSHeartbeat;
 import com.dronegcs.mavlink.is.connection.ConnectionStatistics;
 import com.dronegcs.mavlink.is.connection.MavLinkConnection;
 import com.dronegcs.mavlink.is.connection.MavLinkConnectionStatisticsListener;
 import com.dronegcs.mavlink.is.drone.Drone;
+import com.dronegcs.mavlink.is.drone.Preferences;
 import com.generic_tools.devices.SerialConnection;
 import com.google.gson.Gson;
 import org.json.JSONArray;
@@ -90,6 +92,7 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
     protocol.put("heartbeatinterval", gcsHeartbeat.getFrequency());
     protocol.put("gcsid", drone.getMavClient().getMavlinkVersion());
     protocol.put("refreshparam", drone.getParameters().isFetchOnConnect());
+//    protocol.put("streamrates", new StreamRates(drone.getPreferences().getRates()));
     obj.put("protocol", protocol);
 
     return obj.toMap();
@@ -210,6 +213,23 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
     conn.put("port", serialConnection.getPortName());
     conn.put("baud-rate", serialConnection.getBaud());
     object.put("connection",conn);
+    return object.toMap();
+  }
+
+  @PostMapping("/setStreamRates")
+  public Map setStreamRates(@RequestBody StreamRates streamRates) {
+    System.out.println("setStreamRates");
+    System.out.println(streamRates.toString());
+    drone.getPreferences().setRates(streamRates.toRates());
+    JSONObject object = getResponseTemplate();
+    return object.toMap();
+  }
+
+  @GetMapping("/getStreamRates")
+  public Map getStreamRates() {
+    System.out.println("getStreamRates");
+    String str = new Gson().toJson(new StreamRates(drone.getPreferences().getRates()), StreamRates.class);
+    JSONObject object = new JSONObject(str);
     return object.toMap();
   }
 

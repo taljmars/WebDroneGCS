@@ -1,61 +1,102 @@
-<div class="card">
-    <div class="card-body">
-        <button mdbBtn type="button" color="primary" (click)="onUpdate()" mdbWavesEffect>Update</button>
-        <div class="row">
-            <div class="row-md-12 mx-auto">
-                <h4>Proxy Settings</h4>
-                <div class="md-form">
-                    <input #proxyAddress mdbInput type="text" id="droneProxyAddress" class="form-control" [value]="configService.getAddress()">
-                    <label for="droneProxyAddress" class="">IP Address</label>
-                </div>
-                <div class="md-form">
-                    <input #proxyPort mdbInput type="number" id="droneProxyPort" class="form-control" [value]="configService.getPort()">
-                    <label for="droneProxyPort" class="">Port</label>
-                </div>
-                Proxy URL: <a class="card-link" [href]="configService.getUrl()">{{configService.getUrl()}}</a>
-            </div>
+<div mdbModal style="overflow-y: scroll; height: 100%;">
+
+    <!-- <div class="dash-row row"> -->
+    <div class="row">
+  
+        <div class="panel-sm col">
+            <mdb-card class="dashcard">
+                <mdb-card-body>
+                    <mdb-card-title>
+                        <h4>Proxy Settings</h4>
+                    </mdb-card-title>
+                    <div class="md-form">
+                        <input mdbInput type="text" [(ngModel)]="proxyAddress" id="droneProxyAddress" class="form-control">
+                        <label for="droneProxyAddress" class="">IP Address</label>
+                    </div>
+                    <div class="md-form">
+                        <input mdbInput type="number" [(ngModel)]="proxyPort" id="droneProxyPort" class="form-control">
+                        <label for="droneProxyPort" class="">Port</label>
+                    </div>
+                    <mdb-card-text>Proxy URL: <a class="card-link" [href]="configService.getUrl()">{{configService.getUrl()}}</a></mdb-card-text>
+                </mdb-card-body>
+                <mdb-card-footer style="background-color: transparent;">
+                    <mdb-icon far icon="save" size="2x" (click)="onUpdate()" style="align-content: center;"></mdb-icon>
+                </mdb-card-footer>
+                <!-- <button mdbBtn type="button" color="primary" (click)="onUpdate()" mdbWavesEffect>Update</button> -->
+            </mdb-card>
         </div>
+
+        <div class="panel-sm col">
+            <mdb-card class="dashcard">
+                <mdb-card-body>
+                    <mdb-card-title>
+                        <h4>General</h4>
+                    </mdb-card-title>
+                    <div class="md-form">
+                        <input #gcsid mdbInput type="number" id="gcsid" class="form-control" [value]="droneService.gcsid">
+                        <label for="gcsid" class="">GCS ID</label>
+                    </div>
+                    <div class="md-form">
+                        <input #heartbeatInterval mdbInput type="number" id="heartbeatInterval" class="form-control" [value]="droneService.heartbeatinterval">
+                        <label for="heartbeatInterval" class="">Heart Beat Interval (Sec)</label>
+                    </div>
+                    <div class="md-form">
+                        <!-- <mdb-checkbox [value]="droneService.refreshparam" >Fetch Parameter On Connect</mdb-checkbox> -->
+                        <mat-checkbox [(ngModel)]="droneService.refreshparam">Fetch Parameter On Connect</mat-checkbox>
+                    </div>
+                </mdb-card-body>
+                <mdb-card-footer style="background-color: transparent;">
+                    <mdb-icon far icon="save" size="2x" (click)="updateStreamRates()" style="align-content: center;"></mdb-icon>
+                </mdb-card-footer>
+            </mdb-card>
+        </div>
+<!-- 
+        <div class="panel-sm col">
+            <mdb-card class="dashcard">
+                <mdb-card-body>
+                    <mdb-card-title>
+                        <h4>Telemetry Rates</h4>
+                    </mdb-card-title>
+                    <div class="md-form">
+                        <div class="md-form">
+                            <input #modeStatus mdbInput type="number" id="modeStatus" class="form-control" [(ngModel)]="modeStatus">
+                            <label for="modeStatus" class="">Mode (Seconds)</label>
+                        </div>
+                        <div class="md-form">
+                            <input #alt mdbInput type="number" id="alt" class="form-control" [(ngModel)]="alt">
+                            <label for="alt" class="">Altitude (Seconds)</label>
+                        </div>
+                        <div class="md-form">
+                            <input #alt mdbInput type="number" id="alt" class="form-control" [(ngModel)]="alt">
+                            <label for="alt" class="">Altitude (Seconds)</label>
+                        </div>
+                        <div class="md-form">
+                            <input #sensors mdbInput type="number" id="sensors" class="form-control" [(ngModel)]="sensors">
+                            <label for="sensors" class="">Sensors (Seconds)</label>
+                        </div>
+                        <div class="md-form">
+                            <input #pos mdbInput type="number" id="pos" class="form-control" [(ngModel)]="pos">
+                            <label for="pos" class="">Position (Seconds)</label>
+                        </div>
+                        <div class="md-form">
+                            <input #rc mdbInput type="number" id="rc" class="form-control" [(ngModel)]="rc">
+                            <label for="rc" class="">RC (Seconds)</label>
+                        </div>
+                        <div class="md-form">
+                            <input #sensors mdbInput type="number" id="sensors" class="form-control" [(ngModel)]="sensors">
+                            <label for="sensors" class="">Sensors (Seconds)</label>
+                        </div>
+                        <div class="md-form">
+                            <input #controller mdbInput type="number" id="controller" class="form-control" [(ngModel)]="controller">
+                            <label for="controller" class="">Controller (Seconds)</label>
+                        </div>
+                    </div>
+                </mdb-card-body>
+                <mdb-card-footer style="background-color: transparent;">
+                    <mdb-icon far icon="save" size="2x" (click)="updateStreamRates()" style="align-content: center;"></mdb-icon>
+                </mdb-card-footer>
+            </mdb-card>
+        </div> -->
+
     </div>
 </div>
-
-<div class="card">
-    <div class="card-body">
-        <button mdbBtn type="button" color="primary" (click)="updateStreamRates()" mdbWavesEffect>Update</button>
-        <div class="row">
-            <div class="row-md-12 mx-auto">
-                <h4>General</h4>
-                <div class="md-form">
-                    <mdb-checkbox [value]="droneService.refreshparam" >Fetch Parameter On Connect</mdb-checkbox>
-                </div>
-                <div class="md-form">
-                    <input #gcsid mdbInput type="number" id="gcsid" class="form-control" [value]="droneService.gcsid">
-                    <label for="gcsid" class="">GCS ID</label>
-                </div>
-                <div class="md-form">
-                    <input #heartbeatInterval mdbInput type="number" id="heartbeatInterval" class="form-control" [value]="droneService.heartbeatinterval">
-                    <label for="heartbeatInterval" class="">Heart Beat Interval (Seconds)</label>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- <div class="card">
-    <div class="card-body">
-        <button mdbBtn type="button" color="primary" (click)="updateStreamRates()" mdbWavesEffect>Update</button>
-        <div class="row">
-            <div class="row-md-12 mx-auto">
-                <h4>Stream Rates</h4>
-                <div class="md-form">
-                    <input #proxyAddress mdbInput type="text" id="droneProxyAddress" class="form-control" [value]="configService.getAddress()">
-                    <label for="droneProxyAddress" class="">IP Address</label>
-                </div>
-                <div class="md-form">
-                    <input #proxyPort mdbInput type="number" id="droneProxyPort" class="form-control" [value]="configService.getPort()">
-                    <label for="droneProxyPort" class="">Port</label>
-                </div>
-                Proxy URL: <a class="card-link" [href]="configService.getUrl()">{{configService.getUrl()}}</a>
-            </div>
-        </div>
-    </div>
-</div> -->

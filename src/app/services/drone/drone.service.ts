@@ -112,4 +112,21 @@ export class DroneService implements ProxyListener {
       });
     }
 
+    setStreamRate(alt: Number, position: Number, modeStatus: Number, rc: Number, sensors: Number, controller: Number, okCallback: Function, errCallback: Function) {
+      let req = {
+        alt: alt
+      , pos: position
+      , modeStatus: modeStatus
+      , rc: rc
+      , sensors: sensors
+      , controller: controller
+      }
+
+      this.configService.post("setStreamRates", {}, req, okCallback, errCallback);
+    }
+
+    getStreamRate(okCallback: Function, errCallback: Function) {
+      this.configService.post("getStreamRates", {}, {}, okCallback, errCallback);
+    }
+
 }
