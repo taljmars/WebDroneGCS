@@ -84,6 +84,29 @@ export class GcsConfigMobile extends GcsConfig {
     super(droneService,proxyService,configService, alertService, userService)
   }
 
+  ngAfterViewInit() {
+    var elements, name, arr;
+    elements = document.getElementsByClassName("panel-sm");
+    console.log(elements)
+    name = "col";
+    for (let element of elements) {
+      arr = element.className.split(" ");
+      if (arr.indexOf(name) == -1) {
+        element.className += " " + name;
+      }
+    }
+
+    elements = document.getElementsByClassName("panel-md");
+    console.log(elements)
+    name = "col";
+    for (let element of elements) {
+      arr = element.className.split(" ");
+      if (arr.indexOf(name) == -1) {
+        element.className += " " + name;
+      }
+    }
+  }
+
 }
 
 @Component({
@@ -95,6 +118,39 @@ export class GcsConfigDesktop extends GcsConfig {
 
   constructor(public droneService: DroneService, public proxyService: ProxyService, public configService: ConfigService, public alertService: AlertsService, public userService: UserService){
     super(droneService,proxyService,configService, alertService, userService)
+  }
+
+  ngAfterViewInit() {
+    var elements, name, arr;
+    elements = document.getElementsByClassName("panel-sm");
+    console.log(elements)
+    name = "col-6 col-lg-4";
+    for (let element of elements) {
+      arr = element.className.split(" ");
+      if (arr.indexOf(name) == -1) {
+        element.className += " " + name;
+      }
+    }
+
+    elements = document.getElementsByClassName("panel-md");
+    console.log(elements)
+    name = "col-12 col-lg-8";
+    for (let element of elements) {
+      arr = element.className.split(" ");
+      if (arr.indexOf(name) == -1) {
+        element.className += " " + name;
+      }
+    }
+
+    elements = document.getElementsByClassName("dash-row");
+    console.log(elements)
+    name = "row";
+    for (let element of elements) {
+      arr = element.className.split(" ");
+      if (arr.indexOf(name) == -1) {
+        element.className += " " + name;
+      }
+    }
   }
   
 }
