@@ -1,6 +1,6 @@
 import {Component, NgModule, VERSION} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
-import { GcsConfig } from './gcs.config.component';
+import { GcsConfig, GcsConfigMobile, GcsConfigDesktop } from './gcs.config.component';
 
 import { MatButtonModule } from '@angular/material/button';
 
@@ -27,11 +27,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     CardsModule, WavesModule, ButtonsModule,
 
   ],
-  declarations: [ GcsConfig ],
+  declarations: [ GcsConfigMobile, GcsConfigDesktop ],
   providers: [],
-  exports: [GcsConfig],
-  // bootstrap: [ ]
-  bootstrap: [ GcsConfig ]
+  exports: [GcsConfigMobile, GcsConfigDesktop],
+  bootstrap: [ ]
+  // bootstrap: [ GcsConfig ]
 })
 export class GcsConfigModule {
   constructor() {console.log("In GcsConfigModule constructor");}

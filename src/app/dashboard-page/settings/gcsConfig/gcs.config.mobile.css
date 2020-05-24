@@ -6,17 +6,13 @@ body {
 }
 
 .panel-sm {
-    padding: 20px
+    padding-bottom: 20px
 }
 
 .panel-md {
-    padding: 20px
+    padding-bottom: 20px
 }
 
 .dashcard {
-    height: 100%
+    width: 100%
 }
-/* 
-.dash-row {
-    padding-bottom: 200px;
-} */

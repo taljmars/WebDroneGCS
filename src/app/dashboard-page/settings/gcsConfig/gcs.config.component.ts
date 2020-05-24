@@ -6,11 +6,6 @@ import { UserService } from 'src/app/services/users/user.service';
 import { DroneService } from 'src/app/services/drone/drone.service';
 
 
-@Component({
-  selector: 'gcs-config',
-  templateUrl: './gcs.config.component.html',
-  styleUrls: ['./gcs.config.component.css']
-})
 export class GcsConfig {
 
   // @ViewChild("proxyAddress", {static: false})
@@ -75,4 +70,31 @@ export class GcsConfig {
     )
     console.error("Update Stream Rates")
   }
+}
+
+
+@Component({
+  selector: 'gcs-config-mobile',
+  templateUrl: './gcs.config.component.html',
+  styleUrls: ['./gcs.config.mobile.css']
+})
+export class GcsConfigMobile extends GcsConfig {
+
+  constructor(public droneService: DroneService, public proxyService: ProxyService, public configService: ConfigService, public alertService: AlertsService, public userService: UserService){
+    super(droneService,proxyService,configService, alertService, userService)
+  }
+
+}
+
+@Component({
+  selector: 'gcs-config-desktop',
+  templateUrl: './gcs.config.component.html',
+  styleUrls: ['./gcs.config.desktop.css']
+})
+export class GcsConfigDesktop extends GcsConfig {
+
+  constructor(public droneService: DroneService, public proxyService: ProxyService, public configService: ConfigService, public alertService: AlertsService, public userService: UserService){
+    super(droneService,proxyService,configService, alertService, userService)
+  }
+  
 }

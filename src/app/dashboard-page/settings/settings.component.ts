@@ -2,6 +2,7 @@ import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
 
 import { DroneService, DroneEventListener } from '../../services/drone/drone.service';
 import { DroneEvent } from '../../services/drone/protocol/events.component';
+import { ApplicationStateService } from 'src/app/application-state.service';
 
 
 
@@ -16,7 +17,7 @@ export class Settings implements DroneEventListener {
   private active: String = "GCSConfig"
 
 
-  constructor(private droneService: DroneService){
+  constructor(private droneService: DroneService, public applicationStateService: ApplicationStateService){
     this.droneService.addEventListener(this);
   }
 

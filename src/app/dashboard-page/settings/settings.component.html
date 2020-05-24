@@ -14,7 +14,8 @@
   <!-- <mat-drawer-content> -->
     <drone-params *ngIf="isActive('DroneParams')"></drone-params>
     <user-config *ngIf="isActive('UserConfig')"></user-config>
-    <gcs-config *ngIf="isActive('GCSConfig')"></gcs-config>
+    <gcs-config-desktop *ngIf="isActive('GCSConfig') && !applicationStateService.getIsMobileResolution()"></gcs-config-desktop>
+    <gcs-config-mobile *ngIf="isActive('GCSConfig') && applicationStateService.getIsMobileResolution()"></gcs-config-mobile>
     <calibration *ngIf="isActive('Calibration')"></calibration>
   <!-- </mat-drawer-content>
   
