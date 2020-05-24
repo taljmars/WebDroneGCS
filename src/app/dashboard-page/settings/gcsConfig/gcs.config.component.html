@@ -49,8 +49,8 @@
                 </mdb-card-footer>
             </mdb-card>
         </div>
-<!-- 
-        <div class="panel-sm col">
+
+        <div class="panel-sm">
             <mdb-card class="dashcard">
                 <mdb-card-body>
                     <mdb-card-title>
@@ -58,35 +58,35 @@
                     </mdb-card-title>
                     <div class="md-form">
                         <div class="md-form">
-                            <input #modeStatus mdbInput type="number" id="modeStatus" class="form-control" [(ngModel)]="modeStatus">
+                            <input mdbInput type="number" id="modeStatus" class="form-control" [(ngModel)]="modeStatus">
                             <label for="modeStatus" class="">Mode (Seconds)</label>
                         </div>
                         <div class="md-form">
-                            <input #alt mdbInput type="number" id="alt" class="form-control" [(ngModel)]="alt">
+                            <input mdbInput type="number" id="alt" class="form-control" [(ngModel)]="alt">
                             <label for="alt" class="">Altitude (Seconds)</label>
                         </div>
-                        <div class="md-form">
+                        <!-- <div class="md-form">
                             <input #alt mdbInput type="number" id="alt" class="form-control" [(ngModel)]="alt">
                             <label for="alt" class="">Altitude (Seconds)</label>
-                        </div>
+                        </div> -->
                         <div class="md-form">
-                            <input #sensors mdbInput type="number" id="sensors" class="form-control" [(ngModel)]="sensors">
+                            <input mdbInput type="number" id="sensors" class="form-control" [(ngModel)]="sensors">
                             <label for="sensors" class="">Sensors (Seconds)</label>
                         </div>
                         <div class="md-form">
-                            <input #pos mdbInput type="number" id="pos" class="form-control" [(ngModel)]="pos">
+                            <input mdbInput type="number" id="pos" class="form-control" [(ngModel)]="pos">
                             <label for="pos" class="">Position (Seconds)</label>
                         </div>
                         <div class="md-form">
-                            <input #rc mdbInput type="number" id="rc" class="form-control" [(ngModel)]="rc">
+                            <input mdbInput type="number" id="rc" class="form-control" [(ngModel)]="rc">
                             <label for="rc" class="">RC (Seconds)</label>
                         </div>
-                        <div class="md-form">
+                        <!-- <div class="md-form">
                             <input #sensors mdbInput type="number" id="sensors" class="form-control" [(ngModel)]="sensors">
                             <label for="sensors" class="">Sensors (Seconds)</label>
-                        </div>
+                        </div> -->
                         <div class="md-form">
-                            <input #controller mdbInput type="number" id="controller" class="form-control" [(ngModel)]="controller">
+                            <input mdbInput type="number" id="controller" class="form-control" [(ngModel)]="controller">
                             <label for="controller" class="">Controller (Seconds)</label>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                     <mdb-icon far icon="save" size="2x" (click)="updateStreamRates()" style="align-content: center;"></mdb-icon>
                 </mdb-card-footer>
             </mdb-card>
-        </div> -->
+        </div>
 
     </div>
 </div>
