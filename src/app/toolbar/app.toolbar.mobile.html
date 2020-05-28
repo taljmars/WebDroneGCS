@@ -1,6 +1,6 @@
 
 <div class="overlay" *ngIf="menuOpen">
-  <a (click)="hideMenu()" class="closebtn" id="closeNav">&times;</a>
+  <!-- <a (click)="hideMenu()" class="closebtn" id="closeNav">&times;</a> -->
   <div class="overlay-content">
   <links>
     <ul class="navbar-nav mr-auto">
@@ -48,12 +48,29 @@
 </div>
 
 <!-- <mat-toolbar style="position: absolute; z-index: 1;"> -->
-<mat-toolbar style="background-color: transparent; position: absolute; z-index: 5; "
-  *ngIf="userService.isLogged() && !isLandscape()">
-  <div class="fixed-action-btn" style="top: 25px; right: 25px;">
-    <a class="btn-floating btn-lg turquoise" (click)="openMenu()">
+<!-- <mat-toolbar style="background-color: transparent; position: absolute; z-index: 5; " *ngIf="userService.isLogged() && !isLandscape()"> -->
+<mat-toolbar 
+*ngIf="userService.isLogged() && !isRootPath()">
+  <!-- <div class="fixed-action-btn" style="top: 25px; right: 25px;"> -->
+  <div class="fixed-action-btn" style="background-color: transparent; position: absolute; z-index: 5; top: 50%; left: 1%;" >
+    <!-- <a class="btn-floating btn-lg turquoise" (click)="openMenu()">
       <i class="fas fa-bars"></i>
-    </a>
-  </div>
-  
+    </a> -->
+    <button mat-fab *ngIf="!menuOpen" color="primary" (click)="openMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button mat-fab *ngIf="menuOpen" color="transparent" (click)="hideMenu()">
+      <!-- <mat-icon>menu</mat-icon> -->
+      X
+    </button>
+    
+    <!-- <button type="button" class="btn btn-white btn-rounded mr-md-3 z-depth-1a" (click)="openMenu()"><i class="fas fa-bars blue-text text-center"></i></button> -->
+  </div>  
 </mat-toolbar>
+
+<div class="fixed-action-btn" style="background-color: transparent; position: absolute; z-index: 5; bottom: 1%; right: 1%;" >
+  <button mat-fab color="transparent" (click)="toggleFullScreen()">
+    <!-- <mat-icon>menu</mat-icon> -->
+    <i class="fas fa-expand" style="z-index: 9;" ></i>
+  </button>
+</div>

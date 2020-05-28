@@ -1,5 +1,6 @@
 <!--Navbar -->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-dark fixed scrolling-navbar" [containerInside]="false" *ngIf="userService.isLogged()">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-dark fixed scrolling-navbar" [containerInside]="false" 
+*ngIf="userService.isLogged() && !isRootPath()">
   <mdb-navbar-brand>
       <a class="navbar-brand" href="/dashboard"><strong>WebGCS</strong></a>
       <!-- <a class="navbar-brand" (click)="frame.show()" ><strong>WebGCS</strong></a> -->
@@ -50,3 +51,10 @@
     </ul>
   </links>
 </mdb-navbar>
+
+<div class="fixed-action-btn" style="background-color: transparent; position: absolute; z-index: 5; bottom: 1%; right: 1%;" >
+  <button mat-fab color="transparent" (click)="toggleFullScreen()">
+    <!-- <mat-icon>menu</mat-icon> -->
+    <i class="fas fa-expand" style="z-index: 9;" ></i>
+  </button>
+</div>

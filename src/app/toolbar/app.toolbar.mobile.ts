@@ -37,16 +37,4 @@ export class AppToolbarMobile extends AppToolbar {
   hideMenu() {
     this.menuOpen = false
   }
-
-  // isFullScreen() {
-  //   if((document.fullscreen) || (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
-  //     return true;
-  //   }
-  //   return false
-  // }
-
-  isLandscape() {
-    return window.orientation != 0
-    // return window.orientation == 0
-  }
 }

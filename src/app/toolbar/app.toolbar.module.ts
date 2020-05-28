@@ -23,6 +23,7 @@ import { MatDialogModule } from '@angular/material';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDividerModule} from '@angular/material/divider';
 import { AppRoutingModule } from '../app-routing.module';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   imports: [
     MatDividerModule,
+    MatIconModule,
 
     BrowserAnimationsModule,
     MatButtonModule,

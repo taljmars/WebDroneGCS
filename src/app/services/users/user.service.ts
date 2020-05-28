@@ -31,7 +31,7 @@ export class UserService {
   }
 
   isLogged() {
-    return AppConstants.MyStorage.get(TOKEN) != null;
+    return AppConstants.MyStorage.get(TOKEN) != null && this.getUserName() != null;
   }
 
   setProxyAddress(address: string) {

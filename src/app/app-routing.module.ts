@@ -71,10 +71,6 @@ const appDesktopRoutes: Routes = [
     component: LoginPageComponentDesktop
   },
   {
-    path: 'login',
-    component: LoginPageComponentDesktop
-  },
-  {
     path: 'about',
     component: About
   },
@@ -115,10 +111,6 @@ const appMobileRoutes: Routes = [
   },
   {
     path: '',
-    component: LoginPageComponentMobile
-  },
-  {
-    path: 'login',
     component: LoginPageComponentMobile
   },
   {
