@@ -68,7 +68,8 @@ export abstract class AppToolbar {
   }
 
   isFullScreen() {
-    if((document.fullscreen) || (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
+    // if((document.fullscreen) || (window.innerWidth == screen.width && window.innerHeight == screen.height)) {
+    if(document.fullscreen) {
       return true;
     }
     return false
