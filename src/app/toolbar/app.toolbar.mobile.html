@@ -51,7 +51,7 @@
 <!-- <mat-toolbar style="background-color: transparent; position: absolute; z-index: 5; " *ngIf="userService.isLogged() && !isLandscape()"> -->
 <mat-toolbar 
   *ngIf="userService.isLogged() && !isRootPath()"  
-  style="background-color: transparent; position: absolute; z-index: 5; top: 50%; left: 1%; transform: translate(0%, -50%);"
+  style="background-color: transparent; position: absolute; z-index: 5; top: 50%; left: 1%; transform: translate(0%, -50%); width: fit-content;"
 >
   <div class="fixed-action-btn" >
     <button mat-fab *ngIf="!menuOpen" color="primary" (click)="openMenu()">

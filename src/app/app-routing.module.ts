@@ -6,7 +6,7 @@ import { Routes, RouterModule, Router, PreloadAllModules } from '@angular/router
 import { MapView } from './dashboard-page/mapView/mapview.component';
 import { CamView } from './dashboard-page/cameraView/camview.component';
 import { LogView } from './dashboard-page/log/log.component'
-import { Settings } from './dashboard-page/settings/settings.component'
+import { SettingsDesktop } from './dashboard-page/settings/settings.component.desktop'
 import { Editor } from './dashboard-page/editor/editor.component'
 import { About } from './dashboard-page/about/about.component'
 
@@ -22,6 +22,11 @@ import { LoginPageComponentDesktop } from './login-page/login-page.component.des
 import { DashDesktop } from './dashboard-page/dashboard-page.desktop';
 import { DashMobile } from './dashboard-page/dashboard-page.mobile';
 import { Help } from './dashboard-page/help/help.component';
+import { DroneParams } from './dashboard-page/settings/droneParams/droneparams.component';
+import { UserConfig } from './dashboard-page/settings/userConfig/user.config.component';
+import { Calibration } from './dashboard-page/settings/calibration/calibration.component';
+import { SettingsMobile } from './dashboard-page/settings/settings.component.mobile';
+import { GcsConfigMobile } from './dashboard-page/settings/gcsConfig/gcs.config.component';
 
 @Injectable()
 export class CanActivateRouteGuard implements CanActivate {
@@ -58,7 +63,7 @@ const appDesktopRoutes: Routes = [
   },
   {
     path: 'settings',
-    component: Settings,
+    component: SettingsDesktop,
     canActivate: [CanActivateRouteGuard]
   },
   {
@@ -101,8 +106,34 @@ const appMobileRoutes: Routes = [
   },
   {
     path: 'settings',
-    component: Settings,
-    canActivate: [CanActivateRouteGuard]
+    canActivate: [CanActivateRouteGuard],
+    children : [
+      {
+        path: '',
+        component: SettingsMobile,
+        canActivate: [CanActivateRouteGuard]
+      },
+      {
+        path: 'gcs',
+        component: GcsConfigMobile,
+        canActivate: [CanActivateRouteGuard]
+      },
+      {
+        path: 'user',
+        component: UserConfig,
+        canActivate: [CanActivateRouteGuard]
+      },
+      {
+        path: 'droneparameters',
+        component: DroneParams,
+        canActivate: [CanActivateRouteGuard]
+      },
+      {
+        path: 'calibration',
+        component: Calibration,
+        canActivate: [CanActivateRouteGuard]
+      }
+    ]
   },
   {
     path: 'map',

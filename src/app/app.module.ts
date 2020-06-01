@@ -59,6 +59,7 @@ import { AppComponent } from './app.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 // import { CanActivateRouteGuard } from './routeguard' 
 import {MatDividerModule} from '@angular/material/divider';
+import { CalibrationModule } from './dashboard-page/settings/calibration/calibration.module';
 
 
 @NgModule({
@@ -94,6 +95,8 @@ import {MatDividerModule} from '@angular/material/divider';
     LogsModule,
     AboutModule,
     HelpModule,
+
+    CalibrationModule,
 
     MatDialogModule,
     MatToolbarModule,

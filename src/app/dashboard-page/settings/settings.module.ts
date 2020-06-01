@@ -1,12 +1,14 @@
 import {Component, NgModule, VERSION} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
-import { Settings } from './settings.component';
+import { SettingsDesktop } from './settings.component.desktop';
+import { SettingsMobile } from './settings.component.mobile';
+
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import { NavbarModule, DropdownModule } from 'angular-bootstrap-md';
+import { NavbarModule, DropdownModule, MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {DroneParamsModule} from './droneParams/droneparams.module'
 import {UserConfigModule} from './userConfig/user.config.module'
@@ -27,12 +29,15 @@ import { CalibrationModule } from './calibration/calibration.module';
     CalibrationModule,
 
     MatButtonToggleModule,
+
+    MDBBootstrapModule.forRoot(),
+
   ],
-  declarations: [ Settings ],
+  declarations: [ SettingsMobile, SettingsDesktop ],
   providers: [],
-  exports: [Settings],
-  // bootstrap: [ ]
-  bootstrap: [ Settings ]
+  exports: [SettingsMobile, SettingsDesktop],
+  bootstrap: [ ]
+  // bootstrap: [ Settings ]
 })
 export class SettingsModule {
   constructor() {console.log("In SettingsModule constructor");}

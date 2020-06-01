@@ -8,10 +8,10 @@ import { ApplicationStateService } from 'src/app/application-state.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './settings.component.html',
+  templateUrl: './settings.component.desktop.html',
   styleUrls: ['./settings.component.css']
 })
-export class Settings implements DroneEventListener {
+export class SettingsDesktop implements DroneEventListener {
 
   // private active: String = "DroneParams"
   private active: String = "GCSConfig"
