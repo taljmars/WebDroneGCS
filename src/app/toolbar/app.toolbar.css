@@ -1,4 +1,4 @@
-.overlay {
+/* .overlay {
     height: 100%;
     width: 100%;
     position: fixed;
@@ -6,10 +6,22 @@
     top: 0;
     left: 0;
     background-color: #fff;
-    /* overflow-x: hidden; */
     transition: 0.5s;
-  }
+  } */
 
+.overlay {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  /* top: 50%; */
+  /* left: 50%; */
+  background-color: #fff;
+  text-align: center;
+  justify-content:center;
+  transform: translate(0%, 25%);
+}
+/* 
   .overlay-content {
     position: relative;
     top: 25%;
@@ -23,8 +35,8 @@
     top: 20px;
     right: 45px;
     font-size: 60px;
-  }
-
+  } */
+/* 
   .turquoise {
     background-color: #45B5AA; 
-  }
+  } */
