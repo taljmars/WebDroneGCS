@@ -49,9 +49,14 @@
 
 <!-- <mat-toolbar style="position: absolute; z-index: 1;"> -->
 <!-- <mat-toolbar style="background-color: transparent; position: absolute; z-index: 5; " *ngIf="userService.isLogged() && !isLandscape()"> -->
-<mat-toolbar 
+  <div style="background-color: transparent; position: absolute; z-index: 5; bottom: 3%; right: 3%;" >
+<!-- <mat-toolbar 
   *ngIf="userService.isLogged() && !isRootPath()"  
   style="background-color: transparent; position: absolute; z-index: 5; top: 50%; left: 1%; transform: translate(0%, -50%); width: fit-content;"
+> -->
+<mat-toolbar 
+  *ngIf="userService.isLogged() && !isRootPath()" 
+  style="background-color: transparent; padding-bottom: 15px;"
 >
   <div class="fixed-action-btn" >
     <button mat-fab *ngIf="!menuOpen" color="primary" (click)="openMenu()">
@@ -63,8 +68,22 @@
   </div>  
 </mat-toolbar>
 
-<div class="fixed-action-btn" style="background-color: transparent; position: absolute; z-index: 5; bottom: 1%; right: 1%;" >
+<mat-toolbar
+  style="background-color: transparent;"
+>
+  <div class="fixed-action-btn">
+    <button mat-fab color="transparent" (click)="toggleFullScreen()">
+      <i class="fas fa-expand" style="z-index: 9;" ></i>
+    </button>
+  </div>
+</mat-toolbar>
+
+<!-- <div class="fixed-action-btn" style="background-color: transparent; position: absolute; z-index: 5; bottom: 1%; right: 1%;" > -->
+  <!-- <div class="fixed-action-btn" style="right: 5%;">
+
   <button mat-fab color="transparent" (click)="toggleFullScreen()">
     <i class="fas fa-expand" style="z-index: 9;" ></i>
   </button>
+</div> -->
+
 </div>
