@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1591309884776,
+  "timestamp": 1591347794333,
   "index": "https://taljmars.github.io/WebDroneGCS/index.html",
   "assetGroups": [
     {
@@ -10,14 +10,14 @@
       "urls": [
         "https://taljmars.github.io/WebDroneGCS/favicon.ico",
         "https://taljmars.github.io/WebDroneGCS/index.html",
-        "https://taljmars.github.io/WebDroneGCS/main-es2015.14c5b8ce5eb47698cb96.js",
-        "https://taljmars.github.io/WebDroneGCS/main-es5.14c5b8ce5eb47698cb96.js",
+        "https://taljmars.github.io/WebDroneGCS/main-es2015.d8a6096550196e43880d.js",
+        "https://taljmars.github.io/WebDroneGCS/main-es5.d8a6096550196e43880d.js",
         "https://taljmars.github.io/WebDroneGCS/polyfills-es2015.5b10b8fd823b6392f1fd.js",
         "https://taljmars.github.io/WebDroneGCS/polyfills-es5.3e8196928d184a6e5319.js",
         "https://taljmars.github.io/WebDroneGCS/runtime-es2015.c5fa8325f89fc516600b.js",
         "https://taljmars.github.io/WebDroneGCS/runtime-es5.c5fa8325f89fc516600b.js",
         "https://taljmars.github.io/WebDroneGCS/scripts.a9eccdb81911c6cd33a3.js",
-        "https://taljmars.github.io/WebDroneGCS/styles.b0fe8d3de040a69e733e.css"
+        "https://taljmars.github.io/WebDroneGCS/styles.dfba5609413ead8e630f.css"
       ],
       "patterns": []
     },
@@ -113,15 +113,15 @@
     "https://taljmars.github.io/WebDroneGCS/assets/icons/icon-72x72.png": "62da5ceda37c225ec60847f00f17f6ef5cd37283",
     "https://taljmars.github.io/WebDroneGCS/assets/icons/icon-96x96.png": "eda4a8e7100703bb35bddc60ce8c559bef370643",
     "https://taljmars.github.io/WebDroneGCS/favicon.ico": "12f1ccf41f0782e25f0bf31160a64c8c8370f916",
-    "https://taljmars.github.io/WebDroneGCS/index.html": "912827626721071db390ffb789d3d2cac33df23c",
-    "https://taljmars.github.io/WebDroneGCS/main-es2015.14c5b8ce5eb47698cb96.js": "397c28488ee7a31dcfdef04fcb35ff8c20b3291f",
-    "https://taljmars.github.io/WebDroneGCS/main-es5.14c5b8ce5eb47698cb96.js": "5081510033c5f94c3351b61df59d2686bd6e4910",
+    "https://taljmars.github.io/WebDroneGCS/index.html": "3b318351183e047e5c4200f62f3c02c860ef05ee",
+    "https://taljmars.github.io/WebDroneGCS/main-es2015.d8a6096550196e43880d.js": "44e5a574c68cdc9417ed21445c00068cb30a164d",
+    "https://taljmars.github.io/WebDroneGCS/main-es5.d8a6096550196e43880d.js": "fbbf5ca1b239850c65763fa16902b238c71969d8",
     "https://taljmars.github.io/WebDroneGCS/polyfills-es2015.5b10b8fd823b6392f1fd.js": "9abfe15f17820a646e3d51c420908d9f8f7b69b8",
     "https://taljmars.github.io/WebDroneGCS/polyfills-es5.3e8196928d184a6e5319.js": "a09a6044f37c73c715665663d2dcb61f666618a1",
     "https://taljmars.github.io/WebDroneGCS/runtime-es2015.c5fa8325f89fc516600b.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "https://taljmars.github.io/WebDroneGCS/runtime-es5.c5fa8325f89fc516600b.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "https://taljmars.github.io/WebDroneGCS/scripts.a9eccdb81911c6cd33a3.js": "3e5588e17c9355b1b492f926a47ae2f40ef71889",
-    "https://taljmars.github.io/WebDroneGCS/styles.b0fe8d3de040a69e733e.css": "1b95be74a2b6fc4e3f00ac863d4e565aa7ce1817"
+    "https://taljmars.github.io/WebDroneGCS/styles.dfba5609413ead8e630f.css": "a5b25d057175a40acd57dd8992413b6365473ba5"
   },
   "navigationUrls": [
     {

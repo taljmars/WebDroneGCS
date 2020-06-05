@@ -8,7 +8,7 @@ import { AlertsService } from '../services/alerts.service';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.desktop.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.desktop.css']
 })
 export class LoginPageComponentDesktop extends LoginPageComponent {
 

@@ -1,0 +1,35 @@
+@import "../../styles.css";
+
+/* @value --general-background from "../../styles.css"; */
+
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: var(--general-background)
+}
+
+.login-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: fit-content;
+  text-align: center;
+  transform: translate(-50%, -50%);
+  background: white;
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
+}
+
+.powered-by {
+  position: fixed;
+  text-align: center;
+  justify-content: center;
+  bottom: 2%;
+  left: 50%;
+  color: white;
+  /* font-weight: bold; */
+  transform: translate(-50%, -50%);
+}

@@ -2,21 +2,28 @@
 /* .map-content { display: block; } */
 /* .description { margin-top: 10px; padding: 15px; background-color: bisque; border: 1px solid orange; } */
 
-body {
+@import "../../styles.css";
+
+/* body {
     background-color: #222222;
     overflow: auto;
     color: #ffffff;
     overflow-y: auto;
+} */
+
+.overlay {
+    padding-top: 20px;
+    background: var(--general-background);
 }
 
 .panel-sm {
-    padding-bottom: 20px
+    padding-bottom: 20px;
 }
 
 .panel-md {
-    padding-bottom: 20px
+    padding-bottom: 20px;
 }
 
 .dashcard {
-    width: 100%
+    width: 100%;
 }

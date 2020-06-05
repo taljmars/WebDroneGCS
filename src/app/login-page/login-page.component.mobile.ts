@@ -8,7 +8,7 @@ import { AlertsService } from '../services/alerts.service';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.mobile.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.mobile.css']
 })
 export class LoginPageComponentMobile extends LoginPageComponent  {
 

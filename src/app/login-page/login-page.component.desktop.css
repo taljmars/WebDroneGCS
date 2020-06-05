@@ -1,0 +1,31 @@
+@import "../../styles.css";
+
+.parent1 {
+  margin: 50% 50%;
+  /* width: 45%; */
+  display: flex;
+  justify-content: center;
+  /* align-items: center;
+  flex-direction: row; */
+  /* vertical-align: center; */
+}
+
+.parent3 {
+  /* margin: auto auto; */
+  height:100vh;
+  display:flex;
+  align-items: center;
+  justify-content:center;
+}
+
+.parent {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* width: 100%; */
+  text-align: center;
+  /* margin-top: 30px; */
+  transform: translate(-50%, -50%);
+  background: white
+}
+
