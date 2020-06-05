@@ -9,34 +9,34 @@
 
   <div *ngIf=isLandscape()>
 
+    <div class="infotopleft">
+      <mat-card-content style="font-size: 45px; color: limegreen; font-weight: bold; background:transparent;">
+        <i class="fas fa-eye" *ngIf="!infoHide" (click)="hideInfo()"></i>
+        <i class="fas fa-eye-slash" *ngIf="infoHide" (click)="showInfo()"></i>
+      </mat-card-content>
+    </div>
+
     <div class="infotopright">
-        <!-- <mat-card style="background:transparent;"> -->
-          <mat-card-content style="font-size: 20px; color: limegreen; font-weight: bold; background:transparent;">
-              <label style="font-size: 45px; margin-right: 40px;">{{mode}}</label>
-              <i class="fas fa-satellite-dish" style="margin-right: 5px;"></i><label style="margin-right: 40px;">{{fixType}}</label>
-              <i class="fas fa-signal" style="margin-right: 5px;"></i><label style="margin-right: 40px;">{{signal}}%</label>
-              <i class="fas fa-car-battery" style="margin-right: 5px;"></i><label style="margin-right: 40px;"> {{battery}}%</label>
-              <i class="far fa-clock" style="margin-right: 5px;"></i><label> time</label>
-          </mat-card-content>
-        <!-- </mat-card> -->
-      
+      <mat-card-content style="font-size: 20px; color: limegreen; font-weight: bold; background:transparent;" *ngIf="!infoHide">
+        <label style="font-size: 45px; margin-right: 40px;">{{mode}}</label>
+        <i class="fas fa-satellite-dish" style="margin-right: 5px;"></i><label style="margin-right: 40px;">{{fixType}}</label>
+        <i class="fas fa-signal" style="margin-right: 5px;"></i><label style="margin-right: 40px;">{{signal}}%</label>
+        <i class="fas fa-car-battery" style="margin-right: 5px;"></i><label style="margin-right: 40px;"> {{battery}}%</label>
+        <i class="far fa-clock" style="margin-right: 5px;"></i><label> time</label>
+      </mat-card-content>
     </div>
 
     <div class="infobuttom">
-
       <br/>
-
-      <!-- <mat-card style="background:transparent;"> -->
-        <mat-card-content style="color: limegreen; font-weight: bold; background:transparent;">
-          <label style="font-size: 20px;">H.</label><label style="font-size: 45px; font-weight: bold;">{{height}}</label><label style="font-size: 20px; margin-right: 40px;">m       </label>
-          <label style="font-size: 20px;">D.</label><label style="font-size: 45px; font-weight: bold;">{{dist}}</label><label style="font-size: 20px; margin-right: 40px;">m       </label>
-          <label style="font-size: 20px;">S.</label><label style="font-size: 45px; font-weight: bold;">{{speed}}</label><label style="font-size: 20px;">km/h</label>
-        </mat-card-content>
-      <!-- </mat-card> -->
+      <mat-card-content style="color: limegreen; font-weight: bold; background:transparent;" *ngIf="!infoHide">
+        <label style="font-size: 20px;">H.</label><label style="font-size: 45px; font-weight: bold;">{{height}}</label><label style="font-size: 20px; margin-right: 40px;">m       </label>
+        <label style="font-size: 20px;">D.</label><label style="font-size: 45px; font-weight: bold;">{{dist}}</label><label style="font-size: 20px; margin-right: 40px;">m       </label>
+        <label style="font-size: 20px;">S.</label><label style="font-size: 45px; font-weight: bold;">{{speed}}</label><label style="font-size: 20px;">km/h</label>
+      </mat-card-content>
     </div>
 
 
-    <div style="height: 30%; width: 25%; " class="minimap">
+    <div style="height: 30%; width: 25%; " class="minimap" *ngIf="!infoHide">
       <!-- <x-map> -->
       <x-map [Options]="_options" [Latitude]="_lat" [Longitude]="_lon"> 
         <x-map-marker *ngFor="let m of markers;"
@@ -53,13 +53,7 @@
     </div>
 
     <div class="infobuttomright">
-
-      <br/>
-      <!-- <mat-card style="background:transparent;"> -->
-        <mat-card-content style="font-size: 20px; color: limegreen; font-weight: bold; background:transparent;">
-          <i class="fas fa-expand" style="z-index: 9;" (click)="toggleFullScreen()"></i>
-        </mat-card-content>
-      <!-- </mat-card> -->
+      <!-- <br/> -->
     </div>
 
     <div class="app">

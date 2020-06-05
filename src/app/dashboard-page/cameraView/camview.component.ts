@@ -30,6 +30,8 @@ export class CamView implements DroneEventListener {
   public fixType: String = "0";
   public dist: String = "0";
 
+  public infoHide: Boolean = false;
+
   constructor(private droneService: DroneService, private alertsService: AlertsService) {
     this.droneService.addEventListener(this)
   }
@@ -151,15 +153,12 @@ export class CamView implements DroneEventListener {
       }
   }
 
-  toggleFullScreen() {
-    var elem = document.documentElement;
+  hideInfo() {
+    this.infoHide = true
+  }
 
-    if (this.isFullScreen()) {
-      document.exitFullscreen();
-    }
-    else {
-      elem.requestFullscreen();
-    }
+  showInfo() {
+    this.infoHide = false
   }
 
   isFullScreen() {
