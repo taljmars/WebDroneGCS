@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NavbarModule, DropdownModule, ButtonsModule, CardsModule, WavesModule } from 'angular-bootstrap-md';
 import { MatCardModule } from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import { MDBBootstrapModule, ModalModule, TooltipModule, PopoverModule, IconsModule, ChartsModule } from 'angular-bootstrap-md';
 
@@ -17,7 +18,7 @@ import { MDBBootstrapModule, ModalModule, TooltipModule, PopoverModule, IconsMod
     BrowserModule,
     MatSelectModule,
     MatCardModule,
-
+    MatCheckboxModule,
     ModalModule, TooltipModule, PopoverModule, IconsModule,
 
     CardsModule, WavesModule, ButtonsModule, ChartsModule,

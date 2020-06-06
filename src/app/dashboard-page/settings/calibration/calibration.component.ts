@@ -72,12 +72,12 @@ export abstract class Calibration implements DroneEventListener  {
       droneService.getModes(
         data => {
           console.log(data)
-          this.flightMode1 = data.fltMode1.mode;
-          this.flightMode2 = data.fltMode2.mode;
-          this.flightMode3 = data.fltMode3.mode;
-          this.flightMode4 = data.fltMode4.mode;
-          this.flightMode5 = data.fltMode5.mode;
-          this.flightMode6 = data.fltMode6.mode;
+          this.flightMode1 = data.fltMode1;
+          this.flightMode2 = data.fltMode2;
+          this.flightMode3 = data.fltMode3;
+          this.flightMode4 = data.fltMode4;
+          this.flightMode5 = data.fltMode5;
+          this.flightMode6 = data.fltMode6;
 
           this.channel7 = data.ch7;
           this.channel8 = data.ch8;

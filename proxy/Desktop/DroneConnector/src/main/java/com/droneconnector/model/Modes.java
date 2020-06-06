@@ -6,6 +6,8 @@ import com.dronegcs.mavlink.is.drone.parameters.Parameter;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmCommands;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmModes;
 
+import java.util.List;
+
 import static com.dronegcs.mavlink.is.protocol.msg_metadata.ApmModes.getMode;
 
 
@@ -14,15 +16,19 @@ public class Modes {
   class Mode {
     ApmModes mode;
     boolean simple;
+    boolean superSimple;
 
-    public Mode(ApmModes mode, boolean simple) {
+    public Mode(ApmModes mode, boolean simple, boolean superSimple) {
       this.mode = mode;
       this.simple = simple;
+      this.superSimple = superSimple;
     }
   }
 
   private static final String FLTMODE_FORMAT = "FLTMODE%d"; // Example: FLTMODE1
   private static final String CH_FORMAT = "CH%d_OPT"; // Example: CHA7_OPT
+  private static final String SIMPLE_MODE = "SIMPLE";
+  private static final String SUPER_SIMPLE_MODE = "SUPER_SIMPLE";
 
   private Mode fltMode1;
   private Mode fltMode2;
@@ -38,24 +44,34 @@ public class Modes {
   }
 
   public Modes(Drone drone) {
+    Parameter s = drone.getParameters().getParameter(SIMPLE_MODE);
+    Parameter ss = drone.getParameters().getParameter(SUPER_SIMPLE_MODE);
     Parameter p = null;
-    p = drone.getParameters().getParameter(String.format(FLTMODE_FORMAT, 1));
-    this.fltMode1 = new Mode(getMode(p.getValue().intValue(), drone.getType().getDroneType()), false);
+    int i = 0;
 
-    p = drone.getParameters().getParameter(String.format(FLTMODE_FORMAT, 2));
-    this.fltMode2 = new Mode(getMode(p.getValue().intValue(), drone.getType().getDroneType()), false);
+    i++;
+    p = drone.getParameters().getParameter(String.format(FLTMODE_FORMAT, i));
+    this.fltMode1 = new Mode(getMode(p.getValue().intValue(), drone.getType().getDroneType()), isSimplesModes(s.getValue().byteValue(), i), isSimplesModes(ss.getValue().byteValue(), i));
 
-    p = drone.getParameters().getParameter(String.format(FLTMODE_FORMAT, 3));
-    this.fltMode3 = new Mode(getMode(p.getValue().intValue(), drone.getType().getDroneType()), false);
+    i++;
+    p = drone.getParameters().getParameter(String.format(FLTMODE_FORMAT, i));
+    this.fltMode2 = new Mode(getMode(p.getValue().intValue(), drone.getType().getDroneType()), isSimplesModes(s.getValue().byteValue(), i), isSimplesModes(ss.getValue().byteValue(), i));
 
-    p = drone.getParameters().getParameter(String.format(FLTMODE_FORMAT, 4));
-    this.fltMode4 = new Mode(getMode(p.getValue().intValue(), drone.getType().getDroneType()), false);
+    i++;
+    p = drone.getParameters().getParameter(String.format(FLTMODE_FORMAT, i));
+    this.fltMode3 = new Mode(getMode(p.getValue().intValue(), drone.getType().getDroneType()), isSimplesModes(s.getValue().byteValue(), i), isSimplesModes(ss.getValue().byteValue(), i));
 
-    p = drone.getParameters().getParameter(String.format(FLTMODE_FORMAT, 5));
-    this.fltMode5 = new Mode(getMode(p.getValue().intValue(), drone.getType().getDroneType()), false);
+    i++;
+    p = drone.getParameters().getParameter(String.format(FLTMODE_FORMAT, i));
+    this.fltMode4 = new Mode(getMode(p.getValue().intValue(), drone.getType().getDroneType()), isSimplesModes(s.getValue().byteValue(), i), isSimplesModes(ss.getValue().byteValue(), i));
 
-    p = drone.getParameters().getParameter(String.format(FLTMODE_FORMAT, 6));
-    this.fltMode6 = new Mode(getMode(p.getValue().intValue(), drone.getType().getDroneType()), false);
+    i++;
+    p = drone.getParameters().getParameter(String.format(FLTMODE_FORMAT, i));
+    this.fltMode5 = new Mode(getMode(p.getValue().intValue(), drone.getType().getDroneType()), isSimplesModes(s.getValue().byteValue(), i), isSimplesModes(ss.getValue().byteValue(), i));
+
+    i++;
+    p = drone.getParameters().getParameter(String.format(FLTMODE_FORMAT, i));
+    this.fltMode6 = new Mode(getMode(p.getValue().intValue(), drone.getType().getDroneType()), isSimplesModes(s.getValue().byteValue(), i), isSimplesModes(ss.getValue().byteValue(), i));
 
     p = drone.getParameters().getParameter(String.format(CH_FORMAT, 7));
     this.ch7 = ApmCommands.getCommand(p.getValue().intValue());
@@ -126,6 +142,12 @@ public class Modes {
 
   public void setCh8(ApmCommands ch8) {
     this.ch8 = ch8;
+  }
+
+  private boolean isSimplesModes(Byte modeBitMap, int flightModeId) {
+//    flightModeId should be : 1 - 6
+    int placer = 0x1 << (flightModeId - 1);
+    return (flightModeId & placer) != 0;
   }
 
   @Override

@@ -23,52 +23,65 @@
                 <mdb-card-text>* Channels 1-4 are occupied for flight control</mdb-card-text>
                 <mdb-card-text>** Channel 5 control the flights mode</mdb-card-text>
               <mdb-card-text>
-                <label *ngIf="activeMode == 1">Active</label>
-                <mat-label>Mode 1</mat-label>
-                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode1">
+                <mat-label>Mode 1 </mat-label>
+                <label *ngIf="activeMode == 1" style="font-weight: bold; color: limegreen;">(Active)</label>
+                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode1.mode">
                     <mat-option>None</mat-option>
                     <mat-option *ngFor="let x of modesList" [value]="x">{{x}}</mat-option>
                 </mat-select>
+                <mat-checkbox [value]="flightMode1.simple">Simple Mode</mat-checkbox>
+                <mat-checkbox [value]="flightMode1.superSimple">Super Simple Mode</mat-checkbox>
               </mdb-card-text>
               <mdb-card-text>
-                <label *ngIf="activeMode == 2">Active</label>
-                <mat-label>Mode 2</mat-label>
-                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode2">
+                <mat-label>Mode 2 </mat-label>
+                <label *ngIf="activeMode == 2" style="font-weight: bold; color: limegreen;">(Active)</label>
+                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode2.mode">
                     <mat-option>None</mat-option>
                     <mat-option *ngFor="let x of modesList" [value]="x">{{x}}</mat-option>
                 </mat-select>
+                <mat-checkbox [value]="flightMode2.simple">Simple Mode</mat-checkbox>
+                <mat-checkbox [value]="flightMode2.superSimple">Super Simple Mode</mat-checkbox>
               </mdb-card-text>
               <mdb-card-text>
-                <label *ngIf="activeMode == 3">Active</label>
-                <mat-label>Mode 3</mat-label>
-                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode3">
+                <mat-label>Mode 3 </mat-label>
+                <label *ngIf="activeMode == 3" style="font-weight: bold; color: limegreen;">(Active)</label>
+                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode3.mode">
                     <mat-option>None</mat-option>
                     <mat-option *ngFor="let x of modesList" [value]="x">{{x}}</mat-option>
                 </mat-select>
+                <mat-checkbox [value]="flightMode3.simple">Simple Mode</mat-checkbox>
+                <mat-checkbox [value]="flightMode3.superSimple">Super Simple Mode</mat-checkbox>
               </mdb-card-text>
               <mdb-card-text>
-                <label *ngIf="activeMode == 4">Active</label>
-                <mat-label>Mode 4</mat-label>
-                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode4">
+                <mat-label>Mode 4 </mat-label>
+                <label *ngIf="activeMode == 4" style="font-weight: bold; color: limegreen;">(Active)</label>
+                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode4.mode">
                     <mat-option>None</mat-option>
                     <mat-option *ngFor="let x of modesList" [value]="x">{{x}}</mat-option>
                 </mat-select>
+                <mat-checkbox [value]="flightMode4.simple">Simple Mode</mat-checkbox>
+                <mat-checkbox [value]="flightMode4.superSimple">Super Simple Mode</mat-checkbox>
               </mdb-card-text>
               <mdb-card-text>
-                <label *ngIf="activeMode == 5">Active</label>
                 <mat-label>Mode 5</mat-label>
-                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode5">
+                <label *ngIf="activeMode == 5" style="font-weight: bold; color: limegreen;">(Active)</label>
+                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode5.mode">
                     <mat-option>None</mat-option>
                     <mat-option *ngFor="let x of modesList" [value]="x">{{x}}</mat-option>
                 </mat-select>
+                <mat-checkbox [value]="flightMode5.simple">Simple Mode</mat-checkbox>
+                <mat-checkbox [value]="flightMode5.superSimple">Super Simple Mode</mat-checkbox>
               </mdb-card-text>
               <mdb-card-text>
-                <label *ngIf="activeMode == 6">Active</label>
                 <mat-label>Mode 6</mat-label>
-                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode6">
+                <label *ngIf="activeMode == 6" style="font-weight: bold; color: limegreen;">(Active)</label>
+                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode6.mode">
                     <mat-option>None</mat-option>
                     <mat-option *ngFor="let x of modesList" [value]="x">{{x}}</mat-option>
                 </mat-select>
+                <mat-checkbox [value]="flightMode6.simple">Simple Mode</mat-checkbox>
+                <!-- <mat-checkbox [(ngModel)]="flightMode6.superSimple">Super Simple Mode</mat-checkbox> -->
+                <mat-checkbox [value]="flightMode6.superSimple">Super Simple Mode</mat-checkbox>
               </mdb-card-text>
 
               <mdb-card-text>
