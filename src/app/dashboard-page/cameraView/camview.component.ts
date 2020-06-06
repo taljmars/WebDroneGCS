@@ -29,6 +29,7 @@ export class CamView implements DroneEventListener {
   public height: String = "0";
   public fixType: String = "0";
   public dist: String = "0";
+  public thrust: String = "0";
 
   public infoHide: Boolean = false;
 
