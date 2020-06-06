@@ -1,1 +1,146 @@
-calibration
+<div mdbModal class="overlay" style="overflow-y: scroll; height: 100%;">
+    <!-- <div class="container"> -->
+    <!-- <div > -->
+      <div class="dash-row">
+  
+        <div class="panel-sm">
+          <mdb-card class="dashcard">
+            <mdb-card-body>
+              <mdb-card-title>
+                <h4>Calibrate Gyro</h4>
+              </mdb-card-title>
+              <mdb-card-text>aaa</mdb-card-text>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+  
+        <div class="panel-md">
+          <mdb-card class="dashcard">
+            <mdb-card-body>
+                <mdb-card-title>
+                    <h4>Flight Mode</h4>
+                </mdb-card-title>
+                <mdb-card-text>* Channels 1-4 are occupied for flight control</mdb-card-text>
+                <mdb-card-text>** Channel 5 control the flights mode</mdb-card-text>
+              <mdb-card-text>
+                <label *ngIf="activeMode == 1">Active</label>
+                <mat-label>Mode 1</mat-label>
+                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode1">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let x of modesList" [value]="x">{{x}}</mat-option>
+                </mat-select>
+              </mdb-card-text>
+              <mdb-card-text>
+                <label *ngIf="activeMode == 2">Active</label>
+                <mat-label>Mode 2</mat-label>
+                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode2">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let x of modesList" [value]="x">{{x}}</mat-option>
+                </mat-select>
+              </mdb-card-text>
+              <mdb-card-text>
+                <label *ngIf="activeMode == 3">Active</label>
+                <mat-label>Mode 3</mat-label>
+                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode3">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let x of modesList" [value]="x">{{x}}</mat-option>
+                </mat-select>
+              </mdb-card-text>
+              <mdb-card-text>
+                <label *ngIf="activeMode == 4">Active</label>
+                <mat-label>Mode 4</mat-label>
+                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode4">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let x of modesList" [value]="x">{{x}}</mat-option>
+                </mat-select>
+              </mdb-card-text>
+              <mdb-card-text>
+                <label *ngIf="activeMode == 5">Active</label>
+                <mat-label>Mode 5</mat-label>
+                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode5">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let x of modesList" [value]="x">{{x}}</mat-option>
+                </mat-select>
+              </mdb-card-text>
+              <mdb-card-text>
+                <label *ngIf="activeMode == 6">Active</label>
+                <mat-label>Mode 6</mat-label>
+                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="flightMode6">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let x of modesList" [value]="x">{{x}}</mat-option>
+                </mat-select>
+              </mdb-card-text>
+
+              <mdb-card-text>
+                <mat-label>Channel 7</mat-label>
+                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="channel7">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let x of commandList" [value]="x">{{x}}</mat-option>
+                </mat-select>
+              </mdb-card-text>
+
+              <mdb-card-text>
+                <mat-label>Channel 8</mat-label>
+                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="channel8">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let x of commandList" [value]="x">{{x}}</mat-option>
+                </mat-select>
+              </mdb-card-text>
+            </mdb-card-body>        
+          </mdb-card>
+        </div>
+      
+        <div class="panel-md">
+          <mdb-card class="dashcard">
+            <mdb-card-body>
+                <mdb-card-title>
+                    <h4>Channels</h4>
+                </mdb-card-title>
+                <mdb-card-text>s</mdb-card-text>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+  
+        <div class="panel-sm">
+          <mdb-card class="dashcard">
+            <mdb-card-body>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+  
+        <div class="panel-sm">
+          <mdb-card class="dashcard">
+            <mdb-card-body>
+                <mdb-card-title>
+                    <h4>123</h4>
+                </mdb-card-title>
+                <mdb-card-text>s</mdb-card-text>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+  
+        <div class="panel-sm">
+          <mdb-card class="dashcard">
+            <mdb-card-body>
+                <mdb-card-title>
+                    <h4>456</h4>
+                </mdb-card-title>
+                <mdb-card-text>s</mdb-card-text>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+        
+        <div class="panel-sm">
+          <mdb-card class="dashcard">
+            <mdb-card-body>
+                <mdb-card-title>
+                    <h4>789</h4>
+                </mdb-card-title>
+                <mdb-card-text>s</mdb-card-text>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+  
+      </div>
+  
+  </div>

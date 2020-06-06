@@ -1,6 +1,8 @@
 import {Component, NgModule, VERSION} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
-import { GcsConfig, GcsConfigMobile, GcsConfigDesktop } from './gcs.config.component';
+import { GcsConfigMobile } from './gcs.config.component.mobile'
+import { GcsConfigDesktop } from './gcs.config.component.desktop'
+
 
 import { MatButtonModule } from '@angular/material/button';
 

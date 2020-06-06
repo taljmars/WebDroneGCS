@@ -126,7 +126,23 @@ export class DroneService implements ProxyListener {
     }
 
     getStreamRate(okCallback: Function, errCallback: Function) {
-      this.configService.post("getStreamRates", {}, {}, okCallback, errCallback);
+      this.configService.get("getStreamRates", {}, {}, okCallback, errCallback);
+    }
+
+    getModesOptions(okCallback: Function, errCallback: Function) {
+      this.configService.get("getModesOptions", {}, {}, okCallback, errCallback);
+    }
+
+    getTuneOptions(okCallback: Function, errCallback: Function) {
+      this.configService.get("getTuneOptions", {}, {}, okCallback, errCallback);
+    }
+
+    getCommandsOptions(okCallback: Function, errCallback: Function) {
+      this.configService.get("getCommandsOptions", {}, {}, okCallback, errCallback);
+    }
+
+    getModes(okCallback: Function, errCallback: Function) {
+      this.configService.get("getModes", {}, {}, okCallback, errCallback);
     }
 
 }

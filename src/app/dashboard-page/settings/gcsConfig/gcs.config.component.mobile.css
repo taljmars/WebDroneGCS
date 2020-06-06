@@ -1,0 +1,23 @@
+.overlay {
+    padding-top: 20px;
+    background: var(--general-background);
+}
+
+body {
+    background-color: #222222;
+    overflow: auto;
+    color: #ffffff;
+    overflow-y: auto;
+}
+
+.panel-sm {
+    padding-bottom: 20px
+}
+
+.panel-md {
+    padding-bottom: 20px
+}
+
+.dashcard {
+    width: 100%
+}

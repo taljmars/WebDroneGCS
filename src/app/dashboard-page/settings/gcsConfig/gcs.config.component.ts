@@ -6,7 +6,7 @@ import { UserService } from 'src/app/services/users/user.service';
 import { DroneService } from 'src/app/services/drone/drone.service';
 
 
-export class GcsConfig {
+export abstract class GcsConfig {
 
   // @ViewChild("proxyAddress", {static: false})
   @Input() public proxyAddress: any = '';
@@ -70,87 +70,4 @@ export class GcsConfig {
     )
     console.error("Update Stream Rates")
   }
-}
-
-
-@Component({
-  selector: 'gcs-config-mobile',
-  templateUrl: './gcs.config.component.html',
-  styleUrls: ['./gcs.config.mobile.css']
-})
-export class GcsConfigMobile extends GcsConfig {
-
-  constructor(public droneService: DroneService, public proxyService: ProxyService, public configService: ConfigService, public alertService: AlertsService, public userService: UserService){
-    super(droneService,proxyService,configService, alertService, userService)
-  }
-
-  ngAfterViewInit() {
-    var elements, name, arr;
-    elements = document.getElementsByClassName("panel-sm");
-    console.log(elements)
-    name = "col";
-    for (let element of elements) {
-      arr = element.className.split(" ");
-      if (arr.indexOf(name) == -1) {
-        element.className += " " + name;
-      }
-    }
-
-    elements = document.getElementsByClassName("panel-md");
-    console.log(elements)
-    name = "col";
-    for (let element of elements) {
-      arr = element.className.split(" ");
-      if (arr.indexOf(name) == -1) {
-        element.className += " " + name;
-      }
-    }
-  }
-
-}
-
-@Component({
-  selector: 'gcs-config-desktop',
-  templateUrl: './gcs.config.component.html',
-  styleUrls: ['./gcs.config.desktop.css']
-})
-export class GcsConfigDesktop extends GcsConfig {
-
-  constructor(public droneService: DroneService, public proxyService: ProxyService, public configService: ConfigService, public alertService: AlertsService, public userService: UserService){
-    super(droneService,proxyService,configService, alertService, userService)
-  }
-
-  ngAfterViewInit() {
-    var elements, name, arr;
-    elements = document.getElementsByClassName("panel-sm");
-    console.log(elements)
-    name = "col-6 col-lg-4";
-    for (let element of elements) {
-      arr = element.className.split(" ");
-      if (arr.indexOf(name) == -1) {
-        element.className += " " + name;
-      }
-    }
-
-    elements = document.getElementsByClassName("panel-md");
-    console.log(elements)
-    name = "col-12 col-lg-8";
-    for (let element of elements) {
-      arr = element.className.split(" ");
-      if (arr.indexOf(name) == -1) {
-        element.className += " " + name;
-      }
-    }
-
-    elements = document.getElementsByClassName("dash-row");
-    console.log(elements)
-    name = "row";
-    for (let element of elements) {
-      arr = element.className.split(" ");
-      if (arr.indexOf(name) == -1) {
-        element.className += " " + name;
-      }
-    }
-  }
-  
 }

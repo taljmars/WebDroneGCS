@@ -1,5 +1,6 @@
 package com.droneconnector.controller;
 
+import com.droneconnector.model.Modes;
 import com.droneconnector.model.PortConfig;
 import com.droneconnector.model.StreamRates;
 import com.dronegcs.mavlink.core.gcs.GCSHeartbeat;
@@ -8,6 +9,9 @@ import com.dronegcs.mavlink.is.connection.MavLinkConnection;
 import com.dronegcs.mavlink.is.connection.MavLinkConnectionStatisticsListener;
 import com.dronegcs.mavlink.is.drone.Drone;
 import com.dronegcs.mavlink.is.drone.Preferences;
+import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmCommands;
+import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmModes;
+import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmTuning;
 import com.generic_tools.devices.SerialConnection;
 import com.google.gson.Gson;
 import org.json.JSONArray;
@@ -21,6 +25,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Map;
+import java.util.Vector;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -230,6 +235,49 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
     System.out.println("getStreamRates");
     String str = new Gson().toJson(new StreamRates(drone.getPreferences().getRates()), StreamRates.class);
     JSONObject object = new JSONObject(str);
+    return object.toMap();
+  }
+
+  @GetMapping("/getModesOptions")
+  public Map getModesOptions() {
+    System.out.println("getModesOptions");
+    JSONObject object = getResponseTemplate();
+    // Generate flight mode combo-boxs and keys
+    object.put("modes",ApmModes.getModeList(drone.getType().getDroneType()));
+    return object.toMap();
+  }
+
+  @GetMapping("/getCommandsOptions")
+  public Map getCommandsOptions() {
+    System.out.println("getCommandsOptions");
+    JSONObject object = getResponseTemplate();
+    // Generate command combo-boxs and keys
+    object.put("commands",ApmCommands.getCommandsList());
+    return object.toMap();
+  }
+
+  @GetMapping("/getTuneOptions")
+  public Map getTuneOptions() {
+    System.out.println("getTuneOptions");
+    JSONObject object = getResponseTemplate();
+    // Generate tunning combo-boxs and keys
+    object.put("tunes",ApmTuning.getTuningList());
+    return object.toMap();
+  }
+
+  @GetMapping("/getModes")
+  public Map getModes() {
+    System.out.println("getModes");
+    String str = new Gson().toJson(new Modes(drone), Modes.class);
+    JSONObject object = new JSONObject(str);
+    return object.toMap();
+  }
+
+  @PostMapping("setModes")
+  public Map setMode(@RequestBody Modes modes) {
+    System.out.println("setModes");
+    System.out.println(modes);
+    JSONObject object = getResponseTemplate();
     return object.toMap();
   }
 

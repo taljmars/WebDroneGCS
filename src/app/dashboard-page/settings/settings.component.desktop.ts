@@ -14,7 +14,9 @@ import { ApplicationStateService } from 'src/app/application-state.service';
 export class SettingsDesktop implements DroneEventListener {
 
   // private active: String = "DroneParams"
-  private active: String = "GCSConfig"
+  // private active: String = "GCSConfig"
+  private active: String = "Calibration"
+
 
 
   constructor(private droneService: DroneService, public applicationStateService: ApplicationStateService){

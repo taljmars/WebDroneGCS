@@ -24,9 +24,10 @@ import { DashMobile } from './dashboard-page/dashboard-page.mobile';
 import { Help } from './dashboard-page/help/help.component';
 import { DroneParams } from './dashboard-page/settings/droneParams/droneparams.component';
 import { UserConfig } from './dashboard-page/settings/userConfig/user.config.component';
-import { Calibration } from './dashboard-page/settings/calibration/calibration.component';
+import { CalibrationMobile } from './dashboard-page/settings/calibration/calibration.component.mobile';
+import { CalibrationDesktop } from './dashboard-page/settings/calibration/calibration.component.desktop';
 import { SettingsMobile } from './dashboard-page/settings/settings.component.mobile';
-import { GcsConfigMobile } from './dashboard-page/settings/gcsConfig/gcs.config.component';
+import { GcsConfigMobile } from './dashboard-page/settings/gcsConfig/gcs.config.component.mobile';
 
 @Injectable()
 export class CanActivateRouteGuard implements CanActivate {
@@ -130,7 +131,7 @@ const appMobileRoutes: Routes = [
       },
       {
         path: 'calibration',
-        component: Calibration,
+        component: CalibrationMobile,
         canActivate: [CanActivateRouteGuard]
       }
     ]
