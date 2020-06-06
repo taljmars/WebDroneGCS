@@ -17,4 +17,27 @@ export class CalibrationMobile extends Calibration {
     super(proxyService, droneService)
   }
 
+  ngAfterViewInit() {
+    var elements, name, arr;
+    elements = document.getElementsByClassName("panel-sm");
+    console.log(elements)
+    name = "col";
+    for (let element of elements) {
+      arr = element.className.split(" ");
+      if (arr.indexOf(name) == -1) {
+        element.className += " " + name;
+      }
+    }
+
+    elements = document.getElementsByClassName("panel-md");
+    console.log(elements)
+    name = "col";
+    for (let element of elements) {
+      arr = element.className.split(" ");
+      if (arr.indexOf(name) == -1) {
+        element.className += " " + name;
+      }
+    }
+  }
+
 }

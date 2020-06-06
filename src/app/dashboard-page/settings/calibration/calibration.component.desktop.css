@@ -10,17 +10,20 @@ body {
 }
 
 .panel-sm {
-    padding: 20px
+    padding: 20px;
 }
 
 .panel-md {
-    padding: 20px
+    /* justify-content: center; */
+    padding: 20px;
 }
 
 .dashcard {
-    height: 100%
+    /* left: 50%; */
+    height: 100%;
 }
 
 .dash-row {
+    /* justify-content: center; */
     padding-bottom: 200px;
 }

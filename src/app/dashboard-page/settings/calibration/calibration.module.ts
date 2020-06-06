@@ -19,6 +19,7 @@ import { MDBBootstrapModule, ModalModule, TooltipModule, PopoverModule, IconsMod
     MatSelectModule,
     MatCardModule,
     MatCheckboxModule,
+    MatButtonModule,
     ModalModule, TooltipModule, PopoverModule, IconsModule,
 
     CardsModule, WavesModule, ButtonsModule, ChartsModule,

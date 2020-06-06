@@ -6,6 +6,7 @@ import com.dronegcs.mavlink.is.connection.MavLinkConnectionStatisticsListener;
 import com.dronegcs.mavlink.is.drone.Drone;
 import com.dronegcs.mavlink.is.drone.DroneInterfaces;
 import com.dronegcs.mavlink.is.drone.parameters.Parameter;
+import com.dronegcs.mavlink.is.drone.variables.Calibration;
 import com.dronegcs.mavlink.is.protocol.msgbuilder.WaypointManager;
 import com.generic_tools.devices.SerialConnection;
 import com.geo_tools.Coordinate;
@@ -26,6 +27,9 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
 
     @Autowired
     private Drone drone;
+
+    @Autowired
+    private Calibration calibration;
 
     @Autowired
     private SerialConnection serialConnection;
@@ -122,8 +126,15 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
             case PARAMETER:
                 break;
             case CALIBRATION_IMU:
-                payload.put("iscalibrate", drone.getCalibrationSetup().isCalibrating());
-                payload.put("message", drone.getCalibrationSetup().getMessage());
+//            String message = calibration.getMessage();
+//            if (!calibration.isCalibrating())
+//              this.drone.removeDroneListener(this);
+//
+//            Platform.runLater(() -> lblGyroStatus.setText(message));
+//            step++;
+//            break;
+                payload.put("iscalibrate", calibration.isCalibrating());
+                payload.put("message", calibration.getMessage());
                 break;
             case CALIBRATION_TIMEOUT:
                 break;

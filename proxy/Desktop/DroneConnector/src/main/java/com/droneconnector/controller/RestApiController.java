@@ -9,6 +9,8 @@ import com.dronegcs.mavlink.is.connection.MavLinkConnection;
 import com.dronegcs.mavlink.is.connection.MavLinkConnectionStatisticsListener;
 import com.dronegcs.mavlink.is.drone.Drone;
 import com.dronegcs.mavlink.is.drone.Preferences;
+import com.dronegcs.mavlink.is.drone.parameters.Parameter;
+import com.dronegcs.mavlink.is.drone.variables.Calibration;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmCommands;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmModes;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmTuning;
@@ -36,6 +38,9 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
 
   @Autowired
   private Drone drone;
+
+  @Autowired
+  private Calibration calibration;
 
   @Autowired
   private GCSHeartbeat gcsHeartbeat;
@@ -278,6 +283,38 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
     System.out.println("setModes");
     System.out.println(modes);
     JSONObject object = getResponseTemplate();
+    return object.toMap();
+  }
+
+  @PostMapping("startEscCalibrate")
+  public Map startEscCalibrate() {
+    System.out.println("startEscCalibrate");
+    Parameter parameter = drone.getParameters().getParameter("ESC_CALIBRATION");
+    parameter.setValue(3);
+    drone.getParameters().sendParameter(parameter);
+    JSONObject object = getResponseTemplate();
+    return object.toMap();
+  }
+
+  @PostMapping("startLevelCalibrate")
+  public Map startLevelCalibrate() {
+    System.out.println("startLevelCalibrate");
+    calibration.startLevelCalibration();
+    JSONObject object = getResponseTemplate();
+    return object.toMap();
+  }
+
+  @PostMapping("startGyroCalibrate")
+  public Map startGyroCalibrate() {
+    System.out.println("startGyroCalibrate");
+    JSONObject object = getResponseTemplate();
+    if (calibration.isCalibrating()) {
+      object.put(RESULT, false);
+      object.put("messege", "Calibration Already Started");
+    }
+    else {
+      calibration.startAccelerometerCalibration();
+    }
     return object.toMap();
   }
 

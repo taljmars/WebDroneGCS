@@ -6,10 +6,19 @@
         <div class="panel-sm">
           <mdb-card class="dashcard">
             <mdb-card-body>
-              <mdb-card-title>
-                <h4>Calibrate Gyro</h4>
-              </mdb-card-title>
-              <mdb-card-text>aaa</mdb-card-text>
+                <mdb-card-title>
+                    <h4>ESC (Motors)</h4>
+                </mdb-card-title>
+                <mdb-card-text>1. Disconnect the battery and USB cable so the autopilot powers down</mdb-card-text>
+                <mdb-card-text>2. Connect the battery</mdb-card-text>
+                <mdb-card-text>3. The arming tone will be played (if the vehicle has a buzzer attached)</mdb-card-text>
+                <mdb-card-text>4. If using a autopilot with a safety button (like the Pixhawk) press it until it displays solid red</mdb-card-text>
+                <mdb-card-text>5. You will hear a musical tone then two beeps</mdb-card-text>
+                <mdb-card-text>6. A few seconds later you should hear a number of beeps (one for each battery cell you’re using) and finally a single long beep indicating the end points have been set and the ESC is calibrated</mdb-card-text>
+                <mdb-card-text>7. Disconnect the battery and power up again normally and test as described below</mdb-card-text>
+                <mdb-card-text>
+                    <button mat-stroked-button color="primary" (click)="droneService.startEscCalibrate()">Start</button>
+                </mdb-card-text>
             </mdb-card-body>
           </mdb-card>
         </div>
@@ -117,7 +126,18 @@
         <div class="panel-sm">
           <mdb-card class="dashcard">
             <mdb-card-body>
-            </mdb-card-body>
+                <mdb-card-title>
+                  <h4>Accelerometer</h4>
+                </mdb-card-title>
+                <mdb-card-text>
+                      <button mat-stroked-button color="primary" (click)="startLevelCalibrate()">Calibrate Level</button>
+                      {{calibrationLevelMessege}}
+                  </mdb-card-text>
+                  <mdb-card-text>
+                      <button mat-stroked-button color="primary" (click)="startGyroCalibrate()">Calibrate Gyro</button>
+                      {{calibrationGyroMessege}}
+                  </mdb-card-text>
+              </mdb-card-body>
           </mdb-card>
         </div>
   

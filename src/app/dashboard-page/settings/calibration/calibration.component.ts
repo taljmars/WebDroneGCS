@@ -28,15 +28,19 @@ export abstract class Calibration implements DroneEventListener  {
   private static cbFltMode6Max = 2200;
 
   public activeMode = -1;
-  public flightMode1: any;
-  public flightMode2: any;
-  public flightMode3: any;
-  public flightMode4: any;
-  public flightMode5: any;
-  public flightMode6: any;
+  public flightMode1 = {mode: null, simple:null, superSimple:null};
+  public flightMode2 = {mode: null, simple:null, superSimple:null};
+  public flightMode3 = {mode: null, simple:null, superSimple:null};
+  public flightMode4 = {mode: null, simple:null, superSimple:null};
+  public flightMode5 = {mode: null, simple:null, superSimple:null};
+  public flightMode6 = {mode: null, simple:null, superSimple:null};
 
   public channel7: any
   public channel8: any
+
+  public calibrationGyroMessege: String = ""
+  public calibrationLevelMessege: String = ""
+
 
   constructor(public proxyService: ProxyService,
     public droneService: DroneService){
@@ -126,6 +130,23 @@ export abstract class Calibration implements DroneEventListener  {
         return true;
 
     return false;
+  }
+
+  startGyroCalibrate() {
+    this.droneService.startGyroCalibrate(
+      data=> {
+        if (!data.result)
+          this.calibrationGyroMessege = data.messege
+      },
+      () => {
+        this.calibrationLevelMessege = "Failed to start calibration procedure"
+      }
+    )
+  }
+
+  startLevelCalibrate() {
+    this.droneService.startLevelCalibrate()
+    this.calibrationLevelMessege = "Done"
   }
 
 }
