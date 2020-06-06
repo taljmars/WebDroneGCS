@@ -6,5 +6,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 :root {
-    --general-background: linear-gradient(45deg, rgba(21, 137, 245, 0.897), rgba(99, 154, 170, 0.884) 100%);
+    --general-background: linear-gradient(45deg, indigo, rgba(99, 154, 170, 0.884) 100%);
 }

@@ -282,6 +282,7 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
   public Map setMode(@RequestBody Modes modes) {
     System.out.println("setModes");
     System.out.println(modes);
+    modes.toDrone(drone);
     JSONObject object = getResponseTemplate();
     return object.toMap();
   }

@@ -7,6 +7,9 @@ import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmCommands;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmModes;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmTuning;
 
+import javax.activation.CommandMap;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.dronegcs.mavlink.is.protocol.msg_metadata.ApmModes.getMode;
@@ -19,10 +22,46 @@ public class Modes {
     boolean simple;
     boolean superSimple;
 
+    public Mode() {
+    }
+
     public Mode(ApmModes mode, boolean simple, boolean superSimple) {
       this.mode = mode;
       this.simple = simple;
       this.superSimple = superSimple;
+    }
+
+    public ApmModes getMode() {
+      return mode;
+    }
+
+    public void setMode(ApmModes mode) {
+      this.mode = mode;
+    }
+
+    public boolean isSimple() {
+      return simple;
+    }
+
+    public void setSimple(boolean simple) {
+      this.simple = simple;
+    }
+
+    public boolean isSuperSimple() {
+      return superSimple;
+    }
+
+    public void setSuperSimple(boolean superSimple) {
+      this.superSimple = superSimple;
+    }
+
+    @Override
+    public String toString() {
+      return "Mode{" +
+        "mode=" + mode +
+        ", simple=" + simple +
+        ", superSimple=" + superSimple +
+        '}';
     }
   }
 
@@ -31,10 +70,72 @@ public class Modes {
     double min;
     double max;
 
+    public Tune() {
+    }
+
     public Tune(ApmTuning tune, double min, double max) {
       this.tune = tune;
       this.min = min;
       this.max = max;
+    }
+
+    public ApmTuning getTune() {
+      return tune;
+    }
+
+    public void setTune(ApmTuning tune) {
+      this.tune = tune;
+    }
+
+    public double getMin() {
+      return min;
+    }
+
+    public void setMin(double min) {
+      this.min = min;
+    }
+
+    public double getMax() {
+      return max;
+    }
+
+    public void setMax(double max) {
+      this.max = max;
+    }
+
+    @Override
+    public String toString() {
+      return "Tune{" +
+        "tune=" + tune +
+        ", min=" + min +
+        ", max=" + max +
+        '}';
+    }
+  }
+
+  class Command {
+    ApmCommands cmd;
+
+    public Command() {
+    }
+
+    public Command(ApmCommands cmd) {
+      this.cmd = cmd;
+    }
+
+    public ApmCommands getCmd() {
+      return cmd;
+    }
+
+    public void setCmd(ApmCommands cmd) {
+      this.cmd = cmd;
+    }
+
+    @Override
+    public String toString() {
+      return "Command{" +
+        "cmd=" + cmd +
+        '}';
     }
   }
 
@@ -55,8 +156,8 @@ public class Modes {
 
   private Tune ch6;
 
-  private ApmCommands ch7;
-  private ApmCommands ch8;
+  private Command ch7;
+  private Command ch8;
 
   public Modes() {
   }
@@ -97,11 +198,55 @@ public class Modes {
     this.ch6 = new Tune(ApmTuning.getTune(p.getValue().intValue()), tuneLow.getValue().doubleValue(), tuneHigh.getValue().doubleValue());
 
     p = drone.getParameters().getParameter(String.format(CH_FORMAT, 7));
-    this.ch7 = ApmCommands.getCommand(p.getValue().intValue());
+    this.ch7 = new Command(ApmCommands.getCommand(p.getValue().intValue()));
 
     p = drone.getParameters().getParameter(String.format(CH_FORMAT, 8));
-    this.ch8 = ApmCommands.getCommand(p.getValue().intValue());
+    this.ch8 = new Command(ApmCommands.getCommand(p.getValue().intValue()));
   }
+
+  public void toDrone(Drone drone) {
+    Parameter p = null;
+    int simple = 0;
+    int superSimple = 0;
+
+    List<Mode> modes = Arrays.asList(fltMode1, fltMode2, fltMode3, fltMode4, fltMode5, fltMode6);
+
+    for (int i = 1 ; i <= modes.size() ; i++) {
+      p = drone.getParameters().getParameter(String.format(FLTMODE_FORMAT, i));
+      p.setValue(modes.get(i-1).mode.getNumber());
+      drone.getParameters().sendParameter(p);
+      simple = simple & ((modes.get(i-1).simple ? 0x1 : 0x0) << (i - 1));
+      superSimple = superSimple & ((modes.get(i-1).superSimple ? 0x1 : 0x0) << (i - 1));
+    }
+
+    Parameter s = drone.getParameters().getParameter(SIMPLE_MODE);
+    s.setValue(simple);
+    drone.getParameters().sendParameter(s);
+
+    Parameter ss = drone.getParameters().getParameter(SUPER_SIMPLE_MODE);
+    ss.setValue(superSimple);
+    drone.getParameters().sendParameter(ss);
+
+    Parameter tuneLow = drone.getParameters().getParameter(TUNE_LOW);
+    tuneLow.setValue(this.ch6.min);
+    drone.getParameters().sendParameter(tuneLow);
+
+    Parameter tuneHigh = drone.getParameters().getParameter(TUNE_HIGH);
+    tuneHigh.setValue(this.ch6.max);
+    drone.getParameters().sendParameter(tuneHigh);
+
+    p = drone.getParameters().getParameter(TUNE);
+    p.setValue(this.ch6.tune.getNumber());
+    drone.getParameters().sendParameter(p);
+
+    p = drone.getParameters().getParameter(String.format(CH_FORMAT, 7));
+    p.setValue(this.ch7.cmd.getNumber());
+    drone.getParameters().sendParameter(p);
+
+    p = drone.getParameters().getParameter(String.format(CH_FORMAT, 8));
+    p.setValue(this.ch8.cmd.getNumber());
+    drone.getParameters().sendParameter(p);
+}
 
   public Mode getFltMode1() {
     return fltMode1;
@@ -151,19 +296,19 @@ public class Modes {
     this.fltMode6 = fltMode6;
   }
 
-  public ApmCommands getCh7() {
+  public Command getCh7() {
     return ch7;
   }
 
-  public void setCh7(ApmCommands ch7) {
+  public void setCh7(Command ch7) {
     this.ch7 = ch7;
   }
 
-  public ApmCommands getCh8() {
+  public Command getCh8() {
     return ch8;
   }
 
-  public void setCh8(ApmCommands ch8) {
+  public void setCh8(Command ch8) {
     this.ch8 = ch8;
   }
 

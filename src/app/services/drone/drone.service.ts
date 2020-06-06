@@ -145,6 +145,10 @@ export class DroneService implements ProxyListener {
       this.configService.get("getModes", {}, {}, okCallback, errCallback);
     }
 
+    setModes(data: any, okCallback?: Function, errCallback?: Function) {
+      this.configService.post("setModes", {}, data, okCallback, errCallback);
+    }
+
     startEscCalibrate(okCallback?: Function, errCallback?: Function) {
       this.configService.post("startEscCalibrate", {}, {}, okCallback, errCallback);
     }

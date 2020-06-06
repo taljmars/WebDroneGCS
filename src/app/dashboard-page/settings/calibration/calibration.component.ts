@@ -2,6 +2,7 @@ import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
 import { ProxyService } from 'src/app/services/config/proxy.service';
 import { DroneService, DroneEventListener } from 'src/app/services/drone/drone.service';
 import { DroneEvent, DroneEvents } from 'src/app/services/drone/protocol/events.component';
+import { AlertsService } from 'src/app/services/alerts.service';
 
 
 export abstract class Calibration implements DroneEventListener  {
@@ -35,18 +36,20 @@ export abstract class Calibration implements DroneEventListener  {
   public flightMode5 = {mode: null, simple:null, superSimple:null};
   public flightMode6 = {mode: null, simple:null, superSimple:null};
 
-  public channel6 = {tune: null, min: null, max: null}
+  public channel6 = {tune: null, min: null, max: null};
 
-  public channel7: any
-  public channel8: any
+  public channel7 = {cmd: null};
+  public channel8 = {cmd: null};
 
   public calibrationGyroMessege: String = ""
   public calibrationLevelMessege: String = ""
 
   public ch: Array<String> = []
 
-  constructor(public proxyService: ProxyService,
-    public droneService: DroneService){
+  constructor(
+    public proxyService: ProxyService,
+    public droneService: DroneService,
+    public alertsService: AlertsService){
 
       droneService.addEventListener(this)
       for (let i = 0 ; i < 8 ; i++) {
@@ -169,7 +172,30 @@ export abstract class Calibration implements DroneEventListener  {
         this.calibrationLevelMessege = "Failed to start calibration procedure"
       }
     )
-    
+  }
+
+  updateSelection(flightMode: any, field: string, newmode: String) {
+    console.log("Select " + flightMode + " " + field + " " + newmode)
+    flightMode[field] = newmode
+    this.sendModes()
+  }
+
+  sendModes() {
+    this.droneService.setModes(
+      {
+        "fltMode1": this.flightMode1,
+        "fltMode2": this.flightMode2,
+        "fltMode3": this.flightMode3,
+        "fltMode4": this.flightMode4,
+        "fltMode5": this.flightMode5,
+        "fltMode6": this.flightMode6,
+        "ch6": this.channel6,
+        "ch7": this.channel7,
+        "ch8": this.channel8
+      },
+      data => console.log("Successfully update modes"),
+      () => this.alertsService.promptError("Failed to update modes")
+    )
   }
 
 }
