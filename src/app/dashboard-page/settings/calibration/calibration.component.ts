@@ -35,17 +35,23 @@ export abstract class Calibration implements DroneEventListener  {
   public flightMode5 = {mode: null, simple:null, superSimple:null};
   public flightMode6 = {mode: null, simple:null, superSimple:null};
 
+  public channel6 = {tune: null, min: null, max: null}
+
   public channel7: any
   public channel8: any
 
   public calibrationGyroMessege: String = ""
   public calibrationLevelMessege: String = ""
 
+  public ch: Array<String> = []
 
   constructor(public proxyService: ProxyService,
     public droneService: DroneService){
 
       droneService.addEventListener(this)
+      for (let i = 0 ; i < 8 ; i++) {
+          this.ch.push("1500")
+      }
       droneService.getModesOptions(
         data => {
           // console.log(data)
@@ -83,6 +89,8 @@ export abstract class Calibration implements DroneEventListener  {
           this.flightMode5 = data.fltMode5;
           this.flightMode6 = data.fltMode6;
 
+          this.channel6 = data.ch6;
+
           this.channel7 = data.ch7;
           this.channel8 = data.ch8;
 
@@ -101,6 +109,11 @@ export abstract class Calibration implements DroneEventListener  {
     switch (event.id) {
       case DroneEvents.RC_IN:
         this.activeMode = Calibration.getCurrentActiveLabel(event.data['4']);
+        this.ch = event.data
+        break;
+      case DroneEvents.CALIBRATION_IMU:
+        this.calibrationGyroMessege = event.data.message
+        break;
     }
   }
   
@@ -139,14 +152,24 @@ export abstract class Calibration implements DroneEventListener  {
           this.calibrationGyroMessege = data.messege
       },
       () => {
-        this.calibrationLevelMessege = "Failed to start calibration procedure"
+        this.calibrationGyroMessege = "Failed to start calibration procedure"
       }
     )
   }
 
   startLevelCalibrate() {
-    this.droneService.startLevelCalibrate()
-    this.calibrationLevelMessege = "Done"
+    this.droneService.startLevelCalibrate(
+      data=> {
+        if (!data.result)
+          this.calibrationLevelMessege = data.messege
+        else
+          this.calibrationLevelMessege = "Done"
+      },
+      () => {
+        this.calibrationLevelMessege = "Failed to start calibration procedure"
+      }
+    )
+    
   }
 
 }

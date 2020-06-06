@@ -5,6 +5,7 @@ import com.dronegcs.mavlink.is.drone.Preferences;
 import com.dronegcs.mavlink.is.drone.parameters.Parameter;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmCommands;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmModes;
+import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmTuning;
 
 import java.util.List;
 
@@ -25,10 +26,25 @@ public class Modes {
     }
   }
 
+  class Tune {
+    ApmTuning tune;
+    double min;
+    double max;
+
+    public Tune(ApmTuning tune, double min, double max) {
+      this.tune = tune;
+      this.min = min;
+      this.max = max;
+    }
+  }
+
   private static final String FLTMODE_FORMAT = "FLTMODE%d"; // Example: FLTMODE1
   private static final String CH_FORMAT = "CH%d_OPT"; // Example: CHA7_OPT
   private static final String SIMPLE_MODE = "SIMPLE";
   private static final String SUPER_SIMPLE_MODE = "SUPER_SIMPLE";
+  private static final String TUNE = "TUNE";
+  private static final String TUNE_HIGH = "TUNE_HIGH";
+  private static final String TUNE_LOW = "TUNE_LOW";
 
   private Mode fltMode1;
   private Mode fltMode2;
@@ -37,6 +53,8 @@ public class Modes {
   private Mode fltMode5;
   private Mode fltMode6;
 
+  private Tune ch6;
+
   private ApmCommands ch7;
   private ApmCommands ch8;
 
@@ -44,6 +62,8 @@ public class Modes {
   }
 
   public Modes(Drone drone) {
+    Parameter tuneLow = drone.getParameters().getParameter(TUNE_LOW);
+    Parameter tuneHigh = drone.getParameters().getParameter(TUNE_HIGH);
     Parameter s = drone.getParameters().getParameter(SIMPLE_MODE);
     Parameter ss = drone.getParameters().getParameter(SUPER_SIMPLE_MODE);
     Parameter p = null;
@@ -72,6 +92,9 @@ public class Modes {
     i++;
     p = drone.getParameters().getParameter(String.format(FLTMODE_FORMAT, i));
     this.fltMode6 = new Mode(getMode(p.getValue().intValue(), drone.getType().getDroneType()), isSimplesModes(s.getValue().byteValue(), i), isSimplesModes(ss.getValue().byteValue(), i));
+
+    p = drone.getParameters().getParameter(TUNE);
+    this.ch6 = new Tune(ApmTuning.getTune(p.getValue().intValue()), tuneLow.getValue().doubleValue(), tuneHigh.getValue().doubleValue());
 
     p = drone.getParameters().getParameter(String.format(CH_FORMAT, 7));
     this.ch7 = ApmCommands.getCommand(p.getValue().intValue());
@@ -150,6 +173,14 @@ public class Modes {
     return (flightModeId & placer) != 0;
   }
 
+  public Tune getCh6() {
+    return ch6;
+  }
+
+  public void setCh6(Tune ch6) {
+    this.ch6 = ch6;
+  }
+
   @Override
   public String toString() {
     return "Modes{" +
@@ -159,6 +190,7 @@ public class Modes {
       ", fltMode4=" + fltMode4 +
       ", fltMode5=" + fltMode5 +
       ", fltMode6=" + fltMode6 +
+      ", ch6=" + ch6 +
       ", ch7=" + ch7 +
       ", ch8=" + ch8 +
       '}';

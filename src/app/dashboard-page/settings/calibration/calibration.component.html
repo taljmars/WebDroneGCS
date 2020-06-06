@@ -89,8 +89,25 @@
                     <mat-option *ngFor="let x of modesList" [value]="x">{{x}}</mat-option>
                 </mat-select>
                 <mat-checkbox [value]="flightMode6.simple">Simple Mode</mat-checkbox>
-                <!-- <mat-checkbox [(ngModel)]="flightMode6.superSimple">Super Simple Mode</mat-checkbox> -->
                 <mat-checkbox [value]="flightMode6.superSimple">Super Simple Mode</mat-checkbox>
+              </mdb-card-text>
+
+              <mdb-card-text>
+                <mat-label>Channel 6</mat-label>
+                <mat-select [disabled]="!proxyService.isProxyConnected()" [value]="channel6.tune">
+                    <mat-option>None</mat-option>
+                    <mat-option *ngFor="let x of tuneList" [value]="x">{{x}}</mat-option>
+                </mat-select>
+
+                <mat-form-field>
+                    <mat-label>Min</mat-label>
+                    <input matInput type="number" [value]="channel6.min" step=".01">
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Max</mat-label>
+                    <input matInput type="number" [value]="channel6.max" step=".01">
+                </mat-form-field>
               </mdb-card-text>
 
               <mdb-card-text>
@@ -118,7 +135,38 @@
                 <mdb-card-title>
                     <h4>Channels</h4>
                 </mdb-card-title>
-                <mdb-card-text>s</mdb-card-text>
+                <mdb-card-text>
+                    Channel 1 - {{ch[0]}} PWM - Roll
+                    <input type="range" disabled class="custom-range" min="800" max="2200" [value]="ch[0]">
+                </mdb-card-text>
+                <mdb-card-text>
+                    Channel 2 - {{ch[1]}} PWM - Pitch
+                    <input type="range" disabled class="custom-range" min="800" max="2200" [value]="ch[1]">
+                </mdb-card-text>
+                <mdb-card-text>
+                    Channel 3 - {{ch[2]}} PWM - Throttle
+                    <input type="range" disabled class="custom-range" min="800" max="2200" [value]="ch[2]">
+                </mdb-card-text>
+                <mdb-card-text>
+                    Channel 4 - {{ch[3]}} PWM - Yaw
+                    <input type="range" disabled class="custom-range" min="800" max="2200" [value]="ch[3]">
+                </mdb-card-text>
+                <mdb-card-text>
+                    Channel 5 - {{ch[4]}} PWM
+                    <input type="range" disabled class="custom-range" min="800" max="2200" [value]="ch[4]">
+                </mdb-card-text>
+                <mdb-card-text>
+                    Channel 6 - {{ch[5]}} PWM
+                    <input type="range" disabled class="custom-range" min="800" max="2200" [value]="ch[5]">
+                </mdb-card-text>
+                <mdb-card-text>
+                    Channel 7 - {{ch[6]}} PWM
+                    <input type="range" disabled class="custom-range" min="800" max="2200" [value]="ch[6]">
+                </mdb-card-text>
+                <mdb-card-text>
+                    Channel 8 - {{ch[7]}} PWM
+                    <input type="range" disabled class="custom-range" min="800" max="2200" [value]="ch[7]">
+                </mdb-card-text>
             </mdb-card-body>
           </mdb-card>
         </div>
@@ -141,7 +189,7 @@
           </mdb-card>
         </div>
   
-        <div class="panel-sm">
+        <!-- <div class="panel-sm">
           <mdb-card class="dashcard">
             <mdb-card-body>
                 <mdb-card-title>
@@ -173,7 +221,7 @@
             </mdb-card-body>
           </mdb-card>
         </div>
-  
+   -->
       </div>
   
   </div>
