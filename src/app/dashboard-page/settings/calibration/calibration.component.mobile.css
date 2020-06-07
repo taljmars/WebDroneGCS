@@ -13,6 +13,7 @@
 
 .background-symbol {
     color: whitesmoke;
+    /* z-index: 9999; */
 }
 
 .overlay {
