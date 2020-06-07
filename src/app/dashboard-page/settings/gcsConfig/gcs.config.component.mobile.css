@@ -3,6 +3,10 @@
     background: var(--general-background);
 }
 
+.background-symbol {
+    color: whitesmoke;
+}
+
 body {
     background-color: #222222;
     overflow: auto;

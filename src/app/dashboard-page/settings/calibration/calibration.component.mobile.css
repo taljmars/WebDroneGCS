@@ -11,6 +11,10 @@
     overflow-y: auto;
 } */
 
+.background-symbol {
+    color: whitesmoke;
+}
+
 .overlay {
     padding-top: 20px;
     background: var(--general-background);
