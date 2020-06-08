@@ -5,19 +5,24 @@ import { DroneService, DroneEventListener } from '../services/drone/drone.servic
 import { DroneEvent, DroneEvents } from '../services/drone/protocol/events.component';
 import { AlertsService } from '../services/alerts.service';
 import { UserService } from '../services/users/user.service';
+import { ConfigService } from '../services/config/config.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AppConstants } from '../local.storage';
 
 export abstract class Dash implements DroneEventListener {
 
   public paramReceived: Number = 100;
-
+  
   constructor(
     public proxyService: ProxyService,
     protected dialog: MatDialog,
     public droneService: DroneService,
     public alertsService: AlertsService,
     public userService: UserService,
+    protected router: Router,
     ) 
-  {
+  {    
     droneService.addEventListener(this)
     this.alertsService.promptSuccess("Welcome " + userService.getUserName())
   }
@@ -65,6 +70,24 @@ export abstract class Dash implements DroneEventListener {
 
   refreshParams() {
     this.droneService.refreshParameters()
+  }
+
+  goToSettings() {
+    AppConstants.MyStorage.remove(AppConstants.General.ROUTE_FROM_LOGIN)
+    this.router.navigateByUrl('/settings');  
+  }
+
+  hide(frame) {
+    AppConstants.MyStorage.remove(AppConstants.General.ROUTE_FROM_LOGIN)
+    frame.hide()
+  }
+
+  isRouteFromLogin() {
+    if (AppConstants.MyStorage.get(AppConstants.General.ROUTE_FROM_LOGIN) != null) {
+      return true;
+    }
+
+    return false;
   }
 
 }

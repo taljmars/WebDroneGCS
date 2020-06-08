@@ -113,7 +113,7 @@
 </div>  
 
 
-<div mdbModal #frame="mdbModal" class="modal fade bottom modal-scrolling" id="frameModalTop" tabindex="-1" role="dialog"
+<div *ngIf="isRouteFromLogin()" mdbModal #frame="mdbModal" class="modal fade bottom modal-scrolling" id="frameModalTop" tabindex="-1" role="dialog"
   aria-labelledby="myModalLabel" aria-hidden="false" [config]="{backdrop: false, ignoreBackdropClick: true, show: !proxyService.isProxyUp()}"
   >
   <div class="modal-dialog modal-frame modal-bottom modal-notify modal-info" role="document">
@@ -130,9 +130,8 @@
             <mdb-icon fas icon="book" class="ml-1"></mdb-icon>
           </a>
           <a type="button" mdbBtn color="success" outline="true" class="waves-light" mdbWavesEffect
-            data-dismiss="modal" (click)="frame.hide()">Ignore</a>
+            data-dismiss="modal" (click)="hide(frame)">Ignore</a>
+          <a type="button" mdbBtn color="success" color="info" outline="true" class="waves-light" mdbWavesEffect
+            data-dismiss="modal" (click)="goToSettings()">Settings</a>
         </div>
       </div>
-    </div>
-  </div>
-</div>

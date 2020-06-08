@@ -7,6 +7,7 @@ export namespace AppConstants
     {
         public static readonly PREFIX = "DR_"
         public static readonly REMEMBER_USER = "rememberUser"
+        public static readonly ROUTE_FROM_LOGIN = "routeFromLogin"
     };
 
     export class MyStorage {

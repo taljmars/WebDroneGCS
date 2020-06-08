@@ -47,6 +47,8 @@ export abstract class LoginPageComponent {
             if (this.rememberMe) {
               AppConstants.MyStorage.set(AppConstants.General.REMEMBER_USER, this.getEmail())
             }
+            
+            AppConstants.MyStorage.set(AppConstants.General.ROUTE_FROM_LOGIN, "dummy")
           }
         },
         e => {

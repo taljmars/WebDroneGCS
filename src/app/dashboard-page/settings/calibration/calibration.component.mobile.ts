@@ -3,6 +3,7 @@ import { Calibration } from './calibration.component';
 import { ProxyService } from 'src/app/services/config/proxy.service';
 import { DroneService } from 'src/app/services/drone/drone.service';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { ApplicationStateService } from 'src/app/application-state.service';
 
 
 @Component({
@@ -15,8 +16,9 @@ export class CalibrationMobile extends Calibration {
   events: string[] = [];
 
   constructor(public proxyService: ProxyService, public droneService: DroneService,
-    public alertsService: AlertsService){
-    super(proxyService, droneService,alertsService)
+    public alertsService: AlertsService,
+    public applicationStateService: ApplicationStateService){
+    super(proxyService, droneService,alertsService,applicationStateService)
   }
 
   ngAfterViewInit() {

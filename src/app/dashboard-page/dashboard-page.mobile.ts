@@ -6,6 +6,9 @@ import { MatDialog } from '@angular/material';
 import { DroneService } from '../services/drone/drone.service';
 import { AlertsService } from '../services/alerts.service';
 import { UserService } from '../services/users/user.service';
+import { ConfigService } from '../services/config/config.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,9 +22,10 @@ export class DashMobile extends Dash {
     public droneService: DroneService, 
     public alertsService: AlertsService,
     public userService: UserService,
+    protected router: Router,
     )
   {
-    super(proxyService, dialog, droneService, alertsService, userService)
+    super(proxyService, dialog, droneService, alertsService, userService, router)
   }
 
   ngAfterViewInit() {

@@ -3,6 +3,7 @@ import { ProxyService } from 'src/app/services/config/proxy.service';
 import { DroneService, DroneEventListener } from 'src/app/services/drone/drone.service';
 import { DroneEvent, DroneEvents } from 'src/app/services/drone/protocol/events.component';
 import { AlertsService } from 'src/app/services/alerts.service';
+import { ApplicationStateService } from 'src/app/application-state.service';
 
 
 export abstract class Calibration implements DroneEventListener  {
@@ -49,7 +50,8 @@ export abstract class Calibration implements DroneEventListener  {
   constructor(
     public proxyService: ProxyService,
     public droneService: DroneService,
-    public alertsService: AlertsService){
+    public alertsService: AlertsService,
+    public applicationStateService: ApplicationStateService){
 
       droneService.addEventListener(this)
       for (let i = 0 ; i < 8 ; i++) {

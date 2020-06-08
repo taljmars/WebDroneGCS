@@ -60,15 +60,22 @@
 <!--        </fileSet>-->
     </fileSets>
     <files>
+<!--        <file>-->
+<!--            <source>./addons/run.sh</source>-->
+<!--            <outputDirectory>.</outputDirectory>-->
+<!--            <destName>run.sh</destName>-->
+<!--            <lineEnding>unix</lineEnding>-->
+<!--            <fileMode>777</fileMode>-->
+<!--        </file>-->
         <file>
-            <source>./addons/run.sh</source>
-            <outputDirectory>.</outputDirectory>
-            <destName>run.sh</destName>
-            <lineEnding>unix</lineEnding>
-            <fileMode>777</fileMode>
+          <source>./addons/install.sh</source>
+          <outputDirectory>.</outputDirectory>
+          <destName>install.sh</destName>
+          <lineEnding>unix</lineEnding>
+          <fileMode>777</fileMode>
         </file>
         <file>
-            <source>./keystore.p12</source>
+            <source>./drone-proxy-keystore.p12</source>
             <outputDirectory>.</outputDirectory>
 <!--            <destName>keystore.p12</destName>-->
 <!--            <lineEnding>unix</lineEnding>-->
