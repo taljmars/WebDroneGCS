@@ -8,7 +8,6 @@ import com.dronegcs.mavlink.is.connection.ConnectionStatistics;
 import com.dronegcs.mavlink.is.connection.MavLinkConnection;
 import com.dronegcs.mavlink.is.connection.MavLinkConnectionStatisticsListener;
 import com.dronegcs.mavlink.is.drone.Drone;
-import com.dronegcs.mavlink.is.drone.Preferences;
 import com.dronegcs.mavlink.is.drone.parameters.Parameter;
 import com.dronegcs.mavlink.is.drone.variables.Calibration;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmCommands;
@@ -24,10 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.PostConstruct;
 import java.time.Duration;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.Map;
-import java.util.Vector;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -315,8 +311,30 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
     }
     else {
       calibration.startAccelerometerCalibration();
+      gyroClibrateStep = 0;
     }
     return object.toMap();
   }
 
+  private int gyroClibrateStep = 0;
+
+  @PostMapping("ackGyroCalibrate")
+  public Map ackGyroCalibrate() {
+    System.out.println("ackGyroCalibrate");
+    JSONObject object = getResponseTemplate();
+    if (!calibration.isCalibrating()) {
+      object.put(RESULT, false);
+      object.put("messege", "Calibration Haven't Started");
+    }
+    else {
+      calibration.sendAck(gyroClibrateStep);
+    }
+    return object.toMap();
+  }
+
+
+  public int increaseGyroCalibrateStep() {
+    this.gyroClibrateStep++;
+    return this.gyroClibrateStep;
+  }
 }

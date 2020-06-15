@@ -157,6 +157,10 @@ export class DroneService implements ProxyListener {
       this.configService.post("startGyroCalibrate", {}, {}, okCallback, errCallback);
     }
 
+    ackGyroCalibrate(okCallback: Function, errCallback: Function) {
+      this.configService.post("ackGyroCalibrate", {}, {}, okCallback, errCallback);
+    }
+
     startLevelCalibrate(okCallback?: Function, errCallback?: Function) {
       this.configService.post("startLevelCalibrate", {}, {}, okCallback, errCallback);
     }

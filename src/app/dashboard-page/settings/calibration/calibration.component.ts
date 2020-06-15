@@ -45,6 +45,11 @@ export abstract class Calibration implements DroneEventListener  {
   public calibrationGyroMessege: String = ""
   public calibrationLevelMessege: String = ""
 
+  private static CALIBRATE_GYRO: String = "Calibrate Gyro"
+  private static CALIBRATE_ACK: String = "Ack"
+  public gyroAction: String = Calibration.CALIBRATE_GYRO;
+  private calibGyroStarted: Boolean = false;
+
   public ch: Array<String> = []
 
   constructor(
@@ -118,6 +123,14 @@ export abstract class Calibration implements DroneEventListener  {
         break;
       case DroneEvents.CALIBRATION_IMU:
         this.calibrationGyroMessege = event.data.message
+        if (event.data.iscalibrate == true) {
+          this.calibGyroStarted = true;
+          this.gyroAction = Calibration.CALIBRATE_ACK
+        }
+        else {
+          this.calibGyroStarted = false;
+          this.gyroAction = Calibration.CALIBRATE_GYRO
+        }
         break;
     }
   }
@@ -151,15 +164,28 @@ export abstract class Calibration implements DroneEventListener  {
   }
 
   startGyroCalibrate() {
-    this.droneService.startGyroCalibrate(
-      data=> {
-        if (!data.result)
-          this.calibrationGyroMessege = data.messege
-      },
-      () => {
-        this.calibrationGyroMessege = "Failed to start calibration procedure"
-      }
-    )
+    if (this.calibGyroStarted) {
+      this.droneService.ackGyroCalibrate(
+        data=> {
+          if (!data.result)
+            this.calibrationGyroMessege = data.messege
+        },
+        () => {
+          this.calibrationGyroMessege = "Failed to execute calibration procedure"
+        }
+      )
+    }
+    else {
+      this.droneService.startGyroCalibrate(
+        data=> {
+          if (!data.result)
+            this.calibrationGyroMessege = data.messege
+        },
+        () => {
+          this.calibrationGyroMessege = "Failed to start calibration procedure"
+        }
+      )
+    }
   }
 
   startLevelCalibrate() {
