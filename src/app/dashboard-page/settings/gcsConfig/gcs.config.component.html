@@ -18,6 +18,7 @@
                         <label for="droneProxyPort" class="">Port</label>
                     </div>
                     <mdb-card-text>Proxy URL: <a class="card-link" [href]="configService.getUrl()">{{configService.getUrl()}}</a></mdb-card-text>
+                    <mdb-card-text>Local Proxy: <a class="card-link" href="drone-proxy://dummy">Start Engine</a></mdb-card-text>
                 </mdb-card-body>
                 <mdb-card-footer style="background-color: transparent;">
                     <mdb-icon far icon="save" size="2x" (click)="onUpdate()" style="align-content: center;"></mdb-icon>

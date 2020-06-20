@@ -27,13 +27,14 @@ export class ProxyService {
 
   private listeners: Set<ProxyListener> = new Set<ProxyListener>();
   private proxyConnected: boolean = false
-  private proxyUp: boolean = false
+  private proxyUp: any = true;
   public baudlist: Array<Number> = new Array(57600,115200);
   public proxyUpTime: String = "00:00:00";
   public proxyVersion: String = "Unknown";
 
   constructor(private configService: ConfigService,
     private alertsService: AlertsService) {
+    this.pingProxyService()
     setInterval(() => {
       this.pingProxyService()
     },

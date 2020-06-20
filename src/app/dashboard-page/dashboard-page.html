@@ -112,9 +112,9 @@
 
 </div>  
 
-
-<div *ngIf="isRouteFromLogin()" mdbModal #frame="mdbModal" class="modal fade bottom modal-scrolling" id="frameModalTop" tabindex="-1" role="dialog"
-  aria-labelledby="myModalLabel" aria-hidden="false" [config]="{backdrop: false, ignoreBackdropClick: true, show: !proxyService.isProxyUp()}"
+<!-- show: proxyService.isProxyUp() == false -->
+<div *ngIf="isRouteFromLogin() && !proxyService.isProxyUp()" mdbModal #frame="mdbModal" class="modal fade bottom modal-scrolling" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="false" [config]="{backdrop: false, ignoreBackdropClick: true, show: true}"
   >
   <div class="modal-dialog modal-frame modal-bottom modal-notify modal-info" role="document">
 
@@ -125,13 +125,20 @@
 
           <p class="pt-3 mx-4">Failed to find drone proxy service, make sure it activated or download it</p>
 
-          <a type="button" mdbBtn color="success" class="waves-light" mdbWavesEffect 
-          href="https://raw.githubusercontent.com/taljmars/WebDroneGCS/master/proxy/Desktop/DroneConnector/ClientInstallation/Linux/DroneProxy-linux.tar">Download
+          <a *ngIf="isWindows()" type="button" mdbBtn color="success" class="waves-light" mdbWavesEffect 
+          href="https://raw.githubusercontent.com/taljmars/WebDroneGCS/master/proxy/Desktop/DroneConnector/ClientInstallation/Windows/DroneProxy-win.tar">Download
             <mdb-icon fas icon="book" class="ml-1"></mdb-icon>
+          </a>
+          <a *ngIf="isLinux()" type="button" mdbBtn color="success" class="waves-light" mdbWavesEffect 
+            href="https://raw.githubusercontent.com/taljmars/WebDroneGCS/master/proxy/Desktop/DroneConnector/ClientInstallation/Linux/DroneProxy-linux.tar">Download
+              <mdb-icon fas icon="book" class="ml-1"></mdb-icon>
           </a>
           <a type="button" mdbBtn color="success" outline="true" class="waves-light" mdbWavesEffect
             data-dismiss="modal" (click)="hide(frame)">Ignore</a>
+          <a mdbBtn color="success" outline="true" class="waves-light" mdbWavesEffect
+            data-dismiss="modal" href="drone-proxy://dummy">Run</a>
           <a type="button" mdbBtn color="success" color="info" outline="true" class="waves-light" mdbWavesEffect
-            data-dismiss="modal" (click)="goToSettings()">Settings</a>
+            data-dismiss="modal" (click)="goToSettings()">Settings</a>  
+            
         </div>
       </div>

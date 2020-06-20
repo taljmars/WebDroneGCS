@@ -90,4 +90,12 @@ export abstract class Dash implements DroneEventListener {
     return false;
   }
 
+  isWindows() {
+    return window.navigator.platform.indexOf('Win') > -1
+  }
+
+  isLinux() {
+    return window.navigator.platform.indexOf('Win') <= -1
+  }
+
 }
