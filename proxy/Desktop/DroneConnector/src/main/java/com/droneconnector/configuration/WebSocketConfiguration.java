@@ -16,25 +16,10 @@ import org.springframework.web.socket.config.annotation.AbstractWebSocketMessage
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 
-@Import({MavlinkSpringConfig.class, WebSecurityConfig.class})
+@Import({MavlinkSpringConfig.class, WebSecurityConfig.class, Framework.class})
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebSocketConfiguration extends AbstractWebSocketMessageBrokerConfigurer {
-
-    @Bean
-    public Environment environment() {
-        return new Environment();
-    }
-
-    @Bean
-    public Logger logger(@Autowired Environment environment) {
-        return new Logger(environment);
-    }
-
-    @Bean
-    public RuntimeValidator runtimeValidator() {
-        return new RuntimeValidator();
-    }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {

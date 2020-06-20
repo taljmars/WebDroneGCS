@@ -170,7 +170,7 @@
             </goals>
             <configuration>
               <descriptors>
-                <descriptor>assembly-win-64.xml</descriptor>
+                <descriptor>assembly-win.xml</descriptor>
               </descriptors>
               <finalName>DroneProxy</finalName>
               <outputDirectory>ClientInstallation/Windows/</outputDirectory>
@@ -183,7 +183,7 @@
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
           <execution>
-            <id>win</id>
+            <id>linux</id>
             <phase>package</phase>
             <goals>
               <goal>single</goal>
