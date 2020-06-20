@@ -11,8 +11,8 @@ import { UserService } from '../users/user.service';
 })
 export class ConfigService {
   
-  // private address: String = "localhost"
-  private address: String = "192.168.43.15"
+  private address: String = "localhost"
+  // private address: String = "192.168.43.15"
 
   // private port: Number = 8080;
   private port: Number = 8443;
@@ -48,7 +48,8 @@ export class ConfigService {
 
 
   getUrl() {
-    return "https://" + this.address + ":" + this.port + "/"
+    // return "https://" + this.address + ":" + this.port + "/"
+    return "http://" + this.address + ":" + this.port + "/"
   }
 
 
