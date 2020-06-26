@@ -19,7 +19,7 @@ if [ "X\${JAVA_HOME}" = "X" ]; then
   exit -1
 fi
 
-java -cp \$JAVA_HOME:$PWD/drone-proxy/* com.droneconnector.Application
+java -cp \$JAVA_HOME:$PWD/drone-proxy/* com.droneconnector.Application --envdir=/tmp/drone-proxy-env
 
 EOF
 

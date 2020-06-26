@@ -5,7 +5,7 @@ MIME_FILE=~/.local/share/applications/drone-proxy.desktop
 
 echo "[Desktop Entry]" > $MIME_FILE
 echo "Name=drone-proxy" >> $MIME_FILE
-echo "Exec=$1 \$1" >> $MIME_FILE
+echo "Exec=$1" >> $MIME_FILE
 echo "Type=Application" >> $MIME_FILE
 echo "Terminal=true" >> $MIME_FILE
 echo "MimeType=x-scheme-handler/drone-proxy;" >> $MIME_FILE
