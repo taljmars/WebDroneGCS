@@ -27,3 +27,7 @@ chmod 777 $PWD/drone-proxy/run.sh
 
 sudo rm /bin/drone-proxy &> /dev/null
 sudo ln -s $PWD/drone-proxy/run.sh /bin/drone-proxy
+
+echo "Handling Registries"
+./regupdate.sh /bin/drone-proxy
+
