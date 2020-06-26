@@ -85,8 +85,10 @@
             </mdb-card-title>
             <mdb-card-text>Version: {{proxyService.proxyVersion}}</mdb-card-text>
             <mdb-card-text>Uptime: {{proxyService.proxyUpTime}}</mdb-card-text>
+            <mdb-card-text>Proxy Address: {{proxyService.proxyAddresses}}</mdb-card-text>
             <div class="flex-row">
-              <a class="card-link" href="https://raw.githubusercontent.com/taljmars/WebDroneGCS/master/proxy/Desktop/DroneConnector/ClientInstallation/Linux/DroneProxy-linux.tar">Get Latest Agent</a>
+              <a class="card-link" *ngIf="isWindows()" href="https://raw.githubusercontent.com/taljmars/WebDroneGCS/master/proxy/Desktop/DroneConnector/ClientInstallation/Windows/DroneProxy-win.zip">Get Latest Agent</a>
+              <a class="card-link" *ngIf="isLinux()" href="https://raw.githubusercontent.com/taljmars/WebDroneGCS/master/proxy/Desktop/DroneConnector/ClientInstallation/Linux/DroneProxy-linux.tar">Get Latest Agent</a>
             </div>
           </mdb-card-body>
         </mdb-card>
