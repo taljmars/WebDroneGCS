@@ -19,7 +19,7 @@ if [ "X\${JAVA_HOME}" = "X" ]; then
   exit -1
 fi
 
-java -cp \$JAVA_HOME:$PWD/drone-proxy/* com.droneconnector.Application
+java -cp \$JAVA_HOME:$PWD/drone-proxy/* com.droneconnector.Application --envdir=/tmp/drone-proxy-env
 
 EOF
 
@@ -27,3 +27,7 @@ chmod 777 $PWD/drone-proxy/run.sh
 
 sudo rm /bin/drone-proxy &> /dev/null
 sudo ln -s $PWD/drone-proxy/run.sh /bin/drone-proxy
+
+echo "Handling Registries"
+./regupdate.sh /bin/drone-proxy
+

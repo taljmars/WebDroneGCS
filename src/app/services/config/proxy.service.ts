@@ -31,6 +31,7 @@ export class ProxyService {
   public baudlist: Array<Number> = new Array(57600,115200);
   public proxyUpTime: String = "00:00:00";
   public proxyVersion: String = "Unknown";
+  public proxyAddresses: Array<String> = new Array();
 
   constructor(private configService: ConfigService,
     private alertsService: AlertsService) {
@@ -166,6 +167,7 @@ export class ProxyService {
       this.proxyUp = true
       this.proxyVersion = data["version"];
       this.proxyUpTime = data["uptime"];
+      this.proxyAddresses = data["addresses"]
       let connection = data["connection"];
       if (!this.isProxyConnected() && connection["drone"] == true) {
         console.log("Proxy already binded to port and drone")
@@ -179,6 +181,7 @@ export class ProxyService {
       this.proxyUp = false
       this.proxyVersion = "Unknown"
       this.proxyUpTime = "00:00:00"
+      this.proxyAddresses = new Array()
       // console.error("Failed to find proxy service")
     });
   }

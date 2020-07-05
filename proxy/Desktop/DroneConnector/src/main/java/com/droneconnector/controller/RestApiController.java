@@ -21,8 +21,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import java.net.InterfaceAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 import java.util.Map;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -46,6 +52,8 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
 
   private ConnectionStatistics connectionStatistics = new ConnectionStatistics();
 
+  private List<String> ips = new ArrayList<>();
+
   private static final String RESULT = "result";
   private Instant startTime;
 
@@ -59,6 +67,19 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
   private void init() {
     drone.getMavClient().addMavLinkConnectionStatisticsListener(this.getClass().getName(), this);
     startTime = Instant.now();
+
+    try {
+      Enumeration<NetworkInterface> nIfs = NetworkInterface.getNetworkInterfaces();
+      while (nIfs.hasMoreElements()) {
+        NetworkInterface nIf = nIfs.nextElement();
+        for (InterfaceAddress address : nIf.getInterfaceAddresses())
+          if (!address.getAddress().toString().contains(":"))
+            ips.add(address.getAddress().toString().substring(1));
+      }
+    }
+    catch (SocketException e) {
+      e.printStackTrace();
+    }
   }
 
   @GetMapping("/listports")
@@ -219,6 +240,7 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
     conn.put("port", serialConnection.getPortName());
     conn.put("baud-rate", serialConnection.getBaud());
     object.put("connection",conn);
+    object.put("addresses", ips);
     return object.toMap();
   }
 

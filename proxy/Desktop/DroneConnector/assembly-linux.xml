@@ -75,6 +75,13 @@
           <fileMode>777</fileMode>
         </file>
         <file>
+          <source>./addons/regupdate.sh</source>
+          <outputDirectory>.</outputDirectory>
+          <destName>regupdate.sh</destName>
+          <lineEnding>unix</lineEnding>
+          <fileMode>777</fileMode>
+        </file>
+        <file>
             <source>./drone-proxy-keystore.p12</source>
             <outputDirectory>.</outputDirectory>
 <!--            <destName>keystore.p12</destName>-->
