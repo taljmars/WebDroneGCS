@@ -27,11 +27,11 @@
           </div>
         </div> 
         
-        <div class="row-md-12 mx-auto">
+        <!-- <div class="row-md-12 mx-auto">
           <div class="md-form">
             <mdb-checkbox [checked]="false" [default]="true" [rounded]="true">Hide Unknown</mdb-checkbox>
           </div>
-        </div>
+        </div> -->
 
         <div class="row-md-12 mx-auto">
           <div class="md-form">
@@ -52,6 +52,13 @@
             <button mdbBtn type="button" color="primary" mdbWavesEffect>Update</button>
           </div>
         </div>
+
+        <div class="row-md-12 mx-auto">
+          <div class="md-form">
+            <button mdbBtn type="button" color="primary" mdbWavesEffect (click)="export()">Export</button>
+          </div>
+        </div>
+
       </div>
 
       <div class="row">
@@ -60,39 +67,47 @@
 
       <div id="table" class="table-editable">
         <table mdbTable class="table table-hover table-small table-striped table-responsive-md text-center" stickyHeader="true" >
-          <tr>
-            <th class="text-center">#</th>
-            <th class="text-center">Name</th>
-            <th class="text-center">Title</th>
-            <th class="text-center">Value</th>
-            <th class="text-center">Default Value</th>
-            <th class="text-center">Unit</th>
-            <th class="text-center">Description</th>
-          </tr>
-          <tr *ngFor="let param of paramsList; let id = index">
-            <td>
-              <mdb-icon fas icon="edit" class="mr-2 grey-text" aria-hidden="true" *ngIf=isEdit(param.id)></mdb-icon>
-              <span>{{param.id}}</span>
-            </td>
-            <td>
-              <span>{{param.name}}</span>
-            </td>
-            <td>
-              <span>{{param.title}}</span>
-            </td>
-            <td>
-              <span (contenteditable)="isParametersOnDrone()" onkeypress="return event.keyCode != 13;" (keyup)="changeValue(id, 'value', $event)" (blur)="updateList(id, 'value', $event)" >{{param.value}}</span>
-            </td>
-            <td>
-              <span>{{param.defaultValue}}</span>
-            </td>
-            <td>
-              <span>{{param.unit}}</span>
-            </td>
-            <td>
-              <span>{{param.description}}</span>
-            </td>
-          </tr>
+          <thead>
+            <tr>
+              <th class="text-center">#</th>
+              <th class="text-center">Name</th>
+              <th class="text-center">Title</th>
+              <th class="text-center">Value</th>
+              <th class="text-center">Default Value</th>
+              <th class="text-center">Unit</th>
+              <th class="text-center">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let param of paramsList; let id = index">
+              <td>
+                <mdb-icon fas icon="edit" class="mr-2 grey-text" aria-hidden="true" *ngIf=isEdit(param.id)></mdb-icon>
+                <span>{{param.id}}</span>
+              </td>
+              <td>
+                <span>{{param.name}}</span>
+              </td>
+              <td>
+                <span>{{param.title}}</span>
+              </td>
+              <td *ngIf="!isParametersOnDrone()">
+                  <!-- <span (contenteditable)="isParametersOnDrone()" onkeypress="return event.keyCode != 13;" (keyup)="changeValue(id, 'value', $event)" (blur)="updateList(id, 'value', $event)" >{{param.value}}</span> -->
+                <span>{{param.value}}</span>
+              </td>
+              <td *ngIf="isParametersOnDrone()">
+                  <span contenteditable="true" onkeypress="return event.keyCode != 13;" (keyup)="changeValue(id, 'value', $event)" (blur)="updateList(id, 'value', $event)" >{{param.value}}</span>
+                </td>
+              <td>
+                <span>{{param.defaultValue}}</span>
+              </td>
+              <td>
+                <span>{{param.unit}}</span>
+              </td>
+              <td>
+                <span>{{param.description}}</span>
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
