@@ -162,8 +162,10 @@ export class CamView implements DroneEventListener {
   toggleVideoStream() {
     this.currentStreamIdx += 1
     let dev = this.videoStreams[this.currentStreamIdx % this.videoStreams.length]
-    if (dev == null)
+    if (dev == null) {
+      this.video.nativeElement.srcObject = null
       return
+    }
 
     const constraints = {
       video: {deviceId: dev.id ? {exact: dev.id} : undefined}
