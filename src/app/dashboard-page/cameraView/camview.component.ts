@@ -40,7 +40,7 @@ export class CamView implements DroneEventListener {
 
   markers: Set<any> = new Set()
 
-  private videoStreams: Array<any> = new Array(null)
+  private videoStreams: Array<any> = new Array()
   private currentStreamIdx = 0;
 
   _options: IMapOptions = {
@@ -157,6 +157,8 @@ export class CamView implements DroneEventListener {
       });
 
     }
+
+    this.toggleVideoStream()
   }
 
   toggleVideoStream() {
