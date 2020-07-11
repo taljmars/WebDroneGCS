@@ -160,6 +160,7 @@ export class CamView implements DroneEventListener {
   }
 
   toggleVideoStream() {
+    console.log("Toggle Screen")
     this.currentStreamIdx += 1
     let dev = this.videoStreams[this.currentStreamIdx % this.videoStreams.length]
     if (dev == null) {
