@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1593987760006,
+  "timestamp": 1594493677623,
   "index": "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/index.html",
   "assetGroups": [
     {
@@ -10,14 +10,14 @@
       "urls": [
         "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/favicon.ico",
         "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/index.html",
-        "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/main-es2015.c1c34fa8a5d4cdaaee17.js",
-        "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/main-es5.c1c34fa8a5d4cdaaee17.js",
+        "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/main-es2015.d3640595767c3f931b22.js",
+        "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/main-es5.d3640595767c3f931b22.js",
         "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/polyfills-es2015.5b10b8fd823b6392f1fd.js",
         "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/polyfills-es5.3e8196928d184a6e5319.js",
         "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/runtime-es2015.c5fa8325f89fc516600b.js",
         "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/runtime-es5.c5fa8325f89fc516600b.js",
         "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/scripts.a9eccdb81911c6cd33a3.js",
-        "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/styles.484c223b379e793d32c5.css"
+        "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/styles.9e4fc408ea56d0a58040.css"
       ],
       "patterns": []
     },
@@ -113,15 +113,15 @@
     "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/assets/icons/icon-72x72.png": "62da5ceda37c225ec60847f00f17f6ef5cd37283",
     "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/assets/icons/icon-96x96.png": "eda4a8e7100703bb35bddc60ce8c559bef370643",
     "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/favicon.ico": "12f1ccf41f0782e25f0bf31160a64c8c8370f916",
-    "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/index.html": "de963a8803604f013fe17f4fef8d945108578ce6",
-    "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/main-es2015.c1c34fa8a5d4cdaaee17.js": "14d8dcf0ae7e82dc9dd5a401cb04c5df2544af43",
-    "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/main-es5.c1c34fa8a5d4cdaaee17.js": "4d887341dc5dff3db2e727520a521eda36e38754",
+    "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/index.html": "bf985cab2575f81e520fda2001b43f8cb9a64031",
+    "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/main-es2015.d3640595767c3f931b22.js": "74a7e97a06e3068d6e65deb11c0e98adf62557af",
+    "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/main-es5.d3640595767c3f931b22.js": "78277b2dbb8bc56627d6fd28c0072ee5040cc57e",
     "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/polyfills-es2015.5b10b8fd823b6392f1fd.js": "9abfe15f17820a646e3d51c420908d9f8f7b69b8",
-    "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/polyfills-es5.3e8196928d184a6e5319.js": "29c3227e54cf420fa789aa877c2e4194ffd959c7",
+    "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/polyfills-es5.3e8196928d184a6e5319.js": "a09a6044f37c73c715665663d2dcb61f666618a1",
     "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/runtime-es2015.c5fa8325f89fc516600b.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/runtime-es5.c5fa8325f89fc516600b.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/scripts.a9eccdb81911c6cd33a3.js": "3e5588e17c9355b1b492f926a47ae2f40ef71889",
-    "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/styles.484c223b379e793d32c5.css": "e99e75864e8c285e180d06c1e078fbb7514a16d6"
+    "http://ec2-3-16-17-114.us-east-2.compute.amazonaws.com:1234/styles.9e4fc408ea56d0a58040.css": "a77a71ae5d463c755f2f727e92847185466940cf"
   },
   "navigationUrls": [
     {

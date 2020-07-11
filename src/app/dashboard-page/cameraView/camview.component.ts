@@ -1,4 +1,4 @@
-import {Component, ViewChild, ElementRef} from '@angular/core'
+import {Component, ViewChild, ElementRef, Inject} from '@angular/core'
 import { DroneService, DroneEventListener } from '../../services/drone/drone.service';
 import { DroneEvents } from '../../services/drone/protocol/events.component';
 import {MapModule, MapAPILoader, MarkerTypeId, IMapOptions, IBox, IMarkerIconInfo, WindowRef, DocumentRef, MapServiceFactory, 
@@ -40,6 +40,9 @@ export class CamView implements DroneEventListener {
 
   markers: Set<any> = new Set()
 
+  private videoStreams: Array<any> = new Array(null)
+  private currentStreamIdx = 0;
+
   _options: IMapOptions = {
     // disableBirdseye: true,
     // disableStreetside: true,
@@ -64,6 +67,15 @@ export class CamView implements DroneEventListener {
     color: '#f00',
     size: { width: 24, height: 24 }
   };
+
+  updateDeviceList(device, arr) {
+    return device => {
+      if (device.kind === 'videoinput') {
+        console.log(device.kind + ": " + device.label + " id = " + device.deviceId);
+        arr.push({label: device.label, id: device.deviceId});
+      }
+    }
+  }
 
   onDroneEvent(event: any) {
     if (!Object.values(DroneEvents).includes(event.id)) {
@@ -132,25 +144,35 @@ export class CamView implements DroneEventListener {
   public ngAfterViewInit() {
     console.log("After view init - talma")
 
-      if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        
-        navigator.mediaDevices.enumerateDevices()
-        .then(function(devices) {
-          devices.forEach(function(device) {
-            console.log(device.kind + ": " + device.label +
-                        " id = " + device.deviceId);
-          });
-        })
-        .catch(function(err) {
-          console.log(err.name + ": " + err.message);
-        });
-        
-        navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
-            // this.video.nativeElement.src = window.URL.createObjectURL(stream);
-            this.video.nativeElement.srcObject = stream
-            this.video.nativeElement.play();
-        });
-      }
+    let that = this;
+
+    if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    
+      navigator.mediaDevices.enumerateDevices()
+      .then(function(devices) {
+        devices.forEach(that.updateDeviceList(that, that.videoStreams));
+      })
+      .catch(function(err) {
+        console.log(err.name + ": " + err.message);
+      });
+
+    }
+  }
+
+  toggleVideoStream() {
+    this.currentStreamIdx += 1
+    let dev = this.videoStreams[this.currentStreamIdx % this.videoStreams.length]
+    if (dev == null)
+      return
+
+    const constraints = {
+      video: {deviceId: dev.id ? {exact: dev.id} : undefined}
+    };
+    navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+      console.log("Stream" + stream)
+      this.video.nativeElement.srcObject = stream
+      this.video.nativeElement.play();
+    })
   }
 
   hideInfo() {
