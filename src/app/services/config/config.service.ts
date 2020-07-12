@@ -48,8 +48,8 @@ export class ConfigService {
 
 
   getUrl() {
-    // return "https://" + this.address + ":" + this.port + "/"
-    return "http://" + this.address + ":" + this.port + "/"
+    return "https://" + this.address + ":" + this.port + "/"
+    // return "http://" + this.address + ":" + this.port + "/"
   }
 
 

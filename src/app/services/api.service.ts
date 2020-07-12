@@ -17,7 +17,9 @@ export class ApiService {
 
   }
 
-  addr = "http://localhost:8080/"
+  // addr = "http://localhost:8080/"
+  addr = "https://localhost:8080/"
+
 
   login(email: string, password: string): Observable<LoginResponseModel>{
     if (email == "") {
