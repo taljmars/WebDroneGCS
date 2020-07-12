@@ -82,7 +82,8 @@
       <fileMode>777</fileMode>
     </file>
     <file>
-      <source>./drone-proxy-keystore.p12</source>
+<!--      <source>./drone-proxy-keystore.p12</source>-->
+      <source>./localhost.p12</source>
       <outputDirectory>.</outputDirectory>
       <!--            <destName>keystore.p12</destName>-->
       <!--            <lineEnding>unix</lineEnding>-->

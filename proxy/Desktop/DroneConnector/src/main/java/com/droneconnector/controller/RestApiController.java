@@ -228,8 +228,8 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
   }
 
   @GetMapping("/ping")
-  public Map ping() {
-    System.out.println("Ping");
+  public Map ping(@RequestParam(required = false, defaultValue = "untagged") String id) {
+    System.out.println("Ping " + id);
     JSONObject object = getResponseTemplate();
     object.put("version", "v1.0");
     Duration duration = Duration.between(startTime, Instant.now());

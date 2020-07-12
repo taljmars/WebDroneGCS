@@ -24,6 +24,7 @@ export class ProxyService {
   private ws: any = {};
   private portName: String = "";
   private baudRate: Number = 0;
+  private pingId: number = 0;
 
   private listeners: Set<ProxyListener> = new Set<ProxyListener>();
   private proxyConnected: boolean = false
@@ -39,7 +40,7 @@ export class ProxyService {
     setInterval(() => {
       this.pingProxyService()
     },
-    2 * 1000);
+    1 * 1000);
   }
 
   connect(portname: String, baudrate: Number, callback: Function = null) {
@@ -162,7 +163,7 @@ export class ProxyService {
   }
 
   pingProxyService() {
-    this.configService.get("ping", {}, {}, 
+    this.configService.get("ping?id=" + this.pingId++, {}, {}, 
     data => {
       this.proxyUp = true
       this.proxyVersion = data["version"];

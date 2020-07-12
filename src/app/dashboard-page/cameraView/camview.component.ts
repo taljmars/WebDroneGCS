@@ -177,6 +177,8 @@ export class CamView implements DroneEventListener {
       console.log("Stream" + stream)
       this.video.nativeElement.srcObject = stream
       this.video.nativeElement.play();
+      this.alertsService.promptInfo("Video Input: " + dev.label)
+
     })
   }
 
