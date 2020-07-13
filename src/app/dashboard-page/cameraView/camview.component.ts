@@ -68,12 +68,13 @@ export class CamView implements DroneEventListener {
     size: { width: 24, height: 24 }
   };
 
-  updateDeviceList(device, arr) {
+  updateDeviceList(that, arr) {
     return device => {
-      if (device.kind === 'videoinput') {
-        console.log(device.kind + ": " + device.label + " id = " + device.deviceId);
+      // that.alertsService.promptSuccess()
+      // if (device.kind === 'videoinput') {
+        console.log(device.kind + ": " + device.label + "  id = " + device.deviceId);
         arr.push({label: device.label, id: device.deviceId});
-      }
+      // }
     }
   }
 
@@ -173,13 +174,16 @@ export class CamView implements DroneEventListener {
     const constraints = {
       video: {deviceId: dev.id ? {exact: dev.id} : undefined}
     };
-    navigator.mediaDevices.getUserMedia(constraints).then(stream => {
+
+    navigator.mediaDevices.getUserMedia(constraints)
+    .then(stream => {
       console.log("Stream" + stream)
       this.video.nativeElement.srcObject = stream
       this.video.nativeElement.play();
       this.alertsService.promptInfo("Video Input: " + dev.label)
 
     })
+    .catch(e => console.error("Failed to toggle to device " + dev.label + " " + e))
   }
 
   hideInfo() {
