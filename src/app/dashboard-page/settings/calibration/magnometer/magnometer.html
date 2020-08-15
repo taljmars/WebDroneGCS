@@ -1,0 +1,15 @@
+<div style="width: fit-content; height: fit-content;">
+    <h2>Magnometer</h2>
+    <mat-dialog-content style="width: fit-content; height: fit-content;">
+        <mat-card>
+            <mat-card-subtitle>Measured dots</mat-card-subtitle>
+            <mat-card-content>
+                <canvas #canvas id="scene" ></canvas>
+
+            </mat-card-content>
+        </mat-card>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mdbBtn color="info" class="my-4" (click)="close()">Done</button>
+      </mat-dialog-actions>
+</div>
