@@ -3,6 +3,7 @@ import {BrowserModule} from '@angular/platform-browser'
 import { CalibrationMobile } from './calibration.component.mobile';
 import { CalibrationDesktop } from './calibration.component.desktop';
 
+import {MagnometerModule} from './magnometer/magnometer.module'
 
 import { MatButtonModule } from '@angular/material/button';
 
@@ -13,9 +14,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatInputModule} from '@angular/material/input';
 
 import { MDBBootstrapModule, ModalModule, TooltipModule, PopoverModule, IconsModule, ChartsModule } from 'angular-bootstrap-md';
+import { from } from 'rxjs';
 
 @NgModule({
   imports: [
+    MagnometerModule,
+    
     BrowserModule,
     MatSelectModule,
     MatCardModule,

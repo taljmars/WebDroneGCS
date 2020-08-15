@@ -3,7 +3,8 @@ import {BrowserModule} from '@angular/platform-browser'
 import { LogView } from './log.component';
 
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { NavbarModule, DropdownModule } from 'angular-bootstrap-md';
@@ -18,6 +19,8 @@ import { CheckboxModule, TableModule, WavesModule, IconsModule, InputsModule, Bu
     IconsModule,
     TableModule,
     InputsModule,
+    MatInputModule,
+    MatSelectModule,
   ],
   declarations: [ LogView ],
   providers: [],

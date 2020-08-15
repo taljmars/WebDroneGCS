@@ -189,17 +189,22 @@
           </mdb-card>
         </div>
   
-        <!-- <div class="panel-sm">
+        <div class="panel-sm">
           <mdb-card class="dashcard">
             <mdb-card-body>
                 <mdb-card-title>
-                    <h4>123</h4>
+                    <h4>Magnometer</h4>
                 </mdb-card-title>
-                <mdb-card-text>s</mdb-card-text>
+                <mdb-card-text>
+                  <button mat-stroked-button color="primary" (click)="startMagCalibrate()">Calibrate Magnometer</button>
+                </mdb-card-text>
+                <!-- <mdb-card-text> -->
+                  <!-- <magnometer *ngIf="calibMagOpen"></magnometer> -->
+                <!-- </mdb-card-text> -->
             </mdb-card-body>
           </mdb-card>
         </div>
-  
+  <!-- 
         <div class="panel-sm">
           <mdb-card class="dashcard">
             <mdb-card-body>

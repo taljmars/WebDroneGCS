@@ -349,14 +349,21 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
       object.put("messege", "Calibration Haven't Started");
     }
     else {
-      calibration.sendAck(gyroClibrateStep);
+      calibration.sendAccelCalibrationAck(gyroClibrateStep);
     }
     return object.toMap();
   }
 
-
   public int increaseGyroCalibrateStep() {
     this.gyroClibrateStep++;
     return this.gyroClibrateStep;
+  }
+
+  @PostMapping("startMagCalibrate")
+  public Map startMagCalibrate() {
+    System.out.println("startMagCalibrate");
+    calibration.startMagnometerCalibration();
+    JSONObject object = getResponseTemplate();
+    return object.toMap();
   }
 }

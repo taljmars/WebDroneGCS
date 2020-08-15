@@ -4,6 +4,8 @@ import { DroneService, DroneEventListener } from 'src/app/services/drone/drone.s
 import { DroneEvent, DroneEvents } from 'src/app/services/drone/protocol/events.component';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { ApplicationStateService } from 'src/app/application-state.service';
+import { MatDialogConfig, MatDialog } from '@angular/material';
+import { MagnometerView } from './magnometer/magnometer';
 
 
 export abstract class Calibration implements DroneEventListener  {
@@ -51,12 +53,14 @@ export abstract class Calibration implements DroneEventListener  {
   private calibGyroStarted: Boolean = false;
 
   public ch: Array<String> = []
+  // calibMagOpen: boolean = false;
 
   constructor(
     public proxyService: ProxyService,
     public droneService: DroneService,
     public alertsService: AlertsService,
-    public applicationStateService: ApplicationStateService){
+    public applicationStateService: ApplicationStateService,
+    public dialog: MatDialog){
 
       droneService.addEventListener(this)
       for (let i = 0 ; i < 8 ; i++) {
@@ -224,6 +228,17 @@ export abstract class Calibration implements DroneEventListener  {
       data => console.log("Successfully update modes"),
       () => this.alertsService.promptError("Failed to update modes")
     )
+  }
+
+  startMagCalibrate() {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    // dialogConfig.
+
+    this.dialog.open(MagnometerView, dialogConfig);
+    // this.calibMagOpen = !this.calibMagOpen;
   }
 
 }

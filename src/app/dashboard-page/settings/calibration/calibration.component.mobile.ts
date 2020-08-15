@@ -4,6 +4,7 @@ import { ProxyService } from 'src/app/services/config/proxy.service';
 import { DroneService } from 'src/app/services/drone/drone.service';
 import { AlertsService } from 'src/app/services/alerts.service';
 import { ApplicationStateService } from 'src/app/application-state.service';
+import { MatDialog } from '@angular/material';
 
 
 @Component({
@@ -17,8 +18,9 @@ export class CalibrationMobile extends Calibration {
 
   constructor(public proxyService: ProxyService, public droneService: DroneService,
     public alertsService: AlertsService,
-    public applicationStateService: ApplicationStateService){
-    super(proxyService, droneService,alertsService,applicationStateService)
+    public applicationStateService: ApplicationStateService,
+    public dialog: MatDialog){
+    super(proxyService, droneService,alertsService,applicationStateService, dialog)
   }
 
   ngAfterViewInit() {
