@@ -149,7 +149,7 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
     JSONObject obj = getResponseTemplate();
     try {
       connectedUsers.add(request.getRemoteAddr());
-      if (portConfig.getBaud() != serialConnection.getBaud() || portConfig.getName() != serialConnection.getPortName()) {
+      if (!portConfig.getBaud().equals(serialConnection.getBaud()) || !portConfig.getName().equals(serialConnection.getPortName())) {
         if (serialConnection.isConnect()) {
           if (drone.isConnectionAlive()) {
             System.out.println("Mavlink Drone is connected and binded, disconnecting it");
@@ -166,8 +166,8 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
         System.out.println("Start HB");
         gcsHeartbeat.setActive(true);
 
-        System.out.println("Refresh Parameters");
-        drone.getParameters().refreshParameters();
+//        System.out.println("Refresh Parameters");
+//        drone.getParameters().refreshParameters();
       }
       else {
         System.out.println("Port Already connected");

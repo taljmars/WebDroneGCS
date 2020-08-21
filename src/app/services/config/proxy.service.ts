@@ -91,9 +91,8 @@ export class ProxyService {
     });
   }
 
-  disconnect(callback: Function = null) {
-    this.configService.post("disconnect", {}, {}, val => {
-      this.portName = "";
+  closeConnection() {
+    this.portName = "";
       this.baudRate = 0;
       this.proxyConnected = false;
       for (let x of this.listeners)
@@ -104,7 +103,16 @@ export class ProxyService {
         // this.ws = null;
       }
       console.log("Disconnected");
+  }
+
+  disconnect(callback: Function = null) {
+    this.configService.post("disconnect", {}, {}, val => {
+      this.closeConnection()
       if (callback) callback(val)
+    },
+    err => {
+      console.error("Failed to call disconnet, do it forcly: " + err)
+      this.closeConnection()
     })
     
   }
