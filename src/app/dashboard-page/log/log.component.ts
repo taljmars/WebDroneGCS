@@ -75,7 +75,8 @@ export class LogView implements DroneEventListener{
   }
 
   shouldAdd(incomingEventType: any) {
-    return this.selectedFilter.has(incomingEventType);
+    console.log("Check if need to add")
+    return this.selectedFilter.size == 0 || this.selectedFilter.has(incomingEventType);
   }
 
 }

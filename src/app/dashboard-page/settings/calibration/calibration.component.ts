@@ -53,6 +53,8 @@ export abstract class Calibration implements DroneEventListener  {
   private calibGyroStarted: Boolean = false;
 
   public ch: Array<String> = []
+  public min: Array<String> = ["-","-","-","-","-","-","-","-"]
+  public max: Array<String> = ["-","-","-","-","-","-","-","-"]
   // calibMagOpen: boolean = false;
 
   constructor(
@@ -239,6 +241,13 @@ export abstract class Calibration implements DroneEventListener  {
 
     this.dialog.open(MagnometerView, dialogConfig);
     // this.calibMagOpen = !this.calibMagOpen;
+  }
+
+  startRCCalibrate() {
+    this.droneService.startRCCalibrate(data => console.log(data))
+  }
+  stopRCCalibrate() {
+    this.droneService.stopRCCalibrate(data => console.log(data))
   }
 
 }

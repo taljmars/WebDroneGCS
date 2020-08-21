@@ -8,8 +8,11 @@ import com.dronegcs.mavlink.is.connection.ConnectionStatistics;
 import com.dronegcs.mavlink.is.connection.MavLinkConnection;
 import com.dronegcs.mavlink.is.connection.MavLinkConnectionStatisticsListener;
 import com.dronegcs.mavlink.is.drone.Drone;
+import com.dronegcs.mavlink.is.drone.calibration.CalibrateCompass;
+import com.dronegcs.mavlink.is.drone.calibration.CalibrateGyroLevel;
+import com.dronegcs.mavlink.is.drone.calibration.CalibrateGyroOrientation;
+import com.dronegcs.mavlink.is.drone.calibration.CalibrateRC;
 import com.dronegcs.mavlink.is.drone.parameters.Parameter;
-import com.dronegcs.mavlink.is.drone.variables.Calibration;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmCommands;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmModes;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmTuning;
@@ -21,15 +24,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -42,7 +43,16 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
   private Drone drone;
 
   @Autowired
-  private Calibration calibration;
+  private CalibrateGyroOrientation calibrateGyroOrientation;
+
+  @Autowired
+  private CalibrateGyroLevel calibrateGyroLevel;
+
+  @Autowired
+  private CalibrateCompass calibrateCompass;
+
+  @Autowired
+  private CalibrateRC calibrateRC;
 
   @Autowired
   private GCSHeartbeat gcsHeartbeat;
@@ -56,6 +66,8 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
 
   private static final String RESULT = "result";
   private Instant startTime;
+
+  private Set<String> connectedUsers = new HashSet<>();
 
   private JSONObject getResponseTemplate() {
     JSONObject obj = new JSONObject();
@@ -133,9 +145,10 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
   }
 
   @PostMapping("/connect")
-  public Map connect(@RequestBody PortConfig portConfig) {
+  public Map connect(@RequestBody PortConfig portConfig, HttpServletRequest request) {
     JSONObject obj = getResponseTemplate();
     try {
+      connectedUsers.add(request.getRemoteAddr());
       if (portConfig.getBaud() != serialConnection.getBaud() || portConfig.getName() != serialConnection.getPortName()) {
         if (serialConnection.isConnect()) {
           if (drone.isConnectionAlive()) {
@@ -152,6 +165,9 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
         drone.getMavClient().connect();
         System.out.println("Start HB");
         gcsHeartbeat.setActive(true);
+
+        System.out.println("Refresh Parameters");
+        drone.getParameters().refreshParameters();
       }
       else {
         System.out.println("Port Already connected");
@@ -172,8 +188,9 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
 
 
   @PostMapping("/disconnect")
-  public Map disconnect() {
+  public Map disconnect(HttpServletRequest request) {
     JSONObject obj = getResponseTemplate();
+    connectedUsers.add(request.getRemoteAddr());
 
     try {
       drone.getMavClient().disconnect();
@@ -241,6 +258,7 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
     conn.put("baud-rate", serialConnection.getBaud());
     object.put("connection",conn);
     object.put("addresses", ips);
+    object.put("connected-users", connectedUsers);
     return object.toMap();
   }
 
@@ -318,7 +336,7 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
   @PostMapping("startLevelCalibrate")
   public Map startLevelCalibrate() {
     System.out.println("startLevelCalibrate");
-    calibration.startLevelCalibration();
+    calibrateGyroLevel.start();
     JSONObject object = getResponseTemplate();
     return object.toMap();
   }
@@ -327,12 +345,12 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
   public Map startGyroCalibrate() {
     System.out.println("startGyroCalibrate");
     JSONObject object = getResponseTemplate();
-    if (calibration.isCalibrating()) {
+    if (calibrateGyroOrientation.isCalibrating()) {
       object.put(RESULT, false);
       object.put("messege", "Calibration Already Started");
     }
     else {
-      calibration.startAccelerometerCalibration();
+      calibrateGyroOrientation.start();
       gyroClibrateStep = 0;
     }
     return object.toMap();
@@ -344,12 +362,12 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
   public Map ackGyroCalibrate() {
     System.out.println("ackGyroCalibrate");
     JSONObject object = getResponseTemplate();
-    if (!calibration.isCalibrating()) {
+    if (!calibrateGyroOrientation.isCalibrating()) {
       object.put(RESULT, false);
       object.put("messege", "Calibration Haven't Started");
     }
     else {
-      calibration.sendAccelCalibrationAck(gyroClibrateStep);
+      calibrateGyroOrientation.ack(gyroClibrateStep);
     }
     return object.toMap();
   }
@@ -360,10 +378,40 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
   }
 
   @PostMapping("startMagCalibrate")
+//  public Map startMagCalibrate(@RequestBody(required = false) int measurements) {
   public Map startMagCalibrate() {
     System.out.println("startMagCalibrate");
-    calibration.startMagnometerCalibration();
+//    System.out.println("startMagCalibrate " + measurements);
+//    if (measurements != 0)
+//      calibrateCompass.startCompassCalibration(measurements);
+//    else
+      calibrateCompass.start();
     JSONObject object = getResponseTemplate();
     return object.toMap();
   }
+
+  @PostMapping("stopMagCalibrate")
+  public Map stopMagCalibrate() {
+    System.out.println("stopMagCalibrate");
+    calibrateCompass.stop();
+    JSONObject object = getResponseTemplate();
+    return object.toMap();
+  }
+
+  @PostMapping("startRCCalibrate")
+  public Map startRCCalibrate() {
+    System.out.println("startRCCalibrate");
+    calibrateRC.start();
+    JSONObject object = getResponseTemplate();
+    return object.toMap();
+  }
+
+  @PostMapping("stopRCCalibrate")
+  public Map stopRCCalibrate() {
+    System.out.println("stopRCCalibrate");
+    calibrateRC.stop();
+    JSONObject object = getResponseTemplate();
+    return object.toMap();
+  }
+
 }

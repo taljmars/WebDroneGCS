@@ -6,6 +6,7 @@
         <mat-button-toggle style="border:none;" (click)="setActive('Calibration')">Calibration</mat-button-toggle>
         <mat-button-toggle style="border:none;" (click)="setActive('GCSConfig')">GCS Configuration</mat-button-toggle>
         <mat-button-toggle style="border:none;" (click)="setActive('UserConfig')">User Configuration</mat-button-toggle>
+        <mat-button-toggle style="border:none;" (click)="setActive('ServerConfig')">Server Configuration</mat-button-toggle>
       </mat-button-toggle-group>
     
   </mat-drawer>
@@ -16,6 +17,7 @@
     <user-config *ngIf="isActive('UserConfig')"></user-config>
     <gcs-config-desktop *ngIf="isActive('GCSConfig')"></gcs-config-desktop>
     <calibration-desktop *ngIf="isActive('Calibration')"></calibration-desktop>
+    <server-config *ngIf="isActive('ServerConfig')"></server-config>
   </mat-drawer-content>
   
 </mat-drawer-container>

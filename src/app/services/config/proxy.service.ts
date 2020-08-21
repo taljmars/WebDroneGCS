@@ -33,6 +33,7 @@ export class ProxyService {
   public proxyUpTime: String = "00:00:00";
   public proxyVersion: String = "Unknown";
   public proxyAddresses: Array<String> = new Array();
+  public proxyConnectedUsers: any = new Array();
 
   constructor(private configService: ConfigService,
     private alertsService: AlertsService) {
@@ -169,6 +170,7 @@ export class ProxyService {
       this.proxyVersion = data["version"];
       this.proxyUpTime = data["uptime"];
       this.proxyAddresses = data["addresses"]
+      this.proxyConnectedUsers = data["connected-users"]
       let connection = data["connection"];
       if (!this.isProxyConnected() && connection["drone"] == true) {
         console.log("Proxy already binded to port and drone")

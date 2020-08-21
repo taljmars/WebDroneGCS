@@ -136,38 +136,42 @@
                     <h4>Channels</h4>
                 </mdb-card-title>
                 <mdb-card-text>
-                    Channel 1 - {{ch[0]}} PWM - Roll
+                    Channel 1 - {{ch[0]}} PWM (Min: {{min[0]}}, Max: {{max[0]}}) <b>Roll</b>
                     <input type="range" disabled class="custom-range" min="800" max="2200" [value]="ch[0]">
                 </mdb-card-text>
                 <mdb-card-text>
-                    Channel 2 - {{ch[1]}} PWM - Pitch
+                    Channel 2 - {{ch[1]}} PWM (Min: {{min[1]}}, Max: {{max[1]}}) <b>Pitch</b>
                     <input type="range" disabled class="custom-range" min="800" max="2200" [value]="ch[1]">
                 </mdb-card-text>
                 <mdb-card-text>
-                    Channel 3 - {{ch[2]}} PWM - Throttle
+                    Channel 3 - {{ch[2]}} PWM (Min: {{min[2]}}, Max: {{max[2]}}) <b>Throttle</b>
                     <input type="range" disabled class="custom-range" min="800" max="2200" [value]="ch[2]">
                 </mdb-card-text>
                 <mdb-card-text>
-                    Channel 4 - {{ch[3]}} PWM - Yaw
+                    Channel 4 - {{ch[3]}} PWM (Min: {{min[3]}}, Max: {{max[3]}}) <b>Yaw</b>
                     <input type="range" disabled class="custom-range" min="800" max="2200" [value]="ch[3]">
                 </mdb-card-text>
                 <mdb-card-text>
-                    Channel 5 - {{ch[4]}} PWM
+                    Channel 5 - {{ch[4]}} PWM (Min: {{min[4]}}, Max: {{max[4]}})
                     <input type="range" disabled class="custom-range" min="800" max="2200" [value]="ch[4]">
                 </mdb-card-text>
                 <mdb-card-text>
-                    Channel 6 - {{ch[5]}} PWM
+                    Channel 6 - {{ch[5]}} PWM (Min: {{min[5]}}, Max: {{max[5]}})
                     <input type="range" disabled class="custom-range" min="800" max="2200" [value]="ch[5]">
                 </mdb-card-text>
                 <mdb-card-text>
-                    Channel 7 - {{ch[6]}} PWM
+                    Channel 7 - {{ch[6]}} PWM (Min: {{min[6]}}, Max: {{max[6]}})
                     <input type="range" disabled class="custom-range" min="800" max="2200" [value]="ch[6]">
                 </mdb-card-text>
                 <mdb-card-text>
-                    Channel 8 - {{ch[7]}} PWM
+                    Channel 8 - {{ch[7]}} PWM (Min: {{min[7]}}, Max: {{max[7]}})
                     <input type="range" disabled class="custom-range" min="800" max="2200" [value]="ch[7]">
                 </mdb-card-text>
             </mdb-card-body>
+          <mdb-card-body>
+              <button mat-stroked-button color="primary" (click)="startRCCalibrate()">Start</button>
+              <button mat-stroked-button color="primary" (click)="stopRCCalibrate()">Stop</button>
+          </mdb-card-body>
           </mdb-card>
         </div>
   

@@ -10,6 +10,31 @@
         </mat-card>
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button mdbBtn color="info" class="my-4" (click)="close()">Done</button>
-      </mat-dialog-actions>
+        <mat-form-field>
+            <mat-label>x: </mat-label>
+            <input matInput #x>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>y: </mat-label>
+            <input matInput #y>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>z: </mat-label>
+            <input matInput #z>
+        </mat-form-field>
+        <button mat-raised-button color="info" class="my-4" (click)="add(x.value, y.value, z.value)">Add</button>
+    </mat-dialog-actions>
+    <mat-card>
+        <mat-dialog-actions>
+            <mat-label style="font-weight: bold;" >Offsets:  </mat-label>
+            <mat-label>  x: {{offsetX}} y: {{offsetY}} z: {{offsetZ}}</mat-label>
+        </mat-dialog-actions>
+    </mat-card>
+    <mat-card>
+        <mat-dialog-actions>
+            <button mdbBtn color="info" class="my-4" (click)="close()">Done</button>
+            <button mdbBtn color="info" class="my-4" (click)="start()">Start</button>
+            <button mdbBtn color="info" class="my-4" (click)="stop()">Stop</button>
+        </mat-dialog-actions>
+    </mat-card>
 </div>

@@ -15,7 +15,8 @@ export class SettingsDesktop implements DroneEventListener {
 
   // private active: String = "DroneParams"
   // private active: String = "GCSConfig"
-  private active: String = "Calibration"
+  private active: String = "ServerConfig"
+  // private active: String = "Calibration"
 
 
 

@@ -25,9 +25,9 @@
       <div>
             <label>Events</label>
             <mat-select multiple (selectionChange)="callType($event.value)">
-              <mat-option [value]="'all'" (change)="markAll()">All</mat-option>
+              <!-- <mat-option [value]="'all'" (change)="markAll()">All</mat-option> -->
               <mat-optgroup *ngFor="let group of eventTypes" [label]="group.category">
-                <mat-option *ngFor="let item of group.items" [value]="item.name" (change)="callType(t.value)">
+                <mat-option *ngFor="let item of group.items" [value]="item.name" (change)="callType(item.value)">
                     {{item.name}}
                 </mat-option>
               </mat-optgroup>

@@ -1,0 +1,29 @@
+<div style="width: fit-content; height: fit-content;">
+    <h2>Setting Local Machine as Drone Server</h2>
+    <mat-dialog-content style="width: fit-content; height: fit-content;">
+        <button mdbBtn color="info" class="my-4" (click)="activateServer()">Activate</button>
+        <mat-card *ngIf="active">
+            <mat-label><b>Up: </b>{{this.proxyService.isProxyUp()}}</mat-label><p></p>
+            <mat-label><b>Uptime: </b>{{this.proxyService.proxyUpTime}}</mat-label><p></p>
+            <mat-label><b>Version: </b>{{this.proxyService.proxyVersion}}</mat-label><p></p>
+            <mat-label><b>Connect Port</b></mat-label>
+            <ul>
+                <li><b>Name: </b>{{this.proxyService.getPortName()}}</li>
+                <li><b>Baud Rate: </b>{{this.proxyService.getBaudRate()}}</li>
+            </ul>
+            <mat-label><b>Server Addresses</b></mat-label><br/>
+            <ul>
+                <li *ngFor="let item of this.proxyService.proxyAddresses;">
+                    {{item}}
+                </li>
+            </ul>
+            <mat-label><b>Connected Clients</b></mat-label><br/>
+            <ul>
+                <li *ngFor="let item of this.proxyService.proxyConnectedUsers;">
+                    {{item}}
+                </li>
+            </ul>
+        </mat-card>
+    </mat-dialog-content>
+</div>
+
