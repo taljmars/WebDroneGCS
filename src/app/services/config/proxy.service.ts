@@ -71,6 +71,8 @@ export class ProxyService {
       console.log(data)
       that.configService.post("connect", {}, data, val => {
         that.portName = val.connection.name;
+        if (that.portName == "")
+          that.portName = "Unknown"
         that.baudRate = val.connection.baud;
         for (let x of that.listeners)
               x.onProxyEvent(new ProxyEvent(ProxyEvents.PROXY_CONNECTED, "Proxy Binded to Port"))
@@ -82,7 +84,7 @@ export class ProxyService {
     }, function(error) {
       if (!that.proxyConnected)
         return
-      that.portName = "";
+      that.portName = "Unknown";
       that.baudRate = 0;
       for (let x of that.listeners)
             x.onProxyEvent(new ProxyEvent(ProxyEvents.PROXY_DOWN, "Proxy Disconnected"))

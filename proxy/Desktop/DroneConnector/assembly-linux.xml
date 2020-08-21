@@ -74,6 +74,13 @@
           <lineEnding>unix</lineEnding>
           <fileMode>777</fileMode>
         </file>
+      <file>
+        <source>./addons/readme.txt</source>
+        <outputDirectory>.</outputDirectory>
+        <destName>readme.txt</destName>
+        <lineEnding>unix</lineEnding>
+        <fileMode>666</fileMode>
+      </file>
         <file>
           <source>./addons/regupdate.sh</source>
           <outputDirectory>.</outputDirectory>
