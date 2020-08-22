@@ -119,7 +119,7 @@ export class CamView implements DroneEventListener {
         break;
 
       case DroneEvents.SPEED:
-        this.speed = Math.round(event.data["airspeed"] * 3.6 * 10) / 10
+        this.speed = Math.round(event.data["speed-air"] * 3.6 * 10) / 10
         break;
 
       case DroneEvents.HOME:

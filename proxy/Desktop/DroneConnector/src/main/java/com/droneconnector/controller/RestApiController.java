@@ -2,6 +2,7 @@ package com.droneconnector.controller;
 
 import com.droneconnector.model.Modes;
 import com.droneconnector.model.PortConfig;
+import com.droneconnector.model.SingleData;
 import com.droneconnector.model.StreamRates;
 import com.dronegcs.mavlink.core.gcs.GCSHeartbeat;
 import com.dronegcs.mavlink.is.connection.ConnectionStatistics;
@@ -16,6 +17,7 @@ import com.dronegcs.mavlink.is.drone.parameters.Parameter;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmCommands;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmModes;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmTuning;
+import com.dronegcs.mavlink.is.protocol.msg_metadata.enums.MAV_EXT_COMPASS_ORIENTATION;
 import com.generic_tools.devices.SerialConnection;
 import com.google.gson.Gson;
 import org.json.JSONArray;
@@ -378,6 +380,38 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
     return this.gyroClibrateStep;
   }
 
+  @GetMapping("getSupportCompassMethods")
+//  public Map startMagCalibrate(@RequestBody(required = false) int measurements) {
+  public Map getSupportCompassMethods() {
+    System.out.println("getSupportCompassMethods");
+    Set<CalibrateCompass.CompassType> methods = calibrateCompass.getCompassFeatures();
+//    for (CalibrateCompass.CompassType ct : calibrateCompass.getCompassFeatures()) {
+//      ct.name();
+//    }
+    JSONObject object = getResponseTemplate();
+    object.put("methods", methods == null ? new ArrayList<>() : calibrateCompass.getCompassFeatures());
+    return object.toMap();
+  }
+
+  @PostMapping("setMagnometerCalibrateMethod")
+  public Map setMagnometerCalibrateMethod(@RequestBody SingleData payload) {
+    System.out.println("setMagnometerCalibrateMethod");
+    CalibrateCompass.CompassType type = CalibrateCompass.CompassType.valueOf(payload.getData());
+    calibrateCompass.setType(type);
+    JSONObject object = getResponseTemplate();
+    object.put("rotation", calibrateCompass.getOrientation());
+    return object.toMap();
+  }
+
+  @PostMapping("setMagnometerCalibrateRotation")
+  public Map setMagnometerCalibrateRotation(@RequestBody SingleData payload) {
+    System.out.println("setMagnometerCalibrateRotation");
+    MAV_EXT_COMPASS_ORIENTATION rt = MAV_EXT_COMPASS_ORIENTATION.valueOf(payload.getData());
+    calibrateCompass.setOrientation(rt);
+    JSONObject object = getResponseTemplate();
+    return object.toMap();
+  }
+
   @PostMapping("startMagCalibrate")
 //  public Map startMagCalibrate(@RequestBody(required = false) int measurements) {
   public Map startMagCalibrate() {
@@ -386,7 +420,7 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
 //    if (measurements != 0)
 //      calibrateCompass.startCompassCalibration(measurements);
 //    else
-      calibrateCompass.start();
+    calibrateCompass.start();
     JSONObject object = getResponseTemplate();
     return object.toMap();
   }

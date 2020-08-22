@@ -16,7 +16,7 @@
       <td mat-cell *matCellDef="let element"> {{element.name1}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="value1" #value1>
+    <ng-container matColumnDef="value1">
       <th mat-header-cell *matHeaderCellDef> Value </th>
       <td mat-cell *matCellDef="let element"> {{element.value1}} </td>
     </ng-container>
@@ -32,14 +32,54 @@
     </ng-container>
 
     <ng-container matColumnDef="name3">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name3}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="value3">
-        <th mat-header-cell *matHeaderCellDef> Value </th>
-        <td mat-cell *matCellDef="let element"> {{element.value3}} </td>
-      </ng-container>
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name3}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="value3">
+      <th mat-header-cell *matHeaderCellDef> Value </th>
+      <td mat-cell *matCellDef="let element"> {{element.value3}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name4">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name4}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="value4">
+      <th mat-header-cell *matHeaderCellDef> Value </th>
+      <td mat-cell *matCellDef="let element"> {{element.value4}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name5">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name5}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="value5">
+      <th mat-header-cell *matHeaderCellDef> Value </th>
+      <td mat-cell *matCellDef="let element"> {{element.value5}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name6">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name6}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="value6">
+      <th mat-header-cell *matHeaderCellDef> Value </th>
+      <td mat-cell *matCellDef="let element"> {{element.value6}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name7">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name7}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="value7">
+      <th mat-header-cell *matHeaderCellDef> Value </th>
+      <td mat-cell *matCellDef="let element"> {{element.value7}} </td>
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

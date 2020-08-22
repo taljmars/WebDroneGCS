@@ -1,0 +1,68 @@
+export enum CompassRotations {
+    ROTATION_NONE,
+	ROTATION_YAW_45,
+	ROTATION_YAW_90,
+	ROTATION_YAW_135,
+	ROTATION_YAW_180,
+	ROTATION_YAW_225,
+	ROTATION_YAW_270,
+	ROTATION_YAW_315,
+	ROTATION_ROLL_180,
+	ROTATION_ROLL_180_YAW_45,
+	ROTATION_ROLL_180_YAW_90,
+	ROTATION_ROLL_180_YAW_135,
+	ROTATION_PITCH_180,
+	ROTATION_ROLL_180_YAW_225,
+	ROTATION_ROLL_180_YAW_270,
+	ROTATION_ROLL_180_YAW_315,
+	ROTATION_ROLL_90,
+	ROTATION_ROLL_90_YAW_45,
+	ROTATION_ROLL_90_YAW_90,
+	ROTATION_ROLL_90_YAW_135,
+	ROTATION_ROLL_270,
+	ROTATION_ROLL_270_YAW_45,
+	ROTATION_ROLL_270_YAW_90,
+	ROTATION_ROLL_270_YAW_135,
+	ROTATION_PITCH_90,
+	ROTATION_PITCH_270,
+	ROTATION_MAX
+}
+
+export class CompassRotation {
+
+    constructor(public id: CompassRotations, public data: any) {
+
+    }
+}
+
+export class CompassRotationMap {
+    static map: Map<String, CompassRotations> = new Map([
+        ["ROTATION_NONE" ,CompassRotations.ROTATION_NONE],
+        ["ROTATION_YAW_45" ,CompassRotations.ROTATION_YAW_45],
+        ["ROTATION_YAW_90" ,CompassRotations.ROTATION_YAW_90],
+        ["ROTATION_YAW_135" ,CompassRotations.ROTATION_YAW_135],
+        ["ROTATION_YAW_180" ,CompassRotations.ROTATION_YAW_180],
+        ["ROTATION_YAW_225" ,CompassRotations.ROTATION_YAW_225],
+        ["ROTATION_YAW_270" ,CompassRotations.ROTATION_YAW_270],
+        ["ROTATION_YAW_315" ,CompassRotations.ROTATION_YAW_315],
+        ["ROTATION_ROLL_180" ,CompassRotations.ROTATION_ROLL_180],
+        ["ROTATION_ROLL_180_YAW_45" ,CompassRotations.ROTATION_ROLL_180_YAW_45],
+        ["ROTATION_ROLL_180_YAW_90" ,CompassRotations.ROTATION_ROLL_180_YAW_90],
+        ["ROTATION_ROLL_180_YAW_135" ,CompassRotations.ROTATION_ROLL_180_YAW_135],
+        ["ROTATION_PITCH_180" ,CompassRotations.ROTATION_PITCH_180],
+        ["ROTATION_ROLL_180_YAW_225" ,CompassRotations.ROTATION_ROLL_180_YAW_225],
+        ["ROTATION_ROLL_180_YAW_270" ,CompassRotations.ROTATION_ROLL_180_YAW_270],
+        ["ROTATION_ROLL_180_YAW_315" ,CompassRotations.ROTATION_ROLL_180_YAW_315],
+        ["ROTATION_ROLL_90" ,CompassRotations.ROTATION_ROLL_90],
+        ["ROTATION_ROLL_90_YAW_45" ,CompassRotations.ROTATION_ROLL_90_YAW_45],
+        ["ROTATION_ROLL_90_YAW_90" ,CompassRotations.ROTATION_ROLL_90_YAW_90],
+        ["ROTATION_ROLL_90_YAW_135" ,CompassRotations.ROTATION_ROLL_90_YAW_135],
+        ["ROTATION_ROLL_270" ,CompassRotations.ROTATION_ROLL_270],
+        ["ROTATION_ROLL_270_YAW_45" ,CompassRotations.ROTATION_ROLL_270_YAW_45],
+        ["ROTATION_ROLL_270_YAW_90" ,CompassRotations.ROTATION_ROLL_270_YAW_90],
+        ["ROTATION_ROLL_270_YAW_135" ,CompassRotations.ROTATION_ROLL_270_YAW_135],
+        ["ROTATION_PITCH_90" ,CompassRotations.ROTATION_PITCH_90],
+        ["ROTATION_PITCH_270" ,CompassRotations.ROTATION_PITCH_270],
+        ["ROTATION_MAX" ,CompassRotations.ROTATION_MAX],
+    ])
+}

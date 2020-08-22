@@ -57,10 +57,19 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
         payload.put("yaw", drone.getOrientation().getYaw());
         break;
       case SPEED:
-        payload.put("airspeed", drone.getSpeed().getAirSpeed().valueInMetersPerSecond());
+        payload.put("speed-air", drone.getSpeed().getAirSpeed().valueInMetersPerSecond());
+        payload.put("speed-ground", drone.getSpeed().getGroundSpeed().valueInMetersPerSecond());
+        payload.put("speed-max-air", drone.getSpeed().getMaxAirSpeed().valueInMetersPerSecond());
+        payload.put("speed-target", drone.getSpeed().getTargetSpeed().valueInMetersPerSecond());
+        payload.put("speed-vertical", drone.getSpeed().getVerticalSpeed().valueInMetersPerSecond());
+        if (drone.getSpeed().getSpeedParameter() != null)
+          payload.put("speed-wp-nav", drone.getSpeed().getSpeedParameter().valueInMetersPerSecond());
         break;
       case BATTERY:
         payload.put("bat-remain", drone.getBattery().getBattRemain());
+        payload.put("bat-current", drone.getBattery().getBattCurrent());
+        payload.put("bat-discharge", drone.getBattery().getBattDischarge());
+        payload.put("bat-volt", drone.getBattery().getBattVolt());
         break;
       case GUIDEDPOINT:
         break;
@@ -70,9 +79,22 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
         payload.put("nav-roll", drone.getNavigation().getNavRoll());
         break;
       case ATTITUDE:
+        payload.put("altitude-curr", drone.getAltitude().getAltitude());
+        payload.put("altitude-max", drone.getAltitude().getMaxAltitude());
+        payload.put("altitude-target", drone.getAltitude().getTargetAltitude());
+        payload.put("altitude-is-collision-imminent", drone.getAltitude().isCollisionImminent());
         break;
       case RADIO:
         payload.put("radio-signal", drone.getRadio().getSignalStrength());
+        payload.put("radio-fade-margin", drone.getRadio().getFadeMargin());
+        payload.put("radio-fixed", drone.getRadio().getFixed());
+        payload.put("radio-nois", drone.getRadio().getNoise());
+        payload.put("radio-rem-fade-margin", drone.getRadio().getRemFadeMargin());
+        payload.put("radio-rem-noise", drone.getRadio().getRemNoise());
+        payload.put("radio-rem-rssi", drone.getRadio().getRemRssi());
+        payload.put("radio-rssi", drone.getRadio().getRssi());
+        payload.put("radio-rx-errors", drone.getRadio().getRxErrors());
+        payload.put("radio-tx-buff", drone.getRadio().getTxBuf());
         break;
       case RC_IN:
         for (int i = 0 ; i < drone.getRC().in.length ; i++)
@@ -104,6 +126,8 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
       case TYPE:
         payload.put("type-drone", drone.getType().getDroneType());
         payload.put("type-iscopter", drone.getType().isCopter());
+        payload.put("type-firmware", drone.getType().getFirmwareType());
+        payload.put("type-version", drone.getType().getFirmwareVersion());
         break;
       case HOME:
         payload.put("home-dist", drone.getHome().getDroneDistanceToHome());

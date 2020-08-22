@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { DroneEventListener, DroneService } from 'src/app/services/drone/drone.service';
 import { DroneEvents } from 'src/app/services/drone/protocol/events.component';
+import { CompassRotation, CompassRotations, CompassRotationMap } from 'src/app/services/drone/protocol/compass.rotations';
 
 // // Get the canvas element from the DOM
 // const canvas = document.querySelector('#scene');
@@ -239,9 +240,26 @@ export class MagnometerView implements OnInit, DroneEventListener {
   offsetY: number = 0
   offsetZ: number = 0
 
+  rotationOptions: Array<String> = new Array()
+  supportedCalibMethods: Set<String> = new Set<String>();
+  currentRotation = ""
+
   constructor(public dialogRef: MatDialogRef<MagnometerView>,
     private droneService: DroneService) {
     this.droneService.addEventListener(this);
+    this.droneService.getSupportCompassMethods(
+      data => {
+        console.log(data)
+        for (let item of data.methods) {
+          this.supportedCalibMethods.add(item)
+        }
+      },
+      () => console.error("Failed to get supported calibration methods")
+    );
+    // var tmp = []
+    CompassRotationMap.map.forEach((value, key) => {
+      this.rotationOptions.push(key)
+    })
   }
 
   ngOnInit(): void {
@@ -441,6 +459,24 @@ export class MagnometerView implements OnInit, DroneEventListener {
 
   stop() {
     this.droneService.stopMagnometerCalibrate(data => console.log(data))
+  }
+
+  selectRotation(value) {
+    console.log(value)
+    this.droneService.setMagnometerCalibrateRotation(value, data=> {console.log(data)});
+    this.currentRotation = value
+  }
+
+  setCalibrationMethod(value) {
+    console.log(value)
+    this.droneService.setMagnometerCalibrateMethod(value, data=> {
+      console.log(data.rotation)
+      if (data.rotation == null)
+        return
+      
+      this.currentRotation = data.rotation
+    });
+
   }
   
 }

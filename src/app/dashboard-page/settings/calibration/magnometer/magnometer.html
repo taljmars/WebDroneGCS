@@ -1,4 +1,4 @@
-<div style="width: fit-content; height: fit-content;">
+<div style="width: fit-content; height: fit-content; align-content: center;">
     <h2>Magnometer</h2>
     <mat-dialog-content style="width: fit-content; height: fit-content;">
         <mat-card>
@@ -9,7 +9,7 @@
             </mat-card-content>
         </mat-card>
     </mat-dialog-content>
-    <mat-dialog-actions>
+    <!-- <mat-dialog-actions>
         <mat-form-field>
             <mat-label>x: </mat-label>
             <input matInput #x>
@@ -23,16 +23,33 @@
             <input matInput #z>
         </mat-form-field>
         <button mat-raised-button color="info" class="my-4" (click)="add(x.value, y.value, z.value)">Add</button>
-    </mat-dialog-actions>
+    </mat-dialog-actions> -->
     <mat-card>
-        <mat-dialog-actions>
+        <mat-dialog-actions style="align-content: center;">
+            <mat-button-toggle-group>
+                <mat-button-toggle *ngIf="supportedCalibMethods.has('EXTERNAL')" color="info" (click)="setCalibrationMethod('EXTERNAL')">External</mat-button-toggle>
+                <mat-button-toggle *ngIf="supportedCalibMethods.has('PIXHAWK')" color="info"  (click)="setCalibrationMethod('PIXHAWK')">Pixhawk</mat-button-toggle>
+                <mat-button-toggle *ngIf="supportedCalibMethods.has('APM_2_5')" color="info" (click)="setCalibrationMethod('APM_2_5')">APM 2.5</mat-button-toggle>
+            </mat-button-toggle-group>
+            <div>
+                <mat-label>Rotation</mat-label>
+                <mat-select [value]="currentRotation" (selectionChange)="selectRotation($event.value)">
+                    <mat-option *ngFor="let item of rotationOptions" [value]="item">
+                        {{item}}
+                    </mat-option>
+                </mat-select>
+            </div>
+        </mat-dialog-actions>
+    </mat-card>
+    <mat-card>
+        <mat-dialog-actions style="align-content: center;">
             <mat-label style="font-weight: bold;" >Offsets:  </mat-label>
             <mat-label>  x: {{offsetX}} y: {{offsetY}} z: {{offsetZ}}</mat-label>
         </mat-dialog-actions>
     </mat-card>
     <mat-card>
-        <mat-dialog-actions>
-            <button mdbBtn color="info" class="my-4" (click)="close()">Done</button>
+        <mat-dialog-actions style="align-content: center;">
+            <button mdbBtn color="info" class="my-4" (click)="close()" >Close</button>
             <button mdbBtn color="info" class="my-4" (click)="start()">Start</button>
             <button mdbBtn color="info" class="my-4" (click)="stop()">Stop</button>
         </mat-dialog-actions>

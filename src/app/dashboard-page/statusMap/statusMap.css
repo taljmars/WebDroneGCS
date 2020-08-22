@@ -1,3 +1,10 @@
 table {
     width: 100%;
 }
+
+th, td {
+    border: 1px solid lightgrey;
+    border-collapse: collapse;
+    align-content: center;
+    text-align: center;
+}

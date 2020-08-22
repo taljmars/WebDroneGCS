@@ -27,6 +27,8 @@ export class DroneService implements ProxyListener {
   public gcsid: Number = 0;
   public heartbeatinterval: Number = 1;
 
+  public myMap: Map<string, string> = new Map()
+
     constructor(private proxyService: ProxyService,
                 private configService: ConfigService) { 
       this.proxyService.addEventListner(this);
@@ -38,6 +40,7 @@ export class DroneService implements ProxyListener {
         return
       }
 
+      let that = this
       let droneEvent = new DroneEvent(event.id, event.data)
 
       switch (droneEvent.id) {
@@ -50,6 +53,15 @@ export class DroneService implements ProxyListener {
           break;
         case DroneEvents.DISCONNECTED:
           this.proxyService.disconnect()
+          break;
+        case DroneEvents.PARAMETER:
+        case DroneEvents.PARAM_RECEIVE:
+          break
+        default:
+          Object.keys(droneEvent.data).forEach(function(key) {
+            // console.table('Key : ' + key + ', Value : ' + event.data[key])
+            that.myMap.set(key, droneEvent.data[key])
+          })
           break;
       }
       
@@ -163,6 +175,18 @@ export class DroneService implements ProxyListener {
 
     startLevelCalibrate(okCallback?: Function, errCallback?: Function) {
       this.configService.post("startLevelCalibrate", {}, {}, okCallback, errCallback);
+    }
+
+    getSupportCompassMethods(okCallback: Function, errCallback?: Function) {
+      this.configService.get("getSupportCompassMethods", {}, {}, okCallback, errCallback);
+    }
+
+    setMagnometerCalibrateMethod(method, okCallback: Function, errCallback?: Function) {
+      this.configService.post("setMagnometerCalibrateMethod", {}, {"data":method}, okCallback, errCallback);
+    }
+
+    setMagnometerCalibrateRotation(rotation, okCallback: Function, errCallback?: Function) {
+      this.configService.post("setMagnometerCalibrateRotation", {}, { "data": rotation}, okCallback, errCallback);
     }
 
     startMagnometerCalibrate(okCallback: Function, errCallback?: Function) {

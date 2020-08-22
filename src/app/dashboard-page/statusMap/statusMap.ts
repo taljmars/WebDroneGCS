@@ -14,11 +14,11 @@ import {MatPaginator} from '@angular/material/paginator';
 })
 export class StatusMapView implements DroneEventListener, OnInit {
 
-  static MAX_COL: number = 4
+  static MAX_COL: number = 8
   static MAX_ROWS: number = 8
   displayedColumns = []
   dataSource = []
-  myMap: Map<string, string> = new Map()
+  // myMap: Map<string, string> = new Map()
   
   // @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -44,17 +44,19 @@ export class StatusMapView implements DroneEventListener, OnInit {
   refresh() {
     let tmpData = []
     let i: number = 0;
-    this.myMap.forEach((value, key) => {
+    const sortedKeys: string[] = [...this.droneService.myMap.keys()].sort();
+    sortedKeys.forEach((key) => {
+    // this.droneService.myMap.forEach((value, key) => {
       let col = Math.floor(Math.fround(i / StatusMapView.MAX_ROWS))
       let row = i % StatusMapView.MAX_ROWS
       var cname = "name" + col
       var cvalue = "value" + col
       var tmp = {}
         tmp[cname] = key
-        tmp[cvalue] = value
+        tmp[cvalue] = this.droneService.myMap.get(key)
       if (col > 0) {
         tmpData[row][cname] = key
-        tmpData[row][cvalue] = value
+        tmpData[row][cvalue] = this.droneService.myMap.get(key)
       }
       else {
         tmpData.push(tmp)
@@ -65,7 +67,7 @@ export class StatusMapView implements DroneEventListener, OnInit {
   }
 
   onDroneEvent(event: DroneEvent) {
-    let that = this
+    // let that = this
     switch (event.id) {
       case DroneEvents.ATTITUDE:
         // break;
@@ -104,11 +106,11 @@ export class StatusMapView implements DroneEventListener, OnInit {
       case DroneEvents.TYPE:
         // break;
 
-        Object.keys(event.data).forEach(function(key) {
-          // console.table('Key : ' + key + ', Value : ' + event.data[key])
-          that.myMap.set(key, event.data[key])
-        })
-        break;
+    //     Object.keys(event.data).forEach(function(key) {
+    //       // console.table('Key : ' + key + ', Value : ' + event.data[key])
+    //       that.myMap.set(key, event.data[key])
+    //     })
+    //     break;
     }
   }
 

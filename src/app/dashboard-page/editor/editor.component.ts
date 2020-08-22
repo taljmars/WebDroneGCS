@@ -41,7 +41,7 @@ export class Editor implements DroneEventListener {
   onDroneEvent(event: DroneEvent) {
     switch (event.id) {
       case DroneEvents.GPS:
-        console.log("GPS " + event.data)
+        // console.log("GPS " + event.data)
         this._lat = event.data['gps-lat'];
         this._lon = event.data['gps-lon'];
         break;
