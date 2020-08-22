@@ -84,9 +84,9 @@ export class MapView implements DroneEventListener {
     switch (event.id) {
       case DroneEvents.GPS:
         // console.log("GPS " + event.data)
-        this._lat = event.data['lat'];
-        this._lon = event.data['lon'];
-        this.height = event.data['alt'];
+        this._lat = event.data['gps-lat'];
+        this._lon = event.data['gps-lon'];
+        this.height = event.data['gps-alt'];
         break;
 
       // case DroneEvents.CONNECTED:
@@ -103,12 +103,12 @@ export class MapView implements DroneEventListener {
         break;
 
       case DroneEvents.BATTERY:
-        this.battery = event.data["remain"]
+        this.battery = event.data["bat-remain"]
         // console.log("battery " + event.data)
         break;
 
       case DroneEvents.RADIO:
-        this.signal = event.data["signal"]
+        this.signal = event.data["radio-signal"]
         // console.log("radio " + event.data)
         break;
 
@@ -127,7 +127,7 @@ export class MapView implements DroneEventListener {
 
       case DroneEvents.NAVIGATION:
         // console.log("braing " + event.data["bearing"])
-        this.angle = event.data["bearing"]
+        this.angle = event.data["nav-bearing"]
         this.markers.clear()
         this._iconInfo.rotation = this.angle;
         this.markers.add({

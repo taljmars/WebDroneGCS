@@ -124,7 +124,7 @@ export abstract class Calibration implements DroneEventListener  {
 
     switch (event.id) {
       case DroneEvents.RC_IN:
-        this.activeMode = Calibration.getCurrentActiveLabel(event.data['4']);
+        this.activeMode = Calibration.getCurrentActiveLabel(event.data['rc-in-4']);
         this.ch = event.data
         break;
       case DroneEvents.CALIBRATION_IMU:

@@ -410,16 +410,16 @@ export class MagnometerView implements OnInit, DroneEventListener {
       case DroneEvents.EXT_CALIB_MAGNETOMETER_START:
         console.log("Start compass calibration - " + event.data)
         averageDot = this.createDot(event.data.x, event.data.y, event.data.z, MagnometerView.width, MagnometerView.height, "green")
-        this.offsetX = event.data.x
-        this.offsetY = event.data.y
-        this.offsetZ = event.data.z
+        this.offsetX = event.data["mag-x"]
+        this.offsetY = event.data["mag-y"]
+        this.offsetZ = event.data["mag-z"]
         break;
       case DroneEvents.EXT_CALIB_MAGNETOMETER_FINISH:
         console.log("Finish compass calibration - " + event.data)
         averageDot = this.createDot(event.data.x, event.data.y, event.data.z, MagnometerView.width, MagnometerView.height, "green")
-        this.offsetX = event.data.x
-        this.offsetY = event.data.y
-        this.offsetZ = event.data.z
+        this.offsetX = event.data["mag-x"]
+        this.offsetY = event.data["mag-y"]
+        this.offsetZ = event.data["mag-z"]
         break;
     }
   }

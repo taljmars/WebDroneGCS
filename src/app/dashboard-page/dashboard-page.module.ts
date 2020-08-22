@@ -18,6 +18,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MDBBootstrapModule, ModalModule, TooltipModule, PopoverModule, IconsModule, ChartsModule } from 'angular-bootstrap-md';
 import { AlertsService } from '../services/alerts.service';
 import { AlertsModule } from '../alerts/alerts.module';
+import { StatusMapModule } from './statusMap/statusMap.module'
+import {MatTableModule} from '@angular/material/table';
+
 
 @NgModule({
   imports: [
@@ -33,6 +36,8 @@ import { AlertsModule } from '../alerts/alerts.module';
     CardsModule, WavesModule, ButtonsModule, ChartsModule,
 
     MatProgressBarModule,
+
+    StatusMapModule,MatTableModule
 
   ],
   declarations: [ DashDesktop, DashMobile ],

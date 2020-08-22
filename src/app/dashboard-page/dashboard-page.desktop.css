@@ -21,6 +21,10 @@ body {
     padding: 20px
 }
 
+.panel-lg {
+    padding: 20px
+}
+
 .dashcard {
     height: 100%
 }

@@ -60,27 +60,27 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
         payload.put("airspeed", drone.getSpeed().getAirSpeed().valueInMetersPerSecond());
         break;
       case BATTERY:
-        payload.put("remain", drone.getBattery().getBattRemain());
+        payload.put("bat-remain", drone.getBattery().getBattRemain());
         break;
       case GUIDEDPOINT:
         break;
       case NAVIGATION:
-        payload.put("bearing", drone.getNavigation().getNavBearing());
-        payload.put("pitch", drone.getNavigation().getNavPitch());
-        payload.put("roll", drone.getNavigation().getNavRoll());
+        payload.put("nav-bearing", drone.getNavigation().getNavBearing());
+        payload.put("nav-pitch", drone.getNavigation().getNavPitch());
+        payload.put("nav-roll", drone.getNavigation().getNavRoll());
         break;
       case ATTITUDE:
         break;
       case RADIO:
-        payload.put("signal", drone.getRadio().getSignalStrength());
+        payload.put("radio-signal", drone.getRadio().getSignalStrength());
         break;
       case RC_IN:
         for (int i = 0 ; i < drone.getRC().in.length ; i++)
-          payload.put(i + "", drone.getRC().in[i]);
+          payload.put("rc-in-" + i, drone.getRC().in[i]);
         break;
       case RC_OUT:
         for (int i = 0 ; i < drone.getRC().out.length ; i++)
-          payload.put(i + "", drone.getRC().out[i]);
+          payload.put("rc-out-" + i, drone.getRC().out[i]);
         break;
       case ARMING:
         break;
@@ -93,7 +93,7 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
       case STATE:
         payload.put("armed", drone.getState().isArmed());
         payload.put("flying", drone.getState().isFlying());
-        payload.put("ftime", drone.getState().getFlightTime());
+        payload.put("flight-time", drone.getState().getFlightTime());
         payload.put("warning", drone.getState().getWarning());
         payload.put("mode", drone.getState().getMode());
         break;
@@ -102,26 +102,26 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
       case MISSION_RECEIVED:
         break;
       case TYPE:
-        payload.put("drone", drone.getType().getDroneType());
-        payload.put("iscopter", drone.getType().isCopter());
+        payload.put("type-drone", drone.getType().getDroneType());
+        payload.put("type-iscopter", drone.getType().isCopter());
         break;
       case HOME:
-        payload.put("dist", drone.getHome().getDroneDistanceToHome());
+        payload.put("home-dist", drone.getHome().getDroneDistanceToHome());
         break;
       case GPS:
-        payload.put("alt", drone.getGps().getPosition().getAltitude());
-        payload.put("x", drone.getGps().getPosition().getX());
-        payload.put("y", drone.getGps().getPosition().getY());
-        payload.put("lat", drone.getGps().getPosition().getLat());
-        payload.put("lon", drone.getGps().getPosition().getLon());
-        payload.put("fixtype", drone.getGps().getFixType());
-        payload.put("sat", drone.getGps().getSatCount());
+        payload.put("gps-alt", drone.getGps().getPosition().getAltitude());
+        payload.put("gps-x", drone.getGps().getPosition().getX());
+        payload.put("gps-y", drone.getGps().getPosition().getY());
+        payload.put("gps-lat", drone.getGps().getPosition().getLat());
+        payload.put("gps-lon", drone.getGps().getPosition().getLon());
+        payload.put("gps-fixtype", drone.getGps().getFixType());
+        payload.put("gps-sat", drone.getGps().getSatCount());
         break;
       case GPS_FIX:
-        payload.put("fix", drone.getGps().getFixType());
+        payload.put("gps-fix", drone.getGps().getFixType());
         break;
       case GPS_COUNT:
-        payload.put("sat", drone.getGps().getSatCount());
+        payload.put("gps-sat", drone.getGps().getSatCount());
         break;
       case PARAMETER:
         break;
@@ -170,50 +170,50 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
       case WARNING_SIGNAL_WEAK:
         break;
       case FIRMWARE:
-        payload.put("type", drone.getFirmwareType());
-        payload.put("version", drone.getFirmwareVersion());
+        payload.put("firmware-type", drone.getFirmwareType());
+        payload.put("firmware-version", drone.getFirmwareVersion());
         break;
       case WARNING_NO_GPS:
         break;
       case MAGNETOMETER:
-        payload.put("x", drone.getMagnetometer().getX());
-        payload.put("y", drone.getMagnetometer().getY());
-        payload.put("z", drone.getMagnetometer().getZ());
+        payload.put("mag-x", drone.getMagnetometer().getX());
+        payload.put("mag-y", drone.getMagnetometer().getY());
+        payload.put("mag-z", drone.getMagnetometer().getZ());
         break;
       case EXT_CALIB_MAGNETOMETER_START:
         if (drone.getMagnetometer().getOffsets().length == 0)
           return;
-        payload.put("x", drone.getMagnetometer().getOffsets()[0]);
-        payload.put("y", drone.getMagnetometer().getOffsets()[1]);
-        payload.put("z", drone.getMagnetometer().getOffsets()[2]);
+        payload.put("mag-x", drone.getMagnetometer().getOffsets()[0]);
+        payload.put("mag-y", drone.getMagnetometer().getOffsets()[1]);
+        payload.put("mag-z", drone.getMagnetometer().getOffsets()[2]);
         break;
       case EXT_CALIB_MAGNETOMETER_PROGRESS:
         if (drone.getMagnetometer().getOffsets().length == 0)
           return;
-        payload.put("x", drone.getCalibrateCompass().getCurrentCenter()[0]);
-        payload.put("y", drone.getCalibrateCompass().getCurrentCenter()[1]);
-        payload.put("z", drone.getCalibrateCompass().getCurrentCenter()[2]);
+        payload.put("mag-x", drone.getCalibrateCompass().getCurrentCenter()[0]);
+        payload.put("mag-y", drone.getCalibrateCompass().getCurrentCenter()[1]);
+        payload.put("mag-z", drone.getCalibrateCompass().getCurrentCenter()[2]);
         break;
       case EXT_CALIB_MAGNETOMETER_FINISH:
         if (drone.getMagnetometer().getOffsets().length == 0)
           return;
-        payload.put("x", drone.getMagnetometer().getOffsets()[0]);
-        payload.put("y", drone.getMagnetometer().getOffsets()[1]);
-        payload.put("z", drone.getMagnetometer().getOffsets()[2]);
+        payload.put("mag-x", drone.getMagnetometer().getOffsets()[0]);
+        payload.put("mag-y", drone.getMagnetometer().getOffsets()[1]);
+        payload.put("mag-z", drone.getMagnetometer().getOffsets()[2]);
         break;
       case EXT_CALIB_RC_START:
-        payload.put("min", drone.getRC().getInMin());
-        payload.put("max", drone.getRC().getInMax());
+        payload.put("rc-in-min", drone.getRC().getInMin());
+        payload.put("rc-in-max", drone.getRC().getInMax());
         break;
       case EXT_CALIB_RC_PROGRESS:
         if (drone.getMagnetometer().getOffsets().length == 0)
           return;
-        payload.put("min", drone.getCalibrateRC().getCurrentMin());
-        payload.put("max", drone.getCalibrateRC().getCurrentMax());
+        payload.put("rc-in-min", drone.getCalibrateRC().getCurrentMin());
+        payload.put("rc-in-max", drone.getCalibrateRC().getCurrentMax());
         break;
       case EXT_CALIB_RC_FINISH:
-        payload.put("min", drone.getRC().getInMin());
-        payload.put("max", drone.getRC().getInMax());
+        payload.put("rc-in-min", drone.getRC().getInMin());
+        payload.put("rc-in-max", drone.getRC().getInMax());
         break;
       case FOOTPRINT:
         break;
@@ -235,7 +235,7 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
       case PROTOCOL_LEARNING:
         break;
       case PROTOCOL_IDENTIFIED:
-        payload.put("version", drone.getMavClient().getMavlinkVersion());
+        payload.put("protocol-version", drone.getMavClient().getMavlinkVersion());
         break;
     }
     object.put("id", droneEventsType.ordinal());

@@ -86,8 +86,8 @@ export class CamView implements DroneEventListener {
     
     switch (event.id) {
       case DroneEvents.GPS:
-        this.height = event.data['alt'];
-        this.fixType = event.data['fixtype'] + " (" + event.data['sat'] + ")"
+        this.height = event.data['gps-alt'];
+        this.fixType = event.data['gps-fixtype'] + " (" + event.data['gps-sat'] + ")"
         break;
 
       case DroneEvents.CONNECTED:
@@ -103,11 +103,11 @@ export class CamView implements DroneEventListener {
         break;
 
       case DroneEvents.BATTERY:
-        this.battery = event.data["remain"]
+        this.battery = event.data["bat-remain"]
         break;
 
       case DroneEvents.RADIO:
-        this.signal = event.data["signal"]
+        this.signal = event.data["radio-signal"]
         break;
 
       case DroneEvents.DISCONNECTED:
@@ -123,11 +123,11 @@ export class CamView implements DroneEventListener {
         break;
 
       case DroneEvents.HOME:
-        this.dist = event.data["dist"]
+        this.dist = event.data["home-dist"]
         break;
 
       case DroneEvents.NAVIGATION:
-        this.angle = event.data["bearing"]
+        this.angle = event.data["nav-bearing"]
         this.markers.clear()
         this._iconInfo.rotation = this.angle;
         this.markers.add({

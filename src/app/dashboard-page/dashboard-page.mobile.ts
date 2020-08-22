@@ -49,6 +49,16 @@ export class DashMobile extends Dash {
         element.className += " " + name;
       }
     }
+
+    elements = document.getElementsByClassName("panel-lg");
+    console.log(elements)
+    name = "col";
+    for (let element of elements) {
+      arr = element.className.split(" ");
+      if (arr.indexOf(name) == -1) {
+        element.className += " " + name;
+      }
+    }
   }
 
 }

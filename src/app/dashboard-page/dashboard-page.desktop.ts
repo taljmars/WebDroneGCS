@@ -32,6 +32,7 @@ export class DashDesktop extends Dash {
 
   ngAfterViewInit() {
     var elements, name, arr;
+
     elements = document.getElementsByClassName("panel-sm");
     console.log(elements)
     name = "col-6 col-lg-4";
@@ -45,6 +46,16 @@ export class DashDesktop extends Dash {
     elements = document.getElementsByClassName("panel-md");
     console.log(elements)
     name = "col-12 col-lg-8";
+    for (let element of elements) {
+      arr = element.className.split(" ");
+      if (arr.indexOf(name) == -1) {
+        element.className += " " + name;
+      }
+    }
+
+    elements = document.getElementsByClassName("panel-lg");
+    console.log(elements)
+    name = "col-24 col-lg-16";
     for (let element of elements) {
       arr = element.className.split(" ");
       if (arr.indexOf(name) == -1) {
