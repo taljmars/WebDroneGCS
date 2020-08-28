@@ -71,7 +71,7 @@ export enum DroneEvents {
 
 export class DroneEvent {
 
-    constructor(public id: DroneEvents, public data: any) {
+    constructor(public id: DroneEvents, public data: any, public timestamp: number) {
 
     }
 }

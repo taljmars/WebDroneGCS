@@ -41,7 +41,7 @@ export class DroneService implements ProxyListener {
       }
 
       let that = this
-      let droneEvent = new DroneEvent(event.id, event.data)
+      let droneEvent = new DroneEvent(event.id, event.data, event.timestamp)
 
       switch (droneEvent.id) {
         case DroneEvents.PARAMS_START:
@@ -111,6 +111,10 @@ export class DroneService implements ProxyListener {
 
     getParametersList(callback: Function) {
       this.configService.get("getParametersList", {}, {}, callback);
+    }
+
+    sendParameter(name: String, value: any, callback: Function) {
+      this.configService.post("sendParameter", {}, {name: name, value: value}, callback)
     }
 
     private getInfo() {

@@ -35,6 +35,7 @@ import {DashModule} from './dashboard-page/dashboard-page.module';
 // import {Dash} from './dashboard-page/dashboard-page.component';
 // import {RouterModule, Routes} from '@angular/router';
 
+import {MonitorModule} from './dashboard-page/monitor/monitor.module'
 import {CamViewModule} from './dashboard-page/cameraView/camview.module';
 import {MapViewModule} from './dashboard-page/mapView/mapview.module';
 import {SettingsModule} from './dashboard-page/settings/settings.module';
@@ -87,6 +88,7 @@ import { CalibrationModule } from './dashboard-page/settings/calibration/calibra
     DashModule,
     HttpClientModule,
 
+    MonitorModule,
     CamViewModule,
     MapViewModule,
     SerialModule,

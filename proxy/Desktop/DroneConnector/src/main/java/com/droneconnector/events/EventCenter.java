@@ -200,9 +200,15 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
       case WARNING_NO_GPS:
         break;
       case MAGNETOMETER:
-        payload.put("mag-x", drone.getMagnetometer().getX());
-        payload.put("mag-y", drone.getMagnetometer().getY());
-        payload.put("mag-z", drone.getMagnetometer().getZ());
+        payload.put("mag-x", drone.getMagnetometer().getXmag());
+        payload.put("mag-y", drone.getMagnetometer().getYmag());
+        payload.put("mag-z", drone.getMagnetometer().getZmag());
+        payload.put("acc-x", drone.getMagnetometer().getXacc());
+        payload.put("acc-y", drone.getMagnetometer().getYacc());
+        payload.put("acc-z", drone.getMagnetometer().getZacc());
+        payload.put("gyro-x", drone.getMagnetometer().getXgyro());
+        payload.put("gyro-y", drone.getMagnetometer().getYgyro());
+        payload.put("gyro-z", drone.getMagnetometer().getZgyro());
         break;
       case EXT_CALIB_MAGNETOMETER_START:
         if (drone.getMagnetometer().getOffsets().length == 0)
@@ -265,6 +271,7 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
     object.put("id", droneEventsType.ordinal());
     object.put("name", droneEventsType.name());
     object.put("data", payload);
+    object.put("timestamp", ((int) System.currentTimeMillis()/1000));
     webSocketController.broadcast(WebSocketController.Q_DRONE, object);
   }
 

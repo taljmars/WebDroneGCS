@@ -1,0 +1,22 @@
+<div style="display: block">
+    <canvas mdbChart
+        [chartType]="chartType"
+        [datasets]="chartDatasets_in"
+        [labels]="chartLabels_in"
+        [colors]="chartColors_in"
+        [options]="chartOptions"
+        [legend]="true"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)">
+    </canvas>
+    <canvas mdbChart
+        [chartType]="chartType"
+        [datasets]="chartDatasets_out"
+        [labels]="chartLabels_out"
+        [colors]="chartColors_out"
+        [options]="chartOptions"
+        [legend]="true"
+        (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>

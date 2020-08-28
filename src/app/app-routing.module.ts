@@ -28,6 +28,7 @@ import { CalibrationMobile } from './dashboard-page/settings/calibration/calibra
 import { CalibrationDesktop } from './dashboard-page/settings/calibration/calibration.component.desktop';
 import { SettingsMobile } from './dashboard-page/settings/settings.component.mobile';
 import { GcsConfigMobile } from './dashboard-page/settings/gcsConfig/gcs.config.component.mobile';
+import { MonitorView } from './dashboard-page/monitor/monitor'
 
 @Injectable()
 export class CanActivateRouteGuard implements CanActivate {
@@ -54,6 +55,11 @@ const appDesktopRoutes: Routes = [
   {
     path: 'logs',
     component: LogView,
+    canActivate: [CanActivateRouteGuard]
+  },
+  {
+    path: 'monitor',
+    component: MonitorView,
     canActivate: [CanActivateRouteGuard]
   },
   {

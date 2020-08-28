@@ -1,9 +1,6 @@
 package com.droneconnector.controller;
 
-import com.droneconnector.model.Modes;
-import com.droneconnector.model.PortConfig;
-import com.droneconnector.model.SingleData;
-import com.droneconnector.model.StreamRates;
+import com.droneconnector.model.*;
 import com.dronegcs.mavlink.core.gcs.GCSHeartbeat;
 import com.dronegcs.mavlink.is.connection.ConnectionStatistics;
 import com.dronegcs.mavlink.is.connection.MavLinkConnection;
@@ -30,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.text.NumberFormat;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
@@ -169,8 +167,8 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
         System.out.println("Start HB");
         gcsHeartbeat.setActive(true);
 
-        System.out.println("Refresh Parameters");
-        drone.getParameters().refreshParameters();
+//        System.out.println("Refresh Parameters");
+//        drone.getParameters().refreshParameters();
       }
       else {
         System.out.println("Port Already connected");
@@ -222,6 +220,15 @@ public class RestApiController implements MavLinkConnectionStatisticsListener {
   public Map refreshParameters() {
     System.out.println("Sync Parameters");
     drone.getParameters().refreshParameters();
+    return getResponseTemplate().toMap();
+  }
+
+  @PostMapping("/sendParameter")
+  public Map sendParameter(@RequestBody ParamUpdate paramUpdate) {
+    System.out.println("Send Parameter " + paramUpdate);
+    Parameter parameter = drone.getParameters().getParameter(paramUpdate.getName());
+    parameter.setValue((Number) paramUpdate.getValue());
+    drone.getParameters().sendParameter(parameter);
     return getResponseTemplate().toMap();
   }
 

@@ -1,0 +1,17 @@
+<mat-drawer-container style="height: 100%; width: 100%; ">
+  <mat-drawer mode="side" opened>
+
+      <mat-button-toggle-group style="border:none;" vertical>
+        <mat-button-toggle style="border:none;" (click)="setActive('ServoOutput')">Servo Output</mat-button-toggle>
+        <mat-button-toggle style="border:none;" (click)="setActive('OpenChart')">Open Charts</mat-button-toggle>
+      </mat-button-toggle-group>
+    
+  </mat-drawer>
+
+
+  <mat-drawer-content>
+    <servo-output *ngIf="isActive('ServoOutput')"></servo-output>
+    <open-chart *ngIf="isActive('OpenChart')"></open-chart>
+  </mat-drawer-content>
+  
+</mat-drawer-container>

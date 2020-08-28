@@ -1,0 +1,41 @@
+<div style="margin-bottom: 50px; padding-bottom: 50px;">
+    <div style="display: block">
+        <mdb-card style="margin: 20px;">
+            <mdb-card-body>
+                <mdb-card-title>
+                    <h4>Axis Control</h4>
+                </mdb-card-title>
+                <mdb-card-text>
+                    <label>Y Axis</label>
+                    <mat-select multiple (selectionChange)="setAxisY($event.value)">
+                        <mat-option *ngFor="let item of eventTypes" [value]="item" (change)="setAxisY(item)">
+                            {{item}}
+                        </mat-option>
+                    </mat-select>
+                </mdb-card-text>
+                <mdb-card-text>
+                    <label>X Axis</label>
+                    <mat-select (selectionChange)="setAxisX($event.value)" >
+                        <mat-option *ngFor="let item of eventTypes" [value]="item" (change)="setAxisX(item)">
+                            {{item}}
+                        </mat-option>
+                    </mat-select> 
+                </mdb-card-text>
+            </mdb-card-body>
+        </mdb-card>
+    </div>
+    <div>
+        <canvas mdbChart
+            [chartType]="chartType"
+            [datasets]="chartDatasets"
+            [options]="chartOptions"
+            [labels]="chartLabels"
+            [legend]="true"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+        </canvas>
+    </div>
+</div>
+
+
+        <!-- [colors]="chartColors" -->

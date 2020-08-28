@@ -141,4 +141,15 @@ export class DroneParams implements DroneEventListener{
     saving.click();
   }
 
+  update() {
+    this.modified.forEach((id: number) => {
+      let val = this.paramsList[id].value
+      let name = this.paramsList[id].name
+      this.droneService.sendParameter(name, val, data => {
+        console.log("Update " + name + " parameter with value " + val)
+      })
+    })
+    this.modified.clear()
+  }
+
 }
