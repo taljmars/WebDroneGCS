@@ -4,21 +4,101 @@
     <div class="dash-row">
 
       <div class="panel-sm">
+        <!-- <mat-card class="dashcard"> -->
+            <!-- <mat-card-header>
+                <mat-card-title>Drone Info</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                  <mdb-card-text><b>Drone Type:</b> {{droneService.droneType}}</mdb-card-text>
+                  <mdb-card-text><b>Firmware Type:</b> {{droneService.firmwareType}}</mdb-card-text>
+                  <mdb-card-text><b>Firmware Version:</b> {{droneService.firmwareVersion}}</mdb-card-text>
+              </mat-card-content>
+              <mat-card-actions>
+                  <div class="flex-row">
+                    <a class="card-link" href="javascript:void(0)" (click)="refreshParams()" >Refresh</a>
+                    <mat-progress-bar *ngIf="paramReceived != 100" value={{paramReceived}}></mat-progress-bar>
+                  </div>
+              </mat-card-actions>
+          </mat-card> -->
         <mdb-card class="dashcard">
           <mdb-card-body>
             <mdb-card-title>
               <h4>Drone Info</h4>
             </mdb-card-title>
-            <mdb-card-text>Drone Type: {{droneService.droneType}}</mdb-card-text>
-            <mdb-card-text>Firmware Type: {{droneService.firmwareType}}</mdb-card-text>
-            <mdb-card-text>Firmware Version: {{droneService.firmwareVersion}}</mdb-card-text>
+            <mdb-card-text><b>Drone Type:</b> {{droneService.droneType}}</mdb-card-text>
+            <mdb-card-text><b>Firmware Type:</b> {{droneService.firmwareType}}</mdb-card-text>
+            <mdb-card-text><b>Firmware Version:</b> {{droneService.firmwareVersion}}</mdb-card-text>
             <div class="flex-row">
               <a class="card-link" href="javascript:void(0)" (click)="refreshParams()" >Refresh</a>
               <mat-progress-bar *ngIf="paramReceived != 100" value={{paramReceived}}></mat-progress-bar>
             </div>
           </mdb-card-body>
         </mdb-card>
+        
       </div>
+
+      <div class="panel-sm">
+          <mdb-card class="dashcard">
+            <mdb-card-body>
+              <mdb-card-title>
+                <h4>User Info</h4>
+              </mdb-card-title>
+              <mdb-card-text>Some quick example text to build on the card title and make up the bulk of the card's
+                content.</mdb-card-text>
+              <div class="flex-row">
+                <a class="card-link">Card link</a>
+                <a class="card-link">Another link</a>
+              </div>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+
+      <div class="panel-sm">
+          <mdb-card class="dashcard">
+            <mdb-card-body>
+              <mdb-card-title>
+                <h4>Proxy</h4>
+              </mdb-card-title>
+              <mdb-card-text><b>Version: </b>{{proxyService.proxyVersion}}</mdb-card-text>
+              <mdb-card-text><b>Uptime: </b>{{proxyService.proxyUpTime}}</mdb-card-text>
+              <mdb-card-text><b>Proxy Address: </b><br/>
+                  <ul>
+                      <li *ngFor="let item of proxyService.proxyAddresses;">
+                          {{item}}
+                      </li>
+                  </ul>
+              </mdb-card-text>
+              <div class="flex-row">
+                <a class="card-link" *ngIf="isWindows()" href="https://raw.githubusercontent.com/taljmars/WebDroneGCS/master/proxy/Desktop/DroneConnector/ClientInstallation/Windows/DroneProxy-win.zip">Get Latest Agent</a>
+                <a class="card-link" *ngIf="isLinux()" href="https://raw.githubusercontent.com/taljmars/WebDroneGCS/master/proxy/Desktop/DroneConnector/ClientInstallation/Linux/DroneProxy-linux.tar">Get Latest Agent</a>
+              </div>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+
+      <!-- <div class="panel-sm">
+        <mdb-card class="dashcard">
+          <mdb-card-body>
+            <div style="height: 100%; width: 100%; " class="minimap" *ngIf="!infoHide">
+              <x-map [Options]="_options" [Latitude]="_lat" [Longitude]="_lon"> 
+                <x-map-marker *ngFor="let m of markers;"
+                  [Latitude]="m.lat" 
+                  [Longitude]="m.lon"
+                  [IconInfo]="m.iconInfo">
+                </x-map-marker>
+              </x-map>
+            </div>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+
+      <div class="panel-sm">
+        <mdb-card class="dashcard">
+          <mdb-card-body>
+            <cam-view [cameraOnly]="true" [infoHide]="true" style="height: 90; width: 90%; "></cam-view>
+          </mdb-card-body>
+        </mdb-card>
+      </div> -->
 
       <div class="panel-md">
         <mdb-card class="dashcard">
@@ -42,19 +122,19 @@
     <!-- </div> -->
 
     <!-- <div class="dash-row"> -->
-    
-      <div class="panel-md">
-        <mdb-card class="dashcard">
-          <mdb-card-body>
-            <serial-chart></serial-chart>
-          </mdb-card-body>
-        </mdb-card>
-      </div>
 
       <div class="panel-sm">
         <mdb-card class="dashcard">
           <mdb-card-body>
             <serial-packets-pie></serial-packets-pie>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+  
+      <div class="panel-md">
+        <mdb-card class="dashcard">
+          <mdb-card-body>
+            <serial-chart></serial-chart>
           </mdb-card-body>
         </mdb-card>
       </div>
@@ -73,39 +153,6 @@
             <mdb-card-text>Height Record: 0</mdb-card-text>
             <mdb-card-text>Distance Record: 0</mdb-card-text>
             <mdb-card-text>Flight Duration Record: 0</mdb-card-text>
-          </mdb-card-body>
-        </mdb-card>
-      </div>
-
-      <div class="panel-sm">
-        <mdb-card class="dashcard">
-          <mdb-card-body>
-            <mdb-card-title>
-              <h4>Proxy</h4>
-            </mdb-card-title>
-            <mdb-card-text>Version: {{proxyService.proxyVersion}}</mdb-card-text>
-            <mdb-card-text>Uptime: {{proxyService.proxyUpTime}}</mdb-card-text>
-            <mdb-card-text>Proxy Address: {{proxyService.proxyAddresses}}</mdb-card-text>
-            <div class="flex-row">
-              <a class="card-link" *ngIf="isWindows()" href="https://raw.githubusercontent.com/taljmars/WebDroneGCS/master/proxy/Desktop/DroneConnector/ClientInstallation/Windows/DroneProxy-win.zip">Get Latest Agent</a>
-              <a class="card-link" *ngIf="isLinux()" href="https://raw.githubusercontent.com/taljmars/WebDroneGCS/master/proxy/Desktop/DroneConnector/ClientInstallation/Linux/DroneProxy-linux.tar">Get Latest Agent</a>
-            </div>
-          </mdb-card-body>
-        </mdb-card>
-      </div>
-      
-      <div class="panel-sm">
-        <mdb-card class="dashcard">
-          <mdb-card-body>
-            <mdb-card-title>
-              <h4>User Info</h4>
-            </mdb-card-title>
-            <mdb-card-text>Some quick example text to build on the card title and make up the bulk of the card's
-              content.</mdb-card-text>
-            <div class="flex-row">
-              <a class="card-link">Card link</a>
-              <a class="card-link">Another link</a>
-            </div>
           </mdb-card-body>
         </mdb-card>
       </div>

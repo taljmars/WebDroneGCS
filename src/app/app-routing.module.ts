@@ -5,7 +5,6 @@ import { Routes, RouterModule, Router, PreloadAllModules } from '@angular/router
 
 import { MapView } from './dashboard-page/mapView/mapview.component';
 import { CamView } from './dashboard-page/cameraView/camview.component';
-import { LogView } from './dashboard-page/log/log.component'
 import { SettingsDesktop } from './dashboard-page/settings/settings.component.desktop'
 import { Editor } from './dashboard-page/editor/editor.component'
 import { About } from './dashboard-page/about/about.component'
@@ -50,11 +49,6 @@ const appDesktopRoutes: Routes = [
   },{
     path: 'cam',
     component: CamView,
-    canActivate: [CanActivateRouteGuard]
-  },
-  {
-    path: 'logs',
-    component: LogView,
     canActivate: [CanActivateRouteGuard]
   },
   {
@@ -104,11 +98,6 @@ const appMobileRoutes: Routes = [
   },{
     path: 'cam',
     component: CamView,
-    canActivate: [CanActivateRouteGuard]
-  },
-  {
-    path: 'logs',
-    component: LogView,
     canActivate: [CanActivateRouteGuard]
   },
   {

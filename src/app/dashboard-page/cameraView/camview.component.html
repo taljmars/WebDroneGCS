@@ -9,7 +9,7 @@
 
   <div *ngIf=isLandscape()>
 
-    <div class="infotopleft">
+    <div class="infotopleft" *ngIf="!cameraOnly">
       <mat-card-content style="font-size: 45px; color: limegreen; font-weight: bold; background:transparent;">
         <i class="fas fa-eye" *ngIf="!infoHide" (click)="hideInfo()"></i>
         <i class="fas fa-eye-slash" *ngIf="infoHide" (click)="showInfo()"></i>
@@ -17,12 +17,12 @@
     </div>
 
     <div class="infotopright">
-      <mat-card-content style="font-size: 20px; color: limegreen; font-weight: bold; background:transparent;" *ngIf="!infoHide">
-        <label style="font-size: 45px; margin-right: 40px;">{{mode}}</label>
-        <i class="fas fa-satellite-dish" style="margin-right: 5px;"></i><label style="margin-right: 40px;">{{fixType}}</label>
-        <i class="fas fa-signal" style="margin-right: 5px;"></i><label style="margin-right: 40px;">{{signal}}%</label>
-        <i class="fas fa-car-battery" style="margin-right: 5px;"></i><label style="margin-right: 40px;"> {{battery}}%</label>
-        <i class="far fa-clock" style="margin-right: 5px;"></i><label style="margin-right: 40px;"> time</label>
+      <mat-card-content style="font-size: 20px; color: limegreen; font-weight: bold; background:transparent;">
+        <label style="font-size: 45px; margin-right: 40px;" *ngIf="!infoHide">{{mode}}</label>
+        <i class="fas fa-satellite-dish" style="margin-right: 5px;" *ngIf="!infoHide"></i><label style="margin-right: 40px;" *ngIf="!infoHide">{{fixType}}</label>
+        <i class="fas fa-signal" style="margin-right: 5px;" *ngIf="!infoHide"></i><label style="margin-right: 40px;" *ngIf="!infoHide">{{signal}}%</label>
+        <i class="fas fa-car-battery" style="margin-right: 5px;" *ngIf="!infoHide"></i><label style="margin-right: 40px;" *ngIf="!infoHide"> {{battery}}%</label>
+        <i class="far fa-clock" style="margin-right: 5px;" *ngIf="!infoHide"></i><label style="margin-right: 40px;" *ngIf="!infoHide"> time</label>
         <i class="fas fa-video" style="margin-right: 5px;" (click)="toggleVideoStream()"></i><label></label>
       </mat-card-content>
     </div>
@@ -58,7 +58,7 @@
     </div>
 
     <div class="app">
-      <div><video #video class="video" autoplay></video></div>
+      <div><video #video class="video" autoplay style="width: inherit; height: inherit;"></video></div>
     </div>
 
   </div>

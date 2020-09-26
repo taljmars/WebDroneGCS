@@ -8,6 +8,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { NavbarModule, DropdownModule, MDBBootstrapModule } from 'angular-bootstrap-md';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { LogsModule } from './log/log.module'
 
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
@@ -22,6 +23,9 @@ import {OpenChartModule} from './openChart/openChart.module'
     OpenChartModule,
     
     MatSidenavModule,
+
+    LogsModule,
+
 
     MatButtonToggleModule,
 

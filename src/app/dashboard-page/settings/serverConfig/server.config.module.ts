@@ -7,7 +7,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material';
 
+import {MatGridListModule} from '@angular/material/grid-list';
+
 import { NavbarModule, DropdownModule } from 'angular-bootstrap-md';
+import { CheckboxModule, TableModule, WavesModule, IconsModule, InputsModule, ButtonsModule } from 'angular-bootstrap-md';
+
 
 
 @NgModule({
@@ -18,6 +22,10 @@ import { NavbarModule, DropdownModule } from 'angular-bootstrap-md';
     MatButtonModule,
     MatInputModule,
     MatDialogModule,
+    MatGridListModule,
+
+    ButtonsModule,
+    WavesModule,
   ],
   declarations: [ ServerConfig ],
   providers: [],

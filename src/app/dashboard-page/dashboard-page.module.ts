@@ -20,6 +20,8 @@ import { AlertsService } from '../services/alerts.service';
 import { AlertsModule } from '../alerts/alerts.module';
 import { StatusMapModule } from './statusMap/statusMap.module'
 import {MatTableModule} from '@angular/material/table';
+import { MapModule } from 'angular-maps';
+import { CamViewModule } from './cameraView/camview.module';
 
 
 @NgModule({
@@ -28,7 +30,7 @@ import {MatTableModule} from '@angular/material/table';
     AlertsModule,
 
     BrowserModule,
-    // MapModule.forRootBing(),
+    MapModule.forRootBing(),
     MatCardModule,
 
     ModalModule, TooltipModule, PopoverModule, IconsModule,
@@ -37,7 +39,10 @@ import {MatTableModule} from '@angular/material/table';
 
     MatProgressBarModule,
 
-    StatusMapModule,MatTableModule
+    StatusMapModule,MatTableModule,
+
+    CamViewModule,
+
 
   ],
   declarations: [ DashDesktop, DashMobile ],

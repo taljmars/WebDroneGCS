@@ -13,16 +13,20 @@ body {
     overflow-y: auto;
 }
 
+.panel-ss {
+    padding: 10px
+}
+
 .panel-sm {
-    padding: 20px
+    padding: 10px
 }
 
 .panel-md {
-    padding: 20px
+    padding: 10px
 }
 
 .panel-lg {
-    padding: 20px
+    padding: 10px
 }
 
 .dashcard {

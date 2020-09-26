@@ -1,29 +1,69 @@
-<div style="width: fit-content; height: fit-content;">
-    <h2>Setting Local Machine as Drone Server</h2>
-    <mat-dialog-content style="width: fit-content; height: fit-content;">
-        <button mdbBtn color="info" class="my-4" (click)="activateServer()">Activate</button>
-        <mat-card *ngIf="active">
-            <mat-label><b>Up: </b>{{this.proxyService.isProxyUp()}}</mat-label><p></p>
-            <mat-label><b>Uptime: </b>{{this.proxyService.proxyUpTime}}</mat-label><p></p>
-            <mat-label><b>Version: </b>{{this.proxyService.proxyVersion}}</mat-label><p></p>
-            <mat-label><b>Connect Port</b></mat-label>
-            <ul>
-                <li><b>Name: </b>{{this.proxyService.getPortName()}}</li>
-                <li><b>Baud Rate: </b>{{this.proxyService.getBaudRate()}}</li>
-            </ul>
-            <mat-label><b>Server Addresses</b></mat-label><br/>
-            <ul>
-                <li *ngFor="let item of this.proxyService.proxyAddresses;">
-                    {{item}}
-                </li>
-            </ul>
-            <mat-label><b>Connected Clients</b></mat-label><br/>
-            <ul>
-                <li *ngFor="let item of this.proxyService.proxyConnectedUsers;">
-                    {{item}}
-                </li>
-            </ul>
-        </mat-card>
-    </mat-dialog-content>
+<div class="card-body" style="width: 100%; height: 100%;">
+    
+    <br>
+    <h1 class="mycenter">Setting Local Machine as Drone Server</h1>
+    
+    <div class="mycenter md-form">
+        <button mdbBtn mdbWavesEffect type="button" *ngIf="!active" color="primary" (click)="activateServer()">Activate</button>
+    </div>
+    
+    <br>
+    <div *ngIf="active">
+    <!-- <div> -->
+        <mat-grid-list cols="4" rowHeight="200px" style="height: fit-content; margin-bottom: 30px;" gutterSize="10px">
+
+            <mat-grid-tile class="card"><mat-card-content>
+                <mat-label class="mycenter"><h2><b>Up</b></h2></mat-label>
+                <!-- <br> -->
+                <mat-label class="mycenter"><h4>{{this.proxyService.isProxyUp()}}</h4></mat-label>
+            </mat-card-content></mat-grid-tile>
+
+            <mat-grid-tile class="card"><mat-card-content>
+                <mat-label class="mycenter"><h2><b>Uptime</b></h2></mat-label>
+                <mat-label class="mycenter"><h4>{{this.proxyService.proxyUpTime}}</h4></mat-label>
+            </mat-card-content></mat-grid-tile>
+            
+            <mat-grid-tile class="card"><mat-card-content>
+                <mat-label class="mycenter"><h2><b>Version</b></h2></mat-label>
+                <mat-label class="mycenter"><h4>{{this.proxyService.proxyVersion}}</h4></mat-label>
+            </mat-card-content></mat-grid-tile>
+            
+            <mat-grid-tile class="card"><mat-card-content>
+                <mat-label class="mycenter"><h2><b>Connect Port</b></h2></mat-label>
+                <ul>
+                    <li><h4><b>Name: </b>{{this.proxyService.getPortName()}}</h4></li>
+                    <li><h4><b>Baud Rate: </b>{{this.proxyService.getBaudRate()}}</h4></li>
+                </ul>
+            </mat-card-content></mat-grid-tile>
+
+        </mat-grid-list>
+        
+        <mat-grid-list cols="2"  gutterSize="10px">
+            <mat-grid-tile class="card"><mat-card-content>
+                <mat-label class="mycenter"><h2><b>Server Addresses</b></h2></mat-label><br/>
+                <ul>
+                    <li *ngFor="let item of this.proxyService.proxyAddresses;">
+                        <h4>{{item}}</h4>
+                    </li>
+                </ul>
+            </mat-card-content></mat-grid-tile>
+
+            <mat-grid-tile class="card"><mat-card-content>
+                <mat-label class="mycenter"><h2><b>Connected Clients</b></h2></mat-label><br/>
+                <ul>
+                    <li *ngFor="let item of this.proxyService.proxyConnectedUsers;">
+                        <h4>{{item}}</h4>
+                    </li>
+                </ul>
+            </mat-card-content></mat-grid-tile>
+
+        </mat-grid-list>
+    </div>
+
+    <div *ngIf="!active" class="mycenter" style="text-align: center;">
+        Activate the drone server on your local machine will make the specific device to work as a drone server, <br>
+        it means that the current device will have radio communication with the drone.<br>
+        You can always active this device as drone server and connet to it in different device by providing this device IP.
+    </div>
 </div>
 

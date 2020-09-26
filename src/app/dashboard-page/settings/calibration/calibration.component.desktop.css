@@ -15,12 +15,17 @@ body {
 }
 
 .panel-sm {
-    padding: 20px;
+    padding: 10px;
 }
 
 .panel-md {
     /* justify-content: center; */
-    padding: 20px;
+    padding: 10px;
+}
+
+.panel-lg {
+    /* justify-content: center; */
+    padding: 10px;
 }
 
 .dashcard {

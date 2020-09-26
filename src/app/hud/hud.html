@@ -1,0 +1,17 @@
+<div style="width: inherit; height: inherit; align-content: center;">
+    <!-- <h2>Hud</h2> -->
+    <mat-dialog-content >
+        <mat-card>
+            <mat-card-subtitle>Inclination (Live)</mat-card-subtitle>
+            <mat-card-content>
+                <canvas #canvas id="scene" style="width: inherit; height: inherit; align-content: center;" ></canvas>
+            </mat-card-content>
+        </mat-card>
+    </mat-dialog-content>
+    <mat-card>
+        <mat-dialog-actions style="align-content: center;">
+            <mat-label style="font-weight: bold;" >Offsets:  </mat-label>
+            <mat-label>  Pitch: {{z_pitch}} Roll: {{z_roll}}</mat-label>
+        </mat-dialog-actions>
+    </mat-card>
+</div>

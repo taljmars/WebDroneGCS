@@ -1,9 +1,28 @@
-<div mdbModal class="overlay" style="overflow-y: scroll; height: 100%;">
+<div mdbModal class="overlay" style="overflow-y: scroll; height: 100%;;">
     <!-- <div *ngIf="applicationStateService.getIsMobileResolution()" style="position: fixed;" ><span class="material-icons background-symbol" style="font-size: 52; transform: scale(60, 60);">settings</span></div> -->
 
-      <div class="dash-row">
-  
+      <div class="dash-row" style="padding-left: 10px; padding-right: 10px;">
+
         <div class="panel-sm">
+          <mdb-card class="dashcard">
+            <mdb-card-body>
+                <mdb-card-title>
+                  <h4>Accelerometer</h4>
+                </mdb-card-title>
+                <mdb-card-text>
+                      <button mat-stroked-button color="primary" (click)="startLevelCalibrate()">Calibrate Level</button>
+                      {{calibrationLevelMessege}}
+                  </mdb-card-text>
+                  <mdb-card-text>
+                      <button mat-stroked-button color="primary" (click)="startGyroCalibrate()">{{gyroAction}}</button>
+                      {{calibrationGyroMessege}}
+                  </mdb-card-text>
+                  <hud style="width: inherit; height: inherit;"></hud>
+              </mdb-card-body>
+          </mdb-card>
+        </div>
+  
+        <!-- <div class="panel-sm">
           <mdb-card class="dashcard">
             <mdb-card-body>
                 <mdb-card-title>
@@ -21,7 +40,7 @@
                 </mdb-card-text>
             </mdb-card-body>
           </mdb-card>
-        </div>
+        </div> -->
   
         <div class="panel-md">
           <mdb-card class="dashcard">
@@ -172,24 +191,6 @@
               <button mat-stroked-button color="primary" (click)="startRCCalibrate()">Start</button>
               <button mat-stroked-button color="primary" (click)="stopRCCalibrate()">Stop</button>
           </mdb-card-body>
-          </mdb-card>
-        </div>
-  
-        <div class="panel-sm">
-          <mdb-card class="dashcard">
-            <mdb-card-body>
-                <mdb-card-title>
-                  <h4>Accelerometer</h4>
-                </mdb-card-title>
-                <mdb-card-text>
-                      <button mat-stroked-button color="primary" (click)="startLevelCalibrate()">Calibrate Level</button>
-                      {{calibrationLevelMessege}}
-                  </mdb-card-text>
-                  <mdb-card-text>
-                      <button mat-stroked-button color="primary" (click)="startGyroCalibrate()">{{gyroAction}}</button>
-                      {{calibrationGyroMessege}}
-                  </mdb-card-text>
-              </mdb-card-body>
           </mdb-card>
         </div>
   

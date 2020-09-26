@@ -1,12 +1,16 @@
-<mat-drawer-container style="height: 100%; width: 100%; ">
-  <mat-drawer mode="side" opened>
+<mat-drawer-container style="height: 95%; width: 100%; ">
+  <mat-drawer mode="side" opened style="background-color: lightgray; border: none;">
 
-      <mat-button-toggle-group style="border:none;" vertical>
-        <mat-button-toggle style="border:none;" (click)="setActive('DroneParams')">Drone Parameters</mat-button-toggle>
-        <mat-button-toggle style="border:none;" (click)="setActive('Calibration')">Calibration</mat-button-toggle>
-        <mat-button-toggle style="border:none;" (click)="setActive('GCSConfig')">GCS Configuration</mat-button-toggle>
-        <mat-button-toggle style="border:none;" (click)="setActive('UserConfig')">User Configuration</mat-button-toggle>
-        <mat-button-toggle style="border:none;" (click)="setActive('ServerConfig')">Server Configuration</mat-button-toggle>
+      <mat-button-toggle-group style="border:none; display: flex; height: inherit;" vertical>
+        <mat-button-toggle style="border:none; height: 20%; display: flex; align-items: center;" (click)="setActive('DroneParams')">Drone Parameters</mat-button-toggle>
+        <mat-divider></mat-divider>
+        <mat-button-toggle style="border:none; height: 20%; display: flex; align-items: center;" (click)="setActive('Calibration')">Calibration</mat-button-toggle>
+        <mat-divider></mat-divider>
+        <mat-button-toggle style="border:none; height: 20%; display: flex; align-items: center;" (click)="setActive('GCSConfig')">GCS Configuration</mat-button-toggle>
+        <mat-divider></mat-divider>
+        <mat-button-toggle style="border:none; height: 20%; display: flex; align-items: center;" (click)="setActive('UserConfig')">User Configuration</mat-button-toggle>
+        <mat-divider></mat-divider>
+        <mat-button-toggle style="border:none; height: 20%; display: flex; align-items: center;" (click)="setActive('ServerConfig')">Server Configuration</mat-button-toggle>
       </mat-button-toggle-group>
     
   </mat-drawer>

@@ -1,4 +1,21 @@
-.overlay {
+/* .overlay {
     padding-top: 20px;
     background: var(--general-background);
+} */
+
+.overlay {
+    background: whitesmoke;
+}
+
+body {
+    background-color: #222222;
+    overflow: auto;
+    color: #ffffff;
+    overflow-y: auto;
+}
+
+.mycenter {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
 }

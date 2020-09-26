@@ -1,12 +1,12 @@
 import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
 
-import { DroneService, DroneEventListener } from '../../services/drone/drone.service';
-import { DroneEvent, DroneEvents, DroneEventMap } from '../../services/drone/protocol/events.component';
+import { DroneService, DroneEventListener } from '../../../services/drone/drone.service';
+import { DroneEvent, DroneEvents, DroneEventMap } from '../../../services/drone/protocol/events.component';
 
 
 
 @Component({
-  selector: 'app-root',
+  selector: 'logs',
   templateUrl: './log.component.html',
   styleUrls: ['./log.component.css']
 })

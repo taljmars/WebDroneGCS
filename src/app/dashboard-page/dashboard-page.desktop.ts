@@ -33,6 +33,16 @@ export class DashDesktop extends Dash {
   ngAfterViewInit() {
     var elements, name, arr;
 
+    elements = document.getElementsByClassName("panel-ss");
+    console.log(elements)
+    name = "col-3 col-lg-2";
+    for (let element of elements) {
+      arr = element.className.split(" ");
+      if (arr.indexOf(name) == -1) {
+        element.className += " " + name;
+      }
+    }
+
     elements = document.getElementsByClassName("panel-sm");
     console.log(elements)
     name = "col-6 col-lg-4";

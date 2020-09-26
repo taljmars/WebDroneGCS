@@ -1,1 +1,120 @@
-about
+<div class="overlay" style="overflow-y: scroll; height: 100%; padding-bottom: 200px;">
+
+    <div class="bg">
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1 class="line">Web Drone GCS</h1>
+        <div class="line">
+            <mat-divider style="width: 15%;" ></mat-divider>
+            &nbsp;&nbsp;&nbsp; Web Based Ground Control Station for Drones &nbsp;&nbsp;&nbsp;
+            <mat-divider style="width: 15%;" ></mat-divider>
+        </div>
+    </div>
+    
+    <p class="br"></p>
+
+    <p class="line" style="text-align: center; padding: 30px;">
+        WebGCS provides full flight control and configuration for ArduPilot or PX4 Pro powered vehicles (any device who is using MavLink protocol (v1,v2)).<br>
+        The goal for WebGCS is improved ease of use for new users as well as high end feature support for experienced users.<br>
+        Amount the GCS you can find the many features and capabilities such as the below list<br>
+        &bull;<br>
+        Full configuration support for vehicles running PX4 Pro and ArduPilot (ArduCopter, ArduPlane) firmware<br>
+        Mission planning for autonomous flight<br>
+        Flight map display showing vehicle position, flight track, waypoints and vehicle instruments<br>
+        Video streaming with instrument display overlays<br>
+        Flight support for any MAVLink capable vehicle<br>
+    </p>
+
+    <div class="line">
+        <p class="br"></p>
+        <mat-divider style="width: 50%;" ></mat-divider>
+        <p class="br"></p>
+    </div>
+
+    <p style="text-align: center; padding: 30px;">
+        <b>Requirements</b><br>
+        &bull;<br>
+        Any supported OS below<br>
+        Any Web Browser<br>
+        JAVA 1.8<br>
+    </p>
+
+    <div class="line">
+        <p class="br"></p>
+        <mat-divider style="width: 50%;" ></mat-divider>
+        <p class="br"></p>
+    </div>
+
+    <p class="line" style="text-align: center; padding: 30px;">
+        Web GCS can be installed in several different setups and methodology, a multi-deploy or a standalone.<br>
+        Each have is own benefits, it depand on the use case, equipment and flight conditions.<br>
+    </p>
+
+    <p class="line" style="text-align: center; padding: 30px;">
+        &bull;
+    </p>
+
+    <div>
+        <div class="line">
+            <img src="/assets/standalone.png" style="width: 40%;" alt="image">
+        </div>
+        <div class="line" style="text-align: center; padding: 30px;" >
+            <i>Deloyemng a standalone method a simple one, it means all the information (VTX, RX/TX) are being send and received from a single source machine
+            With a dedicated idea</i>
+        </div>
+    </div>
+    
+    <p class="line" style="text-align: center; padding: 30px;">
+        &bull;
+    </p>
+
+    <div>
+        <div class="line">
+            <img src="/assets/multideploy.png" style="width: 40%;" alt="image">
+        </div>
+        <div class="line" style="text-align: center; padding: 30px;" >
+            <i>Deloyemng a multipath method is fairly simple, safer and more robost. under this deployment the main server is responsible of telemtry/radio part.<br>
+            Including the mission planning and many more. the video input (VTX) is being handle by external devices.</i>
+        </div>
+    </div>
+
+    <div class="line">
+        <p class="br"></p>
+        <mat-divider style="width: 50%;" ></mat-divider>
+        <p class="br"></p>
+    </div>
+
+    <h4 class="line">Supported Platforms</h4>
+    <br>
+    <div class="line" style="gap: 30px;">
+        <mdb-icon fab icon="windows" size="5x"></mdb-icon>
+        <mdb-icon fab icon="linux" size="5x"></mdb-icon>
+        <mdb-icon fab icon="apple" size="5x"></mdb-icon>
+        <mdb-icon fab icon="android" size="5x"></mdb-icon>
+    </div>
+    <br>
+    <p class="line" style="text-align: center; padding: 30px;">
+        The Ground Control Station can work on varied amount of operation system (as mentioned above).<br>
+        the GCS have a backend communicator which can be executed on any platform support JAVA Language and JVM (Mobile devices are don't support such cases).<br>
+        If you want to use mobile device than you can always set an external device with the requirement above and connect to it remotely.  
+    </p>
+
+    <div class="line">
+        <p class="br"></p>
+        <mat-divider style="width: 50%;" ></mat-divider>
+        <p class="br"></p>
+    </div>
+    
+    <h4 class="line">Project code and contact information</h4>
+    <br>
+    <div class="line"  style="gap: 30px;">
+        <a href="https://github.com/taljmars/WebDroneGCS">
+            <mdb-icon fab icon="github" size="5x"></mdb-icon>
+        </a>
+        <a href="mailto:taljmars@gmail.com?body=Hi there,&subject=SR DD/MM/YYYY">
+            <mdb-icon far icon="envelope" size="5x"></mdb-icon>
+        </a>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-import {Component, ViewChild, ElementRef, Inject} from '@angular/core'
+import {Component, ViewChild, ElementRef, Inject, Input} from '@angular/core'
 import { DroneService, DroneEventListener } from '../../services/drone/drone.service';
 import { DroneEvents } from '../../services/drone/protocol/events.component';
 import {MapModule, MapAPILoader, MarkerTypeId, IMapOptions, IBox, IMarkerIconInfo, WindowRef, DocumentRef, MapServiceFactory, 
@@ -10,8 +10,8 @@ import { AlertsService } from 'src/app/services/alerts.service';
 /// https://x-team.com/blog/webcam-image-capture-angular/
 
 @Component({
-  // selector: 'dash-frame',
-  selector: 'app-root',
+  selector: 'cam-view',
+  // selector: 'app-root',
   templateUrl: './camview.component.html',
   styleUrls: ['./camview.component.css']
 })
@@ -22,6 +22,8 @@ export class CamView implements DroneEventListener {
   _lat: Number = 32.0920566;
   _lon: Number = 34.8181581;
 
+  @Input() cameraOnly: boolean = false; 
+
   public mode: String = "Unknown";
   public battery: String = "0";
   public signal: String = "0";
@@ -30,7 +32,7 @@ export class CamView implements DroneEventListener {
   public fixType: String = "0";
   public dist: String = "0";
 
-  public infoHide: Boolean = false;
+  @Input() public infoHide: Boolean = false;
 
   constructor(private droneService: DroneService, private alertsService: AlertsService) {
     this.droneService.addEventListener(this)
@@ -79,6 +81,9 @@ export class CamView implements DroneEventListener {
   }
 
   onDroneEvent(event: any) {
+    if (this.cameraOnly)
+      return
+
     if (!Object.values(DroneEvents).includes(event.id)) {
       console.log("Unknown " + event)
       return

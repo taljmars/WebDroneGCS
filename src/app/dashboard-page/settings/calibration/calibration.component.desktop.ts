@@ -45,6 +45,16 @@ export class CalibrationDesktop extends Calibration {
       }
     }
 
+    elements = document.getElementsByClassName("panel-lg");
+    console.log(elements)
+    name = "col-24 col-lg-16";
+    for (let element of elements) {
+      arr = element.className.split(" ");
+      if (arr.indexOf(name) == -1) {
+        element.className += " " + name;
+      }
+    }
+
     elements = document.getElementsByClassName("dash-row");
     console.log(elements)
     name = "row";

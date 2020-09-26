@@ -2,6 +2,7 @@ import {Component, NgModule, VERSION} from '@angular/core'
 import {BrowserModule} from '@angular/platform-browser'
 import { SettingsDesktop } from './settings.component.desktop';
 import { SettingsMobile } from './settings.component.mobile';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 import { MatButtonModule } from '@angular/material/button';
@@ -29,6 +30,8 @@ import { CalibrationModule } from './calibration/calibration.module';
     ServerConfigModule,
     GcsConfigModule,
     CalibrationModule,
+
+    MatDividerModule,
 
     MatButtonToggleModule,
 

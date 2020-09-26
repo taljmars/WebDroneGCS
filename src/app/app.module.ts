@@ -47,7 +47,6 @@ import {HelpModule} from './dashboard-page/help/help.module';
 
 import { MapView } from './dashboard-page/mapView/mapview.component';
 import { MatDialogModule } from '@angular/material';
-import { LogsModule } from './dashboard-page/log/log.module';
 import { Editor } from './dashboard-page/editor/editor.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
@@ -94,7 +93,6 @@ import { CalibrationModule } from './dashboard-page/settings/calibration/calibra
     SerialModule,
     SettingsModule,
     EditorModule, 
-    LogsModule,
     AboutModule,
     HelpModule,
 

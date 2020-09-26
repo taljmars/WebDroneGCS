@@ -40,11 +40,111 @@ import { CompassRotation, CompassRotations, CompassRotationMap } from 'src/app/s
 const DOTS_AMOUNT = 100; // Amount of dots on the screen
 let dots = []; // Every dots in an array
 let lines = [];
-let averageDot;
+let centerFront;
+let headBar;
+let leftWing;
+let rightWing;
+let rollBar;
+let target;
 let rotation = 0; // Rotation of the globe
 let offset = 0
 
 const RADIANS: number = 57.2957795
+
+class Arc {
+
+  x_a: any
+  y_a: any
+  z_a: any
+  x_aProject: any
+  y_aProject: any
+
+  x_b: any
+  y_b: any
+  z_b: any
+  aSizeProjection: any
+  x_bProject: any
+  y_bProject: any
+  bSizeProjection: any
+  
+  color: string
+
+  PROJECTION_CENTER_X
+  PROJECTION_CENTER_Y
+  GLOBE_CENTER_Z
+  FIELD_OF_VIEW
+
+  constructor(x_a, z_a, y_a, x_b, z_b, y_b, clientWidth, clientHeight, color: string = "black") {
+    
+
+    /* ====================== */
+    /* ====== VARIABLES ===== */
+    /* ====================== */
+    let width = clientWidth * 1 // canvas.clientWidth; // Width of the canvas
+    let height = clientHeight * 1 //canvas.clientHeight; // Height of the canvas
+
+    /* ====================== */
+    /* ====== CONSTANTS ===== */
+    /* ====================== */
+    /* Some of those constants may change if the user resizes their screen but I still strongly believe they belong to the Constants part of the variables */
+    
+    let GLOBE_RADIUS = width * 0.35; // Radius of the globe
+    // let GLOBE_RADIUS = width; // Radius of the globe
+    this.GLOBE_CENTER_Z = -GLOBE_RADIUS; // Z value of the globe center
+    // this.GLOBE_CENTER_Z = -height / 2; // Z value of the globe center
+    this.PROJECTION_CENTER_X = width / 2; // X center of the canvas HTML
+    this.PROJECTION_CENTER_Y = height / 2; // Y center of the canvas HTML
+    // this.FIELD_OF_VIEW = width;
+    this.FIELD_OF_VIEW = width * 0.5;
+
+
+    this.x_a = x_a * GLOBE_RADIUS;
+    this.y_a = y_a * GLOBE_RADIUS;
+    this.z_a = z_a * GLOBE_RADIUS + this.GLOBE_CENTER_Z;
+    
+    this.x_b = x_b * GLOBE_RADIUS;
+    this.y_b = y_b * GLOBE_RADIUS;
+    this.z_b = z_b * GLOBE_RADIUS + this.GLOBE_CENTER_Z;
+    
+
+    this.x_aProject = 0;
+    this.y_aProject = 0;
+    this.aSizeProjection = 0;
+    this.x_bProject = 0;
+    this.y_bProject = 0;
+    this.bSizeProjection = 0;
+
+    this.color = color
+  }
+  // Do some math to project the 3D position into the 2D canvas
+  project(sin, cos) {
+    const rotX_a = cos * this.x_a + sin * (this.z_a - this.GLOBE_CENTER_Z);
+    const rotZ_a = -sin * this.x_a + cos * (this.z_a - this.GLOBE_CENTER_Z) + this.GLOBE_CENTER_Z;
+    this.aSizeProjection = this.FIELD_OF_VIEW / (this.FIELD_OF_VIEW - rotZ_a);
+    this.x_aProject = (rotX_a * this.aSizeProjection) + this.PROJECTION_CENTER_X;
+    this.y_aProject = (this.y_a * this.aSizeProjection) + this.PROJECTION_CENTER_Y;
+
+    const rotX_b = cos * this.x_b + sin * (this.z_b - this.GLOBE_CENTER_Z);
+    const rotZ_b = -sin * this.x_b + cos * (this.z_b - this.GLOBE_CENTER_Z) + this.GLOBE_CENTER_Z;
+    this.bSizeProjection = this.FIELD_OF_VIEW / (this.FIELD_OF_VIEW - rotZ_b);
+    this.x_bProject = (rotX_b * this.bSizeProjection) + this.PROJECTION_CENTER_X;
+    this.y_bProject = (this.y_b * this.bSizeProjection) + this.PROJECTION_CENTER_Y;
+  }
+  // Draw the dot on the canvas
+  draw(ctx, sin, cos) {
+    // console.error("Going to color: " + this.color)
+    this.project(sin, cos);
+
+    ctx.beginPath();
+    ctx.lineCap = "round";
+    ctx.arc(this.PROJECTION_CENTER_X, this.PROJECTION_CENTER_Y, 50, 0.6*Math.PI, 1.4 * Math.PI);
+    // ctx.moveTo(this.x_aProject, this.y_aProject);
+    // ctx.lineTo(this.x_bProject, this.y_bProject);
+    ctx.strokeStyle = this.color
+    ctx.stroke();
+  }
+
+}
 
 class Line {
 
@@ -225,11 +325,11 @@ let ctx: CanvasRenderingContext2D;
 // window.requestAnimationFrame(render);
 
 @Component({
-  selector: 'magnometer',
-  templateUrl: './magnometer.html',
-  styleUrls: ['./magnometer.css']
+  selector: 'hud',
+  templateUrl: './hud.html',
+  styleUrls: ['./hud.css']
 })
-export class MagnometerView implements OnInit, DroneEventListener {
+export class HudView implements OnInit, DroneEventListener {
 
   @ViewChild('canvas', { static: true }) 
   canvas: ElementRef<HTMLCanvasElement>;
@@ -245,9 +345,10 @@ export class MagnometerView implements OnInit, DroneEventListener {
   rotationOptions: Array<String> = new Array()
   supportedCalibMethods: Set<String> = new Set<String>();
   currentRotation = ""
+  z_pitch: number = 0;
+  z_roll: number = 0;
 
-  constructor(public dialogRef: MatDialogRef<MagnometerView>,
-    private droneService: DroneService) {
+  constructor(private droneService: DroneService) {
     this.droneService.addEventListener(this);
     this.droneService.getSupportCompassMethods(
       data => {
@@ -272,12 +373,12 @@ export class MagnometerView implements OnInit, DroneEventListener {
   ngAfterViewInit() {
     // const ctx = canvas.getContext('2d');
 
-    MagnometerView.width = this.canvas.nativeElement.width / MagnometerView.factor
-    MagnometerView.height = this.canvas.nativeElement.height / MagnometerView.factor
+    HudView.width = this.canvas.nativeElement.width / HudView.factor
+    HudView.height = this.canvas.nativeElement.height / HudView.factor
 
     // if (window.devicePixelRatio > 1) {
-      // MagnometerView.width *= 2
-      // MagnometerView.height *= 2
+      // HudView.width *= 2
+      // HudView.height *= 2
       this.canvas.nativeElement.width = this.canvas.nativeElement.clientWidth * 2;
       this.canvas.nativeElement.height = this.canvas.nativeElement.clientHeight * 2;
       ctx.scale(2, 2);
@@ -290,19 +391,26 @@ export class MagnometerView implements OnInit, DroneEventListener {
     // this.createDots();
 
     // Adding exist
-    lines.push(this.createAxis(-1, 0, 0, 1, 0, 0, MagnometerView.width, MagnometerView.height, "blue"))
-    lines.push(this.createAxis(0, -1, 0, 0, 1, 0, MagnometerView.width, MagnometerView.height, "blue"))
-    lines.push(this.createAxis(0, 0, -1, 0, 0, 1, MagnometerView.width, MagnometerView.height, "blue"))
+    lines.push(this.createAxis(0, 1, 0.5, 0, 1, -0.5, HudView.width, HudView.height, "blue"))
+    lines.push(this.createAxis(0, 1, 0.1, 0, 0, 0, HudView.width, HudView.height, "blue"))
+    // lines.push(this.createAxis(0, 1, 0.05, 0, 0, 0, HudView.width, HudView.height, "blue"))
+    // lines.push(this.createAxis(0, 1, -0.05, 0, 0, 0, HudView.width, HudView.height, "blue"))
+    lines.push(this.createAxis(0, 1, -0.1, 0, 0, 0, HudView.width, HudView.height, "blue"))
     
-    lines.push(this.createAxis(-1, 0, 0, 0.001, 0, 0, MagnometerView.width, MagnometerView.height, "red"))
-    lines.push(this.createAxis(0, -1, 0, 0, 0.001, 0, MagnometerView.width, MagnometerView.height, "red"))
-    lines.push(this.createAxis(0, 0, -1, 0, 0, 0.001, MagnometerView.width, MagnometerView.height, "red"))
+    lines.push(this.createAxis(1, 0, 0.5, 1, 0, -0.5, HudView.width, HudView.height, "red"))
+    lines.push(this.createAxis(-1, 0, 0.5, -1, 0, -0.5, HudView.width, HudView.height, "red"))
+    lines.push(this.createAxis(1, 0, 0, -1, 0, 0, HudView.width, HudView.height, "red"))
     
     // Adding average dot
-    averageDot = this.createDot(0,0,0,MagnometerView.width, MagnometerView.height, "green")
+    centerFront = this.createDot(0,1,0,HudView.width, HudView.height, "black")
+    headBar = this.createAxis(0,0,0, 0,1,0,HudView.width, HudView.height, "black")
+    leftWing = this.createDot(1,0,0,HudView.width, HudView.height, "black")
+    rightWing = this.createDot(-1,0,0,HudView.width, HudView.height, "black")
+    rollBar = this.createAxis(1,0,0, -1,0,0, HudView.width, HudView.height, "black")
+    target = this.createDot(0,1,0,HudView.width, HudView.height, "green")
 
     // // Render the scene
-    window.requestAnimationFrame(MagnometerView.render);
+    window.requestAnimationFrame(HudView.render);
 
     
   }
@@ -322,8 +430,8 @@ export class MagnometerView implements OnInit, DroneEventListener {
       const x = Math.sin(phi) * Math.cos(theta);
       const y = Math.sin(phi) * Math.sin(theta);
       const z = Math.cos(phi);
-      this.createDot(x, y, z, MagnometerView.width, MagnometerView.height)
-      // dots.push(new Dot(x, y, z, MagnometerView.width, MagnometerView.height));
+      this.createDot(x, y, z, HudView.width, HudView.height)
+      // dots.push(new Dot(x, y, z, HudView.width, HudView.height));
     }
   }
 
@@ -340,7 +448,7 @@ export class MagnometerView implements OnInit, DroneEventListener {
 
     theta = theta + offset
 
-    console.log("phi:" + phi*RADIANS + " theta:" + theta*RADIANS + " radius:" + radius + " color:" + color);
+    console.log("phi:" + phi*57.2957795 + " theta:" + theta*57.2957795 + " radius:" + radius + " color:" + color);
 
     const r = radius
     // const r = 1
@@ -366,7 +474,7 @@ export class MagnometerView implements OnInit, DroneEventListener {
 
     theta_a = theta_a + offset
     theta_b = theta_b + offset
-    // console.log("phi:" + phi*RADIANS + " theta:" + theta*RADIANS + " radius:" + radius + " color:" + color);
+    // console.log("phi:" + phi*57.2957795 + " theta:" + theta*57.2957795 + " radius:" + radius + " color:" + color);
 
     // Calculate the [x, y, z] coordinates of the dot along the globe
     const x_a_nrml = aDist * Math.cos(phi_a) * Math.sin(theta_a);
@@ -389,7 +497,7 @@ export class MagnometerView implements OnInit, DroneEventListener {
   /* ====================== */
   static render(a) {
     // Clear the scene
-    ctx.clearRect(0, 0, MagnometerView.width * MagnometerView.factor, MagnometerView.height * MagnometerView.factor);
+    ctx.clearRect(0, 0, HudView.width * HudView.factor, HudView.height * HudView.factor);
     
     
     // Increase the globe rotation
@@ -409,9 +517,14 @@ export class MagnometerView implements OnInit, DroneEventListener {
       dots[i].draw(ctx, sineRotation, cosineRotation);
     }
 
-    averageDot.draw(ctx, sineRotation, cosineRotation);
+    centerFront.draw(ctx, sineRotation, cosineRotation);
+    headBar.draw(ctx, sineRotation, cosineRotation);
+    leftWing.draw(ctx, sineRotation, cosineRotation)
+    rightWing.draw(ctx, sineRotation, cosineRotation)
+    target.draw(ctx, sineRotation, cosineRotation);
+    rollBar.draw(ctx, sineRotation, cosineRotation);
     
-    window.requestAnimationFrame(MagnometerView.render);
+    window.requestAnimationFrame(HudView.render);
   }
 
   onDroneEvent(event: any) {
@@ -421,38 +534,32 @@ export class MagnometerView implements OnInit, DroneEventListener {
     }
     
     switch (event.id) {
-      case DroneEvents.MAGNETOMETER:
-        console.log(event.data)
-        dots.push(this.createDot(event.data.x, event.data.y, event.data.z, MagnometerView.width, MagnometerView.height))
-        if (dots.length > DOTS_AMOUNT)
-          dots.shift()
-        break;
-      case DroneEvents.EXT_CALIB_MAGNETOMETER_START:
-        console.log("Start compass calibration - " + event.data)
-        averageDot = this.createDot(event.data.x, event.data.y, event.data.z, MagnometerView.width, MagnometerView.height, "green")
-        this.offsetX = event.data["mag-x"]
-        this.offsetY = event.data["mag-y"]
-        this.offsetZ = event.data["mag-z"]
-        break;
-      case DroneEvents.EXT_CALIB_MAGNETOMETER_FINISH:
-        console.log("Finish compass calibration - " + event.data)
-        averageDot = this.createDot(event.data.x, event.data.y, event.data.z, MagnometerView.width, MagnometerView.height, "green")
-        this.offsetX = event.data["mag-x"]
-        this.offsetY = event.data["mag-y"]
-        this.offsetZ = event.data["mag-z"]
+      case DroneEvents.ORIENTATION:
+        console.log("Oriantation info - " + event.data)
+        this.z_pitch = Math.sin(event.data["pitch"]/RADIANS)
+        this.z_roll = Math.sin(event.data["roll"]/RADIANS)
+        let y = Math.cos(event.data["roll"]/RADIANS)
+        let x = Math.cos(event.data["pitch"]/RADIANS)
+        centerFront = this.createDot(0, 1, this.z_pitch, HudView.width, HudView.height, "black")
+        headBar = this.createAxis(0,0,0, 0,1,this.z_pitch, HudView.width, HudView.height, "black")
+        leftWing = this.createDot(1, 0, this.z_roll, HudView.width, HudView.height, "black")
+        rightWing = this.createDot(-1, 0, -this.z_roll, HudView.width, HudView.height, "black")
+        rollBar = this.createAxis(1, 0, this.z_roll, -1, 0, -this.z_roll, HudView.width, HudView.height, "black")
+        // this.roll = event.data["roll"]
+        // this.yaw = event.data["yaw"]
         break;
     }
   }
 
   add(x: any, y: any, z: any) {
     console.log("x:" + x + " y:" + y + " z:" + z)
-    dots.push(this.createDot(x, y, z, MagnometerView.width, MagnometerView.height))
+    dots.push(this.createDot(x, y, z, HudView.width, HudView.height))
   }
 
   close() {
     this.droneService.stopMagnometerCalibrate(data => console.log(data))
     this.droneService.removeEventListener(this)
-    this.dialogRef.close()
+    // this.dialogRef.close()
   }
 
   start() {

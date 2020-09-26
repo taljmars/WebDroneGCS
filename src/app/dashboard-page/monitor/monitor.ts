@@ -14,6 +14,7 @@ import { ApplicationStateService } from 'src/app/application-state.service';
 export class MonitorView implements DroneEventListener {
 
   private active: String = "OpenChart"
+  // private active: String = "Logs"
   // private active: String = "ServoOutput"
 
 

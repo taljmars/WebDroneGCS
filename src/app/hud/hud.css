@@ -1,0 +1,26 @@
+/* body {
+  display: flex;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  height: 100;
+} */
+canvas {
+  /* widows: inherit; */
+  /* widows: 500px; */
+  /* widows: 50%; */
+  /* width: 50%; */
+  /* height: 50%; */
+  /* margin: 200px; */
+  /* display: flex; */
+  /* margin: 0; */
+  align-items: center;
+}
+
+/* canvas:after { */
+  /* content: ""; */
+  /* display: block; */
+  /* padding-bottom: 100%; */
+/* } */
+
+@import "../../../../../styles.css";

@@ -9,10 +9,22 @@ import { ConfigService } from '../services/config/config.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { AppConstants } from '../local.storage';
+import { ViewChild, ElementRef } from '@angular/core';
+import { IMapOptions } from 'angular-maps';
 
 export abstract class Dash implements DroneEventListener {
 
   public paramReceived: Number = 100;
+
+  @ViewChild("video", {static: false})
+  public video: ElementRef;
+  _lat: Number = 32.0920566;
+  _lon: Number = 34.8181581;
+
+  _options: IMapOptions = {
+    showDashboard: false,
+    zoom: 15
+  };
   
   constructor(
     public proxyService: ProxyService,
