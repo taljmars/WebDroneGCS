@@ -1,0 +1,13 @@
+openssl req -x509 -sha256 -days 3650 -newkey rsa:4096 -keyout rootCA.key -out rootCA.crt
+openssl req -new -newkey rsa:4096 -keyout server-localhost.key –out server-localhost.csr
+openssl req -newkey rsa:4096 -keyout server-localhost.key –out server-localhost.csr
+openssl req -new -newkey rsa:4096 -keyout server-localhost.key -out server-localhost.csr
+ 
+echo authorityKeyIdentifier=keyid,issuer  >> server-localhost.ext
+echo basicConstraints=CA:FALSE  >> server-localhost.ext
+echo subjectAltName = @alt_names  >> server-localhost.ext
+echo [alt_names]  >> server-localhost.ext
+echo DNS.1 = localhost >> server-localhost.ext
+
+openssl x509 -req -CA rootCA.crt -CAkey rootCA.key -in server-localhost.csr -out server-localhost.crt -days 365 -CAcreateserial -extfile server-localhost.ext
+openssl pkcs12 -export -out localhost.p12 -name "localhost" -inkey server-localhost.key -in server-localhost.crt

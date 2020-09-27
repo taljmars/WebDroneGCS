@@ -19,6 +19,10 @@
                     </div>
                     <mdb-card-text>Proxy URL: <a class="card-link" [href]="configService.getUrl()">{{configService.getUrl()}}</a></mdb-card-text>
                     <mdb-card-text>Local Proxy: <a class="card-link" href="drone-proxy://dummy">Start Engine</a></mdb-card-text>
+                    <mdb-card-text>
+                        Getting CA Certificate: <a class="card-link" href="assets/rootCA.crt">Download</a><br>
+                        * Root CA issuer can be add to the "autherizor" CA in your browser to make it accept the backend engine of WebDroneGCS
+                    </mdb-card-text>
                 </mdb-card-body>
                 <mdb-card-footer style="background-color: transparent;">
                     <mdb-icon far icon="save" size="2x" (click)="onUpdate()" style="align-content: center;"></mdb-icon>
