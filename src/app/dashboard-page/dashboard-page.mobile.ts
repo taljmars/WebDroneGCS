@@ -61,4 +61,8 @@ export class DashMobile extends Dash {
     }
   }
 
+  isStandaloneSupported() {
+    return false
+  }
+
 }

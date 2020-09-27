@@ -110,4 +110,7 @@ export abstract class Dash implements DroneEventListener {
     return window.navigator.platform.indexOf('Win') <= -1
   }
 
+  abstract isStandaloneSupported()
+  
+
 }

@@ -84,4 +84,8 @@ export class DashDesktop extends Dash {
     }
   }
 
+  isStandaloneSupported() {
+    return true
+  }
+
 }
