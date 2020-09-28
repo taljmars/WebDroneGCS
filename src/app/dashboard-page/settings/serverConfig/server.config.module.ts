@@ -9,6 +9,11 @@ import { MatCardModule } from '@angular/material';
 
 import {MatGridListModule} from '@angular/material/grid-list';
 
+import {MatRadioModule} from '@angular/material/radio';
+import {MatListModule} from '@angular/material/list';
+import { FormsModule } from '@angular/forms';
+import {MatDividerModule} from '@angular/material/divider';
+
 import { NavbarModule, DropdownModule } from 'angular-bootstrap-md';
 import { CheckboxModule, TableModule, WavesModule, IconsModule, InputsModule, ButtonsModule } from 'angular-bootstrap-md';
 
@@ -23,6 +28,11 @@ import { CheckboxModule, TableModule, WavesModule, IconsModule, InputsModule, Bu
     MatInputModule,
     MatDialogModule,
     MatGridListModule,
+    MatRadioModule,
+    MatListModule,
+    InputsModule,
+    FormsModule,
+    MatDividerModule,
 
     ButtonsModule,
     WavesModule,
