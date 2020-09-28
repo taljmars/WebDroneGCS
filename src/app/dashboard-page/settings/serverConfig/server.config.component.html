@@ -80,15 +80,15 @@
             </div>
 
             <mat-grid-tile *ngIf="this.proxyService.isProxyUp() == true" class="card" style="background-color: mediumseagreen;" ><mat-card-content>
-                <mat-label class="mycenter"><h2><b>Up</b></h2></mat-label>
+                <mat-label class="mycenter"><h2><b>Status</b></h2></mat-label>
                 <!-- <br> -->
-                <mat-label class="mycenter"><h4>{{this.proxyService.isProxyUp()}}</h4></mat-label>
+                <mat-label class="mycenter"><h4>On</h4></mat-label>
             </mat-card-content></mat-grid-tile>
 
             <mat-grid-tile *ngIf="this.proxyService.isProxyUp() == false" class="card" style="background-color: indianred;" ><mat-card-content>
-                <mat-label class="mycenter"><h2><b>Up</b></h2></mat-label>
+                <mat-label class="mycenter"><h2><b>Status</b></h2></mat-label>
                 <!-- <br> -->
-                <mat-label class="mycenter"><h4>{{this.proxyService.isProxyUp()}}</h4></mat-label>
+                <mat-label class="mycenter"><h4>Off</h4></mat-label>
 
                 <a class="card-link" href="drone-proxy://dummy">Start Agent</a>
             </mat-card-content></mat-grid-tile>
@@ -142,6 +142,8 @@
         <br>
         <p style="text-align: center; padding-bottom: 200px;">
             Getting CA Certificate: <a class="card-link" href="assets/rootCA.crt">Download</a><br>
+            <span style="color: indianred;">Please note, scanning the devices in the network will not work if the agent certificate is not approved, 
+                please make sure you download the certificate and add it to the approved list</span><br>
             <i>(Root CA issuer can be added to the autherization CA's list in your browser to make it accept the backend engine of WebDroneGCS)</i>
         </p>
     </div>
