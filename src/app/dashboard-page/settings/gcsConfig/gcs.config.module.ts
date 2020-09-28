@@ -11,6 +11,8 @@ import { InputsModule, WavesModule, ButtonsModule, CheckboxModule, MDBBootstrapM
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -23,7 +25,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     CheckboxModule,
     MDBBootstrapModule.forRoot(),
     FormsModule,MatCardModule,
-
+    MatRadioModule,
+    MatListModule,
     ModalModule, IconsModule, MatCheckboxModule,
 
     CardsModule, WavesModule, ButtonsModule,

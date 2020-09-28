@@ -9,16 +9,59 @@
                     <mdb-card-title>
                         <h4>Proxy Settings</h4>
                     </mdb-card-title>
-                    <div class="md-form">
-                        <input mdbInput type="text" [(ngModel)]="proxyAddress" id="droneProxyAddress" class="form-control">
-                        <label for="droneProxyAddress" class="">IP Address</label>
+                    <mat-radio-group
+                        aria-labelledby="example-radio-group-label"
+                        class="example-radio-group"
+                        [(ngModel)]="proxyDef">
+                        <mat-radio-button class="example-radio-button" [value]="'manual'">
+                            Manual
+                        </mat-radio-button>
+                        <mat-radio-button class="example-radio-button" [value]="'scan'">
+                            Scan
+                        </mat-radio-button>
+                        <mat-radio-button class="example-radio-button" [value]="'local'">
+                            Localhost
+                        </mat-radio-button>
+                    </mat-radio-group>
+
+                    <div *ngIf="proxyDef == 'manual'">
+                        <div class="md-form">
+                            <input mdbInput type="text" [(ngModel)]="proxyAddress" id="droneProxyAddress" class="form-control">
+                            <label for="droneProxyAddress" class="">IP Address</label>
+                        </div>
+                        <div class="md-form">
+                            <input mdbInput type="number" [(ngModel)]="proxyPort" id="droneProxyPort" class="form-control">
+                            <label for="droneProxyPort" class="">Port</label>
+                        </div>
                     </div>
-                    <div class="md-form">
-                        <input mdbInput type="number" [(ngModel)]="proxyPort" id="droneProxyPort" class="form-control">
-                        <label for="droneProxyPort" class="">Port</label>
+
+                    <div *ngIf="proxyDef == 'scan'">
+                        <div class="md-form">
+                            <input mdbInput type="text" [(ngModel)]="proxyScanSubnet" id="scanSubnet" class="form-control">
+                            <label for="scanSubnet" class="">Subnet</label>
+                        </div>
+                        <div class="md-form">
+                            <input mdbInput type="text" [(ngModel)]="proxyScanMask" id="scanMask" class="form-control">
+                            <label for="scanMask" class="">Mask</label>
+                        </div>
+
+                        <a class="card-link" href="javascript:void(0)" (click)="scan()">Scan</a>
+
+
+                        <mat-action-list>
+                            <button mat-list-item *ngFor="let server of droneServers" [value]="server" (click)="selectScanResults(server)">
+                                {{server}}
+                            </button>
+                        </mat-action-list>
+                          
                     </div>
+
+                    <div *ngIf="proxyDef == 'local'">
+                        Go to activate server
+                    </div>
+
                     <mdb-card-text>Proxy URL: <a class="card-link" [href]="configService.getUrl()">{{configService.getUrl()}}</a></mdb-card-text>
-                    <mdb-card-text>Local Proxy: <a class="card-link" href="drone-proxy://dummy">Start Engine</a></mdb-card-text>
+                    <!-- <mdb-card-text>Local Proxy: <a class="card-link" href="drone-proxy://dummy">Start Engine</a></mdb-card-text> -->
                     <mdb-card-text>
                         Getting CA Certificate: <a class="card-link" href="assets/rootCA.crt">Download</a><br>
                         * Root CA issuer can be add to the "autherizor" CA in your browser to make it accept the backend engine of WebDroneGCS

@@ -173,7 +173,7 @@ export class ProxyService {
     return this.proxyUp;
   }
 
-  pingProxyService() {
+  pingProxyService(successHandler = null, errorHandler = null) {
     this.configService.get("ping?id=" + this.pingId++, {}, {}, 
     data => {
       this.proxyUp = true
@@ -189,12 +189,16 @@ export class ProxyService {
         this.connect(this.portName, this.baudRate);
       }
       // console.log("Proxy service successfully found")
+      if (successHandler)
+        successHandler(data)
     }, 
     data => {
       this.proxyUp = false
       this.proxyVersion = "Unknown"
       this.proxyUpTime = "00:00:00"
       this.proxyAddresses = new Array()
+      if (errorHandler)
+        errorHandler(data)
       // console.error("Failed to find proxy service")
     });
   }

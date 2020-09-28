@@ -1,12 +1,119 @@
-<h5>Running From Chrome</h5>
-<h6>Linux</h6>
-<p>
-Make sure to run chrome without security restrictions
-'google-chrome --disable-web-security'
-and approve the proxy url as aproved non-trusted certificate
-</p>
+<div class="overlay" style="overflow-y: scroll; height: 100%; padding-bottom: 200px;">
 
-<h5>Running From Firefox (+ Mobile)</h5>
-<p>
-Make sure the accept the proxy url as well
-</p>
+    <div class="example-action-buttons">
+        <button mat-button (click)="accordion.openAll()">Expand All</button>
+        <button mat-button (click)="accordion.closeAll()">Collapse All</button>
+    </div>
+
+    <mat-accordion class="example-headers-align" multi>
+
+        <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Generate Your own Certificate
+                </mat-panel-title>
+                <mat-panel-description>
+                    How to replace certificate with a trusted one you created yourself
+                    <mat-icon>info</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div>
+                <h5>Create a new CA Autherity</h5>
+                <p style="padding-left: 10px;">
+                    We would like to first create a new certification authroity and later on sign new certificate.<br>
+                    Run the below to issue a new CA and a new certificate for our new CA.<br>
+                    <br>
+                    <i>openssl req -x509 -sha256 -days 3650 -newkey rsa:4096 -keyout rootCA.key -out rootCA.crt</i><br>
+                </p>
+                
+                <br>
+                <h5>Create a new certificate for our server</h5>
+                <p style="padding-left: 10px;">
+                    We will now issue a new certificate for our server, later on we will sign it with our new CA authority we created above.
+                    <br>
+                    <i>openssl req -new -newkey rsa:4096 -keyout server-localhost.key -out server-localhost.csr</i>
+                </p>
+                
+                <br>
+                <h5>Create a mandatory certification metadata for signing stage</h5>
+                <p style="padding-left: 10px;">
+                    <i>
+                        echo authorityKeyIdentifier=keyid,issuer  >> server-localhost.ext<br>
+                        echo basicConstraints=CA:FALSE  >> server-localhost.ext<br>
+                        echo subjectAltName = @alt_names  >> server-localhost.ext<br>
+                        echo [alt_names]  >> server-localhost.ext<br>
+                        echo DNS.1 = localhost >> server-localhost.ext<br>
+                    </i>
+                </p>
+
+                <br>
+                <h5>Sign server certificate with CA</h5>
+                <p style="padding-left: 10px;">
+                    We will now take the certificate we've created earlier and use the CA key to sign it.
+                    <br>
+                    <i>openssl x509 -req -CA rootCA.crt -CAkey rootCA.key -in server-localhost.csr -out server-localhost.crt -days 365 -CAcreateserial -extfile server-localhost.ext</i>
+                </p>
+
+                <br>
+                <h5>Converting certifcate file from crt to p12</h5>
+                <p style="padding-left: 10px;">
+                    Our connector backend is working with .p12 files, we will need to convert it to a p12 file using the below.
+                    <br>
+                    <i>openssl pkcs12 -export -out localhost.p12 -name "localhost" -inkey server-localhost.key -in server-localhost.crt</i>
+                </p>
+
+                <br>
+                <h5>Update your browser with the new CA</h5>
+                <p style="padding-left: 10px;">
+                    Open you browser and import new CA autherity certificate to it <b>(rootCA.crt)</b>
+                    <br>
+                </p>
+
+                <br>
+                <h5>Update the connector to use the certificate you've created</h5>
+                <p style="padding-left: 10px;">
+                    In order to update the connector backend you will need to copy <i><b>localhost.p12</b></i> file you've created about to the installation path.<br>
+                    Also, please update the <i>application.properties</i> file with the new certification info you've used to create your own certificate.<br>
+                </p>
+
+                <br>
+                <h5>Walla !</h5>
+                <p style="padding-left: 10px;">
+                    Now your browser will be well aware with the new CA autherity. you browser will accept the backend certificate you've created as it was signed
+                    by you own CA.
+                </p>
+
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel expanded>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Unfamilier Certificate Errors
+                </mat-panel-title>
+                <mat-panel-description>
+                    Disabling browser certification checkup
+                    <mat-icon>account_circle</mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div>
+                <h5>Running From Chrome</h5>
+                <h6>Linux</h6>
+                <p>
+                    Make sure to run chrome without security restrictions
+                    'google-chrome --disable-web-security'
+                    and approve the proxy url as aproved non-trusted certificate
+                </p>
+                
+                <h5>Running From Firefox (+ Mobile)</h5>
+                <p>
+                    Make sure the accept the proxy url as well
+                </p>      
+            </div>
+        </mat-expansion-panel>
+
+    </mat-accordion>
+
+</div>
