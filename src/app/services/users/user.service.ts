@@ -11,6 +11,10 @@ export class UserService {
   private static readonly ADDRESS = "address"
   private static readonly PORT = "port"
   private static readonly USERNAME = "username"
+  private static readonly MODE = "mode"
+  private static readonly SCAN_MASK = "scan_mask"
+  private static readonly SCAN_SUBNET = "scan_subnet"
+  private static readonly SCAN_PORT = "scan_port"
 
   getToken(): String {
     return AppConstants.MyStorage.get(TOKEN)
@@ -50,4 +54,35 @@ export class UserService {
       return AppConstants.MyStorage.get(this.getUserName() + UserService.PORT)
   }
 
+  getMode() {
+    return AppConstants.MyStorage.get(this.getUserName() + UserService.MODE)
+  }
+
+  setMode(mode: string) {
+    AppConstants.MyStorage.set(this.getUserName() + UserService.MODE, mode)
+  }
+
+  getScanMask(): number {
+    return +AppConstants.MyStorage.get(this.getUserName() + UserService.SCAN_MASK)
+  }
+
+  setScanMask(mask: number) {
+    AppConstants.MyStorage.set(this.getUserName() + UserService.SCAN_MASK, "" + mask)
+  }
+
+  getScanSubnet(): string {
+    return AppConstants.MyStorage.get(this.getUserName() + UserService.SCAN_SUBNET)
+  }
+
+  setScanSubnet(sub: string) {
+    AppConstants.MyStorage.set(this.getUserName() + UserService.SCAN_SUBNET, sub)
+  }
+
+  getScanPort(): number {
+    return +AppConstants.MyStorage.get(this.getUserName() + UserService.SCAN_PORT)
+  }
+
+  setScanPort(port: number) {
+    +AppConstants.MyStorage.set(this.getUserName() + UserService.SCAN_PORT, "" +port)
+  }
 }

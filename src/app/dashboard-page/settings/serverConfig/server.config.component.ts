@@ -2,6 +2,7 @@ import { Component, OnInit , ViewChild, ElementRef, Input} from '@angular/core';
 import { ConfigService } from '../../../services/config/config.service';
 import { ProxyService } from '../../../services/config/proxy.service';
 import { ApplicationStateService } from 'src/app/application-state.service';
+import { UserService } from 'src/app/services/users/user.service';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class ServerConfig {
 
   @Input() public proxyScanSubnet: any = '192.168.14.0';
   @Input() public proxyScanMask: any = 24;
+  @Input() public proxyScanPort: any = 8443;
 
   events: string[] = [];
   active: boolean = false
@@ -26,13 +28,22 @@ export class ServerConfig {
 
   droneServers: string[] = []
 
-  constructor(public applicationStateService: ApplicationStateService, public configService: ConfigService, public proxyService: ProxyService){
+  constructor(public userService: UserService, public applicationStateService: ApplicationStateService, public configService: ConfigService, public proxyService: ProxyService){
     if (this.applicationStateService.getIsMobileResolution())
-        this.gcsMode = 'remote'
+      this.gcsMode = 'remote'
+    else 
+      this.gcsMode = this.userService.getMode()
+
+    this.proxyScanSubnet = this.userService.getScanSubnet()
+    this.proxyScanMask = this.userService.getScanMask()
+    this.proxyScanPort = this.userService.getScanPort()
+    this.proxyAddress = this.userService.getProxyAddress()
+    this.proxyPort = this.userService.getProxyPort()
   }
 
   activateServer() {
     this.active = true
+    this.userService.setMode(this.gcsMode)
     this.configService.setAddress("localhost");
   }
 
@@ -89,12 +100,39 @@ export class ServerConfig {
     this.configService.setAddress(initValue)
     this.proxyService.pingProxyService()
     console.log("Done")
+
+    this.userService.setScanSubnet(this.proxyScanSubnet)
+    this.userService.setScanMask(this.proxyScanMask)
+    this.userService.setScanPort(this.proxyScanPort)
   }
 
   selectScanResults(server) {
     console.log("Select " + server )
     this.configService.setAddress(server)
     this.proxyService.pingProxyService()
+
+    // Persiste the data
+    this.userService.setProxyAddress(server)
+    this.userService.setProxyPort(this.proxyScanPort)
+    this.userService.setMode(this.gcsMode)
+  }
+
+  onUpdate() {
+    // if (this.proxyService.isProxyConnected()) {
+    //   this.alertService.promptError("Proxy Connected, Please disconnect first")
+    //   return
+    // }
+    // this.configService.setAddress(this.proxyAddress.nativeElement.value)
+    // this.configService.setPort(this.proxyPort.nativeElement.value)
+    this.configService.setAddress(this.proxyAddress)
+    this.configService.setPort(this.proxyPort)
+    
+    // this.userService.setProxyAddress(this.proxyAddress.nativeElement.value)
+    // this.userService.setProxyPort(this.proxyPort.nativeElement.value)
+    this.userService.setProxyAddress(this.proxyAddress)
+    this.userService.setProxyPort(this.proxyPort)
+
+    this.userService.setMode(this.gcsMode)
   }
 
 }

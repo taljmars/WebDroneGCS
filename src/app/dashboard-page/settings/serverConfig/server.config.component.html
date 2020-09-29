@@ -41,6 +41,9 @@
                 <input mdbInput type="number" [(ngModel)]="proxyPort" id="droneProxyPort" class="form-control">
                 <label for="droneProxyPort" class="">Port</label>
             </div>
+            <div class="mycenter">
+                <button mdbBtn mdbWavesEffect type="button" color="primary" (click)="onUpdate()">Save</button>
+            </div>
         </div>
 
         <div *ngIf="proxyDef == 'scan'">
@@ -51,6 +54,10 @@
             <div class="md-form mycenter">
                 <input mdbInput type="text" [(ngModel)]="proxyScanMask" id="scanMask" class="form-control">
                 <label for="scanMask" class="">Mask</label>
+            </div>
+            <div class="md-form mycenter">
+                <input mdbInput type="text" [(ngModel)]="proxyScanPort" id="scanPort" class="form-control">
+                <label for="scanPort" class="">Port</label>
             </div>
 
             <div class="mycenter">
@@ -65,6 +72,7 @@
             </mat-action-list>              
         </div>
 
+        <br>
         <p style="text-align: center;">
             <b>Proxy URL</b><br>
             <a class="card-link" [href]="configService.getUrl()">{{configService.getUrl()}}</a>
