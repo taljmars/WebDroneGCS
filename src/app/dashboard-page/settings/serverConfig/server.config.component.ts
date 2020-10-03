@@ -92,7 +92,9 @@ export class ServerConfig {
           for (let val of data["addresses"])
             this.droneServers.push(val)
         }, 
-        data => {}
+        data => {
+          console.warn("" + data)
+        }
       )
     }
 

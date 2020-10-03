@@ -33,6 +33,11 @@
           <i class="fas fa-sync-alt"></i>
         </a>
       </li>
+      <li class="nav-item" *ngIf="droneScannerService.isActive()">
+        <a class="nav-link" (click)="droneScannerService.setActive(false)" >
+          <i class="fab fa-searchengin"></i>
+        </a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" (click)="connect()" [ngStyle]="getConnectedStyles()">Connected</a>
       </li>

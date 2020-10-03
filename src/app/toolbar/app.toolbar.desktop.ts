@@ -11,6 +11,7 @@ import { ProxyListener, ProxyService } from '../services/config/proxy.service';
 import { MatDialog, MatDialogConfig} from "@angular/material";
 import { DroneEvents, DroneEvent } from '../services/drone/protocol/events.component';
 import { ProxyEvent, ProxyEvents } from '../services/config/proxy-events/events.component';
+import { DroneScannerService } from '../dashboard-page/serial/dronescanner.service';
 
 @Component({
   selector: 'my-toolbar-desktop',
@@ -27,8 +28,9 @@ export class AppToolbarDesktop extends AppToolbar implements DroneEventListener,
                 public userService: UserService,
                 protected api: ApiService,
                 protected alertsService: AlertsService,
+                public droneScannerService: DroneScannerService,
               ) {
-    super(router, dialog, applicationStateService, droneService, proxyService, userService, api, alertsService)
+    super(router, dialog, applicationStateService, droneService, proxyService, userService, api, alertsService, droneScannerService)
     proxyService.addEventListner(this)
     droneService.addEventListener(this)
   }

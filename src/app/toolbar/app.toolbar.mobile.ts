@@ -8,6 +8,7 @@ import { ApiService } from '../services/api.service'
 import { ApplicationStateService } from '../application-state.service';
 import { AlertsService } from '../services/alerts.service';
 import { AppToolbar } from './app.toolbar'
+import { DroneScannerService } from '../dashboard-page/serial/dronescanner.service';
 
 @Component({
   selector: 'my-toolbar-mobile',
@@ -26,8 +27,9 @@ export class AppToolbarMobile extends AppToolbar {
                 public userService: UserService,
                 protected api: ApiService,
                 protected alertsService: AlertsService,
+                public droneScannerService: DroneScannerService,
               ) {
-    super(router, dialog, applicationStateService, droneService, proxyService, userService, api, alertsService)
+    super(router, dialog, applicationStateService, droneService, proxyService, userService, api, alertsService, droneScannerService)
   }
 
   openMenu() {

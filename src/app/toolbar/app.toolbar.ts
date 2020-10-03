@@ -10,6 +10,7 @@ import { ApiService } from '../services/api.service'
 import { ApplicationStateService } from '../application-state.service';
 import { AlertsService } from '../services/alerts.service';
 import { AppConstants } from '../local.storage';
+import { DroneScannerService } from '../dashboard-page/serial/dronescanner.service';
 
 export abstract class AppToolbar {
   
@@ -24,6 +25,7 @@ export abstract class AppToolbar {
                 public userService: UserService,
                 protected api: ApiService,
                 protected alertsService: AlertsService,
+                public droneScannerService: DroneScannerService,
               ) {
   }
 

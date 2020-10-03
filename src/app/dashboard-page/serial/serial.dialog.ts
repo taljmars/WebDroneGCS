@@ -8,8 +8,9 @@ import {ConfigService} from '../../services/config/config.service'
 import { ProxyService } from '../../services/config/proxy.service';
 import { DroneService, DroneEventListener } from '../../services/drone/drone.service';
 
-import {MatDialogRef, MatDialogActions} from "@angular/material";
+import {MatDialogRef, MatDialogActions, MatCheckbox} from "@angular/material";
 import {MatSelect} from '@angular/material/select';
+import { DroneScannerService } from './dronescanner.service';
 
 
 
@@ -31,9 +32,13 @@ export class SerialDialogView {
   @ViewChild("portbaud", {static: false})
   public portbaud: MatSelect;
 
+  @ViewChild("activateDroneScanner", {static: false})
+  public activateDroneScanner: MatCheckbox;
+
   constructor(public dialogRef: MatDialogRef<SerialDialogView>,
               public proxyService: ProxyService,
-              public droneService: DroneService){
+              public droneService: DroneService,
+              public droneScannerService: DroneScannerService){
     this.proxyService.getPostList(data => {
         console.log(data)
         console.log(data.ports)
@@ -52,6 +57,13 @@ export class SerialDialogView {
     let baud = this.portbaud.value;
     this.proxyService.connect(portname, baud)
     
+    let isDroneScanner = this.activateDroneScanner.value
+    if (isDroneScanner) {
+      console.info("Activating Drone Scanner")
+      this.droneScannerService.setPort(portname)
+      this.droneScannerService.setBaud(baud)
+      this.droneScannerService.setActive(true)
+    }
     this.dialogRef.close()
   }
 

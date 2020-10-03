@@ -7,6 +7,7 @@ import com.dronegcs.mavlink.is.drone.DroneInterfaces;
 import com.dronegcs.mavlink.is.drone.calibration.CalibrateGyroLevel;
 import com.dronegcs.mavlink.is.drone.calibration.CalibrateGyroOrientation;
 import com.dronegcs.mavlink.is.drone.parameters.Parameter;
+import com.dronegcs.mavlink.is.drone.variables.HeartBeat;
 import com.dronegcs.mavlink.is.protocol.msgbuilder.WaypointManager;
 import com.generic_tools.devices.SerialConnection;
 import org.json.JSONObject;
@@ -164,6 +165,8 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
       case CALIBRATION_TIMEOUT:
         break;
       case HEARTBEAT_TIMEOUT:
+        payload.put("message", "Heartbeat timed out");
+        payload.put("retries", HeartBeat.currTimeoutRetries);
         break;
       case HEARTBEAT_FIRST:
         break;
@@ -265,6 +268,7 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
       case PROTOCOL_LEARNING:
         break;
       case PROTOCOL_IDENTIFIED:
+        drone.getParameters().refreshParameters();
         payload.put("protocol-version", drone.getMavClient().getMavlinkVersion());
         break;
     }

@@ -17,6 +17,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import { NavbarModule, DropdownModule } from 'angular-bootstrap-md';
 import { CheckboxModule, TableModule, WavesModule, IconsModule, InputsModule, ButtonsModule } from 'angular-bootstrap-md';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RequestInterceptor } from './../../../services/config/requestInterceptor';
 
 
 @NgModule({
@@ -38,7 +40,13 @@ import { CheckboxModule, TableModule, WavesModule, IconsModule, InputsModule, Bu
     WavesModule,
   ],
   declarations: [ ServerConfig ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true
+    }
+  ],
   exports: [ServerConfig],
   // bootstrap: [ ]
   bootstrap: [ ServerConfig ]

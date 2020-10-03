@@ -4,6 +4,7 @@ import { SerialDialogView } from './serial.dialog';
 import { SerialStatView } from './serial.stat';
 import { SerialChartsView } from './serial.charts';
 import { SerialPacketsPieView } from './serial.packets.pie';
+import { DroneScannerService } from './dronescanner.service';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -20,6 +21,9 @@ import {MatSelectModule} from '@angular/material/select';
 
 import { ChartsModule, WavesModule } from 'angular-bootstrap-md'
 
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
+
 
 @NgModule({
   imports: [
@@ -30,7 +34,7 @@ import { ChartsModule, WavesModule } from 'angular-bootstrap-md'
     MatCardModule,
     MDBBootstrapModule.forRoot(),
     MatSelectModule,
-    ChartsModule, WavesModule,
+    ChartsModule, WavesModule,MatCheckboxModule,
   ],
   declarations: [ SerialDialogView, SerialStatView, SerialChartsView, SerialPacketsPieView],
   providers: [],
