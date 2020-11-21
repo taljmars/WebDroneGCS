@@ -69,7 +69,7 @@ export class ProxyService {
         data['baud'] = baudrate;
 
       console.log(data)
-      that.configService.post("connect", {}, data, val => {
+      that.configService.post("/connection/connect", {}, data, val => {
         that.portName = val.connection.name;
         if (that.portName == "")
           that.portName = "Unknown"
@@ -108,7 +108,7 @@ export class ProxyService {
   }
 
   disconnect(callback: Function = null) {
-    this.configService.post("disconnect", {}, {}, val => {
+    this.configService.post("/connection/disconnect", {}, {}, val => {
       this.closeConnection()
       if (callback) callback(val)
     },
@@ -128,7 +128,7 @@ export class ProxyService {
   }
 
   getPostList(callback: Function) {
-      this.configService.get("listports", {}, {}, callback);
+      this.configService.get("/connection/listports", {}, {}, callback);
   }
 
   addEventListner(listner: ProxyListener) {
@@ -174,18 +174,18 @@ export class ProxyService {
   }
 
   pingProxyService(successHandler = null, errorHandler = null) {
-    this.configService.get("ping?id=" + this.pingId++, {}, {}, 
+    this.configService.get("/connection/ping?id=" + this.pingId++, {}, {}, 
     data => {
       this.proxyUp = true
       this.proxyVersion = data["version"];
       this.proxyUpTime = data["uptime"];
       this.proxyAddresses = data["addresses"]
-      this.proxyConnectedUsers = data["connected-users"]
+      this.proxyConnectedUsers = data["connectedUsers"]
       let connection = data["connection"];
       if (!this.isProxyConnected() && connection["drone"] == true) {
         console.log("Proxy already binded to port and drone")
         this.portName = connection["port"]
-        this.baudRate = connection["baud-rate"]
+        this.baudRate = connection["baud"]
         this.connect(this.portName, this.baudRate);
       }
       // console.log("Proxy service successfully found")

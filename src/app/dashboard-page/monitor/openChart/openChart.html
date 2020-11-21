@@ -1,4 +1,16 @@
 <div style="margin-bottom: 20px; padding-bottom: 20px;">
+    <div>
+        <canvas mdbChart
+            [chartType]="chartType"
+            [datasets]="chartDatasets"
+            [options]="chartOptions"
+            [labels]="chartLabels"
+            [legend]="true"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+        </canvas>
+    </div>
+
     <div style="display: block">
         <mdb-card style="margin: 20px;">
             <mdb-card-body>
@@ -23,17 +35,6 @@
                 </mdb-card-text>
             </mdb-card-body>
         </mdb-card>
-    </div>
-    <div>
-        <canvas mdbChart
-            [chartType]="chartType"
-            [datasets]="chartDatasets"
-            [options]="chartOptions"
-            [labels]="chartLabels"
-            [legend]="true"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)">
-        </canvas>
     </div>
 </div>
 

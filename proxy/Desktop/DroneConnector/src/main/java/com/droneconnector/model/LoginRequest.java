@@ -1,8 +1,12 @@
 package com.droneconnector.model;
 
+import com.droneconnector.annotations.Email;
+
 public class LoginRequest {
 
+  @Email(regexp=".*@.*\\..*", message = "Email should be valid")
   private String email;
+
   private String password;
 
   public LoginRequest() {

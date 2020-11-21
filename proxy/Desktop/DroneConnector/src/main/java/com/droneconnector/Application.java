@@ -1,6 +1,5 @@
 package com.droneconnector;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -15,13 +14,34 @@ public class Application {
     InetAddress ip;
     String hostname;
     try {
+      int n = 80;
+
       ip = InetAddress.getLocalHost();
+      String myIP = "Your current IP address : " + ip;
+      String bufferMyIP = new String(new char[(n - myIP.length()) / 2]).replace("\0", " ");
+
       hostname = ip.getHostName();
-      System.out.println("Your current IP address : " + ip);
-      System.out.println("Your current Hostname : " + hostname);
+      String myHostname = "Your current Hostname : " + hostname;
+      String bufferMyHostname = new String(new char[(n - myHostname.length()) / 2]).replace("\0", " ");
 
-    } catch (UnknownHostException e) {
+      int len = Math.max((bufferMyIP + myIP + bufferMyIP).length(), (bufferMyHostname + myHostname + bufferMyHostname).length());
+      System.out.println("\n\n");
+      System.out.println(new String(new char[len + 2]).replace("\0", "*"));
+      System.out.println("*" + new String(new char[len]).replace("\0", " ") + "*");
 
+      System.out.print("*");
+      System.out.print(bufferMyIP + myIP + bufferMyIP);
+      System.out.println("*");
+
+      System.out.print("*");
+      System.out.print(bufferMyHostname + myHostname + bufferMyHostname);
+      System.out.println("*");
+
+      System.out.println("*" + new String(new char[len]).replace("\0", " ") + "*");
+      System.out.println(new String(new char[len + 2]).replace("\0", "*"));
+      System.out.println();
+    }
+    catch (UnknownHostException e) {
       e.printStackTrace();
     }
   }

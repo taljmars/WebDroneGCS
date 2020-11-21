@@ -8,13 +8,13 @@
         <a class="nav-link" (click)="hideMenu()" routerLink="dashboard">Home</a>
       </li>
       <li class="nav-item">
-          <a class="nav-link" (click)="hideMenu()" routerLink="cam">Camera</a>
+          <a class="nav-link" (click)="hideMenu()" routerLink="cam">FPV</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="hideMenu()" routerLink="map">Map</a>
+        <a class="nav-link" (click)="hideMenu()" routerLink="map">Map View</a>
       </li>
       <li class="nav-item" *ngIf="!applicationStateService.getIsMobileResolution()">
-        <a class="nav-link" routerLink="editor">Editor</a>
+        <a class="nav-link" routerLink="editor">Mission Planning</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" (click)="hideMenu()" routerLink="settings">Settings</a>

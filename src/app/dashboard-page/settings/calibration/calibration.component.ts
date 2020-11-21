@@ -44,8 +44,8 @@ export abstract class Calibration implements DroneEventListener  {
   public channel7 = {cmd: null};
   public channel8 = {cmd: null};
 
-  public calibrationGyroMessege: String = ""
-  public calibrationLevelMessege: String = ""
+  public calibrationGyroMessage: String = ""
+  public calibrationLevelMessage: String = ""
 
   private static CALIBRATE_GYRO: String = "Calibrate Gyro"
   private static CALIBRATE_ACK: String = "Ack"
@@ -128,7 +128,7 @@ export abstract class Calibration implements DroneEventListener  {
         this.ch = event.data
         break;
       case DroneEvents.CALIBRATION_IMU:
-        this.calibrationGyroMessege = event.data.message
+        this.calibrationGyroMessage = event.data.message
         if (event.data.iscalibrate == true) {
           this.calibGyroStarted = true;
           this.gyroAction = Calibration.CALIBRATE_ACK
@@ -174,10 +174,10 @@ export abstract class Calibration implements DroneEventListener  {
       this.droneService.ackGyroCalibrate(
         data=> {
           if (!data.result)
-            this.calibrationGyroMessege = data.messege
+            this.calibrationGyroMessage = data.message
         },
         () => {
-          this.calibrationGyroMessege = "Failed to execute calibration procedure"
+          this.calibrationGyroMessage = "Failed to execute calibration procedure"
         }
       )
     }
@@ -185,10 +185,10 @@ export abstract class Calibration implements DroneEventListener  {
       this.droneService.startGyroCalibrate(
         data=> {
           if (!data.result)
-            this.calibrationGyroMessege = data.messege
+            this.calibrationGyroMessage = data.message
         },
         () => {
-          this.calibrationGyroMessege = "Failed to start calibration procedure"
+          this.calibrationGyroMessage = "Failed to start calibration procedure"
         }
       )
     }
@@ -198,12 +198,12 @@ export abstract class Calibration implements DroneEventListener  {
     this.droneService.startLevelCalibrate(
       data=> {
         if (!data.result)
-          this.calibrationLevelMessege = data.messege
+          this.calibrationLevelMessage = data.message
         else
-          this.calibrationLevelMessege = "Done"
+          this.calibrationLevelMessage = "Done"
       },
       () => {
-        this.calibrationLevelMessege = "Failed to start calibration procedure"
+        this.calibrationLevelMessage = "Failed to start calibration procedure"
       }
     )
   }

@@ -1,6 +1,7 @@
 package com.droneconnector.events;
 
-import com.droneconnector.controller.RestApiController;
+import com.droneconnector.controller.CalibrationApiController;
+import com.droneconnector.controller.ConfigurationApiController;
 import com.droneconnector.controller.WebSocketController;
 import com.dronegcs.mavlink.is.drone.Drone;
 import com.dronegcs.mavlink.is.drone.DroneInterfaces;
@@ -36,7 +37,10 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
   private WebSocketController webSocketController;
 
   @Autowired
-  private RestApiController restApiController;
+  private ConfigurationApiController configurationApiController;
+
+  @Autowired
+  private CalibrationApiController calibrationApiController;
 
   @PostConstruct
   public void init() {
@@ -160,7 +164,7 @@ public class EventCenter implements DroneInterfaces.OnDroneListener, DroneInterf
 //            break;
         payload.put("iscalibrate", calibrateGyroOrientation.isCalibrating());
         payload.put("message", "calibrateGyroOrientation.getMessage()");
-        payload.put("stage", restApiController.increaseGyroCalibrateStep());
+        payload.put("stage", calibrationApiController.increaseGyroCalibrateStep());
         break;
       case CALIBRATION_TIMEOUT:
         break;

@@ -77,6 +77,7 @@
             <b>Proxy URL</b><br>
             <a class="card-link" [href]="configService.getUrl()">{{configService.getUrl()}}</a>
         </p>
+        
     </div>
 
     <div *ngIf="gcsMode == 'standalone'">
@@ -148,12 +149,22 @@
         <br>
         <mat-divider></mat-divider>
         <br>
-        <p style="text-align: center; padding-bottom: 200px;">
+        <p style="text-align: center;">
             Getting CA Certificate: <a class="card-link" href="assets/rootCA.crt">Download</a><br>
             <span style="color: indianred;">Please note, scanning the devices in the network will not work if the agent certificate is not approved, 
                 please make sure you download the certificate and add it to the approved list</span><br>
             <i>(Root CA issuer can be added to the autherization CA's list in your browser to make it accept the backend engine of WebDroneGCS)</i>
         </p>
+
+        <!-- <div class="mycenter" style="text-align: center;">
+            <p style="text-align: center;">
+                <b>Agent API Documentation</b><br>
+                <a class="card-link" [href]="configService.getUrl()">{{configService.getUrl()}}/swagger-ui.html</a>
+            </p>
+            <br>
+        </div> -->
+
+        
     </div>
 
     <div *ngIf="!gcsMode" class="mycenter" style="text-align: center;">
@@ -162,5 +173,15 @@
         A drone server means that the current device will have radio communication with the drone.<br>
         You can always active this device as drone server and connet to it in different device by providing this device IP.
     </div>
+    <br>
+    <div class="mycenter" style="text-align: center;">
+        <p style="text-align: center;">
+            <b>Agent API Documentation</b><br>
+            <a class="card-link" [href]="configService.getUrl()">{{configService.getUrl()}}/swagger-ui.html</a>
+        </p>
+        <br>
+    </div>
+    <p style="text-align: center; padding-bottom: 200px;">
+    </p>
 </div>
 
