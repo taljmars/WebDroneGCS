@@ -1,6 +1,10 @@
 package com.droneconnector.controller;
 
-import com.droneconnector.model.*;
+import com.droneconnector.models.ConnectorException;
+import com.droneconnector.models.ExtendedStandardResponse;
+import com.droneconnector.models.calibration.SingleData;
+import com.droneconnector.models.StandardResponse;
+import com.droneconnector.models.calibration.MagnometerCalibrateMethodResponse;
 import com.dronegcs.mavlink.is.drone.Drone;
 import com.dronegcs.mavlink.is.drone.calibration.CalibrateCompass;
 import com.dronegcs.mavlink.is.drone.calibration.CalibrateGyroLevel;
@@ -48,7 +52,7 @@ public class CalibrationApiController {
 
   }
 
-  @PostMapping("startEscCalibrate")
+  @PostMapping("start-esc-calibration")
   public StandardResponse startEscCalibrate() {
     System.out.println("startEscCalibrate");
     Parameter parameter = drone.getParameters().getParameter("ESC_CALIBRATION");
@@ -59,7 +63,7 @@ public class CalibrationApiController {
     return new StandardResponse(true);
   }
 
-  @PostMapping("startLevelCalibrate")
+  @PostMapping("start-level-calibration")
   public StandardResponse startLevelCalibrate() {
     System.out.println("startLevelCalibrate");
     calibrateGyroLevel.start();
@@ -68,7 +72,7 @@ public class CalibrationApiController {
     return new StandardResponse(true);
   }
 
-  @PostMapping("startGyroCalibrate")
+  @PostMapping("start-gyro-calibration")
   public ExtendedStandardResponse<String> startGyroCalibrate() {
     System.out.println("startGyroCalibrate");
 //    JSONObject object = getResponseTemplate();
@@ -89,7 +93,7 @@ public class CalibrationApiController {
 
   private int gyroCalibrateStep = 0;
 
-  @PostMapping("ackGyroCalibrate")
+  @PostMapping("ack-gyro-calibration")
   public ExtendedStandardResponse<String> ackGyroCalibrate() {
     System.out.println("ackGyroCalibrate");
 //    JSONObject object = getResponseTemplate();
@@ -112,9 +116,9 @@ public class CalibrationApiController {
     return this.gyroCalibrateStep;
   }
 
-  @GetMapping("getSupportCompassMethods")
+  @GetMapping("supported-compass-methods")
 //  public Map startMagCalibrate(@RequestBody(required = false) int measurements) {
-  public ExtendedStandardResponse<List<String>> getSupportCompassMethods() {
+  public ExtendedStandardResponse<List<String>> getSupportedCompassMethods() {
     System.out.println("getSupportCompassMethods");
     Set<CalibrateCompass.CompassType> methods = calibrateCompass.getCompassFeatures();
 //    for (CalibrateCompass.CompassType ct : calibrateCompass.getCompassFeatures()) {
@@ -129,8 +133,8 @@ public class CalibrationApiController {
     return supportCompassMethods;
   }
 
-  @PostMapping("setMagnometerCalibrateMethod")
-  public MagnometerCalibrateMethodResponse setMagnometerCalibrateMethod(@RequestBody SingleData payload) {
+  @PostMapping("magnometer-calibration-method")
+  public MagnometerCalibrateMethodResponse setMagnometerCalibrationMethod(@RequestBody SingleData payload) {
     System.out.println("setMagnometerCalibrateMethod");
     CalibrateCompass.CompassType type = CalibrateCompass.CompassType.valueOf(payload.getData());
     calibrateCompass.setType(type);
@@ -142,8 +146,8 @@ public class CalibrationApiController {
     return magnometerCalibrateMethodResponse;
   }
 
-  @PostMapping("setMagnometerCalibrateRotation")
-  public StandardResponse setMagnometerCalibrateRotation(@RequestBody SingleData payload) {
+  @PostMapping("magnometer-calibration-rotation")
+  public StandardResponse setMagnometerCalibrationRotation(@RequestBody SingleData payload) {
     System.out.println("setMagnometerCalibrateRotation");
     MAV_EXT_COMPASS_ORIENTATION rt = MAV_EXT_COMPASS_ORIENTATION.valueOf(payload.getData());
     calibrateCompass.setOrientation(rt);
@@ -152,7 +156,7 @@ public class CalibrationApiController {
     return new StandardResponse(true);
   }
 
-  @PostMapping("startMagCalibrate")
+  @PostMapping("start-magnometer-calibration")
 //  public Map startMagCalibrate(@RequestBody(required = false) int measurements) {
   public StandardResponse startMagCalibrate() {
     System.out.println("startMagCalibrate");
@@ -166,7 +170,7 @@ public class CalibrationApiController {
     return new StandardResponse(true);
   }
 
-  @PostMapping("stopMagCalibrate")
+  @PostMapping("stop-magnometer-calibration")
   public StandardResponse stopMagCalibrate() {
     System.out.println("stopMagCalibrate");
     calibrateCompass.stop();
@@ -176,7 +180,7 @@ public class CalibrationApiController {
 
   }
 
-  @PostMapping("startRCCalibrate")
+  @PostMapping("start-rc-calibration")
   public StandardResponse startRCCalibrate() {
     System.out.println("startRCCalibrate");
     calibrateRC.start();
@@ -185,7 +189,7 @@ public class CalibrationApiController {
     return new StandardResponse(true);
   }
 
-  @PostMapping("stopRCCalibrate")
+  @PostMapping("stop-rc-calibration")
   public StandardResponse stopRCCalibrate() {
     System.out.println("stopRCCalibrate");
     calibrateRC.stop();

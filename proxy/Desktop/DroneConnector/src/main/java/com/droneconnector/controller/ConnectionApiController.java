@@ -1,13 +1,17 @@
 package com.droneconnector.controller;
 
-import com.droneconnector.model.*;
+import com.droneconnector.models.*;
+import com.droneconnector.models.configuration.PortConfig;
+import com.droneconnector.models.connection.ConnectResponse;
+import com.droneconnector.models.connection.DisconnectResponse;
+import com.droneconnector.models.connection.InfoResponse;
+import com.droneconnector.models.connection.PingResponse;
 import com.dronegcs.mavlink.core.gcs.GCSHeartbeat;
 import com.dronegcs.mavlink.is.connection.ConnectionStatistics;
 import com.dronegcs.mavlink.is.connection.MavLinkConnection;
 import com.dronegcs.mavlink.is.connection.MavLinkConnectionStatisticsListener;
 import com.dronegcs.mavlink.is.drone.Drone;
 import com.generic_tools.devices.SerialConnection;
-import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -227,7 +231,7 @@ public class ConnectionApiController implements MavLinkConnectionStatisticsListe
     this.connectionStatistics = connectionStatistics;
   }
 
-  @GetMapping("/getMavlinkVersion")
+  @GetMapping("/mavlink-version")
   public ExtendedStandardResponse<String> getMavlinkVersion() {
 //    JSONObject object = getResponseTemplate();
 //    object.put(Constants.MESSAGE, drone.getMavClient().getMavlinkVersion());

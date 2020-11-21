@@ -98,23 +98,23 @@ export class DroneService implements ProxyListener {
 
     refreshParameters() {
       console.log("Refresh Parameters")
-      this.configService.get("/configuration/refreshParameters", {}, {}, a => null);
+      this.configService.get("/configuration/refresh-parameters", {}, {}, a => null);
     }
 
     fetchWaypoints(callback: Function) {
-      this.configService.get("/configuration/fetchWaypoints", {}, {}, callback);
+      this.configService.get("/configuration/fetch-waypoints", {}, {}, callback);
     }
 
     getMavlinkVersion(callback: Function) {
-      this.configService.get("/connection/getMavlinkVersion", {}, {}, callback);
+      this.configService.get("/connection/mavlink-version", {}, {}, callback);
     }
 
     getParametersList(callback: Function) {
-      this.configService.get("/configuration/getParametersList", {}, {}, callback);
+      this.configService.get("/configuration/parameters-list", {}, {}, callback);
     }
 
     sendParameter(name: String, value: any, callback: Function) {
-      this.configService.post("/configuration/sendParameter", {}, {name: name, value: value}, callback)
+      this.configService.post("/configuration/parameter", {}, {name: name, value: value}, callback)
     }
 
     private getInfo() {
@@ -138,75 +138,75 @@ export class DroneService implements ProxyListener {
       , controller: controller
       }
 
-      this.configService.post("/configuration/setStreamRates", {}, req, okCallback, errCallback);
+      this.configService.post("/configuration/stream-rates", {}, req, okCallback, errCallback);
     }
 
     getStreamRate(okCallback: Function, errCallback: Function) {
-      this.configService.get("/configuration/getStreamRates", {}, {}, okCallback, errCallback);
+      this.configService.get("/configuration/stream-rates", {}, {}, okCallback, errCallback);
     }
 
     getModesOptions(okCallback: Function, errCallback: Function) {
-      this.configService.get("/configuration/getModesOptions", {}, {}, okCallback, errCallback);
+      this.configService.get("/configuration/modes-options", {}, {}, okCallback, errCallback);
     }
 
     getTuneOptions(okCallback: Function, errCallback: Function) {
-      this.configService.get("/configuration/getTuneOptions", {}, {}, okCallback, errCallback);
+      this.configService.get("/configuration/tune-options", {}, {}, okCallback, errCallback);
     }
 
     getCommandsOptions(okCallback: Function, errCallback: Function) {
-      this.configService.get("/configuration/getCommandsOptions", {}, {}, okCallback, errCallback);
+      this.configService.get("/configuration/commands-options", {}, {}, okCallback, errCallback);
     }
 
     getModes(okCallback: Function, errCallback: Function) {
-      this.configService.get("/configuration/getModes", {}, {}, okCallback, errCallback);
+      this.configService.get("/configuration/modes", {}, {}, okCallback, errCallback);
     }
 
     setModes(data: any, okCallback?: Function, errCallback?: Function) {
-      this.configService.post("/configuration/setModes", {}, data, okCallback, errCallback);
+      this.configService.post("/configuration/modes", {}, data, okCallback, errCallback);
     }
 
     startEscCalibrate(okCallback?: Function, errCallback?: Function) {
-      this.configService.post("/calibration/startEscCalibrate", {}, {}, okCallback, errCallback);
+      this.configService.post("/calibration/start-esc-calibration", {}, {}, okCallback, errCallback);
     }
 
     startGyroCalibrate(okCallback: Function, errCallback: Function) {
-      this.configService.post("/calibration/startGyroCalibrate", {}, {}, okCallback, errCallback);
+      this.configService.post("/calibration/start-gyro-calibration", {}, {}, okCallback, errCallback);
     }
 
     ackGyroCalibrate(okCallback: Function, errCallback: Function) {
-      this.configService.post("/calibration/ackGyroCalibrate", {}, {}, okCallback, errCallback);
+      this.configService.post("/calibration/ack-gyro-calibration", {}, {}, okCallback, errCallback);
     }
 
     startLevelCalibrate(okCallback?: Function, errCallback?: Function) {
-      this.configService.post("/calibration/startLevelCalibrate", {}, {}, okCallback, errCallback);
+      this.configService.post("/calibration/start-level-calibration", {}, {}, okCallback, errCallback);
     }
 
     getSupportCompassMethods(okCallback: Function, errCallback?: Function) {
-      this.configService.get("/calibration/getSupportCompassMethods", {}, {}, okCallback, errCallback);
+      this.configService.get("/calibration/supported-compass-methods", {}, {}, okCallback, errCallback);
     }
 
     setMagnometerCalibrateMethod(method, okCallback: Function, errCallback?: Function) {
-      this.configService.post("/calibration/setMagnometerCalibrateMethod", {}, {"data":method}, okCallback, errCallback);
+      this.configService.post("/calibration/magnometer-calibration-method", {}, {"data":method}, okCallback, errCallback);
     }
 
     setMagnometerCalibrateRotation(rotation, okCallback: Function, errCallback?: Function) {
-      this.configService.post("/calibration/setMagnometerCalibrateRotation", {}, { "data": rotation}, okCallback, errCallback);
+      this.configService.post("/calibration/magnometer-calibration-rotation", {}, { "data": rotation}, okCallback, errCallback);
     }
 
     startMagnometerCalibrate(okCallback: Function, errCallback?: Function) {
-      this.configService.post("/calibration/startMagCalibrate", {}, {}, okCallback, errCallback);
+      this.configService.post("/calibration/start-magnometer-calibration", {}, {}, okCallback, errCallback);
     }
 
     stopMagnometerCalibrate(okCallback: Function, errCallback?: Function) {
-      this.configService.post("/calibration/stopMagCalibrate", {}, {}, okCallback, errCallback);
+      this.configService.post("/calibration/stop-magnometer-calibration", {}, {}, okCallback, errCallback);
     }
 
     startRCCalibrate(okCallback: Function, errCallback?: Function) {
-      this.configService.post("/calibration/startRCCalibrate", {}, {}, okCallback, errCallback);
+      this.configService.post("/calibration/start-rc-calibration", {}, {}, okCallback, errCallback);
     }
 
     stopRCCalibrate(okCallback: Function, errCallback?: Function) {
-      this.configService.post("/calibration/stopRCCalibrate", {}, {}, okCallback, errCallback);
+      this.configService.post("/calibration/stop-rc-calibration", {}, {}, okCallback, errCallback);
     }
 
     

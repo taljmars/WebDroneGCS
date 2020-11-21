@@ -1,19 +1,17 @@
 package com.droneconnector.controller;
 
-import com.droneconnector.model.*;
+import com.droneconnector.models.*;
+import com.droneconnector.models.configuration.*;
 import com.dronegcs.mavlink.is.drone.Drone;
 import com.dronegcs.mavlink.is.drone.parameters.Parameter;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmCommands;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmModes;
 import com.dronegcs.mavlink.is.protocol.msg_metadata.ApmTuning;
-import com.google.gson.Gson;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
-import java.util.Map;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping(path = "/configuration/")
@@ -37,7 +35,7 @@ public class ConfigurationApiController {
   }
 
 
-  @GetMapping("/refreshParameters")
+  @GetMapping("/refresh-parameters")
   public StandardResponse refreshParameters() {
     System.out.println("Sync Parameters");
     drone.getParameters().refreshParameters();
@@ -45,7 +43,7 @@ public class ConfigurationApiController {
     return new StandardResponse(true);
   }
 
-  @PostMapping("/sendParameter")
+  @PostMapping("/parameter")
   public StandardResponse sendParameter(@RequestBody ParamUpdate paramUpdate) {
     System.out.println("Send Parameter " + paramUpdate);
     Parameter parameter = drone.getParameters().getParameter(paramUpdate.getName());
@@ -55,7 +53,7 @@ public class ConfigurationApiController {
     return new StandardResponse(true);
   }
 
-  @GetMapping("/getParametersList")
+  @GetMapping("/parameters-list")
   public ParametersListResponse getOfflineParameters() {
     System.out.println("Get Offline Parameters");
 //    JSONObject object = getResponseTemplate();
@@ -76,7 +74,7 @@ public class ConfigurationApiController {
     return parametersListResponse;
   }
 
-  @GetMapping("/fetchWaypoints")
+  @GetMapping("/fetch-waypoints")
   public StandardResponse fetchWaypoints() {
     System.out.println("Fetch Waypoints");
     drone.getWaypointManager().getWaypoints();
@@ -84,8 +82,8 @@ public class ConfigurationApiController {
 //    return getResponseTemplate().toMap();
   }
 
-  @PostMapping("/setStreamRates")
-  public StandardResponse setStreamRates(@RequestBody StreamRates streamRates) {
+  @PostMapping("/stream-rates")
+  public StandardResponse setStreamRates(@RequestBody StreamRatesRequest streamRates) {
     System.out.println("setStreamRates");
     System.out.println(streamRates.toString());
     drone.getPreferences().setRates(streamRates.toRates());
@@ -94,16 +92,16 @@ public class ConfigurationApiController {
     return new StandardResponse(true);
   }
 
-  @GetMapping("/getStreamRates")
-  public StreamRates getStreamRates() {
+  @GetMapping("/stream-rates")
+  public StreamRatesResponse getStreamRates() {
     System.out.println("getStreamRates");
 //    String str = new Gson().toJson(new StreamRates(drone.getPreferences().getRates()), StreamRates.class);
 //    JSONObject object = new JSONObject(str);
 //    return object.toMap();
-    return new StreamRates(drone.getPreferences().getRates());
+    return new StreamRatesResponse(drone.getPreferences().getRates());
   }
 
-  @GetMapping("/getModesOptions")
+  @GetMapping("/modes-options")
   public ExtendedStandardResponse<List<ApmModes>> getModesOptions() {
     System.out.println("getModesOptions");
 //    JSONObject object = getResponseTemplate();
@@ -115,7 +113,7 @@ public class ConfigurationApiController {
     return x;
   }
 
-  @GetMapping("/getCommandsOptions")
+  @GetMapping("/commands-options")
   public ExtendedStandardResponse<List<ApmCommands>> getCommandsOptions() {
     System.out.println("getCommandsOptions");
 //    JSONObject object = getResponseTemplate();
@@ -127,7 +125,7 @@ public class ConfigurationApiController {
     return x;
   }
 
-  @GetMapping("/getTuneOptions")
+  @GetMapping("/tune-options")
   public ExtendedStandardResponse<List<ApmTuning>> getTuneOptions() {
     System.out.println("getTuneOptions");
 //    JSONObject object = getResponseTemplate();
@@ -139,17 +137,17 @@ public class ConfigurationApiController {
     return x;
   }
 
-  @GetMapping("/getModes")
-  public Modes getModes() {
+  @GetMapping("/modes")
+  public ModesResponse getModes() {
     System.out.println("getModes");
 //    String str = new Gson().toJson(new Modes(drone), Modes.class);
 //    JSONObject object = new JSONObject(str);
 //    return object.toMap();
-    return new Modes(drone);
+    return new ModesResponse(drone);
   }
 
-  @PostMapping("setModes")
-  public StandardResponse setMode(@RequestBody Modes modes) {
+  @PostMapping("modes")
+  public StandardResponse setMode(@RequestBody ModesRequest modes) {
     System.out.println("setModes");
     System.out.println(modes);
     modes.toDrone(drone);

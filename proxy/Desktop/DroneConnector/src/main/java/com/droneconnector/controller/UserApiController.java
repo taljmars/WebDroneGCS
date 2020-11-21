@@ -1,12 +1,13 @@
 package com.droneconnector.controller;
 
-import com.droneconnector.model.*;
-import com.google.gson.Gson;
-import org.json.JSONObject;
+import com.droneconnector.models.ConnectorException;
+import com.droneconnector.models.users.LoginRequest;
+import com.droneconnector.models.users.LoginResponse;
+import com.droneconnector.models.users.LogoutRequest;
+import com.droneconnector.models.users.LogoutResponse;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
-import java.util.Map;
 import java.util.UUID;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
