@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
-import {MatDialog, MatDialogConfig} from "@angular/material";
+import {MatDialog, MatDialogConfig} from '@angular/material';
 // import { SerialDialogView } from "./dashboard-page/serial/serial.dialog"
 import { DroneEventListener, DroneService } from './services/drone/drone.service';
 import { ProxyListener, ProxyService } from './services/config/proxy.service';
 import { UserService } from './services/users/user.service';
 import { DroneEvents } from './services/drone/protocol/events.component';
-import { ApiService } from './services/api.service'
+import { ApiService } from './services/api.service';
 import { ApplicationStateService } from './application-state.service';
 import { AlertsService } from './services/alerts.service';
 
@@ -17,19 +17,19 @@ import { AlertsService } from './services/alerts.service';
 })
 // export class AppComponent implements ProxyListener, DroneEventListener {
 export class AppComponent {
-  
+
   // title = 'WebDroneGCS';
   // connected: boolean = false;
   // manu: boolean = false;
 
-  constructor ( protected router: Router, 
-                protected dialog: MatDialog, 
-                public applicationStateService: ApplicationStateService,
-                protected droneService: DroneService,
-                protected proxyService: ProxyService,
-                public userService: UserService,
-                protected api: ApiService,
-                protected alertsService: AlertsService,
+  constructor( protected router: Router,
+               protected dialog: MatDialog,
+               public applicationStateService: ApplicationStateService,
+               protected droneService: DroneService,
+               protected proxyService: ProxyService,
+               public userService: UserService,
+               protected api: ApiService,
+               protected alertsService: AlertsService,
               ) {
     // proxyService.addEventListner(this)
     // droneService.addEventListener(this)
@@ -61,7 +61,7 @@ export class AppComponent {
   //     console.log("Unknown " + event)
   //     return
     // }
-    
+
   //   switch (event.id) {
   //     case DroneEvents.HEARTBEAT_TIMEOUT:
   //       console.log("HEARTBEAT_TIMEOUT " + event.data)

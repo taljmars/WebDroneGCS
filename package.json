@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host 0.0.0.0 --ssl true",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "ng build --prod --base-href=\"https://taljmars.github.io/WebDroneGCS/\""
   },
   "private": true,
   "dependencies": {
@@ -48,9 +49,13 @@
     "@angular/cli": "~8.1.0",
     "@angular/compiler-cli": "~8.1.0",
     "@angular/language-service": "~8.1.0",
+    "@babel/compat-data": "^7.8.0",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.8.7",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^8.9.5",
+    "babel-loader": "^8.1.0",
     "codelyzer": "^5.0.0",
     "jasmine-core": "^3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -61,10 +66,10 @@
     "karma-jasmine-html-reporter": "^1.5.3",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
-    "tslint": "~5.15.0",
-    "typescript": "~3.4.3"
+    "tslint": "^5.15.0",
+    "typescript": "^3.4.5"
   },
   "resolutions": {
-    "@babel/preset-env": "7.5.5"
+    "@babel/preset-env": "7.8.7"
   }
 }

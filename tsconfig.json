@@ -18,9 +18,15 @@
       "es2018",
       "dom"
     ]
+//    "paths": {
+//      "tslib": [
+//        "node_modules/tslib/tslib.d.ts"
+//      ]
+//    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true
-  }
+  },
+  "include": [ "node_modules" ]
 }
